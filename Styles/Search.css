@@ -53,3 +53,12 @@ body {
     color: white;
     margin-top: 20px;
 }
+.pagination li , .pagination a {
+    text-decoration: none;
+    list-style-type: none;
+    color: white;
+}
+.pagination li{
+    display: inline-block;
+    margin: 20px;
+}
