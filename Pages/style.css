@@ -1,0 +1,139 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1f2025;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.book {
+    width: 90%;
+    height: 90%;
+    display: flex;
+}
+
+.book .right, .left {
+    width: 80%;
+    height: 100%;
+    position: relative;
+    /*border: 1px solid white;*/
+
+}
+
+.book .left {
+    /*float: left;*/
+    width: 20%;
+}
+
+.book .right {
+    /*float: right;*/
+}
+
+.book .left img {
+    width: 100%;
+}
+
+.book .left .play_bttn {
+    position: relative;
+    left: 44%;
+    top: -40px;
+    background-color: #fd6565;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    color: white;
+    box-shadow: 0 0 20px #fd6565;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.book .left .play_bttn:hover {
+    transform: rotate(360deg);
+}
+
+.book .left .infor {
+    color: white;
+    padding: 0 20px;
+}
+
+.book .left .infor p {
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.book .left .infor h6 {
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.book .left .infor p {
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.book .right {
+    padding: 10px 40px;
+    background: unset;
+}
+
+.book .right::before {
+    position: absolute;
+    content: '';
+    width: 95%;
+    height: 250px;
+    /*border: 1px solid white;*/
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center -30px;
+    background-image: url('/img/img/bg.png');
+    z-index: -10;
+    border-radius: 20px;
+}
+.book .right::after {
+    position: absolute;
+    content: "";
+    width: 95%;
+    height: 200px;
+    top: 0;
+    background: linear-gradient(0deg , transparent, #1f2025);
+    z-index: -10;
+    border-radius: 20px;
+}
+.book .right .head_time {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.book .right .head_time::before{
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 250px;
+    top: 0;
+    right: -45px;
+    background: linear-gradient(90deg, transparent, #1f2025);
+    z-index: -9;
+}
+.book .right .head_time::after {
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 250px;
+    top: 0;
+    left: -45px;
+    background: linear-gradient(-90deg, transparent, #1f2025);
+    z-index: -9;
+}
