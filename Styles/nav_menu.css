@@ -5,9 +5,6 @@
 }
 
 body {
-    /*width: 100vw;*/
-    /*height: 100vh;*/
-    /*display: flex;*/
     background: #1f2025;
     font-family: 'Montserrat', sans-serif;
 }
@@ -15,13 +12,16 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 100px;
-    background-color: white;
+    height: 80px;
+    width: 100%;
+    background-color: wheat;
+    border-bottom: red 3px solid;
 }
 .nav-menu .lelf-menu #logo-cinema {
     width: 100px;
+    height: 77px;
     float: left;
-    margin-left: 50px;
+    margin-left: 70px;
     margin-right: 150px;
 }
 .nav-menu .right-menu{
@@ -39,9 +39,9 @@ body {
     color: red;
 }
 .nav-menu .right-menu input{
-    width: 300px;
+    width: 350px;
     height: 30px;
     padding: 6px;
-    margin-right: 50px;
+    margin-right: 40px;
     border-radius: 10px;
 }
