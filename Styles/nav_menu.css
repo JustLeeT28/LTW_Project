@@ -1,0 +1,47 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /*width: 100vw;*/
+    /*height: 100vh;*/
+    /*display: flex;*/
+    background: #1f2025;
+    font-family: 'Montserrat', sans-serif;
+}
+.nav-menu{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100px;
+    background-color: white;
+}
+.nav-menu .lelf-menu #logo-cinema {
+    width: 100px;
+    float: left;
+    margin-left: 50px;
+    margin-right: 150px;
+}
+.nav-menu .right-menu{
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+}
+.nav-menu .right-menu a{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+}
+.nav-menu .right-menu a:hover{
+    color: red;
+}
+.nav-menu .right-menu input{
+    width: 300px;
+    height: 30px;
+    padding: 6px;
+    margin-right: 50px;
+    border-radius: 10px;
+}
