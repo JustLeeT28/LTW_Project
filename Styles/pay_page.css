@@ -1,0 +1,43 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #1f2025;
+    font-family: 'Montserrat', sans-serif;
+}
+.container-payment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.pay h1{
+    margin-top: 30px;
+    color: white;
+}
+.payment{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    width: 100%;
+}
+.QR-lefl{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.QR-lefl img{
+    width: 300px;
+    border-radius: 10px;
+}
