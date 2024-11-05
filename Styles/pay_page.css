@@ -29,15 +29,27 @@ body {
     justify-content: center;
     margin-top: 50px;
     width: 100%;
+    color: #0f0c29;
+    gap: 50px;
 }
 .QR-lefl{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: white;
+    background-color: white;
+    width: 100%;
 }
 .QR-lefl img{
     width: 300px;
     border-radius: 10px;
+}
+.infor-movie-right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 100%;
+
 }
