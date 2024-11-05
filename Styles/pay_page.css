@@ -18,9 +18,11 @@ body {
     flex-direction: column;
     align-items: center;
 }
-.pay h1{
+.pay p{
     margin-top: 30px;
     color: white;
+    font-weight: bold;
+    font-size: 40px;
 }
 .payment{
     display: flex;
@@ -39,17 +41,46 @@ body {
     justify-content: center;
     background-color: white;
     width: 100%;
+    height: 100%;
 }
+
 .QR-lefl img{
-    width: 300px;
+    width: 330px;
     border-radius: 10px;
+    margin: 10px;
+}
+.QR-lefl h2{
+    font-weight: bold;
+    color: red;
+    margin-bottom: 10px;
+}
+.QR-lefl h3{
+    font-weight: bold;
+    margin-top: 10px;
 }
 .infor-movie-right{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    gap: 25px;
     background-color: white;
     width: 100%;
-
+    height: 100%;
+    padding: 10px;
+    /*font-size: ;*/
+}
+.highlight{
+    color: #b60d9c;
+    font-weight: bold;
+}
+.total-cost{
+    border-top: 3px dashed red;
+    padding-top: 5px;
+}
+.payment-text{
+    font-size: 20px;
+}
+.cost{
+    font-size: 20px;
+    color: red;
+    font-weight: bold;
 }
