@@ -438,6 +438,7 @@ body {
     width: 90%;
     margin-right: auto;
     margin-left: auto;
+    height: 90%;
 }
 
 .film_sumary h1 {
@@ -451,5 +452,5 @@ body {
 .film_sumary {
     margin-top: 80px;
     width: 100%;
-}
+ }
 
