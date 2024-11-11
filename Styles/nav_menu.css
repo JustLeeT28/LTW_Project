@@ -15,7 +15,8 @@ body {
     height: 80px;
     width: 100%;
     background-color: wheat;
-    border-bottom: red 3px solid;
+    /*position: fixed;*/
+    /*border-bottom: red 3px solid;*/
 }
 .nav-menu .lelf-menu #logo-cinema {
     width: 100px;
@@ -31,7 +32,7 @@ body {
 }
 .nav-menu .right-menu a{
     text-decoration: none;
-    color: black;
+    color: white;
     font-size: 20px;
     font-weight: bold;
 }
