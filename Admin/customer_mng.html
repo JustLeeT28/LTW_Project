@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Quản lý Khách hàng</title>
+    <link rel="stylesheet" href="customer_mng.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Admin Panel</h2>
+            <nav>
+                <ul>
+                    <li><a href="#" data-section="dashboard">Dashboard</a></li>
+                    <li><a href="#" data-section="movies">Quản lý Phim</a></li>
+                    <li><a href="#" data-section="schedule">Quản lý Lịch Chiếu</a></li>
+                    <li><a href="#" data-section="rooms">Quản lý Phòng Chiếu</a></li>
+                    <li><a href="#" data-section="tickets">Quản lý Vé và Đặt Vé</a></li>
+                    <li><a href="#" data-section="customers" class="active">Quản lý Khách hàng</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div id="customers" class="section active">
+                <h1>Quản lý Khách hàng</h1>
+
+                <!-- Danh sách khách hàng -->
+                <div class="customer-list">
+                    <h2>Danh sách Khách hàng</h2>
+                    <table id="customerTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên khách hàng</th>
+                                <th>Email</th>
+                                <th>Số điện thoại</th>
+                                <th>Điểm thành viên</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Dữ liệu khách hàng sẽ được hiển thị ở đây -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Công cụ tìm kiếm -->
+                <div class="search-customer">
+                    <h2>Tìm kiếm Khách hàng</h2>
+                    <input type="text" id="searchCustomerInput" placeholder="Nhập tên, email hoặc số điện thoại">
+                    <button onclick="searchCustomer()">Tìm kiếm</button>
+                </div>
+
+                <!-- Chính sách ưu đãi -->
+                <div class="manage-discounts">
+                    <h2>Chính sách Ưu đãi</h2>
+                    <form id="discountForm">
+                        <label for="discountName">Tên ưu đãi:</label>
+                        <input type="text" id="discountName" required>
+
+                        <label for="discountPercent">Phần trăm giảm giá:</label>
+                        <input type="number" id="discountPercent" min="0" max="100" required>
+
+                        <button type="button" onclick="addDiscount()">Thêm ưu đãi</button>
+                    </form>
+
+                    <h3>Danh sách Ưu đãi</h3>
+                    <ul id="discountList">
+                        <!-- Danh sách ưu đãi sẽ được hiển thị ở đây -->
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="customer_mng.js"></script>
+</body>
+</html>
