@@ -313,7 +313,6 @@ body {
     align-items: center;
     justify-content: center;
     color: white;
-    font-weight: 600;
 }
 
 .book .right .chair .row li:hover {
@@ -351,12 +350,13 @@ body {
 
 .book .right .chair .row .booked {
     background: #fd6565 !important;
+    cursor: not-allowed;
 }
 
-/*.book .right .chair .row .selected {*/
-/*    background: greenyellow !important;*/
-/*    color: black !important;*/
-/*}*/
+.book .right .chair .row .selected {
+    background: greenyellow !important;
+    color: black !important;
+}
 .book .right .details {
     width: 100%;
     margin-top: 40px;
@@ -452,5 +452,19 @@ body {
 .film_sumary {
     margin-top: 80px;
     width: 100%;
- }
+}
+
+.btn-book {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border: solid 2px yellowgreen;
+    width: fit-content;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 10px 20px;
+    border-radius: 10px;
+
+}
 
