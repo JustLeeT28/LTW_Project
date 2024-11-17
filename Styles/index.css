@@ -144,15 +144,6 @@ body {
     transition: background-color 0.3s ease;
 }
 
-
-.nav-menu{
-    background: linear-gradient(10deg, #6D0088, #0f0c29);
-    border-bottom: solid 1px mediumpurple;
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-    left: 0;
-}
 li {
     list-style-type: none;
 }

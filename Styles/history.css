@@ -1,0 +1,155 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1f2025;
+    font-family: 'Montserrat', sans-serif;
+    flex-direction: column;
+    margin-top: 7%;
+}
+.title h1{
+    color: white;
+}
+.t1 {
+    width: 100%;
+    text-align: left;
+    margin-left: 20%;
+    /*padding-top: 100px;*/
+    margin-top: 100px;
+}
+
+.t1 h2 {
+    color: white;
+}
+
+.t1 h2{
+    float: left;
+}
+
+.ticket {
+    width: 80%;
+    height: 75%;
+    margin-top: 20px;
+    overflow-y: auto;
+}
+
+.ticket::-webkit-scrollbar {
+    /*display: none;*/
+    background: rgba(184, 184, 184, 0.2);
+    width: 5px;
+}
+.ticket::-webkit-scrollbar-thumb {
+    width: 5px;
+    background: rgba(184, 184, 184, 0.5);
+}
+
+.ticket .tic {
+    width: 100%;
+    height: 215px;
+    display: flex;
+    overflow: hidden;
+    margin-top: 20px;
+}
+.ticket .tic:first-child {
+    margin-top: 0;
+}
+
+.ticket .tic .barcode, .ticket-detail {
+    width: 100%;
+    height: 215px;
+    position: relative;
+}
+
+.ticket .tic .barcode {
+    width: 30%;
+    padding: 0 20px;
+    background: white;
+}
+
+.ticket .tic .ticket-detail {
+    background: url("../img/img/bg.png") no-repeat center -35px /cover;
+}
+
+.ticket .tic .barcode .card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.ticket .tic .barcode .card h6 {
+    width: 60%;
+    text-align: left;
+    font-weight: 600;
+    font-family: Tahoma;
+
+}
+
+.ticket .tic .ticket-detail .type {
+    position: absolute;
+    left: 30px;
+    top: 10px;
+    font-weight: 600;
+    color: white;
+}
+
+.ticket .tic .ticket-detail .pvr {
+    position: absolute;
+    right: 30px;
+    top: 10px;
+    font-weight: 600;
+    color: white;
+}
+
+.ticket .tic .ticket-detail .pvr span {
+    color: skyblue;
+}
+
+.ticket .tic .ticket-detail h1 {
+    position: absolute;
+    left: 30px;
+    bottom: 80px;
+    font-weight: 600;
+    color: white;
+}
+
+.ticket .tic .ticket-detail .seat-detail {
+    position: absolute;
+    left: 30px;
+    bottom: 8px;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(270deg, transparent, rgba(0, 0, 0, 0.3));
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.ticket .tic .ticket-detail .seat-detail .seat-cr {
+    width: 100px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+}
+.ticket .tic .ticket-detail .seat-detail .seat-cr h6:nth-child(2){
+    font-size: 15px;
+    font-weight: 800;
+}
+sub{
+    font-size: 10px;
+}
+
