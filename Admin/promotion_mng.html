@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Quản lý Khuyến mãi và Ưu đãi</title>
+    <link rel="stylesheet" href="promotion_mng.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Admin Panel</h2>
+            <nav>
+                <ul>
+                    <li><a href="#" data-section="dashboard">Dashboard</a></li>
+                    <li><a href="#" data-section="movies">Quản lý Phim</a></li>
+                    <li><a href="#" data-section="schedule">Quản lý Lịch Chiếu</a></li>
+                    <li><a href="#" data-section="rooms">Quản lý Phòng Chiếu</a></li>
+                    <li><a href="#" data-section="tickets">Quản lý Vé</a></li>
+                    <li><a href="#" data-section="customers">Quản lý Khách hàng</a></li>
+                    <li><a href="#" data-section="promotions" class="active">Quản lý Khuyến mãi</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div id="promotions" class="section active">
+                <h1>Quản lý Khuyến mãi và Ưu đãi</h1>
+
+                <!-- Thêm Khuyến mãi -->
+                <div class="add-promotion">
+                    <h2>Thêm Khuyến mãi Mới</h2>
+                    <form id="promotionForm">
+                        <label for="promoName">Tên khuyến mãi:</label>
+                        <input type="text" id="promoName" required>
+
+                        <label for="promoCode">Mã khuyến mãi:</label>
+                        <input type="text" id="promoCode" required>
+
+                        <label for="discountValue">Giá trị giảm giá (%):</label>
+                        <input type="number" id="discountValue" min="0" max="100" required>
+
+                        <label for="promoStartDate">Ngày bắt đầu:</label>
+                        <input type="date" id="promoStartDate" required>
+
+                        <label for="promoEndDate">Ngày kết thúc:</label>
+                        <input type="date" id="promoEndDate" required>
+
+                        <label for="promoConditions">Điều kiện áp dụng:</label>
+                        <textarea id="promoConditions" rows="3"></textarea>
+
+                        <button type="button" onclick="addPromotion()">Thêm Khuyến mãi</button>
+                    </form>
+                </div>
+
+                <!-- Danh sách khuyến mãi -->
+                <div class="promotion-list">
+                    <h2>Danh sách Khuyến mãi</h2>
+                    <table id="promotionTable">
+                        <thead>
+                            <tr>
+                                <th>Tên</th>
+                                <th>Mã</th>
+                                <th>Giảm giá</th>
+                                <th>Thời gian</th>
+                                <th>Điều kiện</th>
+                                <th>Số lần sử dụng</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Danh sách khuyến mãi sẽ được hiển thị tại đây -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="promotion_mng.js"></script>
+</body>
+</html>
