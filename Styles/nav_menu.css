@@ -12,19 +12,18 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     height: 80px;
     width: 100%;
     background-color: wheat;
     /*position: fixed;*/
     /*border-bottom: red 3px solid;*/
 }
-.nav-menu .left-menu #logo-cinema {
-    width: 100px;
-    height: 77px;
-    float: left;
-    margin-left: 70px;
-    margin-right: 150px;
+.nav-menu .lelf-menu #logo-cinema{
+    margin-right: 50px;
+    width: 80px;
 }
+
 .nav-menu .right-menu{
     display: flex;
     flex-direction: row;
