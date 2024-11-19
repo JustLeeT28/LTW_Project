@@ -15,7 +15,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 totalAmount += seatPrice;
             }
         })
-        document.getElementById("total_need_pay").textContent=totalAmount.toLocaleString() +" VNĐ";
+        document.getElementById("total_need_pay").textContent=`${totalAmount.toLocaleString()} VNĐ`;
     }
+    document.getElementsByClassName("btn-book")[0].addEventListener('click', () => {
+        localStorage.setItem('total_amout', totalAmount);
+        window.location.href='../Pages/Payment.html';
+
+    })
 });
 

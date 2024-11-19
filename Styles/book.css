@@ -467,7 +467,27 @@ body {
     border-radius: 10px;
 
 }
-#total_need_pay{
-    color:white;
+.btn-book:hover {
+    cursor: pointer;
 }
+.book_movie {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-weight: bold;
+
+
+}
+.lef_book{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    float: left;
+    gap: 10px;
+}
+
 
