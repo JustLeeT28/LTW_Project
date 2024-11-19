@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Quản lý Nhân viên</title>
+    <link rel="stylesheet" href="staff_mng.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Admin Panel</h2>
+            <nav>
+                <ul>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Quản lý Phim</a></li>
+                    <li><a href="#">Quản lý Lịch Chiếu</a></li>
+                    <li><a href="#">Quản lý Phòng Chiếu</a></li>
+                    <li><a href="#">Quản lý Vé</a></li>
+                    <li><a href="#">Quản lý Khách hàng</a></li>
+                    <li><a href="#">Quản lý Khuyến mãi</a></li>
+                    <li><a href="#" class="active">Quản lý Nhân viên</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div id="employees" class="section active">
+                <h1>Quản lý Nhân viên</h1>
+
+                <!-- Thêm Nhân viên -->
+                <div class="add-employee">
+                    <h2>Thêm Nhân viên Mới</h2>
+                    <form id="employeeForm">
+                        <label for="employeeName">Tên nhân viên:</label>
+                        <input type="text" id="employeeName" required>
+
+                        <label for="employeeRole">Phân quyền:</label>
+                        <select id="employeeRole" required>
+                            <option value="admin">Admin</option>
+                            <option value="quản lý vé">Quản lý Vé</option>
+                            <option value="quản lý lịch chiếu">Quản lý Lịch Chiếu</option>
+                        </select>
+
+                        <button type="button" onclick="addEmployee()">Thêm Nhân viên</button>
+                    </form>
+                </div>
+
+                <!-- Danh sách Nhân viên -->
+                <div class="employee-list">
+                    <h2>Danh sách Nhân viên</h2>
+                    <table id="employeeTable">
+                        <thead>
+                            <tr>
+                                <th>Tên</th>
+                                <th>Phân quyền</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Danh sách nhân viên sẽ được hiển thị tại đây -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Lịch sử hoạt động -->
+                <div class="activity-log">
+                    <h2>Lịch sử Hoạt động</h2>
+                    <ul id="activityLog">
+                        <!-- Lịch sử hoạt động sẽ được hiển thị tại đây -->
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="staff_mng.js"></script>
+</body>
+</html>
