@@ -1,0 +1,74 @@
+
+.container-movie{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+}
+.movie {
+    height: 50%;
+    width: 25vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.movie-infor img{
+    width: 95%;
+    height: 95%;
+}
+.movie a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+.book-button{
+    margin-top: 8px;
+    color: black;
+    font-weight: bold;
+    background-color: #f3ea28;
+    border: none;
+    border-radius: 5px;
+    width: 20%;
+    height: 30px;
+    margin-bottom: 30px
+}
+.header h1{
+    color: white;
+    margin-top: 100px;
+    margin-bottom: 10px;
+}
+
+.movie-infor{
+    position: relative;
+    overflow: hidden;
+}
+.infor-text{
+    background-color: rgba(0,0,0,0.8);
+    position: absolute;
+    top: -300%;
+    width: 95%;
+    height: 95%;
+    padding: 20px;
+    color: white;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap:25px;
+}
+.movie-infor:hover .infor-text{
+    top: 0;
+}
+.highlight{
+    font-weight: bold;
+    color: rosybrown;
+    margin-right: 10px
+}
+a.disable{
+    pointer-events: none;
+}
+.num-page a:hover{
+    font-weight: bold;
+    color: red;
+}

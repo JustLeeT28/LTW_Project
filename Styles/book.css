@@ -24,7 +24,7 @@ body {
     display: flex;
 }
 
-.book .right, .left {
+.book .right{
     width: 80%;
     height: 100%;
     position: relative;
