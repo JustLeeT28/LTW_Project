@@ -1,7 +1,13 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const totalAmount = localStorage.getItem("total_amout");
-    const formattedAmount = parseInt(totalAmount).toLocaleString();
-    document.getElementsByClassName('cost')[0].textContent = formattedAmount + " VNĐ" ;
-    document.getElementsByClassName('cost')[1].textContent = formattedAmount + ' VNĐ';
+    const seatTotal = parseInt(localStorage.getItem("total_amout")) || 0;
 
-})
+    const foodTotal = parseInt(localStorage.getItem("foodTotal")) || 0;
+
+    const grandTotal = seatTotal + foodTotal;
+
+    const formattedGrandTotal = grandTotal.toLocaleString() + " VNĐ";
+
+    // Hiển thị tổng tiền vào các phần tử liên quan
+    document.getElementsByClassName('cost')[0].textContent = formattedGrandTotal;
+    document.getElementsByClassName('cost')[1].textContent = formattedGrandTotal;
+});

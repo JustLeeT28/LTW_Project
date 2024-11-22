@@ -82,7 +82,7 @@ body {
     gap: 20px;
 }
 
-.left .food-item .quantity a {
+.left .food-item .quantity a, .left .food-item .quantity span {
     color: white;
     text-decoration: none;
     font-size: 25px;

@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     document.getElementsByClassName("btn-book")[0].addEventListener('click', () => {
         localStorage.setItem('total_amout', totalAmount);
-        window.location.href='../Pages/Payment.html';
+        window.location.href='../Pages/order-food.html';
 
     })
 });

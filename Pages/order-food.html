@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Food</title>
     <link rel="stylesheet" href="../Styles/order-food.css">
+    <script src="../Script/order-food.js"></script>
 </head>
 <body>
 <div class="left">
@@ -14,11 +15,12 @@
             <p>1 bắp, 1 nước, 1 snack</p>
             <div class="price">100,000</div>
         </div>
-        <div class="quantity">
-            <a href="" class="icon-minum">-</a>
-            <a href="" class="number">0</a>
-            <a href="" class="icon-plus">+</a>
+        <div class="quantity" data-id="1">
+            <a href="#" class="icon-minum">-</a>
+            <span class="number">0</span>
+            <a href="#" class="icon-plus">+</a>
         </div>
+
     </div>
     <div class="food-item">
         <img src="../img/img/combo/2.jpg" alt=""/>
@@ -27,11 +29,12 @@
             <p>1 bắp 2 nước 1 snake</p>
             <div class="price">150,000</div>
         </div>
-        <div class="quantity">
-            <a href="" class="icon-minum">-</a>
-            <a href="" class="number">0</a>
-            <a href="" class="icon-plus">+</a>
+        <div class="quantity" data-id="1">
+            <a href="#" class="icon-minum">-</a>
+            <span class="number">0</span>
+            <a href="#" class="icon-plus">+</a>
         </div>
+
     </div>
     <div class="food-item">
         <img src="../img/img/combo/3.jpg" alt=""/>
@@ -40,11 +43,12 @@
             <p>1 bắp 1 nước</p>
             <div class="price">80,000</div>
         </div>
-        <div class="quantity">
-            <a href="" class="icon-minum">-</a>
-            <a href="" class="number">0</a>
-            <a href="" class="icon-plus">+</a>
+        <div class="quantity" data-id="1">
+            <a href="#" class="icon-minum">-</a>
+            <span class="number">0</span>
+            <a href="#" class="icon-plus">+</a>
         </div>
+
     </div>
 </div>
 <div class="right">
@@ -63,7 +67,7 @@
         <p>Ghế: <span>A1</span></p>
     </div>
     <div class="total">
-        <p>Tổng cộng: <span>80.000 đ</span></p>
+        <p>Tổng cộng: <span class="total cost">80.000 đ</span></p>
     </div>
     <div class="actions">
         <button class="btn-back">Quay lại</button>
