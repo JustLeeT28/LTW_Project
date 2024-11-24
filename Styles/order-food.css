@@ -121,7 +121,8 @@ body {
 
 .right .cinema-info,
 .right .seat-info,
-.right .total {
+.right .total,
+.right .infor-comboFood{
     font-size: 1em;
     line-height: 1.5;
     border-top: 1px solid #444;
@@ -158,3 +159,7 @@ body {
     background-color: #e05a1a;
 }
 
+.right .infor-comboFood h3 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}

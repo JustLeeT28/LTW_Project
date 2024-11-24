@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const foodTotal = parseInt(localStorage.getItem("foodTotal")) || 0;
 
-    const grandTotal = seatTotal + foodTotal;
+    const grandTotal = foodTotal;
 
     const formattedGrandTotal = grandTotal.toLocaleString() + " VNĐ";
 

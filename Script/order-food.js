@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const foodItems = document.querySelectorAll('.food-item');
     const totalCostElement = document.querySelector('.total.cost');
     let totalCost = 0;
+    let orderSummary = document.querySelector('.order-summary');
 
     // Lấy tổng tiền từ trang đặt ghế
     const seatTotal = parseInt(localStorage.getItem('total_amout')) || 0;
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 quantityElement.textContent = quantity;
                 totalCost -= price; // Trừ giá tiền combo
                 updateDisplayTotal();
+                updateOrderSummary();
             }
         });
 
@@ -32,11 +34,51 @@ document.addEventListener('DOMContentLoaded', function () {
             quantityElement.textContent = quantity;
             totalCost += price; // Cộng giá tiền combo
             updateDisplayTotal();
+            updateOrderSummary();
         });
     });
 
     function updateDisplayTotal() {
         totalCostElement.textContent = `${totalCost.toLocaleString()} đ`;
+    }
+
+    // Lưu thông tin và chuyển hướng
+    // document.querySelector('.btn-continue').addEventListener('click', () => {
+    //     const selectedItems = [];
+    //     foodItems.forEach(item => {
+    //         const quantity = parseInt(item.querySelector('.number').textContent);
+    //         if (quantity > 0) {
+    //             const comboName = item.querySelector('h3').textContent;
+    //             selectedItems.push({ comboName, quantity });
+    //         }
+    //     });
+    //     localStorage.setItem('selectedFood', JSON.stringify(selectedItems));
+    //     localStorage.setItem('foodTotal', totalCost);
+    //     window.location.href = '../Pages/Payment.html';
+    // });
+
+    function updateOrderSummary() {
+        // Xóa tất cả combo cũ trong order summary
+        orderSummary.innerHTML = '';
+        // Duyệt qua tất cả các combo
+        foodItems.forEach(item => {
+            const quantity = parseInt(item.querySelector('.number').textContent);
+            if (quantity > 0) {
+                // Tạo phần tử hiển thị combo đã chọn
+                const comboName = item.querySelector('h3').textContent;
+                const comboSummaryItem = document.createElement('div');
+                comboSummaryItem.classList.add('combo-summary-item');
+                comboSummaryItem.innerHTML = `
+                    ${comboName} - SL: <span class="combo-quantity">${quantity}</span>
+                `;
+                orderSummary.appendChild(comboSummaryItem);
+            }
+        });
+
+        // Nếu không có combo nào, hiển thị thông báo
+        if (orderSummary.children.length === 0) {
+            orderSummary.innerHTML = '<p>Chưa có combo nào được chọn.</p>';
+        }
     }
 
     // Lưu thông tin và chuyển hướng
@@ -54,3 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = '../Pages/Payment.html';
     });
 });
+
+
+
+
