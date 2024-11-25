@@ -29,4 +29,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // Hiển thị tổng tiền vào các phần tử liên quan
     document.getElementsByClassName('cost')[0].textContent = formattedGrandTotal;
     document.getElementsByClassName('cost')[1].textContent = formattedGrandTotal;
+
+    document.getElementById('chairs').textContent = localStorage.getItem("chairsSelected");
 });
