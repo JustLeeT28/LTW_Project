@@ -42,21 +42,6 @@ document.addEventListener('DOMContentLoaded', function () {
         totalCostElement.textContent = `${totalCost.toLocaleString()} đ`;
     }
 
-    // Lưu thông tin và chuyển hướng
-    // document.querySelector('.btn-continue').addEventListener('click', () => {
-    //     const selectedItems = [];
-    //     foodItems.forEach(item => {
-    //         const quantity = parseInt(item.querySelector('.number').textContent);
-    //         if (quantity > 0) {
-    //             const comboName = item.querySelector('h3').textContent;
-    //             selectedItems.push({ comboName, quantity });
-    //         }
-    //     });
-    //     localStorage.setItem('selectedFood', JSON.stringify(selectedItems));
-    //     localStorage.setItem('foodTotal', totalCost);
-    //     window.location.href = '../Pages/Payment.html';
-    // });
-
     function updateOrderSummary() {
         // Xóa tất cả combo cũ trong order summary
         orderSummary.innerHTML = '';
