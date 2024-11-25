@@ -14,6 +14,30 @@ body {
     background: #1f2025;
     font-family: 'Montserrat', sans-serif;
 }
+.header{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.header h1{
+    color: white;
+    margin-bottom: 10px;
+}
+.Se-movie{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 10px;
+    margin-left: 700px;
+}
+.combobox{
+    width: 100px;
+    height: 24px;
+
+}
+
 .container-movie{
     display: flex;
     flex-wrap: wrap;
@@ -48,11 +72,6 @@ body {
     width: 20%;
     height: 30px;
     margin-bottom: 30px
-}
-.header h1{
-    color: white;
-    margin-top: 100px;
-    margin-bottom: 10px;
 }
 .pagination li , .pagination a {
     text-decoration: none;
