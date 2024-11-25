@@ -72,6 +72,11 @@ body {
     color: #b60d9c;
     font-weight: bold;
 }
+.seat{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 .total-cost{
     border-top: 3px dashed red;
     padding-top: 5px;

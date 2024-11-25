@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Nếu có món ăn được chọn, hiển thị chúng
     if (selectedFood.length > 0) {
-        document.getElementById('combo-food').innerHTML = ""; // xóa text ban đầu
+        comboFoodElement.innerHTML = ""; // xóa text ban đầu
         selectedFood.forEach(item => {
             const comboSummaryItem = document.createElement('div');
             comboSummaryItem.classList.add('combo-summary-item');
@@ -24,9 +24,6 @@ document.addEventListener("DOMContentLoaded", function() {
             `;
             comboFoodElement.appendChild(comboSummaryItem);
         });
-    } else {
-        // Nếu không có món ăn nào được chọn, hiển thị thông báo
-        // comboFoodElement.innerHTML = '<p>Chưa có combo nào được chọn.</p>';
     }
 
     // Hiển thị tổng tiền vào các phần tử liên quan

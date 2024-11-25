@@ -2,12 +2,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const foodItems = document.querySelectorAll('.food-item');
     const totalCostElement = document.querySelector('.total.cost');
     let totalCost = 0;
-    let orderSummary = document.querySelector('.order-summary');
+    let orderSummary;
 
     // Lấy tổng tiền từ trang đặt ghế
     const seatTotal = parseInt(localStorage.getItem('total_amout')) || 0;
     totalCost = seatTotal; // Khởi tạo tổng tiền với giá trị từ đặt ghế
     updateDisplayTotal();
+
+    let chairsSelected = document.getElementById('all-chairs-selected');
+    const selectedSeats = JSON.parse(localStorage.getItem('selected_seats'));
 
     foodItems.forEach(item => {
         const minusBtn = item.querySelector('.icon-minum');
@@ -66,6 +69,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    chairsSelected = selectedSeats.join(", ");
+    document.getElementById('all-chairs-selected').textContent = chairsSelected;
+
     // Lưu thông tin và chuyển hướng
     document.querySelector('.btn-continue').addEventListener('click', () => {
         const selectedItems = [];
@@ -78,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         localStorage.setItem('selectedFood', JSON.stringify(selectedItems));
         localStorage.setItem('foodTotal', totalCost);
+        localStorage.setItem('chairsSelected',chairsSelected);
         window.location.href = '../Pages/Payment.html';
     });
 });

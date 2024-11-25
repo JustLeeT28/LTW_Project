@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function maxChair(){
         const lastSelectedSeat = selectedSeats[selectedSeats.length - 1]; // Lấy ghế vừa thêm vào
         selectedSeats.splice(selectedSeats.length - 1, 1); // Xóa ghế cuối khỏi danh sách đã chọn
-        // Tìm ghế trong giao diện và bỏ trạng thái 'selected'
+        // Tìm ghế trong và bỏ trạng thái 'selected'
         seats.forEach(seat => {
             const row = seat.getAttribute('data-row');
             const seatNumber = seat.getAttribute('data-seat');
@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     document.getElementsByClassName("btn-book")[0].addEventListener('click', () => {
         localStorage.setItem('total_amout', totalAmount);
+        localStorage.setItem('selected_seats', JSON.stringify(selectedSeats));
         window.location.href='../Pages/order-food.html';
 
     })
