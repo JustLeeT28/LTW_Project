@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Thông tin cá nhân</title>
+    <title>Sửa thông tin cá nhân</title>
     <link rel="stylesheet" href="../Styles/left-menu.css">
     <link rel="stylesheet" href="../Styles/nav_menu.css">
-    <link rel="stylesheet" href="../Styles/user-infor.css">
+    <link rel="stylesheet" href="../Styles/user-updateInfor.css">
+
 </head>
 <body>
 <div class="nav-menu">
@@ -20,18 +21,18 @@
     </div>
 </div>
 <div class="leftmenu">
-    <a href="user-infor.html" class="op-infor open">Thông tin</a>
-    <a href="user-updateInfor.html" class="op-update">Chỉnh sửa</a>
+    <a href="user-infor.html" class="op-infor">Thông tin</a>
+    <a href="user-updateInfor.html" class="op-update open">Chỉnh sửa</a>
     <a href="" class="op-history">Lịch sử</a>
 </div>
 <div class="right_infor">
-    <h1><strong>THÔNG TIN CÁ NHÂN</strong></h1>
+    <h1><strong>CHỈNH SỬA THÔNG TIN CÁ NHÂN</strong></h1>
     <div class="infor-content">
         <div>
-            <span class="highlight">Họ tên: </span> <span class="in4" id="name">Nguyễn Văn A</span>
+            <label class="highlight">Họ tên: </label> <input class="in4" id="name" type="text" placeholder="Họ tên">
         </div>
         <div>
-            <span class="highlight">Sinh nhật: </span> <span class="in4" id="birthday">12/04/2000</span>
+            <span class="highlight">Sinh nhật: </span> <input class="in4" id="birthday" type="date">
         </div>
         <div>
             <span class="highlight">Email: </span> <span class="in4" id="email">nguyenvana@gmail.com</span>

@@ -37,13 +37,18 @@ body {
 .right_infor{
     display: flex;
     flex-direction: column;
-    margin-top: 100px;
+    margin-top: 110px;
     float: right;
     width: 75%;
-    background-color: #e74c3c;
-    align-items: center;
-    justify-content: center;
+    /*background-color: #e74c3c;*/
+
 }
 .right_infor h1{
     color: white;
+    margin-bottom: 80px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.right_infor h1{
+    color: #1abc9c;
 }
