@@ -19,11 +19,17 @@ body {
 .highlight {
     color: plum;
     font-weight: bold;
-    width: 200px;
 }
 .infor-content .in4{
     float: right;
     align-items: flex-start;
-    width: 80%;
+    width: 75%;
     font-size: 22px;
+}
+.row-infor{
+    max-width: 600px;
+    line-height: 1.5;
+    border-bottom: 1px solid #444;
+    padding-top: 10px;
+    overflow: hidden;
 }

@@ -24,6 +24,8 @@
     <a href="user-infor.html" class="op-infor">Thông tin</a>
     <a href="user-updateInfor.html" class="op-update open">Chỉnh sửa</a>
     <a href="" class="op-history">Lịch sử</a>
+    <a href="" id="out">Đăng suất</a>
+
 </div>
 <div class="right_infor">
     <h1><strong>CHỈNH SỬA THÔNG TIN CÁ NHÂN</strong></h1>
@@ -32,13 +34,23 @@
             <label class="highlight">Họ tên: </label> <input class="in4" id="name" type="text" placeholder="Họ tên">
         </div>
         <div>
-            <span class="highlight">Sinh nhật: </span> <input class="in4" id="birthday" type="date">
+            <span class="highlight">Sinh nhật: </span> <input class="in4" id="birthday" type="date"
+                                                              placeholder="dd/mm/yyyy">
         </div>
         <div>
-            <span class="highlight">Email: </span> <span class="in4" id="email">nguyenvana@gmail.com</span>
+            <span class="highlight">Email: </span> <input class="in4" id="email" type="email"
+                                                          placeholder="...@gmail.com">
         </div>
         <div>
-            <span class="highlight">SĐT: </span> <span class="in4" id="numPhone">0909123456</span>
+            <span class="highlight">SĐT: </span> <input class="in4" id="numPhone" placeholder="Số điện thoại">
+        </div>
+        <div class="buttons">
+            <div>
+                <button id="clearData" class="btn">Xóa Dữ Liệu</button>
+            </div>
+            <div>
+                <button id="saveData" class="btn">Lưu Dữ Liệu</button>
+            </div>
         </div>
     </div>
 </div>
