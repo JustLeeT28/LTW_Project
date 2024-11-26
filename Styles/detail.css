@@ -1,0 +1,493 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color: linear-gradient(0deg, transparent, rgb(184, 184, 184, 0.2));
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1f2025;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 100px;
+}
+
+.book {
+    width: 90%;
+    height: 90%;
+    display: flex;
+}
+
+.book .right{
+    width: 80%;
+    height: 100%;
+    position: relative;
+    /*border: 1px solid white;*/
+
+}
+
+.book .left {
+    /*float: left;*/
+    width: 20%;
+    background: #2e3037;
+}
+
+.book .right {
+    /*float: right;*/
+}
+
+.book .left img {
+    width: 100%;
+}
+
+.book .left .play_bttn {
+    position: relative;
+    left: 44%;
+    top: -40px;
+    background-color: #fd6565;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    color: white;
+    box-shadow: 0 0 20px #fd6565;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.book .left .play_bttn:hover {
+    transform: rotate(360deg);
+}
+
+.book .left .infor {
+    color: white;
+    padding: 0 20px;
+}
+
+.book .left .infor p {
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.book .left .infor h6 {
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.book .right {
+    padding: 10px 40px;
+    background: unset;
+}
+
+.book .right::before {
+    position: absolute;
+    content: '';
+    width: 95%;
+    height: 250px;
+    /*border: 1px solid white;*/
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center -30px;
+    background-image: url('/img/img/bg.png');
+    z-index: -10;
+    border-radius: 20px;
+}
+
+.book .right::after {
+    position: absolute;
+    content: "";
+    width: 95%;
+    height: 200px;
+    top: 0;
+    background: linear-gradient(0deg, transparent, #1f2025);
+    z-index: -10;
+    border-radius: 20px;
+}
+
+.book .right .head_time {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.book .right .head_time::before {
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 250px;
+    top: 0;
+    right: -45px;
+    background: linear-gradient(90deg, transparent, #1f2025);
+    z-index: -9;
+}
+
+.book .right .head_time::after {
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 250px;
+    top: 0;
+    left: -45px;
+    background: linear-gradient(-90deg, transparent, #1f2025);
+    z-index: -9;
+}
+
+.book .right .head_time h1 {
+    color: white;
+    font-weight: 600;
+}
+
+.book .right .head_time .time {
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.book .right .head_time .time h6 {
+    font-size: 10px;
+    margin-right: 15px;
+    color: white;
+}
+
+.book .right .head_time .time h6 i {
+    margin-right: 5px;
+}
+
+.book .right .head_time .time button {
+    color: white;
+    padding: 4px 10px;
+    border-radius: 10px;
+    border: 2px solid #fd6565;
+    background: none;
+    font-size: 11px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s linear;
+}
+
+.book .right .head_time .time button:hover {
+    background: #fd6565;
+}
+
+.book .right .date_type {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.book .right .date_type .left_card, .right_card {
+    width: 45%;
+    /*border: 1px solid white;*/
+}
+
+.book .right .date_type::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 220px;
+    left: -15px;
+    top: 0;
+    background: linear-gradient(180deg, transparent, #1f2025);
+    z-index: -9;
+}
+
+.book .right .tittle {
+    color: white;
+}
+
+.book .right .card_month {
+    width: 100%;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    border-top: 1px solid rgb(184, 184, 184, 0.2);
+    padding: 30px 0;
+}
+
+.book .right .card_month::-webkit-scrollbar {
+    height: 3px;
+    background: rgba(184, 184, 184, 0.2);
+}
+
+.book .right .card_month::-webkit-scrollbar-thumb {
+    height: 3px;
+    background: rgba(184, 184, 184, 0.5);
+}
+
+.book .right .card_month li {
+    list-style-type: none;
+    color: white;
+    min-width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.book .right .card_month li h6:nth-child(2) {
+    background: transparent;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    transition: .3s linear;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.book .right .card_month li h6:nth-child(2):hover {
+    background: #fd6565;
+}
+
+.book .right .date_type .right_card li h6:nth-child(2) {
+    border-radius: 15px;
+    width: unset;
+    height: unset;
+    padding: 1px 5px 0 5px;
+}
+
+.screen {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    border-top: 3px solid #fd6565;
+    margin-top: 50px;
+    border-radius: 20%;
+    overflow: hidden;
+    box-shadow: inset 0 10px 20px var(--color);
+    text-align: center;
+    padding-top: 15px;
+    color: white;
+    letter-spacing: 5px;
+    font-size: 12px;
+}
+
+.book .right .screen::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgb(184, 184, 184, 0.5);
+    top: -20px;
+    left: 0;
+}
+
+.book .right .chair .row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+
+}
+
+.book .right .chair .row li {
+    position: relative;
+    width: 25px;
+    height: 20px;
+    background: rgb(184, 184, 184, 0.3);
+    list-style-type: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s linear;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.book .right .chair .row li:hover {
+    cursor: not-allowed;
+}
+
+.book .right .chair .row li::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background: rgb(184, 184, 184, 0.1);
+    border-radius: 10px;
+    bottom: -8px;
+
+}
+
+.book .right .chair .row li:nth-child(6) {
+    margin-right: 20px;
+
+}
+
+.book .right .chair .row li:nth-last-child(6) {
+    margin-left: 20px;
+
+}
+
+.book .right .chair .row span {
+    color: white;
+    font-weight: 600;
+    font-size: 11px;
+
+}
+
+.book .right .chair .row .booked {
+    background: #fd6565 !important;
+    cursor: not-allowed;
+}
+
+.book .right .chair .row .selected {
+    background: greenyellow !important;
+    color: black !important;
+}
+.book .right .details {
+    width: 100%;
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.book .right .details .details_chair {
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+}
+
+.book .right .details .details_chair li {
+    position: relative;
+    list-style-type: none;
+    border-radius: 5px;
+    transition: 0.3s linear;
+    margin: 0 50px;
+    font-weight: 600;
+    font-size: 12px;
+    color: rgb(184, 184, 184, 0.3);
+    margin-bottom: 40px;
+
+}
+
+.book .right .details .details_chair li::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 15px;
+    background: rgb(184, 184, 184, 0.3);
+    border-radius: 5px;
+    left: -30px;
+    top: 0;
+    transition: 0.3s linear;
+}
+
+.book .right .details .details_chair li::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 4px;
+    background: rgb(184, 184, 184, 0.1);
+    border-radius: 5px;
+    left: -30px;
+    bottom: -8px;
+    transition: 0.3s linear;
+}
+
+.book .right .details .details_chair li:nth-child(2)::after {
+    background: #fd6565;
+}
+
+.book .right .details .details_chair li:nth-child(2)::before {
+    background: #fd6565;
+}
+
+.book .right .details .details_chair li:nth-child(3)::after {
+    background: greenyellow;
+}
+
+.book .right .details .details_chair li:nth-child(3)::before {
+    background: greenyellow;
+}
+
+.film_sumary p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #cfcfcf;
+    font-weight: 300;
+    margin-top: 10px;
+    margin-bottom: 80px;
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    height: 90%;
+}
+
+.film_sumary h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fd6565;
+    font-size: 20px;
+}
+
+.film_sumary {
+    margin-top: 80px;
+    width: 100%;
+}
+
+.btn-book {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border: solid 2px yellowgreen;
+    width: fit-content;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 10px 20px;
+    border-radius: 10px;
+
+}
+.btn-book:hover {
+    cursor: pointer;
+}
+.book_movie {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-weight: bold;
+
+
+}
+.lef_book{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    float: left;
+    gap: 10px;
+}
+
+
