@@ -7,6 +7,8 @@
 body {
     background: #1f2025;
     font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+
 }
 .leftmenu{
     display: flex;
