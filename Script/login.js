@@ -10,20 +10,33 @@ jQuery(document).ready(function($) {
 		$('div[id$="tab-content"]').removeClass('active');
 		$(tab_content).addClass('active');
 	});
-});      
-document.addEventListener("DOMContentLoaded", () => {
-    const loginForm = document.querySelector(".login-form");
+}); 
 
-    loginForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const usernameOrEmail = document.getElementById("user_login").value;
-        const password = document.getElementById("user_pass").value;
-        if (usernameOrEmail === "admin" && password === "admin123") {
-            window.location.href = "admin_dashboard.html"; //neu la admin
-        } else if (usernameOrEmail === "user" && password === "user123") {
-            window.location.href = "user_dashboard.html"; //neu la tk thuong
-        } else {
-            alert("Thông tin đăng nhập không hợp lệ. Vui lòng thử lại!");
+
+const users = [
+    { username: 'admin', password: 'admin123', role: 'admin' },
+    { username: 'user1', password: 'user123', role: 'user' }
+];
+document.getElementById("loginForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const usernameOrEmail = document.getElementById("user_login").value.trim();
+    const password = document.getElementById("user_pass_login").value;
+    const user = users.find(
+        (user) => user.username === usernameOrEmail && user.password === password
+    );
+    if (user) {
+        if (user.role === "admin") {
+            window.location.href = "../Admin/dashboard.html";
+        } else if (user.role === "user") {
+            window.location.href = "../Pages/index.html";
         }
-    });
+    } else {
+        alert("Thông tin đăng nhập không hợp lệ. Vui lòng thử lại!");
+    }
 });
+
+
+
+
+
+
