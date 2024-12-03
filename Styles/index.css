@@ -251,3 +251,6 @@ li {
     color: rosybrown;
     margin-right: 10px
 }
+.book-button:hover {
+    cursor: pointer;
+}
