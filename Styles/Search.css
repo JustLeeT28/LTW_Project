@@ -116,3 +116,6 @@ a.disable{
     font-weight: bold;
     color: red;
 }
+.book-button:hover {
+    cursor: pointer;
+}
