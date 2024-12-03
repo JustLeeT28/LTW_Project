@@ -2,8 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const foodItems = document.querySelectorAll('.food-item');
     const totalCostElement = document.querySelector('.total.cost');
     let totalCost = 0;
-    let orderSummary;
-
+    const orderSummary = document.querySelector('.order-summary');
     // Lấy tổng tiền từ trang đặt ghế
     const seatTotal = parseInt(localStorage.getItem('total_amout')) || 0;
     totalCost = seatTotal; // Khởi tạo tổng tiền với giá trị từ đặt ghế
