@@ -14,6 +14,7 @@ body {
 }
 
 .right {
+    margin-top: 160px;
     position: relative;
     width: 40%;
     border: 1px solid red;
@@ -21,6 +22,7 @@ body {
 }
 
 .left {
+    margin-top: 160px;
     width: 60%;
     border: 1px solid white;
     height: 100%;
