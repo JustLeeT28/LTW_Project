@@ -9,6 +9,7 @@
 }
 
 body {
+    margin-top: 50vh;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -16,6 +17,7 @@ body {
     justify-content: center;
     background: #1f2025;
     font-family: 'Montserrat', sans-serif;
+    flex-direction: column;
 }
 
 .book {
@@ -308,7 +310,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s linear;
-    font-size: 10px;
+    font-size: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -488,5 +490,8 @@ body {
     justify-content: center;
     float: left;
     gap: 10px;
+}
+.footer{
+    margin-top: 20%;
 }
 
