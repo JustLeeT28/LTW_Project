@@ -22,9 +22,10 @@ body {
 
 .book {
     width: 90%;
-    height: 90%;
+    height: 134%;
     display: flex;
     margin-bottom: 2%;
+    margin-top: 41%;
 }
 
 .book .right{
@@ -495,4 +496,6 @@ body {
 .footer{
     margin-top: 20%;
 }
-
+.book_movie{
+    ;
+}
