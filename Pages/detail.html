@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../Styles/detail.css">
     <link rel="stylesheet" href="../Styles/nav_menu.css">
     <link rel="stylesheet" href="../Styles/footer.css">
+    <script src="../Script/search.js"></script>
 </head>
 <body>
 <div class="nav-menu">
@@ -17,7 +18,7 @@
         </a>
     </div>
     <div class="right-menu">
-        <input type="text" id="move-name" name="movie-name" placeholder="Nhập tên phim">
+        <input type="text" id="move-name" name="movie-name" placeholder="Nhập tên phim" onkeypress="redirectToPage(event)" >
         <a href="Search.html" class="menu">Phim</a>
         <a href="" class="menu">Giá vé</a>
         <a href="login.html" class="menu">Đăng nhập</a>

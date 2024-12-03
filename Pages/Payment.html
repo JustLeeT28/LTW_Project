@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../Styles/pay_page.css">
     <script src="../Script/Payment.js"></script>
     <script src="../Script/confirm-payment.js"></script>
+    <script src="../Script/search.js"></script>
 </head>
 <body>
 <div class="nav-menu">
@@ -16,7 +17,7 @@
         </a>
     </div>
     <div class="right-menu">
-        <input type="text" id="move-name" name="movie-name" placeholder="Nhập tên phim">
+        <input type="text" id="move-name" name="movie-name" placeholder="Nhập tên phim" onkeypress="redirectToPage(event)" >
         <a href="Search.html" class="menu">Phim</a>
         <a href="ticket-price.html" class="menu">Giá vé</a>
         <a href="login.html" class="menu">Đăng nhập</a>
