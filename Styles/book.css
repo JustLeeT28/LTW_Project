@@ -9,7 +9,7 @@
 }
 
 body {
-    margin-top: 50vh;
+    margin-top: 25%;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -24,6 +24,7 @@ body {
     width: 90%;
     height: 90%;
     display: flex;
+    margin-bottom: 2%;
 }
 
 .book .right{
