@@ -46,27 +46,3 @@ function deleteMovie(index) {
     movies.splice(index, 1);
     renderMovies();
 }
-
-// Thêm lịch chiếu
-function addSchedule() {
-    const movieIndex = document.getElementById('scheduleMovie').selectedIndex;
-    const movieTitle = movies[movieIndex].title;
-    const showDate = document.getElementById('showDate').value;
-    const showTime = document.getElementById('showTime').value;
-
-    const schedule = { movieTitle, showDate, showTime };
-    schedules.push(schedule);
-    renderSchedules();
-}
-
-// Hiển thị lịch chiếu
-function renderSchedules() {
-    const scheduleList = document.getElementById('scheduleList');
-    scheduleList.innerHTML = '';
-
-    schedules.forEach((schedule, index) => {
-        const scheduleItem = document.createElement('p');
-        scheduleItem.textContent = `${schedule.movieTitle} - Ngày: ${schedule.showDate} Giờ: ${schedule.showTime}`;
-        scheduleList.appendChild(scheduleItem);
-    });
-}
