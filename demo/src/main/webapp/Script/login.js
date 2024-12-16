@@ -28,7 +28,7 @@ document.getElementById("loginForm").addEventListener("submit", (e) => {
         if (user.role === "admin") {
             window.location.href = "../Admin/dashboard.html";
         } else if (user.role === "user") {
-            window.location.href = "../Pages/index.html";
+            window.location.href = "../index.jsp";
         }
     } else {
         alert("Thông tin đăng nhập không hợp lệ. Vui lòng thử lại!");

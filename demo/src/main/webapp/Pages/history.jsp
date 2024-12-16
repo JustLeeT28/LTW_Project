@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@
 <body>
 <div class="nav-menu" style="padding-top: 0">
     <div class="lelf-menu">
-        <a href="index.html">
+        <a href="../index.jsp">
             <img id="logo-cinema" src="../img/img/Logo_tachnen.jpg" alt="Cinema Logo"/>
         </a>
     </div>
@@ -20,14 +21,14 @@
         <a href="" class="menu">Phim</a>
         <a href="" class="menu">Giá vé</a>
         <a href="" class="menu">Đăng nhập</a>
-        <a href="user-infor.html">
+        <a href="user-infor.jsp">
             <img src="../img/img/user.jpg" height="30" width="30"/>
         </a>
     </div>
 </div>
 <div class="leftmenu" style="height: 1200px; padding-top: 4%">
-    <a href="user-infor.html" class="op-infor">Thông tin</a>
-    <a href="user-updateInfor.html" class="op-update">Chỉnh sửa</a>
+    <a href="user-infor.jsp" class="op-infor">Thông tin</a>
+    <a href="user-updateInfor.jsp" class="op-update">Chỉnh sửa</a>
     <a href="history.html" class="op-history open">Lịch sử</a>
     <a href="" id="out">Đăng xuất</a>
 

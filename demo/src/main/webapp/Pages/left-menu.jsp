@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,17 +17,17 @@
         <a href="" class="menu">Phim</a>
         <a href="" class="menu">Giá vé</a>
         <a href="" class="menu">Đăng nhập</a>
-        <a href="user-infor.html">
+        <a href="user-infor.jsp">
             <img src="../img/img/user.jpg" height="30" width="30"/>
         </a>
     </div>
 </div>
 <div class="leftmenu">
-    <a href="user-infor.html" class="op-infor open">Thông tin</a>
+    <a href="user-infor.jsp" class="op-infor open">Thông tin</a>
     <a href="" class="op-update">Chỉnh sửa</a>
     <a href="" class="op-history">Lịch sửa</a>
 </div>
 </body>
 </html>
-<!--update-user-infor.html-->
+<!--update-user-infor.jsp-->
 <!--history-user.html-->

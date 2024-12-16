@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +35,7 @@
           <input type="submit" class="button" value="Login">
         </form>
         <div class="help">
-          <p><a href="forgotpass.html">Forget your password?</a></p>
+          <p><a href="forgotpass.jsp">Forget your password?</a></p>
         </div>
       </div>
     </div>

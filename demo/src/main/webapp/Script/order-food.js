@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.setItem('selectedFood', JSON.stringify(selectedItems));
         localStorage.setItem('foodTotal', totalCost);
         localStorage.setItem('chairsSelected',chairsSelected);
-        window.location.href = '../Pages/Payment.html';
+        window.location.href = '../Pages/Payment.jsp';
     });
 });
 

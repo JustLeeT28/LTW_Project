@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementsByClassName("btn-book")[0].addEventListener('click', () => {
         localStorage.setItem('total_amout', totalAmount);
         localStorage.setItem('selected_seats', JSON.stringify(selectedSeats));
-        window.location.href='../Pages/order-food.html';
+        window.location.href='../Pages/order-food.jsp';
 
     })
 });
