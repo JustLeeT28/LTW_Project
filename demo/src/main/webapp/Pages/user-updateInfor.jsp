@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,24 +13,24 @@
 <body>
 <div class="nav-menu">
     <div class="lelf-menu">
-        <a href="index.html">
+        <a href="../index.jsp">
             <img id="logo-cinema" src="../img/img/Logo_tachnen.jpg" alt="Cinema Logo" />
         </a>
     </div>
     <div class="right-menu">
         <input type="text" id="movie-name" name="movie-name" placeholder="Nhập tên phim" onkeypress="redirectToPage(event)" >
-        <a href="Search.html" class="menu">Phim</a>
-        <a href="ticket-price.html" class="menu">Giá vé</a>
-        <a href="login.html" class="menu">Đăng nhập</a>
-        <a href="user-infor.html">
+        <a href="Search.jsp" class="menu">Phim</a>
+        <a href="ticket-price.jsp" class="menu">Giá vé</a>
+        <a href="login.jsp" class="menu">Đăng nhập</a>
+        <a href="user-infor.jsp">
             <img src="../img/img/user.jpg" height="30" width="30"/>
         </a>
     </div>
 </div>
 <div class="leftmenu">
-    <a href="user-infor.html" class="op-infor">Thông tin</a>
+    <a href="user-infor.jsp" class="op-infor">Thông tin</a>
     <a href="user-updateInfor.html" class="op-update open">Chỉnh sửa</a>
-    <a href="history.html" class="op-history">Lịch sử</a>
+    <a href="history.jsp" class="op-history">Lịch sử</a>
     <a href="" id="out">Đăng suất</a>
 </div>
 <div class="right_infor">
