@@ -26,7 +26,7 @@ document.getElementById("loginForm").addEventListener("submit", (e) => {
     );
     if (user) {
         if (user.role === "admin") {
-            window.location.href = "../Admin/dashboard.html";
+            window.location.href = "../Admin/dashboard.jsp";
         } else if (user.role === "user") {
             window.location.href = "../index.jsp";
         }
