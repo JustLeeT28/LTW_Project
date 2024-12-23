@@ -1,16 +1,16 @@
-package org.example.demo.model;
+package org.example.demo.dao.model;
 
-public class Orders {
+public class Order {
     private int id;
     private int userId;
-    private double totalAmount;
+    private double totalPrice;
     private String orderDate;
-    private Integer foodTicketId; // Nullable
+    private Integer foodTicketId;
 
-    public Orders(int id, int userId, double totalAmount, String orderDate, Integer foodTicketId) {
+    public Order(int id, int userId, double totalPrice, String orderDate, Integer foodTicketId) {
         this.id = id;
         this.userId = userId;
-        this.totalAmount = totalAmount;
+        this.totalPrice = totalPrice;
         this.orderDate = orderDate;
         this.foodTicketId = foodTicketId;
     }
@@ -31,12 +31,12 @@ public class Orders {
         this.userId = userId;
     }
 
-    public double getTotalAmount() {
-        return totalAmount;
+    public double getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setTotalAmount(double totalAmount) {
-        this.totalAmount = totalAmount;
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public String getOrderDate() {
