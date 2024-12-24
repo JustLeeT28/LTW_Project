@@ -24,17 +24,13 @@ public class RegisterServlet extends HttpServlet {
 
         // Mã hóa mật khẩu bằng MD5
         String hashedPassword = hashMD5(password);
-
         String sql = "INSERT INTO users (email, username, password) VALUES (?, ?, ?)";
-
         try (Statement statement = DbConnect.get();
              PreparedStatement preparedStatement = statement.getConnection().prepareStatement(sql)) {
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, username);
             preparedStatement.setString(3, hashedPassword);
-
             int rowsInserted = preparedStatement.executeUpdate();
-
             response.setContentType("text/html");
             PrintWriter out = response.getWriter();
             if (rowsInserted > 0) {
