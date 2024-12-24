@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,11 +20,12 @@
 <div class="nav-menu">
     <div class="lelf-menu">
         <a href="index.jsp">
-            <img id="logo-cinema" src="img/img/Logo_tachnen.jpg" alt="Cinema Logo" />
+            <img id="logo-cinema" src="img/img/Logo_tachnen.jpg" alt="Cinema Logo"/>
         </a>
     </div>
     <div class="right-menu">
-        <input type="text" id="movie-name" name="movie-name" placeholder="Nhập tên phim" onkeypress="redirectToPage(event)" >
+        <input type="text" id="movie-name" name="movie-name" placeholder="Nhập tên phim"
+               onkeypress="redirectToPage(event)">
         <a href="Pages/Search.jsp" class="menu">Phim</a>
         <a href="Pages/ticket-price.jsp" class="menu">Giá vé</a>
         <a href="Pages/login.jsp" class="menu">Đăng nhập</a>
@@ -59,58 +60,27 @@
     <h1>Phim đang chiếu</h1>
 </div>
 <div class="movie-showing">
-    <div class="movie">
-        <div class="movie-infor">
-            <img src="img/img/jawan.jpg" height="1530" width="1148"/>
-            <div class="infor-text">
-                <h3><span class="highlight">Quốc gia:</span>Mỹ</h3>
-                <h3><span class="highlight">Thời lượng:</span>165p</h3>
-                <h3><span class="highlight">Ngôn ngữ:</span>Tiếng Anh</h3>
-                <h3><span class="highlight">Phụ đề:</span>Tiếng Việt</h3>
+    <c:forEach var="movie" items="${movies}" varStatus="status">
+        <c:if test="${status.index < 8}">
+            <div class="movie">
+                <div class="movie-infor">
+                    <div class="movie_img">
+                        <img src="${movie.posterUrl}" height="1100" width="1148"/>
+                    </div>
+                    <div class="infor-text">
+                        <h3><span class="highlight">Quốc gia:</span>Mỹ</h3>
+                        <h3><span class="highlight">Thời lượng:</span>165p</h3>
+                        <h3><span class="highlight">Ngôn ngữ:</span>Tiếng Anh</h3>
+                        <h3><span class="highlight">Phụ đề:</span>Tiếng Việt</h3>
+                    </div>
+                </div>
+                <div class="book_link">
+                    <a href="Pages/book.jsp">${movie.title}</a>
+                    <button class="book-button">Đặt vé</button>
+                </div>
             </div>
-        </div>
-        <a href="">Jawan</a>
-        <button class="book-button">Đặt vé</button>
-    </div>
-    <div class="movie">
-        <div class="movie-infor">
-            <img src="img/img/jawan.jpg" height="1530" width="1148"/>
-            <div class="infor-text">
-                <h3><span class="highlight">Quốc gia:</span>Mỹ</h3>
-                <h3><span class="highlight">Thời lượng:</span>165p</h3>
-                <h3><span class="highlight">Ngôn ngữ:</span>Tiếng Anh</h3>
-                <h3><span class="highlight">Phụ đề:</span>Tiếng Việt</h3>
-            </div>
-        </div>
-        <a href="Pages/book.jsp">Jawan</a>
-        <button class="book-button">Đặt vé</button>
-    </div>
-    <div class="movie">
-        <div class="movie-infor">
-            <img src="img/img/jawan.jpg" height="1530" width="1148"/>
-            <div class="infor-text">
-                <h3><span class="highlight">Quốc gia:</span>Mỹ</h3>
-                <h3><span class="highlight">Thời lượng:</span>165p</h3>
-                <h3><span class="highlight">Ngôn ngữ:</span>Tiếng Anh</h3>
-                <h3><span class="highlight">Phụ đề:</span>Tiếng Việt</h3>
-            </div>
-        </div>
-        <a href="Pages/book.jsp">Jawan</a>
-        <button class="book-button">Đặt vé</button>
-    </div>
-    <div class="movie">
-        <div class="movie-infor">
-            <img src="img/img/jawan.jpg" height="1530" width="1148"/>
-            <div class="infor-text">
-                <h3><span class="highlight">Quốc gia:</span>Mỹ</h3>
-                <h3><span class="highlight">Thời lượng:</span>165p</h3>
-                <h3><span class="highlight">Ngôn ngữ:</span>Tiếng Anh</h3>
-                <h3><span class="highlight">Phụ đề:</span>Tiếng Việt</h3>
-            </div>
-        </div>
-        <a href="Pages/book.jsp">Jawan</a>
-        <button class="book-button">Đặt vé</button>
-    </div>
+        </c:if>
+    </c:forEach>
 </div>
 <div class="more-bttn">
     Xem thêm
@@ -118,7 +88,6 @@
 <div class="title-movie-incoming">
     <h1>Phim sắp chiếu</h1>
 </div>
-
 <div class="movie-incoming">
     <div class="movie">
         <div class="movie-infor">
