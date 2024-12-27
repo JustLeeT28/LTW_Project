@@ -1,17 +1,17 @@
-package org.example.demo.model;
+package org.example.demo.dao.model;
 
-public class FoodTicketItems {
+public class FoodTicketItem {
     private int id;
     private int foodTicketId;
     private int comboId;
     private int quantity;
     private double totalPrice;
 
-    public FoodTicketItems(int id, int foodTicketId, int quantity, int comboId, double totalPrice) {
+    public FoodTicketItem(int id, int foodTicketId, int comboId, int quantity, double totalPrice) {
         this.id = id;
         this.foodTicketId = foodTicketId;
-        this.quantity = quantity;
         this.comboId = comboId;
+        this.quantity = quantity;
         this.totalPrice = totalPrice;
     }
 

@@ -1,32 +1,34 @@
-package org.example.demo.model;
+package org.example.demo.dao.model;
 
-public class Movies {
+public class Movie {
     private int id;
     private String title;
-    private String director;
     private int duration;
-    private String actors;
     private String description;
-    private String genre;
+    private String country;
+    private String language;
+    private String subtitle;
     private String ageRating;
     private String releaseDate;
     private String endDate;
     private String bannerUrl;
     private String posterUrl;
+    private String status;
 
-    public Movies(String posterUrl, String bannerUrl, String endDate, String releaseDate, String ageRating, String genre, String description, String actors, int duration, String director, String title, int id) {
-        this.posterUrl = posterUrl;
-        this.bannerUrl = bannerUrl;
-        this.endDate = endDate;
-        this.releaseDate = releaseDate;
-        this.ageRating = ageRating;
-        this.genre = genre;
-        this.description = description;
-        this.actors = actors;
-        this.duration = duration;
-        this.director = director;
-        this.title = title;
+    public Movie(int id, String title, int duration, String description, String country, String language, String subtitle, String ageRating, String releaseDate, String endDate, String bannerUrl, String posterUrl, String status) {
         this.id = id;
+        this.title = title;
+        this.duration = duration;
+        this.description = description;
+        this.country = country;
+        this.language = language;
+        this.subtitle = subtitle;
+        this.ageRating = ageRating;
+        this.releaseDate = releaseDate;
+        this.endDate = endDate;
+        this.bannerUrl = bannerUrl;
+        this.posterUrl = posterUrl;
+        this.status = status;
     }
 
     public int getId() {
@@ -45,28 +47,12 @@ public class Movies {
         this.title = title;
     }
 
-    public String getDirector() {
-        return director;
-    }
-
-    public void setDirector(String director) {
-        this.director = director;
-    }
-
     public int getDuration() {
         return duration;
     }
 
     public void setDuration(int duration) {
         this.duration = duration;
-    }
-
-    public String getActors() {
-        return actors;
-    }
-
-    public void setActors(String actors) {
-        this.actors = actors;
     }
 
     public String getDescription() {
@@ -77,12 +63,28 @@ public class Movies {
         this.description = description;
     }
 
-    public String getGenre() {
-        return genre;
+    public String getCountry() {
+        return country;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
     }
 
     public String getAgeRating() {
@@ -123,5 +125,13 @@ public class Movies {
 
     public void setPosterUrl(String posterUrl) {
         this.posterUrl = posterUrl;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

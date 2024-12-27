@@ -35,6 +35,7 @@ body {
     height: 100%;
     object-fit: cover;
 }
+
 .btns {
     position: absolute;
     top: 50%;
@@ -59,6 +60,7 @@ body {
     color: white;
     cursor: pointer;
 }
+
 .dots-container {
     display: flex;
     justify-content: center;
@@ -81,27 +83,29 @@ body {
 }
 
 .movie-showing, .movie-incoming {
-    display: flex;
-    flex-wrap: wrap;
+    /*flex-wrap: wrap;*/
     align-items: center;
     justify-content: center;
-    flex-direction: row;
+    /*flex-direction: row;*/
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Chia thành 4 cột */
+    gap: 20px; /* Khoảng cách giữa các phim */
 
 }
 
-.movie {
-    height: 50%;
-    width: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
+/*.movie {*/
+/*    height: 50%;*/
+/*    width: 300px;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    flex-direction: column;*/
+/*}*/
 
-.movie img {
-    width: 90%;
-    height: 80%;
-}
+/*.movie img {*/
+/*    width: 90%;*/
+/*    height: 80%;*/
+/*}*/
 
 .movie a {
     margin-top: 8px;
@@ -111,7 +115,7 @@ body {
 }
 
 .book-button {
-    margin-top: 8px;
+    margin-top: 0;
     color: black;
     font-weight: bold;
     background-color: #f3ea28;
@@ -147,6 +151,7 @@ body {
 li {
     list-style-type: none;
 }
+
 .social-icons, .contact-address {
     display: flex;
     flex-direction: column;
@@ -167,17 +172,21 @@ li {
     font-size: 16px;
     margin-right: 5px;
 }
-.column-3 h2{
+
+.column-3 h2 {
     color: white;
 }
-.column-3 li a, .column-3 li{
+
+.column-3 li a, .column-3 li {
     color: #777777;
 }
+
 .column-3 li i {
     color: white;
     font-size: 16px;
     margin-right: 5px;
 }
+
 .footer {
     display: flex;
     justify-content: space-between;
@@ -190,67 +199,75 @@ li {
     margin-top: 40px;
 
 }
-.column-1 .logo-footer{
+
+.column-1 .logo-footer {
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 50px;
 
 }
+
 .logo-footer a {
     color: white;
     font-weight: 600;
     padding-right: -50px;
 }
+
 .footer div {
     flex: 1;
 }
-/*.nav-menu{*/
-/*    background: linear-gradient(10deg, #6D0088, #0f0c29);*/
-/*    border-bottom: solid 1px mediumpurple;*/
-/*    margin-bottom: 20px;*/
-/*    z-index: 1000;*/
-/*    position: fixed;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*}*/
-/*li {*/
-/*    list-style-type: none;*/
-/*}*/
 
-/*a {*/
-/*    text-decoration: none;*/
-/*}*/
-
-/*.movie-infor img{*/
-/*    width: 95%;*/
-/*    height: 95%;*/
-/*}*/
-.movie-infor{
+.movie-infor {
     position: relative;
     overflow: hidden;
+    height: 300px;
 }
-.infor-text{
-    background-color: rgba(0,0,0,0.8);
+
+.infor-text {
+    background-color: rgba(0, 0, 0, 0.8);
     position: absolute;
     top: -300%;
-    width: 90%;
+    width: 100%;
     height: 100%;
     padding: 20px;
     color: white;
     transition: all 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
-    gap:25px;
+    gap: 25px;
 }
-.movie-infor:hover .infor-text{
+
+.movie-infor:hover .infor-text {
     top: 0;
 }
-.highlight{
+
+.highlight {
     font-weight: bold;
     color: rosybrown;
     margin-right: 10px
 }
+
 .book-button:hover {
     cursor: pointer;
+}
+
+.movie_img {
+    width: 100%;
+    height: 100%;
+}
+
+.movie_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.book_link {
+    display: flex;
+    flex-direction: column;
+}
+.book_link a, .book_link button {
+    margin-top: 8px;
+    margin-left: auto;
+    margin-right: auto;
 }
