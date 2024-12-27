@@ -1,22 +1,24 @@
-package org.example.demo.model;
+package org.example.demo.dao.model;
 
-public class Users {
+public class User {
     private int id;
     private String name;
     private String email;
-    private String dateOfBirth;
-    private String phoneNumber;
-    private int role; // 1: admin, 0: user
+    private String dob;
+    private String phone;
+    private int role;
     private String password;
+    private String status;
 
-    public Users(int id, String name, String email, String dateOfBirth, String phoneNumber, int role, String password) {
+    public User(int id, String name, String email, String dob, String phone, int role, String password, String status) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.dateOfBirth = dateOfBirth;
-        this.phoneNumber = phoneNumber;
+        this.dob = dob;
+        this.phone = phone;
         this.role = role;
         this.password = password;
+        this.status = status;
     }
 
     public int getId() {
@@ -43,20 +45,20 @@ public class Users {
         this.email = email;
     }
 
-    public String getDateOfBirth() {
-        return dateOfBirth;
+    public String getDob() {
+        return dob;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setDob(String dob) {
+        this.dob = dob;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public int getRole() {
@@ -73,5 +75,13 @@ public class Users {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
