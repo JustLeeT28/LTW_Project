@@ -1,39 +1,56 @@
 package org.example.demo.controller;
 
-import org.example.demo.dao.model.Movie;
-import org.example.demo.service.MoviesAdminService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.example.demo.dao.models.Movie;
+
+
 import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/movies")
 public class MoviesAdminServlet extends HttpServlet {
-    private final MoviesAdminService moviesAdminService = new MoviesAdminService();
+    private final org.example.demo.service.MoviesAdminService moviesAdminService;
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Movie> movies = moviesAdminService.getMovie();
-        req.setAttribute("movies", movies);
-        req.getRequestDispatcher("/film_management.jsp").forward(req, resp);
+    public MoviesAdminServlet() {
+        this.moviesAdminService = new org.example.demo.service.MoviesAdminService();
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String title = req.getParameter("title");
-        String description = req.getParameter("description");
-        String genre = req.getParameter("genre");
-        int duration = Integer.parseInt(req.getParameter("duration"));
-        String releaseDate = req.getParameter("releaseDate");
-        String endDate = req.getParameter("endDate");
-        String ageRating = req.getParameter("ageRating");
-        String bannerUrl = req.getParameter("bannerUrl");
-        String posterUrl = req.getParameter("posterUrl");
-        Movie movie = new Movie(posterUrl, bannerUrl, endDate, releaseDate, ageRating, genre, description, null, duration, null, title, 0);
-        boolean isAdded = moviesAdminService.addMovie(movie);
-        resp.sendRedirect("/movies");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Movie> movies = moviesAdminService.getAllMovies();
+        request.setAttribute("movieList", movies);
+        request.getRequestDispatcher("/film_management.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+
+        if ("add".equals(action)) {
+            String title = request.getParameter("title");
+            int duration = Integer.parseInt(request.getParameter("duration"));
+            String description = request.getParameter("description");
+            String country = request.getParameter("country");
+            String language = request.getParameter("language");
+            String subtitle = request.getParameter("subtitle");
+            String ageRating = request.getParameter("ageRating");
+            String releaseDate = request.getParameter("releaseDate");
+            String endDate = request.getParameter("endDate");
+            String bannerUrl = request.getParameter("bannerUrl");
+            String posterUrl = request.getParameter("posterUrl");
+            String status = request.getParameter("status");
+
+            Movie movie = new Movie(0, title, duration, description, country, language, subtitle, ageRating, releaseDate, endDate, bannerUrl, posterUrl, status);
+            moviesAdminService.addMovie(movie);
+        } else if ("delete".equals(action)) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            moviesAdminService.deleteMovie(id);
+        }
+
+        response.sendRedirect("movies");
     }
 }

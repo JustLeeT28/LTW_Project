@@ -1,17 +1,17 @@
-package org.example.demo.dao.model;
+package org.example.demo.dao.models;
 
-public class Room {
+public class FoodCombo {
     private int id;
     private String name;
-    private String style;
-    private int occupancy;
+    private double price;
+    private String description;
     private String status;
 
-    public Room(int id, String name, String style, int occupancy, String status) {
+    public FoodCombo(int id, String name, double price, String description, String status) {
         this.id = id;
         this.name = name;
-        this.style = style;
-        this.occupancy = occupancy;
+        this.price = price;
+        this.description = description;
         this.status = status;
     }
 
@@ -31,20 +31,20 @@ public class Room {
         this.name = name;
     }
 
-    public String getStyle() {
-        return style;
+    public double getPrice() {
+        return price;
     }
 
-    public void setStyle(String style) {
-        this.style = style;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public int getOccupancy() {
-        return occupancy;
+    public String getDescription() {
+        return description;
     }
 
-    public void setOccupancy(int occupancy) {
-        this.occupancy = occupancy;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getStatus() {

@@ -1,75 +1,80 @@
 package org.example.demo.dao.db;
 
-import org.example.demo.dao.model.Movie;
+import org.example.demo.dao.db.DbConnect;
+import org.example.demo.dao.models.Movie;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MoviesAdminDAO {
-    private static final String URL = "jdbc:mysql://localhost:3306/your_database_name";
-    private static final String USER = "your_username";
-    private static final String PASSWORD = "your_password";
-
     public List<Movie> getAllMovies() {
         List<Movie> movies = new ArrayList<>();
-        String sql = "SELECT * FROM movies WHERE status = 'active'";
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement ps = connection.prepareStatement(sql);
+        String query = "SELECT * FROM movies";
+
+        try (PreparedStatement ps = DbConnect.get(query);
              ResultSet rs = ps.executeQuery()) {
+
             while (rs.next()) {
                 Movie movie = new Movie(
-                        rs.getString("poster_url"),
-                        rs.getString("banner_url"),
-                        rs.getString("end_date"),
-                        rs.getString("release_date"),
-                        rs.getString("age_rating"),
-                        rs.getString("genre"),
-                        rs.getString("description"),
-                        null, // Actors and directors will be handled later
-                        rs.getInt("duration"),
-                        null, // Set director later
+                        rs.getInt("id"),
                         rs.getString("title"),
-                        rs.getInt("id")
+                        rs.getInt("duration"),
+                        rs.getString("description"),
+                        rs.getString("country"),
+                        rs.getString("language"),
+                        rs.getString("subtitle"),
+                        rs.getString("age_rating"),
+                        rs.getString("release_date"),
+                        rs.getString("end_date"),
+                        rs.getString("banner_url"),
+                        rs.getString("poster_url"),
+                        rs.getString("status")
                 );
                 movies.add(movie);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return movies;
     }
 
     public boolean addMovie(Movie movie) {
-        String sql = "INSERT INTO movies (title, duration, description, genre, age_rating, release_date, end_date, banner_url, poster_url, status) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'active')";
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement ps = connection.prepareStatement(sql)) {
+        String query = "INSERT INTO movies (title, duration, description, country, language, subtitle, age_rating, release_date, end_date, banner_url, poster_url, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (PreparedStatement ps = DbConnect.get(query)) {
             ps.setString(1, movie.getTitle());
             ps.setInt(2, movie.getDuration());
             ps.setString(3, movie.getDescription());
-            ps.setString(4, movie.getGenre());
-            ps.setString(5, movie.getAgeRating());
-            ps.setString(6, movie.getReleaseDate());
-            ps.setString(7, movie.getEndDate());
-            ps.setString(8, movie.getBannerUrl());
-            ps.setString(9, movie.getPosterUrl());
+            ps.setString(4, movie.getCountry());
+            ps.setString(5, movie.getLanguage());
+            ps.setString(6, movie.getSubtitle());
+            ps.setString(7, movie.getAgeRating());
+            ps.setString(8, movie.getReleaseDate());
+            ps.setString(9, movie.getEndDate());
+            ps.setString(10, movie.getBannerUrl());
+            ps.setString(11, movie.getPosterUrl());
+            ps.setString(12, movie.getStatus());
+
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return false;
     }
 
     public boolean deleteMovie(int id) {
-        String sql = "UPDATE movies SET status = 'inactive' WHERE id = ?";
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement ps = connection.prepareStatement(sql)) {
+        String query = "DELETE FROM movies WHERE id = ?";
+
+        try (PreparedStatement ps = DbConnect.get(query)) {
             ps.setInt(1, id);
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return false;
     }
 }

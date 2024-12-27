@@ -1,4 +1,4 @@
-package org.example.demo.dao.model;
+package org.example.demo.dao.models;
 
 public class FoodTicketItem {
     private int id;

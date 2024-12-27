@@ -1,12 +1,12 @@
-package org.example.demo.dao.model;
+package org.example.demo.dao.models;
 
-public class Director {
+public class Actor {
     private int id;
     private String name;
 
-    public Director(int id, String name) {
-        this.id = id;
+    public Actor(String name, int id) {
         this.name = name;
+        this.id = id;
     }
 
     public int getId() {

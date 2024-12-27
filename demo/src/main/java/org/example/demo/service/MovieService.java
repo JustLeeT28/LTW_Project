@@ -1,7 +1,7 @@
 package org.example.demo.service;
 
 import org.example.demo.dao.MovieDao;
-import org.example.demo.dao.model.Movie;
+import org.example.demo.dao.models.Movie;
 
 import java.util.List;
 

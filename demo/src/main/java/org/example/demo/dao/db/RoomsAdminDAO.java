@@ -1,6 +1,6 @@
 package org.example.demo.dao.db;
 
-import org.example.demo.dao.model.Room;
+import org.example.demo.dao.models.Room;
 
 import java.sql.*;
 import java.util.ArrayList;
