@@ -2,51 +2,46 @@ package org.example.demo.dao.db;
 
 import java.util.Properties;
 
-public class DbProperties {
-    private static Properties properties = new Properties();
-
+public class DbProperties  {
+    private static Properties properties =  new Properties();
     static {
         try {
             properties.load(DbProperties.class.getResourceAsStream("/db.properties"));
         } catch (Exception e) {
-            throw new RuntimeException("Error loading db.properties file", e);
+            throw new RuntimeException();
         }
     }
-
     public static String host() {
-        return properties.getProperty("db.host", "localhost");
+        return properties.get("db.host").toString();
     }
-
     public static int port() {
-        try {
-            return Integer.parseInt(properties.getProperty("db.port", "3306"));
+        try{
+            return Integer.parseInt(properties.get("db.port").toString());
         } catch (NumberFormatException e) {
-            return 3306; // Giá trị mặc định nếu xảy ra lỗi
+            return 3306;
         }
     }
-
     public static String username() {
-        return properties.getProperty("db.username", "root");
+        return properties.get("db.username").toString();
     }
-
     public static String password() {
-        return properties.getProperty("db.password", "");
+        return properties.get("db.password").toString();
     }
-
     public static String dbName() {
-        return properties.getProperty("db.dbname", "test");
+        return properties.get("db.dbname").toString();
     }
-
     public static String option() {
-        return properties.getProperty("db.option", "useSSL=false&serverTimezone=UTC");
+        return properties.get("db.option").toString();
     }
 
     public static void main(String[] args) {
-        System.out.println("Host: " + host());
-        System.out.println("Port: " + port());
-        System.out.println("Username: " + username());
-        System.out.println("Password: " + password());
-        System.out.println("Database Name: " + dbName());
-        System.out.println("Options: " + option());
+        DbProperties dbProperties = new DbProperties();
+        System.out.println(dbProperties.host());
+        System.out.println(dbProperties.port());
+        System.out.println(dbProperties.username());
+        System.out.println(dbProperties.password());
+        System.out.println(dbProperties.dbName());
+        System.out.println(dbProperties.option());
     }
+
 }

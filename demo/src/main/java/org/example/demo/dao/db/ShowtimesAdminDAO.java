@@ -1,27 +1,27 @@
 package org.example.demo.dao.db;
 
-import org.example.demo.model.Showtimes;
+import org.example.demo.dao.model.Showtime;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShowtimesDAO {
+public class ShowtimesAdminDAO {
     private Connection connection;
 
-    public ShowtimesDAO(Connection connection) {
+    public ShowtimesAdminDAO(Connection connection) {
         this.connection = connection;
     }
 
     // Lấy tất cả lịch chiếu
-    public List<Showtimes> getAllShowtimes() throws SQLException {
-        List<Showtimes> showtimesList = new ArrayList<>();
+    public List<Showtime> getAllShowtimes() throws SQLException {
+        List<Showtime> showtimesList = new ArrayList<>();
         String query = "SELECT * FROM showtimes";
 
         try (PreparedStatement stmt = connection.prepareStatement(query);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                Showtimes showtime = new Showtimes(
+                Showtime showtime = new Showtime(
                         rs.getInt("id"),
                         rs.getInt("movieId"),
                         rs.getString("date"),
@@ -35,7 +35,7 @@ public class ShowtimesDAO {
     }
 
     // Thêm lịch chiếu mới
-    public void addShowtime(Showtimes showtime) throws SQLException {
+    public void addShowtime(Showtime showtime) throws SQLException {
         String query = "INSERT INTO showtimes (movieId, roomId, date, time) VALUES (?, ?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, showtime.getMovieId());
