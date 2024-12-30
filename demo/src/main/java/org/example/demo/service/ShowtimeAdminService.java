@@ -1,15 +1,15 @@
 package org.example.demo.service;
 
-import org.example.demo.dao.db.ShowtimeDAO;
+import org.example.demo.dao.db.ShowtimeAdminDAO;
 import org.example.demo.dao.models.Showtime;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class ShowtimeAdminService {
-    private ShowtimeDAO showtimeDAO;
+    private ShowtimeAdminDAO showtimeDAO;
 
-    public ShowtimeAdminService(ShowtimeDAO showtimeDAO) {
+    public ShowtimeAdminService(ShowtimeAdminDAO showtimeDAO) {
         this.showtimeDAO = showtimeDAO;
     }
 
