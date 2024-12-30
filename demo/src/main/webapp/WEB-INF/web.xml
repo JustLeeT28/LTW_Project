@@ -3,6 +3,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
+
+    <!-- Mapping cho RegisterServlet -->
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>RegisterServlet</servlet-class>
@@ -12,6 +14,7 @@
         <url-pattern>/RegisterServlet</url-pattern>
     </servlet-mapping>
 
+    <!-- Mapping cho LoginServlet -->
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>LoginServlet</servlet-class>
@@ -20,4 +23,15 @@
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
+
+    <!-- Mapping cho ShowtimeController -->
+    <servlet>
+        <servlet-name>ShowtimeController</servlet-name>
+        <servlet-class>ShowtimeController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowtimeController</servlet-name>
+        <url-pattern>/ShowtimeController</url-pattern>
+    </servlet-mapping>
+
 </web-app>
