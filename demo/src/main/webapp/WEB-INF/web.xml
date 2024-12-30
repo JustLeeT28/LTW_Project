@@ -7,7 +7,7 @@
     <!-- Mapping cho RegisterServlet -->
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
-        <servlet-class>RegisterServlet</servlet-class>
+        <servlet-class>org.example.demo.dao.db.RegisterServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
@@ -17,7 +17,7 @@
     <!-- Mapping cho LoginServlet -->
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>LoginServlet</servlet-class>
+        <servlet-class>org.example.demo.dao.db.LoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -26,12 +26,13 @@
 
     <!-- Mapping cho ShowtimeController -->
     <servlet>
-        <servlet-name>ShowtimeController</servlet-name>
-        <servlet-class>ShowtimeController</servlet-class>
+        <servlet-name>ShowtimeAdminController</servlet-name>
+        <servlet-class>org.example.demo.controller.ShowtimeAdminController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ShowtimeController</servlet-name>
-        <url-pattern>/ShowtimeController</url-pattern>
+        <servlet-name>ShowtimeAdminController</servlet-name>
+        <url-pattern>/ShowtimeAdminController</url-pattern>
     </servlet-mapping>
+
 
 </web-app>

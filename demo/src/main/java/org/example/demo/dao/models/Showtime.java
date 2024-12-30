@@ -1,5 +1,8 @@
 package org.example.demo.dao.models;
 
+import java.sql.Date;
+import java.sql.Time;
+
 public class Showtime {
     private int id;
     private int movieId;
@@ -106,8 +109,8 @@ public class Showtime {
                 ", movieTitle='" + movieTitle + '\'' +
                 ", roomId=" + roomId +
                 ", roomName='" + roomName + '\'' +
-                ", showDate='" + showDate + '\'' +
-                ", showTime='" + showTime + '\'' +
+                ", showDate=" + showDate +
+                ", showTime=" + showTime +
                 ", status='" + status + '\'' +
                 '}';
     }

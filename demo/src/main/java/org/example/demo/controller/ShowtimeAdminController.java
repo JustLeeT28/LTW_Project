@@ -38,30 +38,28 @@ public class ShowtimeAdminController extends HttpServlet {
         String action = request.getParameter("action");
         try {
             if ("add".equals(action)) {
-                // Thêm lịch chiếu
-                Showtime showtime = new Showtime();
-                showtime.setMovieId(Integer.parseInt(request.getParameter("movieId")));
-                showtime.setRoomId(Integer.parseInt(request.getParameter("roomId")));
-                showtime.setShowDate(java.sql.Date.valueOf(request.getParameter("showDate")));
-                showtime.setShowTime(java.sql.Time.valueOf(request.getParameter("showTime")));
-                showtime.setStatus("active");
+                int movieId = Integer.parseInt(request.getParameter("movieId"));
+                int roomId = Integer.parseInt(request.getParameter("roomId"));
+                String showDate = request.getParameter("showDate");
+                String showTime = request.getParameter("showTime");
+
+                Showtime showtime = new Showtime(movieId, null, roomId, null, showDate, showTime, "active");
                 showtimeService.addShowtime(showtime);
             } else if ("delete".equals(action)) {
-                // Xóa lịch chiếu
                 int id = Integer.parseInt(request.getParameter("id"));
                 showtimeService.deleteShowtime(id);
             } else if ("update".equals(action)) {
-                // Cập nhật lịch chiếu
-                Showtime showtime = new Showtime();
-                showtime.setId(Integer.parseInt(request.getParameter("id")));
-                showtime.setMovieId(Integer.parseInt(request.getParameter("movieId")));
-                showtime.setRoomId(Integer.parseInt(request.getParameter("roomId")));
-                showtime.setShowDate(java.sql.Date.valueOf(request.getParameter("showDate")));
-                showtime.setShowTime(java.sql.Time.valueOf(request.getParameter("showTime")));
-                showtime.setStatus(request.getParameter("status"));
+                int id = Integer.parseInt(request.getParameter("id"));
+                int movieId = Integer.parseInt(request.getParameter("movieId"));
+                int roomId = Integer.parseInt(request.getParameter("roomId"));
+                String showDate = request.getParameter("showDate");
+                String showTime = request.getParameter("showTime");
+                String status = request.getParameter("status");
+
+                Showtime showtime = new Showtime(id, movieId, null, roomId, null, showDate, showTime, status);
                 showtimeService.updateShowtime(showtime);
             }
-            response.sendRedirect("ShowtimeController");
+            response.sendRedirect("ShowtimeAdminController");
         } catch (Exception e) {
             e.printStackTrace();
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing request.");

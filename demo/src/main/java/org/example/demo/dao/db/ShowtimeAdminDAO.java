@@ -21,13 +21,16 @@ public class ShowtimeAdminDAO {
         try (PreparedStatement statement = connection.prepareStatement(query);
              ResultSet rs = statement.executeQuery()) {
             while (rs.next()) {
-                Showtime showtime = new Showtime();
-                showtime.setId(rs.getInt("id"));
-                showtime.setMovieId(rs.getInt("movieId"));
-                showtime.setRoomId(rs.getInt("roomId"));
-                showtime.setShowDate(rs.getDate("showDate"));
-                showtime.setShowTime(rs.getTime("showTime"));
-                showtime.setStatus(rs.getString("status"));
+                Showtime showtime = new Showtime(
+                        rs.getInt("id"),
+                        rs.getInt("movieId"),
+                        rs.getString("movieTitle"),
+                        rs.getInt("roomId"),
+                        rs.getString("roomName"),
+                        rs.getString("showDate"),
+                        rs.getString("showTime"),
+                        rs.getString("status")
+                );
                 showtimes.add(showtime);
             }
         }
@@ -40,8 +43,8 @@ public class ShowtimeAdminDAO {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, showtime.getMovieId());
             statement.setInt(2, showtime.getRoomId());
-            statement.setDate(3, new Date(showtime.getShowDate().getTime()));
-            statement.setTime(4, showtime.getShowTime());
+            statement.setString(3, showtime.getShowDate());
+            statement.setString(4, showtime.getShowTime());
             statement.setString(5, showtime.getStatus());
             return statement.executeUpdate() > 0;
         }
@@ -62,12 +65,11 @@ public class ShowtimeAdminDAO {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, showtime.getMovieId());
             statement.setInt(2, showtime.getRoomId());
-            statement.setDate(3, new Date(showtime.getShowDate().getTime()));
-            statement.setTime(4, showtime.getShowTime());
+            statement.setString(3, showtime.getShowDate());
+            statement.setString(4, showtime.getShowTime());
             statement.setString(5, showtime.getStatus());
             statement.setInt(6, showtime.getId());
             return statement.executeUpdate() > 0;
         }
     }
 }
-
