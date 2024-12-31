@@ -77,6 +77,24 @@ function updatePrices() {
     console.log('Giá vé được cập nhật:', { regularPrice, vipPrice, specialPrice });
 }
 
+function updatePrices() {
+    const regularPrice = document.getElementById('regularPrice').value;
+    const vipPrice = document.getElementById('vipPrice').value;
+    const specialPrice = document.getElementById('specialPrice').value;
+
+    fetch('/updateTicketPrices', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ regularPrice, vipPrice, specialPrice })
+    })
+        .then(response => {
+            if (response.ok) alert('Cập nhật giá vé thành công');
+            else throw new Error('Cập nhật thất bại');
+        })
+        .catch(error => console.error(error));
+}
+
+
 // Thêm dữ liệu mẫu
 addTicket({ id: 1, customerName: "Nguyen Van A", showtime: "2023-11-08 19:00", seatNumber: "A1", status: "Đã thanh toán" });
 addTicket({ id: 2, customerName: "Tran Thi B", showtime: "2023-11-08 21:00", seatNumber: "B2", status: "Chưa thanh toán" });
