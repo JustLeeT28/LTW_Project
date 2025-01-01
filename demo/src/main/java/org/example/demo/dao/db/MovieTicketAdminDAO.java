@@ -15,7 +15,7 @@ public class MovieTicketAdminDAO {
         this.connection = connection;
     }
 
-    public List<MovieTicket> getAllTickets() {
+    public List<MovieTicket> getAllBookedTickets() {
         List<MovieTicket> tickets = new ArrayList<>();
         String query = "SELECT mt.id, mt.orderId, mt.showTimeId, mt.seatId, mt.price, mt.created_at, " +
                 "u.name AS customerName, " +
@@ -49,59 +49,8 @@ public class MovieTicketAdminDAO {
         return tickets;
     }
 
-    public boolean addTicket(MovieTicket ticket) {
-        String query = "INSERT INTO movie_tickets (orderId, showTimeId, seatId, price, created_at) " +
-                "VALUES (?, ?, ?, ?, ?)";
-
-        try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setInt(1, ticket.getOrderId());
-            stmt.setInt(2, ticket.getShowTimeId());
-            stmt.setInt(3, ticket.getSeatId());
-            stmt.setDouble(4, ticket.getPrice());
-            stmt.setString(5, ticket.getCreatedAt());
-
-            return stmt.executeUpdate() > 0;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return false;
-    }
-
-    public boolean deleteTicket(int id) {
-        String query = "DELETE FROM movie_tickets WHERE id = ?";
-
-        try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setInt(1, id);
-            return stmt.executeUpdate() > 0;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return false;
-    }
-
-    public boolean updateTicket(MovieTicket ticket) {
-        String query = "UPDATE movie_tickets SET orderId = ?, showTimeId = ?, seatId = ?, price = ?, created_at = ? " +
-                "WHERE id = ?";
-
-        try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setInt(1, ticket.getOrderId());
-            stmt.setInt(2, ticket.getShowTimeId());
-            stmt.setInt(3, ticket.getSeatId());
-            stmt.setDouble(4, ticket.getPrice());
-            stmt.setString(5, ticket.getCreatedAt());
-            stmt.setInt(6, ticket.getId());
-
-            return stmt.executeUpdate() > 0;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return false;
-    }
-
-    public MovieTicket getTicketById(int id) {
+    public List<MovieTicket> searchTickets(String keyword) {
+        List<MovieTicket> tickets = new ArrayList<>();
         String query = "SELECT mt.id, mt.orderId, mt.showTimeId, mt.seatId, mt.price, mt.created_at, " +
                 "u.name AS customerName, " +
                 "CONCAT(s.row, s.seat_number) AS seat, " +
@@ -111,13 +60,17 @@ public class MovieTicketAdminDAO {
                 "JOIN users u ON o.userId = u.id " +
                 "JOIN seats s ON mt.seatId = s.id " +
                 "JOIN showtimes sh ON mt.showTimeId = sh.id " +
-                "WHERE mt.id = ?";
+                "WHERE u.name LIKE ? OR mt.id LIKE ? OR CONCAT(sh.showDate, ' ', sh.showTime) LIKE ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setInt(1, id);
+            String searchPattern = "%" + keyword + "%";
+            stmt.setString(1, searchPattern);
+            stmt.setString(2, searchPattern);
+            stmt.setString(3, searchPattern);
+
             ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                return new MovieTicket(
+            while (rs.next()) {
+                tickets.add(new MovieTicket(
                         rs.getInt("id"),
                         rs.getInt("orderId"),
                         rs.getInt("showTimeId"),
@@ -127,12 +80,12 @@ public class MovieTicketAdminDAO {
                         rs.getString("customerName"),
                         rs.getString("seat"),
                         rs.getString("showtime")
-                );
+                ));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return null;
+        return tickets;
     }
 }
