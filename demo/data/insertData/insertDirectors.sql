@@ -1,0 +1,17 @@
+INSERT INTO directors (id, name) VALUES
+(1, 'Anthony Russo'),
+(2, 'Joe Russo'),
+(3, 'Rajkumar Hirani'),
+(4, 'Chloé Zhao'),
+(5, 'Anil Sharma'),
+(6, 'Siddharth Anand'),
+(7, 'Chad Stahelski'),
+(8, 'Colin Trevorrow'),
+(9, 'Raghav Subbu'),
+(10, 'Álex Pina'),
+(11, 'Mohamed Diab'),
+(12, 'Jon Watts'),
+(13, 'Sandeep Chouthi'),
+(14, 'Eric Kripke'),
+(15, 'Taika Waititi'),
+(16, 'Joseph Kosinski');

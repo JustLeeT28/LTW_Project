@@ -1,0 +1,17 @@
+INSERT INTO actors (name) VALUES
+('Robert Downey Jr.'),
+('Chris Hemsworth'),
+('Scarlett Johansson'),
+('Chris Evans'),
+('Mark Ruffalo'),
+('Tom Hiddleston'),
+('Tom Holland'),
+('Brad Pitt'),
+('Cate Blanchett'),
+('Rani Mukerji'),
+('Hrithik Roshan'),
+('Deepika Padukone'),
+('Keanu Reeves'),
+('Charlie Hunnam'),
+('Zendaya'),
+('Jared Leto');
