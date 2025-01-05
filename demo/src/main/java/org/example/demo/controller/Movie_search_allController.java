@@ -16,10 +16,16 @@ public class Movie_search_allController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String query = request.getParameter("query"); // Dùng cho tìm kiếm
         String pageParam = request.getParameter("page");
+        String genre = request.getParameter("genre");
+
         int currentPage = (pageParam == null || pageParam.isEmpty()) ? 1 : Integer.parseInt(pageParam);
         MovieService movieService = new MovieService();
-        List<Movie> movies = movieService.getMovies();
-
+        List<Movie> movies;
+        if (genre != null && !genre.isEmpty()) {
+             movies = movieService.getGenreMovies(genre);
+        } else {
+             movies = movieService.getMovies();
+        }
         // Tính toán số lượng trang
         int totalRecords = movies.size();
         int totalPages = (int) Math.ceil((double) totalRecords / RECORDS_PER_PAGE);

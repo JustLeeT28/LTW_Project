@@ -10,4 +10,8 @@ public class MovieService {
     public List<Movie> getMovies() {
         return movieDao.getMovies();
     }
+    public List<Movie> getGenreMovies(String genre) {
+        return movieDao.getGenreMovies(genre);
+    }
+
 }
