@@ -7,7 +7,13 @@ import java.util.List;
 
 public class MovieService {
     MovieDao movieDao = new MovieDao();
+
     public List<Movie> getMovies() {
         return movieDao.getMovies();
     }
+
+    public List<Movie> showingMovies() {
+        return movieDao.showingMovies();
+    }
+
 }
