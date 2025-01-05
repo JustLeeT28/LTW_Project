@@ -48,7 +48,7 @@ body {
 
 }
 .movie {
-    height: 20%;
+    height: 50%;
     width: 25vw;
     display: flex;
     align-items: center;

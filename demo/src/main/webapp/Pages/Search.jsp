@@ -49,7 +49,6 @@
 </div>
 <div class="container-movie">
     <c:forEach var="movie" items="${movies_all}" varStatus="status">
-<%--        <c:if test="${status.index < 8}">--%>
             <div class="movie">
                 <div class="movie-infor">
                     <div class="movie_img">
@@ -67,35 +66,24 @@
                     <button class="book-button">Đặt vé</button>
                 </div>
             </div>
-<%--        </c:if>--%>
     </c:forEach>
+</div>
 <div class="pagination">
     <ul class="page">
         <li class="num-page">
-            <a href="" class="number-icon"><<</a>
+            <a href="?page=${currentPage - 1}" class="number-icon" ${currentPage == 1 ? 'style="pointer-events:none;opacity:0.5;"' : ''}>&lt;&lt;</a>
         </li>
+        <c:forEach var="page" begin="1" end="${totalPages}">
+            <li class="num-page">
+                <a href="?page=${page}" class="number ${page == currentPage ? 'active' : ''}">${page}</a>
+            </li>
+        </c:forEach>
         <li class="num-page">
-            <a href="" class="number">1</a>
-        </li>
-        <li class="num-page">
-            <a href="" class="number">2</a>
-        </li>
-        <li class="num-page">
-            <a href="" class="number">3</a>
-        </li>
-        <li class="num-page">
-            <a href="" class="number disable">...</a>
-        </li>
-        <li class="num-page">
-            <a href="" class="number">7</a>
-        </li>
-        <li class="num-page">
-            <a href="" class="number-icon">>></a>
+            <a href="?page=${currentPage + 1}" class="number-icon" ${currentPage == totalPages ? 'style="pointer-events:none;opacity:0.5;"' : ''}>&gt;&gt;</a>
         </li>
     </ul>
 </div>
-
-<div class="footer">
+        <div class="footer">
     <div class="column-1">
         <div class="logo-footer">
             <img id="logo-cinema-footer" src="../img/img/Logo_tachnen.jpg"/>
