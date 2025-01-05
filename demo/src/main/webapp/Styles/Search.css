@@ -48,7 +48,7 @@ body {
 
 }
 .movie {
-    height: 50%;
+    height: 20%;
     width: 25vw;
     display: flex;
     align-items: center;
@@ -118,4 +118,57 @@ a.disable{
 }
 .book-button:hover {
     cursor: pointer;
+}
+.movie-infor {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+}
+
+.infor-text {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    top: -300%;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    color: white;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.movie-infor:hover .infor-text {
+    top: 0;
+}
+
+.highlight {
+    font-weight: bold;
+    color: rosybrown;
+    margin-right: 10px
+}
+
+.book-button:hover {
+    cursor: pointer;
+}
+
+.movie_img {
+    width: 100%;
+    height: 100%;
+}
+
+.movie_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.book_link {
+    display: flex;
+    flex-direction: column;
+}
+.book_link a, .book_link button {
+    margin-top: 8px;
+    margin-left: auto;
+    margin-right: auto;
 }
