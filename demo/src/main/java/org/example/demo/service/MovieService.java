@@ -16,4 +16,7 @@ public class MovieService {
         return movieDao.showingMovies();
     }
 
+    public Movie getMovieById(int id) {
+        return movieDao.getMovieById(id);
+    }
 }
