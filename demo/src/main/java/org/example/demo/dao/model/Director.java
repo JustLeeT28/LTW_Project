@@ -8,6 +8,8 @@ public class Director {
         this.id = id;
         this.name = name;
     }
+    public Director() {
+    }
 
     public int getId() {
         return id;
