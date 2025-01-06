@@ -34,19 +34,16 @@
     <h1>KẾT QUẢ TÌM KIẾM PHIM</h1>
 </div>
 <div class="Se-movie ">
-    <select class="combobox" name="movie-genre" id="genre" onchange="filterMoviesByGenre()">
-        <option value="" disabled selected>Thể loại</option>
-        <option value="Funny">Hài Hước</option>
-        <option value="horror">Kinh dị</option>
-        <option value="action">Hành động</option>
-        <option value="romatic">Ngôn tình</option>
+    <select class="combobox" name="movie-genre" id="genre">
+        <option value="">Thể loại</option>
+<%--        <option value="Funny">Hài Hước</option>--%>
+<%--        <option value="horror">Kinh dị</option>--%>
+<%--        <option value="Hành động">Hành động</option>--%>
+<%--        <option value="romatic">Ngôn tình</option>--%>
+        <c:forEach var="g" items="${genres}">
+            <option value="${g.genre}" >${g.genre}</option>
+        </c:forEach>
     </select>
-    <script> // js cho commbox genre
-        function filterMoviesByGenre() {
-            const genre = document.getElementById("genre").value;
-            window.location.href = `search?genre=${genre}`; // cho genre lên url
-        }
-    </script>
     <select class="combobox" name="movie-sort" id="sort">
         <option value="" disabled selected>Sắp xếp</option>
         <option value="new-movie">Phim mới chiếu</option>

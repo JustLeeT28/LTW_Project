@@ -2,6 +2,7 @@ package org.example.demo.controller;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import org.example.demo.dao.model.Genre;
 import org.example.demo.dao.model.Movie;
 import org.example.demo.service.MovieService;
 
@@ -14,7 +15,6 @@ public class Movie_search_allController extends HttpServlet {
     private static final int RECORDS_PER_PAGE = 8; // Số sản phẩm mỗi trang
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String query = request.getParameter("query"); // Dùng cho tìm kiếm
         String pageParam = request.getParameter("page");
         String genre = request.getParameter("genre");
 
@@ -35,11 +35,12 @@ public class Movie_search_allController extends HttpServlet {
         int endIndex = Math.min(startIndex + RECORDS_PER_PAGE, totalRecords);
         List<Movie> moviesOnPage = movies.subList(startIndex, endIndex); // Chỉ lấy sản phẩm cho trang hiện tại
 
+        List<Genre> genres = movieService.getGenres();
+        request.setAttribute("genres", genres);
         // Đặt thông tin vào request
         request.setAttribute("movies_all", moviesOnPage);
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("currentPage", currentPage);
-//        request.setAttribute("movies_all", movies);
         request.getRequestDispatcher("Pages/Search.jsp").forward(request, response);
     }
 
