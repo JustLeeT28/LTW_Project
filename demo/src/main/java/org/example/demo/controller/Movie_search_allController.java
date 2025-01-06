@@ -31,7 +31,7 @@ public class Movie_search_allController extends HttpServlet {
         int totalPages = (int) Math.ceil((double) totalRecords / RECORDS_PER_PAGE);
 
         // Lấy sản phẩm của trang hiện tại
-        int startIndex = (currentPage - 1) * RECORDS_PER_PAGE;
+        int startIndex = Math.max(0, (currentPage - 1) * RECORDS_PER_PAGE);
         int endIndex = Math.min(startIndex + RECORDS_PER_PAGE, totalRecords);
         List<Movie> moviesOnPage = movies.subList(startIndex, endIndex); // Chỉ lấy sản phẩm cho trang hiện tại
 

@@ -34,12 +34,6 @@
     <h1>KẾT QUẢ TÌM KIẾM PHIM</h1>
 </div>
 <div class="Se-movie ">
-<%--    <select class="combobox" name="movie-genre" id="genre">--%>
-<%--        <option value="">Thể loại</option>--%>
-<%--        <c:forEach var="g" items="${genres}">--%>
-<%--            <option value="${g.id}" >${g.genre}</option>--%>
-<%--        </c:forEach>--%>
-<%--    </select>--%>
     <form id="genreFilterForm" method="get" action="${pageContext.request.contextPath}/search">
         <select class="combobox" name="genre" id="genre" onchange="document.getElementById('genreFilterForm').submit();">
             <option value="">Thể loại</option>
@@ -79,15 +73,15 @@
 <div class="pagination">
     <ul class="page">
         <li class="num-page">
-            <a href="search?page=${currentPage - 1}" class="number-icon" ${currentPage == 1 ? 'style="pointer-events:none;opacity:0.5;"' : ''}>&lt;&lt;</a>
+            <a href="search?page=${currentPage - 1}&genre=${genre}" class="number-icon" ${currentPage == 1 ? 'style="pointer-events:none;opacity:0.5;"' : ''}>&lt;&lt;</a>
         </li>
         <c:forEach var="page" begin="1" end="${totalPages}">
             <li class="num-page">
-                <a href="search?page=${page}" class="number ${page == currentPage ? 'active' : ''}">${page}</a>
+                <a href="search?page=${currentPage }&genre=${genre}" class="number ${page == currentPage ? 'active' : ''}">${page}</a>
             </li>
         </c:forEach>
         <li class="num-page">
-            <a href="search?page=${currentPage + 1}" class="number-icon" ${currentPage == totalPages ? 'style="pointer-events:none;opacity:0.5;"' : ''}>&gt;&gt;</a>
+            <a href="search?page=${currentPage + 1}&genre=${genre}" class="number-icon" ${currentPage == totalPages ? 'style="pointer-events:none;opacity:0.5;"' : ''}>&gt;&gt;</a>
         </li>
     </ul>
 </div>
