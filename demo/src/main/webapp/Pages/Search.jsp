@@ -38,7 +38,7 @@
         <select class="combobox" name="genre" id="genre" onchange="document.getElementById('genreFilterForm').submit();">
             <option value="">Thể loại</option>
             <c:forEach var="g" items="${genres}">
-                <option value="${g.id}">${g.genre}</option>
+                <option value="${g.id}"${g.id == genre ? 'selected' : ''}>${g.genre}</option>
             </c:forEach>
         </select>
     </form>

@@ -17,13 +17,18 @@ public class Movie_search_allController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pageParam = request.getParameter("page");
         String genre = request.getParameter("genre");
+        String Condition = request.getParameter("Condition");
 
         int currentPage = (pageParam == null || pageParam.isEmpty()) ? 1 : Integer.parseInt(pageParam);
         MovieService movieService = new MovieService();
         List<Movie> movies;
-        if (genre != null && !genre.isEmpty()) {
+//        if(genre != null && !genre.isEmpty() && ) {
+//
+//        } else 
+            if (genre != null && !genre.isEmpty()) {
              movies = movieService.getGenreMovies(genre);
-        } else {
+        }
+        else {
              movies = movieService.getMovies();
         }
         // Tính toán số lượng trang
