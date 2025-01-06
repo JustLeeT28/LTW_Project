@@ -56,16 +56,16 @@ public class MovieDao {
         }
     }
 
-    public List<Movie> getGenreMovies(String genre) {
+    public List<Movie> getGenreMovies(String idGenre) {
         PreparedStatement ps = null;
         ResultSet resultSet = null;
         try {
             String query = "SELECT * FROM movies m " +
                     "JOIN movie_genres mg ON mg.movieId = m.id  " +
                     "JOIN genre g ON mg.genreId = g.id" +
-                    "WHERE m.genre = ?";
+                    "WHERE g.id = ?";
             ps = DbConnect.get(query);  // Lấy PreparedStatement từ DbConnect
-            ps.setString(1, genre);
+            ps.setInt(1, Integer.parseInt(idGenre));
             resultSet = ps.executeQuery();  // Thực thi truy vấn
 
             List<Movie> movies = new ArrayList<>();

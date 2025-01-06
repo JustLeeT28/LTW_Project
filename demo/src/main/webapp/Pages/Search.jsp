@@ -34,16 +34,21 @@
     <h1>KẾT QUẢ TÌM KIẾM PHIM</h1>
 </div>
 <div class="Se-movie ">
-    <select class="combobox" name="movie-genre" id="genre">
-        <option value="">Thể loại</option>
-<%--        <option value="Funny">Hài Hước</option>--%>
-<%--        <option value="horror">Kinh dị</option>--%>
-<%--        <option value="Hành động">Hành động</option>--%>
-<%--        <option value="romatic">Ngôn tình</option>--%>
-        <c:forEach var="g" items="${genres}">
-            <option value="${g.genre}" >${g.genre}</option>
-        </c:forEach>
-    </select>
+<%--    <select class="combobox" name="movie-genre" id="genre">--%>
+<%--        <option value="">Thể loại</option>--%>
+<%--        <c:forEach var="g" items="${genres}">--%>
+<%--            <option value="${g.id}" >${g.genre}</option>--%>
+<%--        </c:forEach>--%>
+<%--    </select>--%>
+    <form id="genreFilterForm" method="get" action="${pageContext.request.contextPath}/search">
+        <select class="combobox" name="genre" id="genre" onchange="document.getElementById('genreFilterForm').submit();">
+            <option value="">Thể loại</option>
+            <c:forEach var="g" items="${genres}">
+                <option value="${g.id}">${g.genre}</option>
+            </c:forEach>
+        </select>
+    </form>
+
     <select class="combobox" name="movie-sort" id="sort">
         <option value="" disabled selected>Sắp xếp</option>
         <option value="new-movie">Phim mới chiếu</option>
