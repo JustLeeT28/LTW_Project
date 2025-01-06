@@ -1,6 +1,7 @@
 package org.example.demo.dao;
 
 import org.example.demo.dao.db.DbConnect;
+import org.example.demo.dao.model.Genre;
 import org.example.demo.dao.model.Movie;
 
 import java.sql.PreparedStatement;
@@ -89,6 +90,36 @@ public class MovieDao {
 
             return movies;
 
+        } catch (SQLException e) {
+            e.printStackTrace();  // Log lỗi (có thể thay thế bằng việc báo cáo lỗi rõ ràng hơn)
+            return new ArrayList<>();  // Trả về danh sách rỗng khi gặp lỗi
+        } finally {
+            // Đảm bảo đóng tài nguyên sau khi sử dụng
+            try {
+                if (resultSet != null) resultSet.close();
+                if (ps != null) ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();  // Log lỗi khi đóng tài nguyên
+            }
+        }
+    }
+
+    public List<Genre> getGenres() {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        try {
+            String query = "SELECT * FROM genres";
+            ps = DbConnect.get(query);
+            resultSet = ps.executeQuery();  // Thực thi truy vấn
+            List<Genre> genres = new ArrayList<>();
+            while (resultSet.next()) {
+                Genre g = new Genre(
+                        resultSet.getInt("id"),
+                        resultSet.getString("genre")
+                );
+                genres.add(g);
+            }
+            return genres;
         } catch (SQLException e) {
             e.printStackTrace();  // Log lỗi (có thể thay thế bằng việc báo cáo lỗi rõ ràng hơn)
             return new ArrayList<>();  // Trả về danh sách rỗng khi gặp lỗi
