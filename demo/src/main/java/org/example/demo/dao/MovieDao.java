@@ -3,6 +3,7 @@ package org.example.demo.dao;
 import org.example.demo.dao.db.DbConnect;
 import org.example.demo.dao.model.Genre;
 import org.example.demo.dao.model.Movie;
+import org.example.demo.service.MovieService;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -62,7 +63,7 @@ public class MovieDao {
         try {
             String query = "SELECT * FROM movies m " +
                     "JOIN movie_genres mg ON mg.movieId = m.id  " +
-                    "JOIN genre g ON mg.genreId = g.id" +
+                    "JOIN genres g ON mg.genreId = g.id " +
                     "WHERE g.id = ?";
             ps = DbConnect.get(query);  // Lấy PreparedStatement từ DbConnect
             ps.setInt(1, Integer.parseInt(idGenre));
@@ -132,5 +133,27 @@ public class MovieDao {
                 e.printStackTrace();  // Log lỗi khi đóng tài nguyên
             }
         }
+    }
+
+    public static void main(String[] args) {
+                MovieService movieService = new MovieService();
+
+                // Giả sử bạn muốn test với genre có id là 1
+                String genreId = "1";
+                List<Movie> movies2 = movieService.getMovies();
+                List<Movie> movies = movieService.getGenreMovies(genreId);
+
+                // In danh sách các phim lấy được ra console để kiểm tra
+                if (movies.isEmpty()) {
+                    System.out.println("Không tìm thấy phim nào với thể loại này.");
+                } else {
+                    for (Movie movie : movies) {
+                        System.out.println(movie.getTitle()); // Giả sử Movie có phương thức getTitle() để lấy tên phim
+                    }
+                }
+
+//                 for (Movie movie : movies2) {
+//            System.out.println(movie.getTitle()); // Giả sử Movie có phương thức getTitle() để lấy tên phim
+//                }
     }
 }
