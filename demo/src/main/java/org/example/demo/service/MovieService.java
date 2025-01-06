@@ -18,4 +18,7 @@ public class MovieService {
         return movieDao.getGenres();
     }
 
+    public List<Movie> getConditionMovies(String condition) {
+        return  movieDao.getConditionMovie(condition);
+    }
 }
