@@ -37,6 +37,7 @@ public class Movie_search_allController extends HttpServlet {
 
         List<Genre> genres = movieService.getGenres();
         request.setAttribute("genres", genres);
+        request.setAttribute("genre", genre);
         // Đặt thông tin vào request
         request.setAttribute("movies_all", moviesOnPage);
         request.setAttribute("totalPages", totalPages);

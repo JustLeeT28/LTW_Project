@@ -77,7 +77,7 @@
         </li>
         <c:forEach var="page" begin="1" end="${totalPages}">
             <li class="num-page">
-                <a href="search?page=${currentPage }&genre=${genre}" class="number ${page == currentPage ? 'active' : ''}">${page}</a>
+                <a href="search?page=${page}&genre=${genre}" class="number ${page == currentPage ? 'active' : ''}">${page}</a>
             </li>
         </c:forEach>
         <li class="num-page">
