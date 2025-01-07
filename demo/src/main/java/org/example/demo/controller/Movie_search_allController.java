@@ -21,7 +21,7 @@ public class Movie_search_allController extends HttpServlet {
 
         int currentPage = (pageParam == null || pageParam.isEmpty()) ? 1 : Integer.parseInt(pageParam);
         MovieService movieService = new MovieService();
-        List<Movie> movies;
+        List<Movie> movies = List.of();
         if(genre != null && !genre.isEmpty() && condition != null && !condition.isEmpty()) { //cả 2 đều đc trọn
 
         } else if(condition != null && !condition.isEmpty()) {
