@@ -21,4 +21,7 @@ public class MovieService {
     public List<Movie> getConditionMovies(String condition) {
         return  movieDao.getConditionMovie(condition);
     }
+    public List<Movie> getGenAndConMovie(String condition, String genre) {
+        return movieDao.getGenAndConMovie(condition, genre);
+    }
 }
