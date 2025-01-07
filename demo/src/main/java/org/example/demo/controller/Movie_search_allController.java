@@ -17,7 +17,9 @@ public class Movie_search_allController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pageParam = request.getParameter("page");
         String genre = request.getParameter("genre");
-        String condition = request.getParameter("Condition");
+        String condition = request.getParameter("condition");
+//        String sort = request.getParameter("sort");
+
 
         int currentPage = (pageParam == null || pageParam.isEmpty()) ? 1 : Integer.parseInt(pageParam);
         MovieService movieService = new MovieService();
@@ -45,6 +47,7 @@ public class Movie_search_allController extends HttpServlet {
         List<Genre> genres = movieService.getGenres();
         request.setAttribute("genres", genres);
         request.setAttribute("genre", genre);
+        request.setAttribute("condition", condition);
         // Đặt thông tin vào request
         request.setAttribute("movies_all", moviesOnPage);
         request.setAttribute("totalPages", totalPages);

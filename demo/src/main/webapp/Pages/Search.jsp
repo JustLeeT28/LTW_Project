@@ -34,20 +34,23 @@
     <h1>KẾT QUẢ TÌM KIẾM PHIM</h1>
 </div>
 <div class="Se-movie ">
-    <form id="genreFilterForm" method="get" action="${pageContext.request.contextPath}/search">
-        <select class="combobox" name="genre" id="genre" onchange="document.getElementById('genreFilterForm').submit();">
+    <form id="filterForm" method="get" action="${pageContext.request.contextPath}/search">
+        <!-- Combobox Thể loại -->
+        <select class="combobox" name="genre" id="genre" onchange="document.getElementById('filterForm').submit();">
             <option value="">Thể loại</option>
             <c:forEach var="g" items="${genres}">
-                <option value="${g.id}"${g.id == genre ? 'selected' : ''}>${g.genre}</option>
+                <option value="${g.id}" ${g.id == genre ? 'selected' : ''}>${g.genre}</option>
             </c:forEach>
+        </select>
+
+        <!-- Combobox Trạng thái -->
+        <select class="combobox" name="condition" id="condition" onchange="document.getElementById('filterForm').submit();">
+            <option value="">Sắp xếp</option>
+            <option value="new" ${'new' == condition ? 'selected' : ''}>Phim mới chiếu</option>
+            <option value="hot" ${'hot' == condition ? 'selected' : ''}>Phim xem nhiều</option>
         </select>
     </form>
 
-    <select class="combobox" name="movie-sort" id="sort">
-        <option value="" disabled selected>Sắp xếp</option>
-        <option value="new-movie">Phim mới chiếu</option>
-        <option value="best-movie">Phim xem nhiều</option>
-    </select>
 </div>
 <div class="container-movie">
     <c:forEach var="movie" items="${movies_all}" varStatus="status">
@@ -81,7 +84,7 @@
             </li>
         </c:forEach>
         <li class="num-page">
-            <a href="search?page=${currentPage + 1}&genre=${genre}" class="number-icon" ${currentPage == totalPages ? 'style="pointer-events:none;opacity:0.5;"' : ''}>&gt;&gt;</a>
+            <a href="search?page=${currentPage + 1}&genre=${genre}$condition=${condition}" class="number-icon" ${currentPage == totalPages ? 'style="pointer-events:none;opacity:0.5;"' : ''}>&gt;&gt;</a>
         </li>
     </ul>
 </div>
