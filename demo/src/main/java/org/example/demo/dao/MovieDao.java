@@ -1,5 +1,4 @@
 package org.example.demo.dao;
-
 import org.example.demo.dao.db.DbConnect;
 import org.example.demo.dao.model.Genre;
 import org.example.demo.dao.model.Movie;
