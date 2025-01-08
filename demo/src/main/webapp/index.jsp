@@ -68,7 +68,7 @@
                         <img src="${movie.posterUrl}" height="1100" width="1148"/>
                     </div>
                     <div class="infor-text">
-                        <h3><span class="highlight">Quốc gia:</span>${movie.country}</h3>
+                      <h3><span class="highlight">Quốc gia:</span>${movie.country}</h3>
                         <h3><span class="highlight">Thời lượng:</span>${movie.duration}p</h3>
                         <h3><span class="highlight">Ngôn ngữ:</span>${movie.language}</h3>
                         <h3><span class="highlight">Phụ đề:</span>${movie.subtitle}</h3>
