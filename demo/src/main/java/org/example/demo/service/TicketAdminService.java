@@ -1,7 +1,7 @@
 package org.example.demo.service;
 
 import org.example.demo.dao.db.MovieTicketAdminDAO;
-import org.example.demo.dao.models.MovieTicket;
+import org.example.demo.dao.model.MovieTicket;
 
 import java.sql.SQLException;
 import java.util.List;

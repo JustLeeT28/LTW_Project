@@ -1,4 +1,4 @@
-package org.example.demo.dao.models;
+package org.example.demo.dao.model;
 
 public class User {
     private int id;

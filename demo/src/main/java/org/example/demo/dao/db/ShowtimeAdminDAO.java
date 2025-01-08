@@ -1,6 +1,6 @@
 package org.example.demo.dao.db;
 
-import org.example.demo.dao.models.Showtime;
+import org.example.demo.dao.model.Showtime;
 
 import java.sql.*;
 import java.util.ArrayList;

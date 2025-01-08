@@ -3,7 +3,7 @@ package org.example.demo.controller;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import org.example.demo.dao.db.ShowtimeAdminDAO;
-import org.example.demo.dao.models.Showtime;
+import org.example.demo.dao.model.Showtime;
 import org.example.demo.service.ShowtimeAdminService;
 
 import java.io.IOException;

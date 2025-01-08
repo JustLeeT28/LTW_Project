@@ -1,7 +1,4 @@
-package org.example.demo.dao.models;
-
-import java.sql.Date;
-import java.sql.Time;
+package org.example.demo.dao.model;
 
 public class Showtime {
     private int id;

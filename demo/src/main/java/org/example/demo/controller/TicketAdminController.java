@@ -2,7 +2,7 @@ package org.example.demo.controller;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
-import org.example.demo.dao.models.MovieTicket;
+import org.example.demo.dao.model.MovieTicket;
 import org.example.demo.service.TicketAdminService;
 
 import java.io.IOException;

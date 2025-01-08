@@ -1,7 +1,7 @@
 package org.example.demo.service;
 
 import org.example.demo.dao.db.ShowtimeAdminDAO;
-import org.example.demo.dao.models.Showtime;
+import org.example.demo.dao.model.Showtime;
 
 import java.sql.SQLException;
 import java.util.List;

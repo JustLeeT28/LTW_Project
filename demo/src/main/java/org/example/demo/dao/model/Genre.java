@@ -1,4 +1,4 @@
-package org.example.demo.dao.models;
+package org.example.demo.dao.model;
 
 public class Genre {
     private int id;

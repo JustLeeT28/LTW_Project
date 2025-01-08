@@ -1,6 +1,6 @@
 package org.example.demo.dao.db;
 
-import org.example.demo.dao.models.MovieTicket;
+import org.example.demo.dao.model.MovieTicket;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
