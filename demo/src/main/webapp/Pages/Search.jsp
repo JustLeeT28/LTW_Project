@@ -37,7 +37,7 @@
     <form id="filterForm" method="get" action="${pageContext.request.contextPath}/search">
         <!-- Combobox Thể loại -->
         <select class="combobox" name="genre" id="genre" onchange="document.getElementById('filterForm').submit();">
-            <option value="">Thể loại</option>
+            <option value="" disabled selected>Thể loại</option>
             <c:forEach var="g" items="${genres}">
                 <option value="${g.id}" ${g.id == genre ? 'selected' : ''}>${g.genre}</option>
             </c:forEach>
@@ -45,7 +45,7 @@
 
         <!-- Combobox Trạng thái -->
         <select class="combobox" name="condition" id="condition" onchange="document.getElementById('filterForm').submit();">
-            <option value="">Sắp xếp</option>
+            <option value="" disabled selected >Sắp xếp</option>
             <option value="new" ${'new' == condition ? 'selected' : ''}>Phim mới chiếu</option>
             <option value="hot" ${'hot' == condition ? 'selected' : ''}>Phim xem nhiều</option>
         </select>

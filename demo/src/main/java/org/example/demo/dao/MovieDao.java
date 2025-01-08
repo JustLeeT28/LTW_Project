@@ -265,7 +265,8 @@ public class MovieDao {
                 String genreId = "1";
                 List<Movie> movies2 = movieService.getMovies();
 //              List<Movie> movies = movieService.getGenreMovies(genreId);
-                List<Movie> movies = movieService.getGenAndConMovie("hot","2");
+//              List<Movie> movies = movieService.getGenAndConMovie("hot","2");
+                List<Movie> movies = movieService.getConditionMovies("new");
 
                 // In danh sách các phim lấy được ra console để kiểm tra
                 if (movies.isEmpty()) {
