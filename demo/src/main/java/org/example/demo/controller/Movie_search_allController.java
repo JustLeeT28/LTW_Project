@@ -25,14 +25,12 @@ public class Movie_search_allController extends HttpServlet {
         MovieService movieService = new MovieService();
         List<Movie> movies = List.of();
         if(genre != null && !genre.isEmpty() && condition != null && !condition.isEmpty()) { //cả 2 đều đc trọn
-
+            movies = movieService.getGenAndConMovie(condition, genre);
         } else if(condition != null && !condition.isEmpty()) {
             movies = movieService.getConditionMovies(genre);
-        }
-        else if(genre != null && !genre.isEmpty()) {
+        } else if(genre != null && !genre.isEmpty()) {
              movies = movieService.getGenreMovies(genre);
-        }
-        else {
+        } else {
              movies = movieService.getMovies();
         }
         // Tính toán số lượng trang
