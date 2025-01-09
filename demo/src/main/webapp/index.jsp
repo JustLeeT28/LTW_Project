@@ -17,23 +17,7 @@
     <script> const basePath = "<%=request.getContextPath()%>";</script>
 </head>
 <body>
-<div class="nav-menu">
-    <div class="lelf-menu">
-        <a href="index.jsp">
-            <img id="logo-cinema" src="img/img/Logo_tachnen.jpg" alt="Cinema Logo"/>
-        </a>
-    </div>
-    <div class="right-menu">
-        <input type="text" id="movie-name" name="movie-name" placeholder="Nhập tên phim"
-               onkeypress="redirectToPage(event)">
-        <a href="Pages/Search.jsp" class="menu">Phim</a>
-        <a href="Pages/ticket-price.jsp" class="menu">Giá vé</a>
-        <a href="Pages/login.jsp" class="menu">Đăng nhập</a>
-        <a href="Pages/user-infor.jsp">
-            <img src="img/img/user.jpg" height="30" width="30"/>
-        </a>
-    </div>
-</div>
+<jsp:include page="Pages/Includes/menu.jsp"/>
 <div class="slide-show">
     <div class="list-img">
         <img class="slide-img" src="img/img/gadar_bg.jpg" alt=""/>
@@ -76,7 +60,8 @@
                 </div>
                 <div class="book_link">
                     <a href="book?mId=${movie.id}">${movie.title}</a>
-                    <button class="book-button" data-id="${movie.id}"><a href="book?mId=${movie.id}" style="color: black">Đặt vé</a></button>
+                    <button class="book-button" data-id="${movie.id}"><a href="book?mId=${movie.id}"
+                                                                         style="color: black">Đặt vé</a></button>
                 </div>
             </div>
         </c:if>
@@ -110,34 +95,10 @@
             </div>
         </c:if>
     </c:forEach>
-    </div>
+</div>
 <div class="more-bttn">
     Xem thêm
 </div>
-<div class="footer">
-    <div class="column-1">
-        <div class="logo-footer">
-            <img id="logo-cinema-footer" src="../img/img/logo_tachnen.jpg"/>
-            <a href="">Cinema</a>
-        </div>
-
-    </div>
-    <div class="column-2">
-        <div class="social-icons">
-            <h2>follow us</h2>
-            <li><a href=""><i class="fa-brands fa-facebook-f"></i> Facebook</a></li>
-            <li><a href=""><i class="fa-brands fa-instagram"></i> Instagram</a></li>
-            <li><a href=""><i class="fa-brands fa-tiktok"></i> TikTok</a></li>
-        </div>
-    </div>
-    <div class="column-3">
-        <div class="contact-address">
-            <h2>Địa chỉ</h2>
-            <li class="address1"><i class="fa-solid fa-location-dot"></i>Thủ Đức, TpHCM</li>
-            <li><a href=""><i class="fa-solid fa-phone"></i>+84 12345678</a></li>
-            <li><a href=""><i class="fa-solid fa-envelope"></i> 123@gmail.com</a></li>
-        </div>
-    </div>
-</div>
+<jsp:include page="Pages/Includes/footer.jsp"/>
 </body>
 </html>

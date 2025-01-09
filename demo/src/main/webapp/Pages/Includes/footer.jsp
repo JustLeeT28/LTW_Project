@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>footer</title>
-    <link rel="stylesheet" href="../Styles/footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/footer.css">
 </head>
 <body>
 <div class="footer">
     <div class="column-1">
         <div class="logo-footer">
-            <img id="logo-cinema-footer" src="../img/img/Logo_tachnen.jpg"/>
+            <img id="logo-cinema-footer" src="${pageContext.request.contextPath}/img/img/Logo_tachnen.jpg"/>
             <a href="">Cinema</a>
         </div>
 

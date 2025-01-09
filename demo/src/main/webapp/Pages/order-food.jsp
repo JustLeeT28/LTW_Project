@@ -11,22 +11,7 @@
     <script src="../Script/search.js"></script>
 </head>
 <body>
-<div class="nav-menu">
-    <div class="lelf-menu">
-        <a href="../index.jsp">
-            <img id="logo-cinema" src="../img/img/Logo_tachnen.jpg" alt="Cinema Logo"/>
-        </a>
-    </div>
-    <div class="right-menu">
-        <input type="text" id="movie-name" name="movie-name" placeholder="Nhập tên phim" onkeypress="redirectToPage(event)" >
-        <a href="Search.jsp" class="menu">Phim</a>
-        <a href="ticket-price.jsp" class="menu">Giá vé</a>
-        <a href="login.jsp" class="menu">Đăng nhập</a>
-        <a href="user-infor.jsp">
-            <img src="../img/img/user.jpg" height="30" width="30"/>
-        </a>
-    </div>
-</div>
+<jsp:include page="Includes/menu.jsp"/>
 <div class="left">
     <div class="food-item">
         <img src="../img/img/combo/1.jpg" alt=""/>
