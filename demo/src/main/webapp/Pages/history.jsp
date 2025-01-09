@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Lịch sử</title>
     <link rel="stylesheet" href="../Styles/history.css">
-    <link rel="stylesheet" href="../Styles/nav_menu.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/nav_menu.css">
     <link rel="stylesheet" href="../Styles/left-menu.css">
     <script src="../Script/search.js"></script>
 </head>

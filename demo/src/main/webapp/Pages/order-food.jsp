@@ -6,8 +6,8 @@
     <title>Đồ ăn</title>
     <link rel="stylesheet" href="../Styles/order-food.css">
     <script src="../Script/order-food.js"></script>
-    <link rel="stylesheet" href="../Styles/nav_menu.css">
-    <link rel="stylesheet" href="../Styles/footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/nav_menu.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/footer.css">
     <script src="../Script/search.js"></script>
 </head>
 <body>

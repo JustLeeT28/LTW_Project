@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css'>
     <link rel="stylesheet" href="../Styles/detail.css">
-    <link rel="stylesheet" href="../Styles/nav_menu.css">
-    <link rel="stylesheet" href="../Styles/footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/nav_menu.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/footer.css">
     <script src="../Script/search.js"></script>
 </head>
 <body>

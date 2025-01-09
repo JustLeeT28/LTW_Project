@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Sửa thông tin cá nhân</title>
     <link rel="stylesheet" href="../Styles/left-menu.css">
-    <link rel="stylesheet" href="../Styles/nav_menu.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/nav_menu.css">
     <link rel="stylesheet" href="../Styles/user-updateInfor.css">
     <script src="../Script/user-update.js"></script>
     <script src="../Script/search.js"></script>

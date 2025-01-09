@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Thanh toán</title>
-    <link rel="stylesheet" href="../Styles/nav_menu.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/nav_menu.css">
     <link rel="stylesheet" href="../Styles/pay_page.css">
     <script src="../Script/Payment.js"></script>
     <script src="../Script/confirm-payment.js"></script>

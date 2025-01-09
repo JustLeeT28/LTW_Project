@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../Styles/nav_menu.css">
     <link rel="stylesheet" href="../Styles/ticket-price.css">
-    <link rel="stylesheet" href="../Styles/footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/nav_menu.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/footer.css">
     <script src="../Script/search.js"></script>
 </head>
 <body>

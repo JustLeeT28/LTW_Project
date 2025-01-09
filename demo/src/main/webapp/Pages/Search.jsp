@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <title>Tìm phim</title>
     <link rel="stylesheet" href="../Styles/Search.css">
-    <link rel="stylesheet" href="../Styles/nav_menu.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/nav_menu.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/footer.css">
     <script src="../Script/click_book_button.js"></script>
-    <link rel="stylesheet" href="../Styles/footer.css">
     <script src="../Script/search.js"></script>
 </head>
 <body>
