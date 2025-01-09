@@ -75,8 +75,8 @@
                     </div>
                 </div>
                 <div class="book_link">
-                    <a href="Pages/book.jsp">${movie.title}</a>
-                    <button class="book-button">Đặt vé</button>
+                    <a href="book?mId=${movie.id}">${movie.title}</a>
+                    <button class="book-button" data-id="${movie.id}"><a href="book?mId=${movie.id}" style="color: black">Đặt vé</a></button>
                 </div>
             </div>
         </c:if>
