@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +8,7 @@
     <title>Đặt ghế</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css'>
-    <link rel="stylesheet" href="../Styles/book.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/book.css">
     <script src="../Script/booked-chair.js"></script>
     <link rel="stylesheet" href="../Styles/nav_menu.css">
     <link rel="stylesheet" href="../Styles/footer.css">
@@ -16,11 +18,12 @@
 <div class="nav-menu">
     <div class="lelf-menu">
         <a href="../index.jsp">
-            <img id="logo-cinema" src="../img/img/Logo_tachnen.jpg" alt="Cinema Logo" />
+            <img id="logo-cinema" src="../img/img/Logo_tachnen.jpg" alt="Cinema Logo"/>
         </a>
     </div>
     <div class="right-menu">
-        <input type="text" id="movie-name" name="movie-name" placeholder="Nhập tên phim" onkeypress="redirectToPage(event)" >
+        <input type="text" id="movie-name" name="movie-name" placeholder="Nhập tên phim"
+               onkeypress="redirectToPage(event)">
         <a href="Search.jsp" class="menu">Phim</a>
         <a href="ticket-price.jsp" class="menu">Giá vé</a>
         <a href="login.jsp" class="menu">Đăng nhập</a>
@@ -31,27 +34,26 @@
 </div>
 <div class="book">
     <div class="left">
-        <img src="../img/img/jawan.jpg"/>
+        <img src="${movie.posterUrl}"/>
         <div class="play_bttn">
             <i class="bi bi-play-fill" id="play_bttn"></i>
         </div>
         <div class="infor">
             <h6>Đạo diễn: </h6>
-            <p>Atlee</p>
+            <c:forEach var="director" items="${directors}">
+                <p>${director.name}</p>
+            </c:forEach>
             <h6>Diễn viên chính </h6>
-            <p>
-                Shah Rukh Khan
-                Nayanthara
-                Vijay Sethupathi
-                Deepika Padukone
-            </p>
+            <c:forEach var="actor" items="${actors}">
+                <p>${actor.name}</p>
+            </c:forEach>
             <h6>Biên tập bởi</h6>
             <p>Ruben</p>
         </div>
     </div>
-    <div class="right">
+    <div class="right" style="--banner-url: url('../${movie.bannerUrl}');">
         <div class="head_time">
-            <h1>Jawan</h1>
+            <h1>${movie.title}</h1>
             <div class="time">
                 <h6>
                     <i class="bi bi-clock"></i>
@@ -62,10 +64,7 @@
         </div>
         <div class="film_sumary">
             <h1>Nội dung phim</h1>
-            <p>Jawan kể về Vikram Rathore (do Shah Rukh Khan thủ vai) - một cựu sĩ quan quân đội quyết tâm báo thù kẻ
-                thù đã làm gia đình anh tan nát và đấu tranh chống lại tham nhũng. Anh giả danh thành một kẻ khủng bố để
-                lật tẩy các quan chức tham nhũng và bảo vệ người dân. Phim đan xen những pha hành động mãn nhãn cùng
-                thông điệp về công lý và lòng yêu nước.</p>
+            <p>${movie.description}</p>
         </div>
         <div class="date_type">
             <div class="left_card">

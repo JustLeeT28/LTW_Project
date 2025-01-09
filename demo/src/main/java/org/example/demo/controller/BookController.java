@@ -17,7 +17,7 @@ public class BookController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Lấy 'id' từ query parameter trong URL
-        String movieId = request.getParameter("id");
+        String movieId = request.getParameter("mId");
         MovieService movieService = new MovieService();
         Movie movie = movieService.getMovieById(Integer.parseInt(movieId));
         List<Actor> actors = movieService.getActors(movie.getId());
