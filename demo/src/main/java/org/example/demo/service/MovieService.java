@@ -30,8 +30,10 @@ public class MovieService {
     public List<Director> getDirectors(int id) {
         return directorDao.getMovieDirectors(id);
     }
+
     public List<Actor> getActors(int id) {
         return actorDao.getMovieActors(id);
+    }
 
     public List<Movie> getGenreMovies(String genre) {
         return movieDao.getGenreMovies(genre);
