@@ -51,4 +51,8 @@ public class MovieService {
     public List<Movie> geMoviesByname(String nameMovie) {
         return movieDao.getMoviesByName(nameMovie);
     }
+
+    public List<Movie> getMoviesByNGC(String nameMovie, String genre, String condition) {
+        return movieDao.getMoviesByNGC(nameMovie,genre,condition);
+    }
 }
