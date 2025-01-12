@@ -27,6 +27,10 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         String userEmail = request.getParameter("user_login");
         String password = request.getParameter("user_pass_login");
+        String signup_user_email = request.getParameter("signup_user_email");
+        String signup_user_name = request.getParameter("signup_user_name");
+        String signup_user_pass = request.getParameter("signup_user_pass");
+
         // Mã hóa mật khẩu bằng MD5
 //        HashUtil hashUtil = new HashUtil();
         String hashedPassword = HashUtil.hashWithMD5(password) ;

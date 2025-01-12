@@ -24,15 +24,17 @@
     <div class="tabs-content">
       <div id="signup-tab-content">
         <form class="signup-form" action="${pageContext.request.contextPath}/login" method="post">
-          <input type="email" class="input" id="user_email" name="singup_email" autocomplete="off" placeholder="Email">
-          <input type="text" class="input" id="user_name" name="singup_username"  autocomplete="off" placeholder="Họ tên">
-          <input type="password" class="input" id="user_pass" name="singup_userpass" autocomplete="off" placeholder="Mật khẩu">
-          <input type="submit" class="button" value="Đăng ký">
+          <input type="email" class="input" id="signup_user_email" name="signup_user_email" autocomplete="off" placeholder="Email">
+          <input type="text" class="input" id="signup_user_name" name="signup_user_name"  autocomplete="off" placeholder="Họ tên">
+          <input type="password" class="input" id="signup_user_pass" name="signup_user_pass" autocomplete="off" placeholder="Mật khẩu">
+          <input type="password" class="input" id="signup_user_pass2" name="signup_user_pass2" autocomplete="off" placeholder="Nhập lại mật khẩu">
+<%--          <input type="submit" class="button" value="Đăng ký">--%>
+          <button class="button" type="button" onclick="validatePasswords()">Đăng ký</button>
         </form>
-        <div class="help">
-          <p>By signing up, you agree to our</p>
-          <p><a href="">Terms of service</a></p>
-        </div>
+<%--        <div class="help">--%>
+<%--          <p>By signing up, you agree to our</p>--%>
+<%--          <p><a href="">Terms of service</a></p>--%>
+<%--        </div>--%>
       </div>
       <div id="login-tab-content" class="active">
   <form class="login-form" action="${pageContext.request.contextPath}/login" method="post" id="loginForm">

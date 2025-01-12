@@ -10,7 +10,20 @@ jQuery(document).ready(function($) {
 		$('div[id$="tab-content"]').removeClass('active');
 		$(tab_content).addClass('active');
 	});
-}); 
+});
+
+function validatePasswords() {
+	// Lấy giá trị hai ô nhập mật khẩu
+	const password1 = document.getElementById('signup_user_pass').value;
+	const password2 = document.getElementById('signup_user_pass2').value;
+
+	// Kiểm tra
+	if (password1 === password2) {
+		document.getElementById('signupForm').submit();
+	} else {
+		alert("Mật khẩu không khớp, vui lòng kiểm tra lại!");
+	}
+}
 
 
 // const users = [
