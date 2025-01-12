@@ -9,6 +9,9 @@ public class Actor {
         this.id = id;
     }
 
+    public Actor() {
+    }
+
     public int getId() {
         return id;
     }
