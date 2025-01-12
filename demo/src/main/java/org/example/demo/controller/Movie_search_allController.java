@@ -9,7 +9,7 @@ import org.example.demo.service.MovieService;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "Movie_search_allController", urlPatterns = "/search")
+@WebServlet(name = "Movie_search_allController", value = "/search")
 
 public class Movie_search_allController extends HttpServlet {
     private static final int RECORDS_PER_PAGE = 8; // Số sản phẩm mỗi trang

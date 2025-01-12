@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +17,7 @@
     </div>
     <div class="tabs-content">
       <div id="signup-tab-content" class="active">
-        <form class="signup-form" action="" method="post">
+        <form class="signup-form" action="${pageContext.request.contextPath}/login" method="post">
           <input type="email" class="input" id="user_email" autocomplete="off" placeholder="Email">
           <input type="text" class="input" id="user_name" autocomplete="off" placeholder="Username">
           <input type="password" class="input" id="user_pass" autocomplete="off" placeholder="Password">
@@ -27,14 +29,22 @@
         </div>
       </div>
       <div id="login-tab-content">
-        <form class="login-form" id="loginForm">
-          <input type="text" class="input" id="user_login" autocomplete="off" placeholder="Email or Username">
-          <input type="password" class="input" id="user_pass_login" autocomplete="off" placeholder="Password">
-          <input type="checkbox" class="checkbox" id="remember_me">
-          <label for="remember_me">Remember me</label>
-          <input type="submit" class="button" value="Login">
-        </form>
-        <div class="help">
+<%--        <form class="login-form" action="${pageContext.request.contextPath}/login" method="post" id="loginForm">--%>
+<%--          <input type="text" class="input" id="user_login" name="user_login" autocomplete="off" placeholder="Email">--%>
+<%--          <input type="password" class="input" id="user_pass_login" name="user_pass_login" autocomplete="off" placeholder="Password">--%>
+<%--          <input type="checkbox" class="checkbox" id="remember_me">--%>
+<%--          <label for="remember_me">Remember me</label>--%>
+<%--          <input type="submit" class="button" value="Login">--%>
+<%--        </form>--%>
+  <form class="login-form" action="${pageContext.request.contextPath}/login" method="post" id="loginForm">
+    <input type="text" class="input" id="user_login" name="user_login" autocomplete="off" placeholder="Email hoặc Username">
+    <input type="password" class="input" id="user_pass_login" name="user_pass_login" autocomplete="off" placeholder="Password">
+    <input type="checkbox" class="checkbox" id="remember_me">
+    <label for="remember_me">Remember me</label>
+    <input type="submit" class="button" value="Login">
+  </form>
+
+  <div class="help">
           <p><a href="forgotpass.jsp">Forget your password?</a></p>
         </div>
       </div>

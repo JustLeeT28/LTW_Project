@@ -1,4 +1,7 @@
 package org.example.demo.dao;
+import org.example.demo.dao.model.User;
+import org.example.demo.service.LoginSignupService;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 public class HashUtil {
@@ -19,12 +22,29 @@ public class HashUtil {
         }
     }
 
+//    public static void main(String[] args) {
+//        // Ví dụ sử dụng
+//        String originalPassword = "Dung12345";
+//        String hashedPassword = hashWithMD5(originalPassword);
+//        System.out.println("Password gốc: " + originalPassword);
+//        System.out.println("Password mã hóa (MD5): " + hashedPassword);
+//    }
+
     public static void main(String[] args) {
-        // Ví dụ sử dụng
-        String originalPassword = "my_secure_password";
-        String hashedPassword = hashWithMD5(originalPassword);
-        System.out.println("Password gốc: " + originalPassword);
-        System.out.println("Password mã hóa (MD5): " + hashedPassword);
+        // Kiểm tra hàm mã hóa MD5
+        String password = "Dung12345";
+        String p = hashWithMD5(password);
+        System.out.println("Mật khẩu mã hóa MD5 là: " + p);
+
+        // Kiểm tra đăng nhập
+        String userEmail = "phamthidung@gmail.com";
+        LoginSignupService loginSignupService = new LoginSignupService();
+        User u =  loginSignupService.getUser(userEmail, p);
+        if(u != null) {
+            System.out.println(u);
+        }
+        System.out.println("không có người dùng này");
+
     }
 }
 

@@ -43,7 +43,7 @@ public class ShowtimeAdminController extends HttpServlet {
                 String showDate = request.getParameter("showDate");
                 String showTime = request.getParameter("showTime");
 
-                Showtime showtime = new Showtime(movieId, null, roomId, null, showDate, showTime, "active");
+                Showtime showtime = new Showtime(movieId, roomId, showDate, showTime, "active");
                 showtimeService.addShowtime(showtime);
             } else if ("delete".equals(action)) {
                 int id = Integer.parseInt(request.getParameter("id"));
@@ -56,7 +56,7 @@ public class ShowtimeAdminController extends HttpServlet {
                 String showTime = request.getParameter("showTime");
                 String status = request.getParameter("status");
 
-                Showtime showtime = new Showtime(id, movieId, null, roomId, null, showDate, showTime, status);
+                Showtime showtime = new Showtime(id, movieId,roomId,showDate, showTime, status);
                 showtimeService.updateShowtime(showtime);
             }
             response.sendRedirect("ShowtimeAdminController");
