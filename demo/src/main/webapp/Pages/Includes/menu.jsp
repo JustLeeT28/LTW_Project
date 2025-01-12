@@ -9,15 +9,15 @@
 <body>
 <div class="nav-menu">
     <div class="lelf-menu">
-        <a href="../../index.jsp">
+        <a href="${pageContext.request.contextPath}">
             <img id="logo-cinema" src="${pageContext.request.contextPath}/img/img/Logo_tachnen.jpg" alt="Cinema Logo"/>
         </a>
     </div>
     <div class="right-menu">
         <input type="text" id="movie-name" name="movie-name" placeholder="Nhập tên phim">
-        <a href="../Search.jsp" class="menu">Phim</a>
+        <a href="${pageContext.request.contextPath}/search" class="menu">Phim</a>
         <a href="../ticket-price.jsp" class="menu">Giá vé</a>
-        <a href="../login.jsp" class="menu">Đăng nhập</a>
+        <a href="${pageContext.request.contextPath}/Pages/login.jsp" class="menu">Đăng nhập</a>
         <a href="../user-infor.jsp">
             <img src="../../img/img/user.jpg" height="30" width="30"/>
         </a>

@@ -7,7 +7,7 @@
   <meta charset="UTF-8" />
   <title>Login-Register</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="..\Styles\login.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}\Styles\login.css" />
 </head>
 <body style="display: flex; justify-content:center ; align-items: center;height: 100vh;overflow: hidden;">
   <div class="form-wrap">
@@ -51,6 +51,6 @@
     </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="..\Script\login.js"></script>
+  <script src="${pageContext.request.contextPath}\Script\login.js"></script>
 </body>
 </html>

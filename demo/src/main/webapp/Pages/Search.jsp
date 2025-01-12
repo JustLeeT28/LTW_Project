@@ -9,9 +9,9 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/Search.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/nav_menu.css">
-    <script src="../Script/click_book_button.js"></script>
+<%--    <script src="${pageContext.request.contextPath}/Script/click_book_button.js"></script>--%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/footer.css">
-    <script src="../Script/search.js"></script>
+    <script src="${pageContext.request.contextPath}/Script/search.js"></script>
     <script> const basePath = "<%=request.getContextPath()%>";</script>
 </head>
 <body>
@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 <div class="book_link">
-                    <a href="Pages/book.jsp">${movie.title}</a>
+                    <a href="book?mId=${movie.id}">${movie.title}</a>
                     <button class="book-button">Đặt vé</button>
                 </div>
             </div>
