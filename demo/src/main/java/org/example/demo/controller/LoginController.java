@@ -79,8 +79,8 @@ public class LoginController extends HttpServlet {
 //
 //        // Kiểm tra đăng nhập
 //        String userEmail = "phamthidung@gmail.com";
-////        LoginController loginController = new LoginController();
-////        loginController.login(userEmail, hashedPassword);
+//        LoginController loginController = new LoginController();
+//        loginController.login(userEmail, hashedPassword);
 //        LoginSignupService loginSignupService = new LoginSignupService();
 //        User u =  loginSignupService.getUser(userEmail, hashedPassword);
 //        if(u != null) {
