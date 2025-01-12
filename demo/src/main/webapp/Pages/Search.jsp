@@ -65,15 +65,15 @@
 <div class="pagination">
     <ul class="page">
         <li class="num-page">
-            <a href="search?page=${currentPage - 1}&genre=${genre}&condition=${condition}" class="number-icon" ${currentPage == 1 ? 'style="pointer-events:none;opacity:0.5;"' : ''}>&lt;&lt;</a>
+            <a href="search?page=${currentPage - 1}&movie-name=${nameMovie}&genre=${genre}&condition=${condition}" class="number-icon" ${currentPage == 1 ? 'style="pointer-events:none;opacity:0.5;"' : ''}>&lt;&lt;</a>
         </li>
         <c:forEach var="page" begin="1" end="${totalPages}">
             <li class="num-page">
-                <a href="search?page=${page}&genre=${genre}&condition=${condition}" class="number ${page == currentPage ? 'active' : ''}">${page}</a>
+                <a href="search?page=${page}&movie-name=${nameMovie}&genre=${genre}&condition=${condition}" class="number ${page == currentPage ? 'active' : ''}">${page}</a>
             </li>
         </c:forEach>
         <li class="num-page">
-            <a href="search?page=${currentPage + 1}&genre=${genre}&condition=${condition}" class="number-icon" ${currentPage == totalPages ? 'style="pointer-events:none;opacity:0.5;"' : ''}>&gt;&gt;</a>
+            <a href="search?page=${currentPage + 1}&movie-name=${nameMovie}&genre=${genre}&condition=${condition}" class="number-icon" ${currentPage == totalPages ? 'style="pointer-events:none;opacity:0.5;"' : ''}>&gt;&gt;</a>
         </li>
     </ul>
 </div>
