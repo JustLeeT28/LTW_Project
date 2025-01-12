@@ -101,6 +101,7 @@ public class MovieDao {
             }
         }
     }
+
     public List<Movie> incomingMovies() {
         PreparedStatement ps = null;
         ResultSet resultSet = null;
@@ -147,6 +148,7 @@ public class MovieDao {
             }
         }
     }
+
     public Movie getMovieById(int id) {
         PreparedStatement ps = null;
         ResultSet resultSet = null;
@@ -191,7 +193,8 @@ public class MovieDao {
             }
         }
     }
-  public List<Movie> getGenreMovies(String idGenre) {
+
+    public List<Movie> getGenreMovies(String idGenre) {
         PreparedStatement ps = null;
         ResultSet resultSet = null;
         try {
@@ -238,7 +241,8 @@ public class MovieDao {
             }
         }
     }
-  public List<Genre> getGenres() {
+
+    public List<Genre> getGenres() {
         PreparedStatement ps = null;
         ResultSet resultSet = null;
         try {
@@ -267,7 +271,8 @@ public class MovieDao {
             }
         }
     }
-  public List<Movie> getConditionMovie(String condition){
+
+    public List<Movie> getConditionMovie(String condition){
         PreparedStatement ps = null;
         ResultSet resultSet = null;
         String query = "";
@@ -373,9 +378,6 @@ public class MovieDao {
         }
     }
 
-
-
-
     public static void main(String[] args) {
-    
+    }
 }
