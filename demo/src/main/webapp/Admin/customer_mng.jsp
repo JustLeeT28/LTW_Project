@@ -13,12 +13,6 @@
             <h2>Admin Panel</h2>
             <nav>
                 <ul>
-                    <!-- <li><a href="#" data-section="dashboard">Dashboard</a></li>
-                    <li><a href="#" data-section="movies">Quản lý Phim</a></li>
-                    <li><a href="#" data-section="schedule">Quản lý Lịch Chiếu</a></li>
-                    <li><a href="#" data-section="rooms">Quản lý Phòng Chiếu</a></li>
-                    <li><a href="#" data-section="tickets">Quản lý Vé và Đặt Vé</a></li>
-                    <li><a href="#" data-section="customers" class="active">Quản lý Khách hàng</a></li> -->
                     <li><a href="dashboard.jsp" data-section="dashboard">Dashboard</a></li>
                     <li><a href="film_management.jsp" data-section="movies">Quản lý Phim</a></li>
                     <li><a href="schedule_mng.jsp" data-section="schedules">Quản lý Lịch Chiếu</a></li>

@@ -5,6 +5,8 @@ import org.example.demo.dao.DirectorDao;
 import org.example.demo.dao.MovieDao;
 import org.example.demo.dao.model.Actor;
 import org.example.demo.dao.model.Director;
+
+import org.example.demo.dao.model.Genre;
 import org.example.demo.dao.model.Movie;
 
 import java.util.List;
@@ -30,5 +32,18 @@ public class MovieService {
     }
     public List<Actor> getActors(int id) {
         return actorDao.getMovieActors(id);
+
+    public List<Movie> getGenreMovies(String genre) {
+        return movieDao.getGenreMovies(genre);
+    }
+    public List<Genre> getGenres() {
+        return movieDao.getGenres();
+    }
+
+    public List<Movie> getConditionMovies(String condition) {
+        return  movieDao.getConditionMovie(condition);
+    }
+    public List<Movie> getGenAndConMovie(String condition, String genre) {
+        return movieDao.getGenAndConMovie(condition, genre);
     }
 }
