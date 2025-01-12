@@ -511,7 +511,8 @@ public class MovieDao {
     public static void main(String[] args) {
         List<Movie> movies ;
         MovieDao movieDao = new MovieDao();
-        movies = movieDao.getMoviesByNGC("j","1","hot") ;
+//        movies = movieDao.getMoviesByNGC("j","1","hot") ;
+        movies = movieDao.getConditionMovie("hot");
         for (Movie movie : movies) {
             System.out.println(movie.getTitle());
         }

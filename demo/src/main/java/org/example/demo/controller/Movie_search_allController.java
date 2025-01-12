@@ -33,7 +33,7 @@ public class Movie_search_allController extends HttpServlet {
         } else if(genre != null && !genre.isEmpty() && condition != null && !condition.isEmpty()) { //cả 2 đều đc trọn
             movies = movieService.getGenAndConMovie(condition, genre);
         } else if(condition != null && !condition.isEmpty()) {
-            movies = movieService.getConditionMovies(genre);
+            movies = movieService.getConditionMovies(condition);
         } else if(genre != null && !genre.isEmpty()) {
             movies = movieService.getGenreMovies(genre);
         } else {
@@ -56,6 +56,7 @@ public class Movie_search_allController extends HttpServlet {
         request.setAttribute("movies_all", moviesOnPage);
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("currentPage", currentPage);
+        request.setAttribute("nameMovie", nameMovie);
         request.getRequestDispatcher("Pages/Search.jsp").forward(request, response);
     }
 

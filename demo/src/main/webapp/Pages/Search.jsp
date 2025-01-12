@@ -21,9 +21,12 @@
 </div>
 <div class="Se-movie ">
     <form id="filterForm" method="get" action="${pageContext.request.contextPath}/search">
+        <c:if test="${not empty param['movie-name']}">
+            <input type="hidden" name="movie-name" id="movie-name" value="${nameMovie}" />
+        </c:if>
         <!-- Combobox Thể loại -->
         <select class="combobox" name="genre" id="genre" onchange="document.getElementById('filterForm').submit();">
-            <option value="" disabled selected>Thể loại</option>
+            <option value="">Thể loại</option>
             <c:forEach var="g" items="${genres}">
                 <option value="${g.id}" ${g.id == genre ? 'selected' : ''}>${g.genre}</option>
             </c:forEach>
@@ -31,7 +34,7 @@
 
         <!-- Combobox Trạng thái -->
         <select class="combobox" name="condition" id="condition" onchange="document.getElementById('filterForm').submit();">
-            <option value="" disabled selected >Sắp xếp</option>
+            <option value="" >Sắp xếp</option>
             <option value="new" ${'new' == condition ? 'selected' : ''}>Phim mới chiếu</option>
             <option value="hot" ${'hot' == condition ? 'selected' : ''}>Phim xem nhiều</option>
         </select>
