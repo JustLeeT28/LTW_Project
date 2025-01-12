@@ -1,4 +1,5 @@
 package org.example.demo.dao;
+import org.eclipse.tags.shaded.org.apache.xpath.operations.Mod;
 import org.example.demo.dao.db.DbConnect;
 import org.example.demo.dao.model.Genre;
 import org.example.demo.dao.model.Movie;
@@ -395,16 +396,14 @@ public class MovieDao {
         }
     }
 
-    public List<Movie> getMoviesByName(String idGenre) {
+    public List<Movie> getMoviesByName(String nameMovie) {
         PreparedStatement ps = null;
         ResultSet resultSet = null;
         try {
-            String query = "SELECT * FROM movies m " +
-                    "JOIN movie_genres mg ON mg.movieId = m.id  " +
-                    "JOIN genres g ON mg.genreId = g.id " +
-                    "WHERE g.id = ?";
+            String query = "SELECT * FROM movies " +
+                    "WHERE title LIKE ? ";
             ps = DbConnect.get(query);  // Lấy PreparedStatement từ DbConnect
-            ps.setInt(1, Integer.parseInt(idGenre));
+            ps.setString(1, "%" + nameMovie + "%");
             resultSet = ps.executeQuery();  // Thực thi truy vấn
 
             List<Movie> movies = new ArrayList<>();
@@ -444,5 +443,11 @@ public class MovieDao {
     }
 
     public static void main(String[] args) {
+        List<Movie> movies ;
+        MovieDao movieDao = new MovieDao();
+        movies = movieDao.getMoviesByName("J");
+        for (Movie movie : movies) {
+            System.out.println(movie.getTitle());
+        }
     }
 }

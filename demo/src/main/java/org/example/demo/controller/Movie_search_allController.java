@@ -19,6 +19,7 @@ public class Movie_search_allController extends HttpServlet {
         String genre = request.getParameter("genre");
         String condition = request.getParameter("condition");
 //        String sort = request.getParameter("sort");
+        String nameMovie = request.getParameter("movie-name");
 
 
         int currentPage = (pageParam == null || pageParam.isEmpty()) ? 1 : Integer.parseInt(pageParam);
@@ -29,7 +30,9 @@ public class Movie_search_allController extends HttpServlet {
         } else if(condition != null && !condition.isEmpty()) {
             movies = movieService.getConditionMovies(genre);
         } else if(genre != null && !genre.isEmpty()) {
-             movies = movieService.getGenreMovies(genre);
+            movies = movieService.getGenreMovies(genre);
+        } else if (nameMovie != null && !nameMovie.isEmpty()) {
+            movies = movieService.geMoviesByname(nameMovie);
         } else {
              movies = movieService.getMovies();
         }

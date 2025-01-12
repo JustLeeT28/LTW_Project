@@ -14,12 +14,14 @@
         </a>
     </div>
     <div class="right-menu">
-        <input type="text" id="movie-name" name="movie-name" placeholder="Nhập tên phim">
+        <form id="seachForm" method="get" action="${pageContext.request.contextPath}/search">
+            <input type="text" id="movie-name" name="movie-name" placeholder="Nhập tên phim">
+        </form>
         <a href="${pageContext.request.contextPath}/search" class="menu">Phim</a>
         <a href="../ticket-price.jsp" class="menu">Giá vé</a>
         <a href="${pageContext.request.contextPath}/Pages/login.jsp" class="menu">Đăng nhập</a>
         <a href="../user-infor.jsp">
-            <img src="../../img/img/user.jpg" height="30" width="30"/>
+            <img src="${pageContext.request.contextPath}/img/img/user.jpg" height="30" width="30"/>
         </a>
     </div>
 </div>
