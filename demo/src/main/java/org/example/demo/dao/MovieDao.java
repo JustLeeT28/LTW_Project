@@ -257,33 +257,16 @@ public class MovieDao {
         }
     }
 
-    public List<Movie> getMovieByName(String condition,String genre){
+    public List<Movie> getMoviesByName(String idGenre) {
         PreparedStatement ps = null;
         ResultSet resultSet = null;
-        String query = "";
         try {
-            if(condition.equalsIgnoreCase("hot")){
-                query = "SELECT m.*, COUNT(st_s.id) as total_booked_seat " +
-                        "FROM movies m " +
-                        "LEFT JOIN showtimes st ON m.id = st.movieId " +
-                        "LEFT JOIN showtime_seats st_s ON st.id = st_s.showTimeId AND st_s.status = 'booked' " +
-                        "JOIN movie_genres mg ON mg.movieId = m.id  " +
-                        "JOIN genres g ON mg.genreId = g.id " +
-                        "WHERE g.id = ? "+
-                        "GROUP BY m.id " +
-                        "ORDER BY total_booked_seat DESC";
-            }
-            if(condition.equalsIgnoreCase("new")){
-                query = "SELECT * " +
-                        "FROM movies " +
-                        "WHERE releaseDate <= CURRENT_DATE AND endDate >= CURRENT_DATE "+
-                        "JOIN movie_genres mg ON mg.movieId = m.id  " +
-                        "JOIN genres g ON mg.genreId = g.id " +
-                        "WHERE g.id = ? " +
-                        "ORDER BY releaseDate DESC" ;
-            }
+            String query = "SELECT * FROM movies m " +
+                    "JOIN movie_genres mg ON mg.movieId = m.id  " +
+                    "JOIN genres g ON mg.genreId = g.id " +
+                    "WHERE g.id = ?";
             ps = DbConnect.get(query);  // Lấy PreparedStatement từ DbConnect
-            ps.setInt(1, Integer.parseInt(genre));
+            ps.setInt(1, Integer.parseInt(idGenre));
             resultSet = ps.executeQuery();  // Thực thi truy vấn
 
             List<Movie> movies = new ArrayList<>();
@@ -321,6 +304,8 @@ public class MovieDao {
             }
         }
     }
+
+
 
 
     public static void main(String[] args) {
