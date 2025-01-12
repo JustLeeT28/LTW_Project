@@ -54,8 +54,8 @@
                 </div>
                 <div class="book_link">
                     <a href="book?mId=${movie.id}">${movie.title}</a>
-                    <button class="book-button">Đặt vé</button>
-                </div>
+                    <button class="book-button" data-id="${movie.id}"><a href="book?mId=${movie.id}"
+                                                                         style="color: black">Đặt vé</a></button>                </div>
             </div>
     </c:forEach>
 </div>
@@ -66,7 +66,7 @@
         </li>
         <c:forEach var="page" begin="1" end="${totalPages}">
             <li class="num-page">
-                <a href="search?page=${page}&genre=${genre}&condition=${condition}" class="number${page == currentPage ? 'active' : ''}">${page}</a>
+                <a href="search?page=${page}&genre=${genre}&condition=${condition}" class="number ${page == currentPage ? 'active' : ''}">${page}</a>
             </li>
         </c:forEach>
         <li class="num-page">

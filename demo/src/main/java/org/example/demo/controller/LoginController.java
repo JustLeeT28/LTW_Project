@@ -32,7 +32,7 @@ public class LoginController extends HttpServlet {
         String hashedPassword = HashUtil.hashWithMD5(password) ;
 //        String hashedPassword = hashMD5(password);
         LoginSignupService loginSignupService = new LoginSignupService();
-        if(userEmail != null && password != null) {
+        if(userEmail != null && password != null && !userEmail.isEmpty() && !password.isEmpty()) {
             User u = loginSignupService.getUser(userEmail, hashedPassword);
             if(u != null) {
                 HttpSession session = request.getSession(true);
@@ -46,8 +46,7 @@ public class LoginController extends HttpServlet {
                 response.sendRedirect("/demo_war_exploded");
                 return;
             }
-            request.setAttribute("errorMessage", "Tài khoản không tồn tại!");
-            // Load lại trang đăng nhập với thông báo lỗi
+            request.setAttribute("errorMessage", "Tài khoản hoặc mật khẩu không đúng!");            // Load lại trang đăng nhập với thông báo lỗi
             request.getRequestDispatcher("/Pages/login.jsp").forward(request, response);
             return;
         }

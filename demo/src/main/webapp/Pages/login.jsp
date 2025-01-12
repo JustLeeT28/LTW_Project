@@ -29,13 +29,6 @@
         </div>
       </div>
       <div id="login-tab-content">
-<%--        <form class="login-form" action="${pageContext.request.contextPath}/login" method="post" id="loginForm">--%>
-<%--          <input type="text" class="input" id="user_login" name="user_login" autocomplete="off" placeholder="Email">--%>
-<%--          <input type="password" class="input" id="user_pass_login" name="user_pass_login" autocomplete="off" placeholder="Password">--%>
-<%--          <input type="checkbox" class="checkbox" id="remember_me">--%>
-<%--          <label for="remember_me">Remember me</label>--%>
-<%--          <input type="submit" class="button" value="Login">--%>
-<%--        </form>--%>
   <form class="login-form" action="${pageContext.request.contextPath}/login" method="post" id="loginForm">
     <input type="text" class="input" id="user_login" name="user_login" autocomplete="off" placeholder="Email hoặc Username">
     <input type="password" class="input" id="user_pass_login" name="user_pass_login" autocomplete="off" placeholder="Password">
@@ -53,4 +46,9 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="${pageContext.request.contextPath}\Script\login.js"></script>
 </body>
+<c:if test="${not empty errorMessage}">
+  <script>
+    alert('${errorMessage}');
+  </script>
+</c:if>
 </html>
