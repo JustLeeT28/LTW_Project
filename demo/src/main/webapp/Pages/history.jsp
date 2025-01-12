@@ -5,27 +5,12 @@
     <meta charset="UTF-8">
     <title>Lịch sử</title>
     <link rel="stylesheet" href="../Styles/history.css">
-    <link rel="stylesheet" href="../Styles/nav_menu.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/nav_menu.css">
     <link rel="stylesheet" href="../Styles/left-menu.css">
     <script src="../Script/search.js"></script>
 </head>
 <body>
-<div class="nav-menu" style="padding-top: 0">
-    <div class="lelf-menu">
-        <a href="../index.jsp">
-            <img id="logo-cinema" src="../img/img/Logo_tachnen.jpg" alt="Cinema Logo"/>
-        </a>
-    </div>
-    <div class="right-menu">
-        <input type="text" id="movie-name" name="movie-name" placeholder="Nhập tên phim" onkeypress="redirectToPage(event)" >
-        <a href="" class="menu">Phim</a>
-        <a href="" class="menu">Giá vé</a>
-        <a href="" class="menu">Đăng nhập</a>
-        <a href="user-infor.jsp">
-            <img src="../img/img/user.jpg" height="30" width="30"/>
-        </a>
-    </div>
-</div>
+<jsp:include page="Includes/menu.jsp"/>
 <div class="leftmenu" style="height: 1200px; padding-top: 4%">
     <a href="user-infor.jsp" class="op-infor">Thông tin</a>
     <a href="user-updateInfor.jsp" class="op-update">Chỉnh sửa</a>
@@ -209,7 +194,7 @@
         <div class="tic">
             <div class="detail">
                 <div class="card">
-<!--                    <h6>Combo 1: 0</h6>-->
+                    <!--                    <h6>Combo 1: 0</h6>-->
                     <h6>Combo 2: 3</h6>
                     <h6>Combo 3: 2</h6>
                 </div>
@@ -221,7 +206,7 @@
         <div class="tic">
             <div class="detail">
                 <div class="card">
-<!--                    <h6>Combo 1: 0</h6>-->
+                    <!--                    <h6>Combo 1: 0</h6>-->
                     <h6>Combo 2: 3</h6>
                     <h6>Combo 3: 2</h6>
                 </div>
@@ -233,7 +218,7 @@
         <div class="tic">
             <div class="detail">
                 <div class="card">
-<!--                    <h6>Combo 1: 0</h6>-->
+                    <!--                    <h6>Combo 1: 0</h6>-->
                     <h6>Combo 2: 3</h6>
                     <h6>Combo 3: 2</h6>
                 </div>
