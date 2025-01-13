@@ -1,17 +1,21 @@
 package org.example.demo.dao.model;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class Showtime {
     private int id;
     private int movieId;
     private String movieTitle;
     private int roomId;
     private String roomName;
-    private String showDate;
-    private String showTime;
+    private LocalDate showDate;
+    private LocalTime showTime;
     private String status;
 
-    // Constructor đầy đủ
-    public Showtime(int id, int movieId, String movieTitle, int roomId, String roomName, String showDate, String showTime, String status) {
+
+    public Showtime(int id, int movieId, int roomId, LocalDate showDate, LocalTime showTime, String status) {
         this.id = id;
         this.movieId = movieId;
         this.movieTitle = movieTitle;
@@ -23,7 +27,7 @@ public class Showtime {
     }
 
     // Constructor không ID (khi thêm mới)
-    public Showtime(int movieId, String movieTitle, int roomId, String roomName, String showDate, String showTime, String status) {
+    public Showtime(int movieId, String movieTitle, int roomId, String roomName, LocalDate showDate, LocalTime showTime, String status) {
         this.movieId = movieId;
         this.movieTitle = movieTitle;
         this.roomId = roomId;
@@ -74,19 +78,19 @@ public class Showtime {
         this.roomName = roomName;
     }
 
-    public String getShowDate() {
+    public LocalDate getShowDate() {
         return showDate;
     }
 
-    public void setShowDate(String showDate) {
+    public void setShowDate(LocalDate showDate) {
         this.showDate = showDate;
     }
 
-    public String getShowTime() {
+    public LocalTime getShowTime() {
         return showTime;
     }
 
-    public void setShowTime(String showTime) {
+    public void setShowTime(LocalTime showTime) {
         this.showTime = showTime;
     }
 
@@ -111,4 +115,53 @@ public class Showtime {
                 ", status='" + status + '\'' +
                 '}';
     }
+
+    public String getDayOfWeek() {
+        DayOfWeek dayOfWeek = showDate.getDayOfWeek();
+        String dayOfWeekInVietnamese;
+        switch (dayOfWeek) {
+            case MONDAY:
+                dayOfWeekInVietnamese = "Thứ Hai";
+                break;
+            case TUESDAY:
+                dayOfWeekInVietnamese = "Thứ Ba";
+                break;
+            case WEDNESDAY:
+                dayOfWeekInVietnamese = "Thứ Tư";
+                break;
+            case THURSDAY:
+                dayOfWeekInVietnamese = "Thứ Năm";
+                break;
+            case FRIDAY:
+                dayOfWeekInVietnamese = "Thứ Sáu";
+                break;
+            case SATURDAY:
+                dayOfWeekInVietnamese = "Thứ Bảy";
+                break;
+            case SUNDAY:
+                dayOfWeekInVietnamese = "Chủ Nhật";
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + dayOfWeek);
+        }
+        return dayOfWeekInVietnamese;
+    }
+
+    public int getHour() {
+        return showTime.getHour();
+    }
+
+    public int getMinute() {
+        return showTime.getMinute();
+    }
+    public int getMonth() {
+        return showDate.getMonthValue();
+    }
+    public int getDay() {
+        return showDate.getDayOfMonth();
+    }
+    public int getYear() {
+        return showDate.getYear();
+    }
+
 }
