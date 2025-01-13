@@ -9,6 +9,8 @@ import org.example.demo.service.MovieService;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,6 +75,7 @@ public class UserDao {
             throw new RuntimeException(e);
         }
     }
+
     public boolean checkEmail(String email) {
         PreparedStatement ps = null;
         ResultSet resultSet = null;
@@ -137,19 +140,194 @@ public class UserDao {
         }
     }
 
+    public void updateName(String userId, String name) {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
 
-    public static void main(String[] args) {
-        UserDao dao = new UserDao();
-        String p = "Dung12345";
-        String pmd5 = HashUtil.hashWithMD5(p);
-        User user = dao.getUser("phamthidung@gmail.com", pmd5);
-        if (user != null) {
-            System.out.println("User found: " + user);
-            System.out.println("User found: " + user.getEmail());
-            System.out.println("User found: " + user.getPassword());
-        } else {
-            System.out.println("User not found.");
+        try {
+            String checkEmailQuery = "SELECT * FROM USERS WHERE id = ?";
+            ps = DbConnect.get(checkEmailQuery);
+            ps.setString(1, userId);
+            resultSet = ps.executeQuery();
+
+            if (resultSet.next()) {
+                String updatePasswordQuery = "UPDATE USERS SET name = ? WHERE id = ?";
+                ps = DbConnect.get(updatePasswordQuery);
+                ps.setString(1, name);
+                ps.setString(2, userId);
+
+                ps.executeUpdate();
+
+            }
+
+        } catch (SQLException e) {
+            // Xử lý lỗi nếu có
+            e.printStackTrace();
+        } finally {
+            // Đảm bảo đóng các tài nguyên
+            try {
+                if (resultSet != null) resultSet.close();
+                if (ps != null) ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
     }
+
+    public void updateEmail(String userId, String email) {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+
+        try {
+            String checkEmailQuery = "SELECT * FROM USERS WHERE id = ?";
+            ps = DbConnect.get(checkEmailQuery);
+            ps.setString(1, userId);
+            resultSet = ps.executeQuery();
+
+            if (resultSet.next()) {
+                String updatePasswordQuery = "UPDATE USERS SET email = ? WHERE id = ?";
+                ps = DbConnect.get(updatePasswordQuery);
+                ps.setString(1, email);
+                ps.setString(2, userId);
+
+                ps.executeUpdate();
+
+            }
+
+        } catch (SQLException e) {
+            // Xử lý lỗi nếu có
+            e.printStackTrace();
+        } finally {
+            // Đảm bảo đóng các tài nguyên
+            try {
+                if (resultSet != null) resultSet.close();
+                if (ps != null) ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    public void updatePhone(String userId, String phone) {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+
+        try {
+            String checkEmailQuery = "SELECT * FROM USERS WHERE id = ?";
+            ps = DbConnect.get(checkEmailQuery);
+            ps.setString(1, userId);
+            resultSet = ps.executeQuery();
+
+            if (resultSet.next()) {
+                String updatePasswordQuery = "UPDATE USERS SET phone = ? WHERE id = ?";
+                ps = DbConnect.get(updatePasswordQuery);
+                ps.setString(1, phone);
+                ps.setString(2, userId);
+
+                ps.executeUpdate();
+
+            }
+
+        } catch (SQLException e) {
+            // Xử lý lỗi nếu có
+            e.printStackTrace();
+        } finally {
+            // Đảm bảo đóng các tài nguyên
+            try {
+                if (resultSet != null) resultSet.close();
+                if (ps != null) ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    public void updateDob(String userId, String dob) {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            // Chuyển đổi chuỗi dob thành java.util.Date
+            java.util.Date utilDate = sdf.parse(dob);
+            // Chuyển đổi java.util.Date thành java.sql.Date
+            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+            String checkEmailQuery = "SELECT * FROM USERS WHERE id = ?";
+            ps = DbConnect.get(checkEmailQuery);
+            ps.setString(1, userId);
+            resultSet = ps.executeQuery();
+
+            if (resultSet.next()) {
+                String updatePasswordQuery = "UPDATE USERS SET dob = ? WHERE id = ?";
+                ps = DbConnect.get(updatePasswordQuery);
+                ps.setDate(1, sqlDate);
+                ps.setString(2, userId);
+
+                ps.executeUpdate();
+
+            }
+
+        } catch (SQLException e) {
+            // Xử lý lỗi nếu có
+            e.printStackTrace();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        } finally {
+            // Đảm bảo đóng các tài nguyên
+            try {
+                if (resultSet != null) resultSet.close();
+                if (ps != null) ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    public User getUserById(String userId) {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        try {
+            String query = "SELECT * FROM USERS WHERE id = ?";
+            ps = DbConnect.get(query);
+            ps.setString(1, userId);
+            resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                User user = new User(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("email"),
+                        resultSet.getString("dob"),
+                        resultSet.getString("phone"),
+                        resultSet.getInt("role"),
+                        resultSet.getString("password"),
+                        resultSet.getString("status")
+                );
+                return user; // lấy cái đầu tiên
+            }
+            return null ;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+//    public static void main(String[] args) {
+//        UserDao dao = new UserDao();
+//        String p = "Dung12345";
+//        String pmd5 = HashUtil.hashWithMD5(p);
+//        User user = dao.getUser("phamthidung@gmail.com", pmd5);
+//        if (user != null) {
+//            System.out.println("User found: " + user);
+//            System.out.println("User found: " + user.getEmail());
+//            System.out.println("User found: " + user.getPassword());
+//        } else {
+//            System.out.println("User not found.");
+//        }
+//
+//    }
+
+
 }
