@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,16 +24,30 @@
     <h1><strong>THÔNG TIN CÁ NHÂN</strong></h1>
     <div class="infor-content">
         <div class="row-infor">
-            <span class="highlight">Họ tên: </span> <span class="in4" id="name">Nguyễn Văn A</span>
+            <span class="highlight">Họ tên: </span> <span class="in4" id="name">${sessionScope.user.name}</span>
         </div>
         <div class="row-infor">
-            <span class="highlight">Sinh nhật: </span> <span class="in4" id="birthday">12/04/2000</span>
+            <span class="highlight">Sinh nhật: </span> <span class="in4" id="birthday">
+            <c:if test="${empty sessionScope.user.dob}">
+                Chưa có thông tin
+            </c:if>
+            <c:if test="${not empty sessionScope.user.dob}">
+                ${sessionScope.user.dob}
+            </c:if>
+            </span>
         </div>
         <div class="row-infor">
-            <span class="highlight">Email: </span> <span class="in4" id="email">nguyenvana@gmail.com</span>
+            <span class="highlight">Email: </span> <span class="in4" id="email">${sessionScope.user.email}</span>
         </div>
         <div class="row-infor">
-            <span class="highlight">SĐT: </span> <span class="in4" id="numPhone">0909123456</span>
+            <span class="highlight">SĐT: </span> <span class="in4" id="numPhone">
+            <c:if test="${empty sessionScope.user.phone}">
+                    Chưa có thông tin
+                </c:if>
+            <c:if test="${not empty sessionScope.user.phone}">
+                ${sessionScope.user.phone}
+            </c:if>
+        </span>
         </div>
     </div>
 </div>
