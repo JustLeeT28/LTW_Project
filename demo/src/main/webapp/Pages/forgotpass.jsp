@@ -56,7 +56,7 @@
             <div id="forgotpass-tab-content" class="active">
                 <form class="forgotpass-form" action="${pageContext.request.contextPath}/forgotpassword" method="post" id="forgotpassForm">
                     <input type="email" class="input" id="forgotpass_user_email" name="forgotpass_user_email" autocomplete="off" placeholder="Nhập Email của bạn" required>
-                    <button class="button" type="submit">Gửi liên kết khôi phục mật khẩu</button>
+                    <button class="button" type="submit">Khôi phục mật khẩu</button>
                 </form>
                 <div class="help">
                     <p><a href="${pageContext.request.contextPath}/Pages/login.jsp">Trở lại trang đăng nhập</a></p>

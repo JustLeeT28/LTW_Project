@@ -24,10 +24,10 @@
     <div class="tabs-content">
       <div id="signup-tab-content">
         <form class="signup-form" action="${pageContext.request.contextPath}/login" method="post" id="signupForm">
-          <input type="email" class="input" id="signup_user_email" name="signup_user_email" autocomplete="off" placeholder="Email">
-          <input type="text" class="input" id="signup_user_name" name="signup_user_name"  autocomplete="off" placeholder="Họ tên">
-          <input type="password" class="input" id="signup_user_pass" name="signup_user_pass" autocomplete="off" placeholder="Mật khẩu">
-          <input type="password" class="input" id="signup_user_pass2" name="signup_user_pass2" autocomplete="off" placeholder="Nhập lại mật khẩu">
+          <input type="email" class="input" id="signup_user_email" name="signup_user_email" autocomplete="off" placeholder="Email" required>
+          <input type="text" class="input" id="signup_user_name" name="signup_user_name"  autocomplete="off" placeholder="Họ tên" required>
+          <input type="password" class="input" id="signup_user_pass" name="signup_user_pass" autocomplete="off" placeholder="Mật khẩu" required>
+          <input type="password" class="input" id="signup_user_pass2" name="signup_user_pass2" autocomplete="off" placeholder="Nhập lại mật khẩu" required>
 <%--          <input type="submit" class="button" value="Đăng ký">--%>
           <button class="button" type="button" onclick="validatePasswords()">Đăng ký</button>
         </form>
@@ -37,9 +37,9 @@
 <%--        </div>--%>
       </div>
       <div id="login-tab-content" class="active">
-  <form class="login-form" action="${pageContext.request.contextPath}/login" method="post" id="loginForm">
-    <input type="text" class="input" id="user_login" name="user_login" autocomplete="off" placeholder="Email">
-    <input type="password" class="input" id="user_pass_login" name="user_pass_login" autocomplete="off" placeholder="Mật khẩu">
+  <form class="login-form" action="${pageContext.request.contextPath}/login" method="post" id="loginForm" required>
+    <input type="email" class="input" id="user_login" name="user_login" autocomplete="off" placeholder="Email" required>
+    <input type="password" class="input" id="user_pass_login" name="user_pass_login" autocomplete="off" placeholder="Mật khẩu" required>
 <%--    <input type="checkbox" class="checkbox" id="remember_me">--%>
 <%--    <label for="remember_me">Remember me</label>--%>
     <input type="submit" class="button" value="Đăng nhập">

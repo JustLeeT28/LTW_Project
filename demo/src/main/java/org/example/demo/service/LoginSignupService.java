@@ -12,4 +12,8 @@ public class LoginSignupService {
     public User createUser(String signupUserEmail, String signupUserName, String hashedPassword2Signup) {
         return userDao.createUser(signupUserEmail,signupUserName,hashedPassword2Signup);
     }
+
+    public boolean changePass(String forgotpassUserEmail) {
+        return userDao.changePass(forgotpassUserEmail);
+    }
 }

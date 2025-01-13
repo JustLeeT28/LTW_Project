@@ -13,16 +13,33 @@ jQuery(document).ready(function($) {
 });
 
 function validatePasswords() {
-	// Lấy giá trị hai ô nhập mật khẩu
-	const password1 = document.getElementById('signup_user_pass').value;
-	const password2 = document.getElementById('signup_user_pass2').value;
+		// Lấy các giá trị từ các trường input
+		var email = document.getElementById("signup_user_email").value;
+		var name = document.getElementById("signup_user_name").value;
+		var password = document.getElementById("signup_user_pass").value;
+		var confirmPassword = document.getElementById("signup_user_pass2").value;
 
-	// Kiểm tra
-	if (password1 === password2) {
-		document.getElementById('signupForm').submit();
-	} else {
-		alert("Mật khẩu không khớp, vui lòng kiểm tra lại!");
-	}
+		// Kiểm tra xem tất cả các trường có được điền hay không
+		if (email === "" || name === "" || password === "" || confirmPassword === "") {
+			alert("Vui lòng điền đầy đủ tất cả các trường.");
+			return false;  // Dừng việc gửi form
+		}
+
+		// Kiểm tra định dạng email (đảm bảo có @ và domain hợp lệ)
+		var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+		if (!emailRegex.test(email)) {
+			alert("Email không hợp lệ, vui lòng nhập lại.");
+			return false;  // Dừng việc gửi form
+		}
+
+		// Kiểm tra mật khẩu và xác nhận mật khẩu có khớp không
+		if (password !== confirmPassword) {
+			alert("Mật khẩu và xác nhận mật khẩu không khớp.");
+			return false;  // Dừng việc gửi form
+		}
+
+		// Nếu tất cả các kiểm tra hợp lệ, gửi form
+		document.getElementById("signupForm").submit();
 }
 
 
