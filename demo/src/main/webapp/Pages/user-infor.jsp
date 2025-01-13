@@ -15,8 +15,8 @@
 <body>
 <jsp:include page="Includes/menu.jsp"/>
 <div class="leftmenu">
-    <a href="user-infor.html" class="op-infor open">Thông tin </a>
-    <a href="user-updateInfor.jsp" class="op-update ">Chỉnh sửa</a>
+    <a href="user-infor.jsp" class="op-infor open">Thông tin </a>
+    <a href="user-updateinfor.jsp" class="op-update ">Chỉnh sửa</a>
     <a href="history.jsp" class="op-history">Lịch sử</a>
     <a href="" id="out">Đăng suất</a>
 </div>

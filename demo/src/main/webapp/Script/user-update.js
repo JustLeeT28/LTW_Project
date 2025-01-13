@@ -12,24 +12,24 @@ document.addEventListener("DOMContentLoaded", function() {
         emailInput.value = "";
         numPhoneInput.value = "";
     });
-    saveButton.addEventListener("click", () => {
-        const valueName = nameInput.value.trim();
-        const valueBirthday = birthdayInput.value.trim();
-        const valueEmail = emailInput.value.trim();
-        const valuePhone = numPhoneInput.value.trim();
-
-        // Kiểm tra định dạng email
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (valueEmail && !emailRegex.test(valueEmail)) {
-            alert("Email không đúng định dạng!");
-            return;
-        }
-        // Lưu vào localStorage nếu có giá trị
-        if (valueName) localStorage.setItem("name", valueName);
-        if (valueBirthday) localStorage.setItem("birthday", valueBirthday);
-        if (valueEmail) localStorage.setItem("email", valueEmail);
-        if (valuePhone) localStorage.setItem("numPhone", valuePhone);
-
-        alert("Cập nhập thông tin thành công!");
-    });
+    // saveButton.addEventListener("click", () => {
+    //     const valueName = nameInput.value.trim();
+    //     const valueBirthday = birthdayInput.value.trim();
+    //     const valueEmail = emailInput.value.trim();
+    //     const valuePhone = numPhoneInput.value.trim();
+    //
+    //     // Kiểm tra định dạng email
+    //     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    //     if (valueEmail && !emailRegex.test(valueEmail)) {
+    //         alert("Email không đúng định dạng!");
+    //         return;
+    //     }
+    //     // Lưu vào localStorage nếu có giá trị
+    //     if (valueName) localStorage.setItem("name", valueName);
+    //     if (valueBirthday) localStorage.setItem("birthday", valueBirthday);
+    //     if (valueEmail) localStorage.setItem("email", valueEmail);
+    //     if (valuePhone) localStorage.setItem("numPhone", valuePhone);
+    //
+    //     alert("Cập nhập thông tin thành công!");
+    // });
 });
