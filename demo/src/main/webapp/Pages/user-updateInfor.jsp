@@ -18,7 +18,7 @@
     <a href="user-infor.jsp" class="op-infor">Thông tin</a>
     <a href="${pageContext.request.contextPath}/user-updateinfor.jsp" class="op-update open">Chỉnh sửa</a>
     <a href="history.jsp" class="op-history">Lịch sử</a>
-    <a href="" id="out">Đăng suất</a>
+    <a href="${pageContext.request.contextPath}/LogoutController" id="out">Đăng xuất</a>
 </div>
 <div class="right_infor">
     <h1><strong>CHỈNH SỬA THÔNG TIN CÁ NHÂN</strong></h1>
@@ -63,10 +63,6 @@
         </div>
         </div>
     </form>
-
-
-
-
 
 <%--    <div class="buttons">--%>
 <%--            <div>--%>
