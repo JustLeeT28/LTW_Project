@@ -66,7 +66,7 @@ public class LoginController extends HttpServlet {
                 request.getRequestDispatcher("/Pages/login.jsp").forward(request, response);
                 return;
             } else {
-                request.setAttribute("errorMessage", "Đăng ký thất bại!");
+                request.setAttribute("errorMessage", "Đăng ký thất bại! email đã được sử dụng");
                 request.getRequestDispatcher("/Pages/login.jsp").forward(request, response);
                 return;
             }

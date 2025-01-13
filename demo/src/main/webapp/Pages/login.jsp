@@ -46,7 +46,7 @@
   </form>
 
   <div class="help">
-          <p><a href="forgotpass.jsp">Quên mật khẩu?</a></p>
+          <p><a href="${pageContext.request.contextPath}/Pages/forgotpass.jsp">Quên mật khẩu?</a></p>
         </div>
       </div>
     </div>
