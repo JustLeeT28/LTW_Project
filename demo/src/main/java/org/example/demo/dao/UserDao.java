@@ -13,50 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao {
-    public List<Movie> getMovies() {
-        PreparedStatement ps = null;
-        ResultSet resultSet = null;
-        try {
-            String query = "SELECT * FROM movies";
-            ps = DbConnect.get(query);  // Lấy PreparedStatement từ DbConnect
-
-            resultSet = ps.executeQuery();  // Thực thi truy vấn
-
-            List<Movie> movies = new ArrayList<>();
-            while (resultSet.next()) {
-                Movie movie = new Movie(
-                        resultSet.getInt("id"),
-                        resultSet.getString("title"),
-                        resultSet.getInt("duration"),
-                        resultSet.getString("description"),
-                        resultSet.getString("country"),
-                        resultSet.getString("language"),
-                        resultSet.getString("subtitle"),
-                        resultSet.getString("ageRating"),
-                        resultSet.getString("releaseDate"),
-                        resultSet.getString("endDate"),
-                        resultSet.getString("bannerUrl"),
-                        resultSet.getString("posterUrl"),
-                        resultSet.getString("status")
-                );
-                movies.add(movie);
-            }
-
-            return movies;
-
-        } catch (SQLException e) {
-            e.printStackTrace();  // Log lỗi (có thể thay thế bằng việc báo cáo lỗi rõ ràng hơn)
-            return new ArrayList<>();  // Trả về danh sách rỗng khi gặp lỗi
-        } finally {
-            // Đảm bảo đóng tài nguyên sau khi sử dụng
-            try {
-                if (resultSet != null) resultSet.close();
-                if (ps != null) ps.close();
-            } catch (SQLException e) {
-                e.printStackTrace();  // Log lỗi khi đóng tài nguyên
-            }
-        }
-    }
 
     public User getUser(String username, String password) {
         PreparedStatement ps = null;
@@ -81,6 +37,54 @@ public class UserDao {
                 return user; // lấy cái đầu tiên
             }
             return null ;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public User createUser(String signupUserEmail, String signupUserName, String hashedPassword2Signup) {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        if(checkEmail(signupUserEmail)){ // kiểm tra xem email đã đc su dụng chưa
+            return null;
+        }
+        try {
+            // Query để chèn người dùng mới vào bảng `users`
+            String query = "INSERT INTO USERS (email, name, password, role, status) VALUES (?, ?, ?, ?, ?)";
+
+            // Lấy PreparedStatement từ DbConnect
+            ps = DbConnect.get(query);
+
+            // Thiết lập tham số cho PreparedStatement
+            ps.setString(1, signupUserEmail);
+            ps.setString(2, signupUserName);
+            ps.setString(3, hashedPassword2Signup); // mật khẩu đã mã hóa
+            ps.setInt(4, 0);
+            ps.setString(5, "active");
+
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                return getUser(signupUserEmail, hashedPassword2Signup);
+            } else {
+                return null;
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public boolean checkEmail(String email) {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        String query = "SELECT * FROM USERS WHERE email = ?";
+        ps = DbConnect.get(query);
+        try {
+            ps.setString(1,email);
+            resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                return true;
+            }
+            return false;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

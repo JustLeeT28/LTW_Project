@@ -23,7 +23,7 @@
     </div>
     <div class="tabs-content">
       <div id="signup-tab-content">
-        <form class="signup-form" action="${pageContext.request.contextPath}/login" method="post">
+        <form class="signup-form" action="${pageContext.request.contextPath}/login" method="post" id="signupForm">
           <input type="email" class="input" id="signup_user_email" name="signup_user_email" autocomplete="off" placeholder="Email">
           <input type="text" class="input" id="signup_user_name" name="signup_user_name"  autocomplete="off" placeholder="Họ tên">
           <input type="password" class="input" id="signup_user_pass" name="signup_user_pass" autocomplete="off" placeholder="Mật khẩu">
