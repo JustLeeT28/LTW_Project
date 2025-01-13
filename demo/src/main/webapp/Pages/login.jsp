@@ -13,7 +13,7 @@
 <div class="container-login">
   <c:if test="${not empty errorMessage}">
     <div class="error-message" style="color: white;font-size: 20px">
-      <strong>${errorMessage}</strong>
+      <strong>${errorMessage}</strong> sdfshudhfushfusdfsdfijasid fjisdf
     </div>
   </c:if>
   <div class="form-wrap">
@@ -37,7 +37,7 @@
 <%--        </div>--%>
       </div>
       <div id="login-tab-content" class="active">
-  <form class="login-form" action="${pageContext.request.contextPath}/login" method="post" id="loginForm" required>
+  <form class="login-form" action="${pageContext.request.contextPath}/login" method="post" id="loginForm">
     <input type="email" class="input" id="user_login" name="user_login" autocomplete="off" placeholder="Email" required>
     <input type="password" class="input" id="user_pass_login" name="user_pass_login" autocomplete="off" placeholder="Mật khẩu" required>
 <%--    <input type="checkbox" class="checkbox" id="remember_me">--%>

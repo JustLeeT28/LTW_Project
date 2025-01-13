@@ -44,6 +44,7 @@ public class LoginController extends HttpServlet {
             if (u != null) {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("user", u);
+                session.setAttribute("isLogin", "true" );
                 response.sendRedirect("/demo_war_exploded");
                 return;
             }
