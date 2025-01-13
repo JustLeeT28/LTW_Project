@@ -19,7 +19,16 @@
         </form>
         <a href="${pageContext.request.contextPath}/search" class="menu">Phim</a>
         <a href="../ticket-price.jsp" class="menu">Giá vé</a>
-        <a href="${pageContext.request.contextPath}/Pages/login.jsp" class="menu">Đăng nhập</a>
+        <c:if test="${not empty sessionScope.user}">
+            <a href="${pageContext.request.contextPath}/logout" class="menu">Đăng xuất</a>
+        </c:if>
+        <c:if test="${empty sessionScope.user}">
+            <a href="${pageContext.request.contextPath}/Pages/login.jsp" class="menu">Đăng nhập</a>
+        </c:if>
+
+        ${sessionScope.user.getName()}
+        ${sessionScope.user.name}
+
         <a href="../user-infor.jsp">
             <img src="${pageContext.request.contextPath}/img/img/user.jpg" height="30" width="30"/>
         </a>
