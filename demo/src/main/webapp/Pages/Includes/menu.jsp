@@ -20,7 +20,9 @@
         <a href="${pageContext.request.contextPath}/search" class="menu">Phim</a>
         <a href="../ticket-price.jsp" class="menu">Giá vé</a>
         <% if (session.getAttribute("user") != null) { %>
-            <a href="#" class="menu">Đăng xuất</a>
+        <a href="${pageContext.request.contextPath}/Pages/user-infor.jsp">
+            <img src="${pageContext.request.contextPath}/img/img/user.jpg" height="30" width="30"/>
+        </a>
         <% } else { %>
             <a href="${pageContext.request.contextPath}/Pages/login.jsp" class="menu">Đăng nhập</a>
         <% } %>
@@ -31,9 +33,9 @@
 <%--        ${sessionScope.user.getName()}--%>
 <%--        ${sessionScope.user.name}--%>
 
-        <a href="../user-infor.jsp">
-            <img src="${pageContext.request.contextPath}/img/img/user.jpg" height="30" width="30"/>
-        </a>
+<%--        <a href="../user-infor.jsp">--%>
+<%--            <img src="${pageContext.request.contextPath}/img/img/user.jpg" height="30" width="30"/>--%>
+<%--        </a>--%>
     </div>
 </div>
 </body>
