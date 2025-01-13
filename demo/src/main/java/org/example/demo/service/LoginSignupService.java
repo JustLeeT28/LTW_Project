@@ -8,4 +8,8 @@ public class LoginSignupService {
     public User getUser(String username, String password) {
         return userDao.getUser(username,password);
     }
+
+    public User createUser(String signupUserEmail, String signupUserName, String hashedPassword2Signup) {
+        return userDao.createUser(signupUserEmail,signupUserName,hashedPassword2Signup);
+    }
 }

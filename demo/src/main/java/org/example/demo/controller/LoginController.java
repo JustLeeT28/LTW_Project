@@ -25,54 +25,73 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // Đăng nhập
         String userEmail = request.getParameter("user_login");
         String password = request.getParameter("user_pass_login");
+
+        // Đăng ký
         String signup_user_email = request.getParameter("signup_user_email");
         String signup_user_name = request.getParameter("signup_user_name");
         String signup_user_pass = request.getParameter("signup_user_pass");
 
-        // Mã hóa mật khẩu bằng MD5
-//        HashUtil hashUtil = new HashUtil();
-        String hashedPassword = HashUtil.hashWithMD5(password) ;
-//        String hashedPassword = hashMD5(password);
+        // Dịch vụ login/signup
         LoginSignupService loginSignupService = new LoginSignupService();
-        if(userEmail != null && password != null && !userEmail.isEmpty() && !password.isEmpty()) {
+
+        if (userEmail != null && password != null && !userEmail.isEmpty() && !password.isEmpty()) {  // Kiểm tra thông tin đăng nhập
+            // Nếu thông tin hợp lệ, mã hóa mật khẩu và kiểm tra tài khoản
+            String hashedPassword = HashUtil.hashWithMD5(password);
             User u = loginSignupService.getUser(userEmail, hashedPassword);
-            if(u != null) {
+            if (u != null) {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("user", u);
-//                session.setAttribute("userName", u.getName());
-//                session.setAttribute("userEmail", u.getEmail());
-//                session.setAttribute("userDob", u.getDob());
-//                session.setAttribute("userPhone", u.getPhone());
-//                session.setAttribute("userRole", u.getRole());
-//                session.setAttribute("userStatus", u.getStatus());
                 response.sendRedirect("/demo_war_exploded");
                 return;
             }
-            request.setAttribute("errorMessage", "Tài khoản hoặc mật khẩu không đúng!");            // Load lại trang đăng nhập với thông báo lỗi
+            // Nếu tài khoản không tồn tại
+            request.setAttribute("errorMessage", "Tài khoản hoặc mật khẩu không đúng!");
             request.getRequestDispatcher("/Pages/login.jsp").forward(request, response);
             return;
         }
+
+        // Đăng ký
+        if (signup_user_email != null && !signup_user_email.isEmpty() &&
+                signup_user_name != null && !signup_user_name.isEmpty() &&
+                signup_user_pass != null && !signup_user_pass.isEmpty()) {
+
+            // Kiểm tra mật khẩu trong đăng ký
+            String hashedPassword2_signup = HashUtil.hashWithMD5(signup_user_pass);
+            User us = loginSignupService.createUser(signup_user_email, signup_user_name, hashedPassword2_signup);
+            if (us != null) {
+                request.setAttribute("errorMessage", "Đăng ký thành công!");
+                request.getRequestDispatcher("/Pages/login.jsp").forward(request, response);
+                return;
+            } else {
+                request.setAttribute("errorMessage", "Đăng ký thất bại!");
+                request.getRequestDispatcher("/Pages/login.jsp").forward(request, response);
+                return;
+            }
+        }
+
+        // Nếu không đủ thông tin
         request.setAttribute("errorMessage", "Vui lòng nhập đầy đủ thông tin!");
         request.getRequestDispatcher("/Pages/login.jsp").forward(request, response);
         return;
-    }
+        }
 
 //     Hàm mã hóa MD5
-    private static String hashMD5(String input) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] messageDigest = md.digest(input.getBytes());
-            StringBuilder sb = new StringBuilder();
-            for (byte b : messageDigest) {
-                sb.append(String.format("%02x", b));
-            }
-            return sb.toString();
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("Error hashing password", e);
-        }
-    }
+//    private static String hashMD5(String input) {
+//        try {
+//            MessageDigest md = MessageDigest.getInstance("MD5");
+//            byte[] messageDigest = md.digest(input.getBytes());
+//            StringBuilder sb = new StringBuilder();
+//            for (byte b : messageDigest) {
+//                sb.append(String.format("%02x", b));
+//            }
+//            return sb.toString();
+//        } catch (NoSuchAlgorithmException e) {
+//            throw new RuntimeException("Error hashing password", e);
+//        }
+//    }
 
 //    public static void main(String[] args) {
 //        // Kiểm tra hàm mã hóa MD5
