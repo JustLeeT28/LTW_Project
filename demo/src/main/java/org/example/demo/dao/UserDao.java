@@ -90,6 +90,54 @@ public class UserDao {
         }
     }
 
+    public boolean changePass(String forgotpassUserEmail) {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+
+        try {
+            // 1. Kiểm tra xem email có tồn tại trong cơ sở dữ liệu không
+            String checkEmailQuery = "SELECT * FROM USERS WHERE email = ?";
+            ps = DbConnect.get(checkEmailQuery);
+            ps.setString(1, forgotpassUserEmail);
+            resultSet = ps.executeQuery();
+
+            // Kiểm tra nếu có kết quả (email tồn tại)
+            if (resultSet.next()) {
+                // 2. Nếu email tồn tại, cập nhật mật khẩu thành mật khẩu mới (12345)
+                String updatePasswordQuery = "UPDATE USERS SET password = ? WHERE email = ?";
+                ps = DbConnect.get(updatePasswordQuery);
+                String pass = HashUtil.hashWithMD5("12345") ;
+                ps.setString(1, pass);
+                ps.setString(2, forgotpassUserEmail);
+
+                int rowsAffected = ps.executeUpdate();
+
+                // Nếu có ít nhất một dòng bị ảnh hưởng, trả về true
+                if (rowsAffected > 0) {
+                    return true; // Mật khẩu đã được cập nhật thành công
+                } else {
+                    return false; // Lỗi khi cập nhật mật khẩu
+                }
+            } else {
+                return false; // Email không tồn tại
+            }
+
+        } catch (SQLException e) {
+            // Xử lý lỗi nếu có
+            e.printStackTrace();
+            return false; // Lỗi xảy ra trong quá trình thực thi
+        } finally {
+            // Đảm bảo đóng các tài nguyên
+            try {
+                if (resultSet != null) resultSet.close();
+                if (ps != null) ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
     public static void main(String[] args) {
         UserDao dao = new UserDao();
         String p = "Dung12345";
