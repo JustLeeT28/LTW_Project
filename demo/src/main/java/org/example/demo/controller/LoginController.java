@@ -11,14 +11,7 @@ import org.example.demo.dao.model.User;
 import org.example.demo.service.LoginSignupService;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 @WebServlet(name = "Login_singup", urlPatterns = "/login")
 public class LoginController extends HttpServlet {

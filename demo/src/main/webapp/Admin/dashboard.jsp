@@ -14,7 +14,7 @@
             <h2>Admin Panel</h2>
             <nav>
                 <ul>
-                    <li><a href="dashboard.html" data-section="dashboard">Dashboard</a></li>
+                    <li><a href="dashboard.jsp" data-section="dashboard">Dashboard</a></li>
                     <li><a href="film_management.jsp" data-section="movies">Quản lý Phim</a></li>
                     <li><a href="schedule_mng.jsp" data-section="schedules">Quản lý Lịch Chiếu</a></li>
                     <li><a href="room_mng.jsp" data-section="rooms">Quản lý Phòng Chiếu</a></li>

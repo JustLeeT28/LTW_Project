@@ -19,7 +19,7 @@
                 <li><a href="schedule_mng.jsp" data-section="schedules">Quản lý Lịch Chiếu</a></li>
                 <li><a href="room_mng.jsp" data-section="rooms">Quản lý Phòng Chiếu</a></li>
                 <li><a href="tikket_mng.jsp" data-section="tickets">Quản lý Vé</a></li>
-                <li><a href="customer_mng.html" data-section="customers">Quản lý Khách hàng</a></li>
+                <li><a href="customer_mng.jsp" data-section="customers">Quản lý Khách hàng</a></li>
                 <li><a href="reports_mng.jsp" data-section="settings">Báo cáo và Thống kê</a></li>
             </ul>
         </nav>
@@ -32,7 +32,7 @@
             <!-- Thêm phim -->
             <div class="add-movie">
                 <h2>Thêm phim mới</h2>
-                <form action="movies?action=add" method="post">
+                <form action="${pageContext.request.contextPath}/film_management" method="post">
                     <label for="title">Tên phim:</label>
                     <input type="text" id="title" name="title" required>
 
@@ -48,6 +48,15 @@
                     <label for="duration">Thời lượng (phút):</label>
                     <input type="number" id="duration" name="duration" required>
 
+                    <label for="duration">Quốc gia: </label>
+                    <input type="number" id="country" name="country" required>
+
+                    <label for="duration">Ngôn ngữ: </label>
+                    <input type="number" id="language" name="language" required>
+
+                    <label for="duration">Phụ đề: </label>
+                    <input type="number" id="subtitle" name="subtitle" required>
+
                     <label for="genre">Thể loại:</label>
                     <input type="text" id="genre" name="genre" required>
 
@@ -60,8 +69,11 @@
                     <label for="ageLimit">Độ tuổi giới hạn:</label>
                     <input type="text" id="ageLimit" name="ageRating" required>
 
-                    <label for="releaseDate">Ngày phát hành:</label>
+                    <label for="releaseDate">Ngày bắt đầu chiếu:</label>
                     <input type="date" id="releaseDate" name="releaseDate" required>
+
+                    <label for="releaseDate">Ngày ngưng chiếu:</label>
+                    <input type="date" id="endDate" name="endDate" required>
 
                     <button type="submit">Thêm phim</button>
                 </form>

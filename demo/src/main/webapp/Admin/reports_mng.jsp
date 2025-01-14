@@ -28,7 +28,7 @@
                     <li><a href="room_mng.jsp" data-section="rooms">Quản lý Phòng Chiếu</a></li>
                     <li><a href="tikket_mng.jsp" data-section="tickets">Quản lý Vé</a></li>
                     <li><a href="customer_mng.jsp" data-section="customers">Quản lý Khách hàng</a></li>
-                    <li><a href="reports_mng.html" data-section="settings">Báo cáo và Thống kê</a></li>
+                    <li><a href="reports_mng.jsp" data-section="settings">Báo cáo và Thống kê</a></li>
                 </ul>
             </nav>
         </aside>
