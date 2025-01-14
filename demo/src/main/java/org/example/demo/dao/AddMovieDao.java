@@ -6,63 +6,33 @@ import org.example.demo.dao.model.Movie;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AddMovieDao {
-    public List<Movie> getMovies() {
+
+    public static int geIdBynameMovie(String name) {
         PreparedStatement ps = null;
         ResultSet resultSet = null;
         try {
-            String query = "SELECT * FROM movies";
-            ps = DbConnect.get(query);  // Lấy PreparedStatement từ DbConnect
-
-            resultSet = ps.executeQuery();  // Thực thi truy vấn
-
-            List<Movie> movies = new ArrayList<>();
-            while (resultSet.next()) {
-                Movie movie = new Movie(
-                        resultSet.getInt("id"),
-                        resultSet.getString("title"),
-                        resultSet.getInt("duration"),
-                        resultSet.getString("description"),
-                        resultSet.getString("country"),
-                        resultSet.getString("language"),
-                        resultSet.getString("subtitle"),
-                        resultSet.getString("ageRating"),
-                        resultSet.getString("releaseDate"),
-                        resultSet.getString("endDate"),
-                        resultSet.getString("bannerUrl"),
-                        resultSet.getString("posterUrl"),
-                        resultSet.getString("status")
-                );
-                movies.add(movie);
+            String query = "SELECT id FROM movies WHERE title LIKE ?";
+            ps = DbConnect.get(query);
+            ps.setString(1,name);
+            resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt("id");
             }
-
-            return movies;
-
+            return -1;
         } catch (SQLException e) {
-            e.printStackTrace();  // Log lỗi (có thể thay thế bằng việc báo cáo lỗi rõ ràng hơn)
-            return new ArrayList<>();  // Trả về danh sách rỗng khi gặp lỗi
-        } finally {
-            // Đảm bảo đóng tài nguyên sau khi sử dụng
-            try {
-                if (resultSet != null) resultSet.close();
-                if (ps != null) ps.close();
-            } catch (SQLException e) {
-                e.printStackTrace();  // Log lỗi khi đóng tài nguyên
-            }
+            throw new RuntimeException(e);
         }
     }
-
-
     public int addMovie(String title, String posterUrl, String bannerUrl, String description, String country, String language, String subtitle, String ageRating, String releaseDate, String endDate, String duration) {
         PreparedStatement ps = null;
         ResultSet resultSet = null;
         int movieId = -1;
-
-
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             // Chuyển đổi chuỗi dob thành java.util.Date
@@ -85,37 +55,32 @@ public class AddMovieDao {
             ps.setDate(9, sqlendDate);
             ps.setString(10, bannerUrl);
             ps.setString(11, posterUrl);
-            ps.executeUpdate();
 
-            // Lấy ID tự động được tạo
-            resultSet = ps.getGeneratedKeys();
-            if (resultSet.next()) {
-                movieId = resultSet.getInt(1); // Lấy ID từ cột đầu tiên
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (resultSet != null) resultSet.close();
-                if (ps != null) ps.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            // Thực thi lệnh SQL và lấy ID tự động sinh
+            ps.executeUpdate();
+            movieId = geIdBynameMovie(title);
+            return movieId;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
         }
-        return movieId; // Trả về ID của bộ phim (hoặc -1 nếu không thêm được)
     }
 
-    public static List<String> getGenres(String genres) {
-        List<String> genresList = new ArrayList<>();
-        if (genres != null && !genres.trim().isEmpty()) {
-            String[] genresArray = genres.split(","); // Tách chuỗi theo dấu phẩy
-            for (String genre : genresArray) {
-                genresList.add(genre.trim()); // Loại bỏ khoảng trắng thừa
+        // tách chuỗi tên thành các tên
+    public static List<String> getStringofList(String text) {
+        List<String> listText = new ArrayList<>();
+        if (text != null && !text.trim().isEmpty()) {
+            String[] textArray = text.split(","); // Tách chuỗi theo dấu phẩy
+            for (String t : textArray) {
+                listText.add(t.trim()); // Loại bỏ khoảng trắng thừa
             }
-            return genresList;
+            return listText;
         }
         return null;
     }
+
+    // lay id thể loại từ tên thể loại
     public static int idGenre(String genre) {
         PreparedStatement ps = null;
         ResultSet resultSet = null;
@@ -135,20 +100,27 @@ public class AddMovieDao {
         }
 
     }
-
-
+    // thêm thể loại cho movie ở bảng trung gian
     public void addGenre_movie(String genres,int movie_newid) {
         PreparedStatement ps = null;
-        ResultSet resultSet = null;
-        List<String> genreList = getGenres(genres);
+//        ResultSet resultSet = null;
+        List<String> genreList = getStringofList(genres);
 
         try {
+            String checkQuery = "SELECT COUNT(*) FROM movie_genres WHERE movieId = ? AND genreId = ?";
             String query = "INSERT INTO movie_genres (movieId,genreId) VALUES (?,?)";
             ps = DbConnect.get(query);
+            PreparedStatement psCheck = DbConnect.get(checkQuery);
             for (String g : genreList){
                 ps.setInt(1,movie_newid);
                 int genreId = idGenre(g);
-                if(genreId == -1){
+                if (genreId == -1) continue;
+                // Kiểm tra nếu đã tồn tại
+                psCheck.setInt(1, movie_newid);
+                psCheck.setInt(2, genreId);
+                ResultSet rs = psCheck.executeQuery();
+                if (rs.next() && rs.getInt(1) > 0) {
+                    // Đã tồn tại, bỏ qua
                     continue;
                 }
                 ps.setInt(2,genreId);
@@ -159,6 +131,124 @@ public class AddMovieDao {
         }
 
     }
+
+    // lay id đạo diễn từ tên
+    public static int idDirector(String directors) {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        int dirId = -1;
+        try {
+            String query = "SELECT id FROM directors WHERE name = ?";
+            ps = DbConnect.get(query);
+            ps.setString(1,directors);
+            resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                dirId = resultSet.getInt("id");
+                return dirId;
+            }
+            return dirId;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+    public static void addDirector(String director) {
+        PreparedStatement ps = null;
+//        ResultSet resultSet = null;
+        try {
+            String query = "INSERT INTO directors (name) VALUES (?)";
+            ps = DbConnect.get(query);
+            ps.setString(1,director);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+    public void addDirector_movie(String directors, int movieNewid) {
+        PreparedStatement ps = null;
+        List<String> dirList = getStringofList(directors);
+        try {
+            String query = "INSERT INTO movie_directors (movieId,directorId) VALUES (?,?)";
+            ps = DbConnect.get(query);
+            for (String g : dirList){
+                ps.setInt(1,movieNewid);
+                int dirId = idDirector(g);
+                if(dirId == -1){
+                    addDirector(g);
+                    dirId = idDirector(g); // lấy id sau khi tạo
+                }
+                if(dirId == -1){ // nếu vẫn k tạo đc
+                    continue;
+                }
+                ps.setInt(2,dirId);
+                ps.executeUpdate();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static int idActor(String actor) {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        int actorId = -1;
+        try {
+            String query = "SELECT id FROM actors WHERE name = ?";
+            ps = DbConnect.get(query);
+            ps.setString(1,actor);
+            resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                actorId = resultSet.getInt("id");
+                return actorId;
+            }
+            return actorId;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+    public static void addActor(String actor) {
+        PreparedStatement ps = null;
+//        ResultSet resultSet = null;
+        try {
+            String query = "INSERT INTO actors (name) VALUES (?)";
+            ps = DbConnect.get(query);
+            ps.setString(1,actor);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
+
+    public void addActor_movie(String actors, int movieNewid) {
+        PreparedStatement ps = null;
+        List<String> actorList = getStringofList(actors);
+        try {
+            String query = "INSERT INTO movie_actors (movieId,actorId) VALUES (?,?)";
+            ps = DbConnect.get(query);
+            for (String g : actorList){
+                ps.setInt(1,movieNewid);
+                int actorId = idActor(g);
+                if(actorId == -1){
+                    addActor(g);
+                    actorId = idActor(g); // lấy id sau khi tạo
+                }
+                if(actorId == -1){ // nếu vẫn k tạo đc
+                    continue;
+                }
+                ps.setInt(2,actorId);
+                ps.executeUpdate();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 //    public static void main(String[] args) {
 //        List<String> test = getGenres("Hành động,    Kinh dị, ngôn tình");

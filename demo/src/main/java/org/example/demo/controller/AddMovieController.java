@@ -24,8 +24,8 @@ public class AddMovieController extends HttpServlet {
         String language = request.getParameter("language");
         String subtitle = request.getParameter("subtitle");
         String duration = request.getParameter("duration");
-        String genre = request.getParameter("genre");
-        String director = request.getParameter("director");
+        String genres = request.getParameter("genre");
+        String directors = request.getParameter("director");
         String actors = request.getParameter("actors");
         String ageRating = request.getParameter("ageRating");
         String releaseDate = request.getParameter("releaseDate");
@@ -34,8 +34,19 @@ public class AddMovieController extends HttpServlet {
         AddMovieService addMovieService = new AddMovieService();
         // tao dữ liệu trong bảng movies
         int movie_newid = addMovieService.addMovie(title,posterUrl,bannerUrl,description,country,language,subtitle,ageRating,releaseDate,endDate,duration);
+        if (movie_newid == -1) {
+            request.setAttribute("errorMessage", "Thêm phim không thành công!");
+            request.getRequestDispatcher("/Admin/film_management.jsp").forward(request, response);
+        }
         // tạo dữ liệu trong bảng genre_movie
-        addMovieService.addGenre_movie(genre,movie_newid);
+        addMovieService.addGenre_movie(genres,movie_newid);
+
+        addMovieService.addDirector_movie(directors,movie_newid);
+
+        addMovieService.addActor_movie(actors,movie_newid);
+
+        request.setAttribute("errorMessage", "Thêm thành công!");
+        request.getRequestDispatcher("/Admin/film_management.jsp").forward(request, response);
 
         // Đăng ký
     }

@@ -11,4 +11,12 @@ public class AddMovieService {
     public void addGenre_movie(String genre,int movie_newid) {
         addMovieDao.addGenre_movie(genre,movie_newid);
     }
+
+    public void addDirector_movie(String directors, int movieNewid) {
+        addMovieDao.addDirector_movie(directors,movieNewid);
+    }
+
+    public void addActor_movie(String actors, int movieNewid) {
+        addMovieDao.addActor_movie(actors,movieNewid);
+    }
 }
