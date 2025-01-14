@@ -3,6 +3,7 @@ import org.example.demo.dao.db.DbConnect;
 import org.example.demo.dao.model.Genre;
 import org.example.demo.dao.model.Movie;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -250,12 +251,52 @@ public class AddMovieDao {
     }
 
 
-//    public static void main(String[] args) {
-//        List<String> test = getGenres("Hành động,    Kinh dị, ngôn tình");
-//        for (String genre : test) {
-//            System.out.println(genre);
-//        }
-//    }
+    public static void deleteMovie(int movieId) {
+        // Câu truy vấn SQL để xóa các bản ghi liên quan trong các bảng liên kết trước
+        String deleteMovieGenreQuery = "DELETE FROM movie_genres WHERE movieId = ?";
+        String deleteMovieDirQuery = "DELETE FROM movie_directors WHERE movieId = ?";
+        String deleteMovieActorQuery = "DELETE FROM movie_actors WHERE movieId = ?";
+        String deleteMovieQuery = "DELETE FROM movies WHERE id = ?";
+
+        PreparedStatement deleteMovieGenrePs = null;
+        PreparedStatement deleteMovieDirPs = null;
+        PreparedStatement deleteMovieActorPs = null;
+        PreparedStatement deleteMoviePs = null;
+        try {
+            deleteMovieGenrePs = DbConnect.get(deleteMovieGenreQuery);
+            deleteMovieDirPs = DbConnect.get(deleteMovieDirQuery);
+            deleteMovieActorPs = DbConnect.get(deleteMovieActorQuery);
+            deleteMoviePs = DbConnect.get(deleteMovieQuery);
+             // Xóa liên kết movie_genre
+             deleteMovieGenrePs.setInt(1, movieId);
+             deleteMovieGenrePs.executeUpdate();
+
+             // Xóa liên kết movie_dir
+             deleteMovieDirPs.setInt(1, movieId);
+             deleteMovieDirPs.executeUpdate();
+
+             // Xóa liên kết movie_actor
+             deleteMovieActorPs.setInt(1, movieId);
+             deleteMovieActorPs.executeUpdate();
+
+             // Xóa phim từ bảng movie
+             deleteMoviePs.setInt(1, movieId);
+             int affectedRows = deleteMoviePs.executeUpdate();
+            if (affectedRows == 0) {
+                throw new SQLException("No movie found with ID " + movieId);
+            }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            throw new RuntimeException("Failed to delete movie with ID " + movieId, e);
+        }
+    }
+
+
+
+    public static void main(String[] args) {
+        deleteMovie(21);
+    }
 }
 
 
