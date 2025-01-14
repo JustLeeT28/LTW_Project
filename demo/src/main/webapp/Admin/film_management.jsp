@@ -54,13 +54,13 @@
                     <input type="number" id="duration" name="duration" required>
 
                     <label for="duration">Quốc gia: </label>
-                    <input type="number" id="country" name="country" required>
+                    <input type="text" id="country" name="country" required>
 
                     <label for="duration">Ngôn ngữ: </label>
-                    <input type="number" id="language" name="language" required>
+                    <input type="text" id="language" name="language" required>
 
                     <label for="duration">Phụ đề: </label>
-                    <input type="number" id="subtitle" name="subtitle" required>
+                    <input type="text" id="subtitle" name="subtitle" required>
 
                     <label for="genre">Thể loại:</label>
                     <input type="text" id="genre" name="genre" required>
@@ -102,7 +102,7 @@
                         <tr>
                             <td>${movie.title}</td>
                             <td>${movie.duration}</td>
-                            <td>${movie.releaseDate} phút</td>
+                            <td>${movie.releaseDate}</td>
                             <td>${movie.endDate}</td>
                             <td>
                                 <a href="movies?action=edit&id=${movie.id}">Chỉnh sửa</a> |
