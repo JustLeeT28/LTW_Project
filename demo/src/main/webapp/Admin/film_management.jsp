@@ -105,7 +105,7 @@
                             <td>${movie.releaseDate}</td>
                             <td>${movie.endDate}</td>
                             <td>
-                                <a href="movies?action=edit&id=${movie.id}">Chỉnh sửa</a> |
+                                <a href="${pageContext.request.contextPath}/UpdateFilm?mId=${movie.id}">Chỉnh sửa</a>
                                 <form action="${pageContext.request.contextPath}/film_management" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa phim này?');">
                                     <input type="hidden" name="del_movie_id" value="${movie.id}" />
                                     <button type="submit">Xóa</button>

@@ -145,21 +145,18 @@ public class UserDao {
         ResultSet resultSet = null;
 
         try {
-            String checkEmailQuery = "SELECT * FROM USERS WHERE id = ?";
-            ps = DbConnect.get(checkEmailQuery);
-            ps.setString(1, userId);
-            resultSet = ps.executeQuery();
+//            String checkEmailQuery = "SELECT * FROM USERS WHERE id = ?"; // cái tên để quên từ trên kia thôi >> lấy id user
+//            ps = DbConnect.get(checkEmailQuery);
+//            ps.setString(1, userId);
+//            resultSet = ps.executeQuery();
 
-            if (resultSet.next()) {
+//            if (resultSet.next()) {
                 String updatePasswordQuery = "UPDATE USERS SET name = ? WHERE id = ?";
                 ps = DbConnect.get(updatePasswordQuery);
                 ps.setString(1, name);
                 ps.setString(2, userId);
-
                 ps.executeUpdate();
-
-            }
-
+//            }
         } catch (SQLException e) {
             // Xử lý lỗi nếu có
             e.printStackTrace();
@@ -180,20 +177,19 @@ public class UserDao {
         ResultSet resultSet = null;
 
         try {
-            String checkEmailQuery = "SELECT * FROM USERS WHERE id = ?";
-            ps = DbConnect.get(checkEmailQuery);
-            ps.setString(1, userId);
-            resultSet = ps.executeQuery();
-
-            if (resultSet.next()) {
+//            String checkEmailQuery = "SELECT * FROM USERS WHERE id = ?";
+//            ps = DbConnect.get(checkEmailQuery);
+//            ps.setString(1, userId);
+//            resultSet = ps.executeQuery();
+//
+//            if (resultSet.next()) {
                 String updatePasswordQuery = "UPDATE USERS SET email = ? WHERE id = ?";
                 ps = DbConnect.get(updatePasswordQuery);
                 ps.setString(1, email);
                 ps.setString(2, userId);
 
                 ps.executeUpdate();
-
-            }
+//            }
 
         } catch (SQLException e) {
             // Xử lý lỗi nếu có
@@ -215,12 +211,12 @@ public class UserDao {
         ResultSet resultSet = null;
 
         try {
-            String checkEmailQuery = "SELECT * FROM USERS WHERE id = ?";
-            ps = DbConnect.get(checkEmailQuery);
-            ps.setString(1, userId);
-            resultSet = ps.executeQuery();
+//            String checkEmailQuery = "SELECT * FROM USERS WHERE id = ?";
+//            ps = DbConnect.get(checkEmailQuery);
+//            ps.setString(1, userId);
+//            resultSet = ps.executeQuery();
 
-            if (resultSet.next()) {
+//            if (resultSet.next()) {
                 String updatePasswordQuery = "UPDATE USERS SET phone = ? WHERE id = ?";
                 ps = DbConnect.get(updatePasswordQuery);
                 ps.setString(1, phone);
@@ -228,7 +224,7 @@ public class UserDao {
 
                 ps.executeUpdate();
 
-            }
+//            }
 
         } catch (SQLException e) {
             // Xử lý lỗi nếu có
@@ -255,12 +251,12 @@ public class UserDao {
             java.util.Date utilDate = sdf.parse(dob);
             // Chuyển đổi java.util.Date thành java.sql.Date
             java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-            String checkEmailQuery = "SELECT * FROM USERS WHERE id = ?";
-            ps = DbConnect.get(checkEmailQuery);
-            ps.setString(1, userId);
-            resultSet = ps.executeQuery();
+//            String checkEmailQuery = "SELECT * FROM USERS WHERE id = ?";
+//            ps = DbConnect.get(checkEmailQuery);
+//            ps.setString(1, userId);
+//            resultSet = ps.executeQuery();
 
-            if (resultSet.next()) {
+//            if (resultSet.next()) {
                 String updatePasswordQuery = "UPDATE USERS SET dob = ? WHERE id = ?";
                 ps = DbConnect.get(updatePasswordQuery);
                 ps.setDate(1, sqlDate);
@@ -268,7 +264,7 @@ public class UserDao {
 
                 ps.executeUpdate();
 
-            }
+//            }
 
         } catch (SQLException e) {
             // Xử lý lỗi nếu có

@@ -30,14 +30,13 @@
     <main class="main-content">
         <div id="movies" class="section active">
             <h1>Chỉnh sửa phim</h1>
-
             <div class="add-movie">
-                <h2>Thêm phim mới</h2>
+                <h2>Tên phim: ${movie_title}</h2>
                 <c:if test="${not empty Message}">
                     <p style="color: #0f0c29" >${Message}</p>
                 </c:if>
-                <form action="${pageContext.request.contextPath}/film_management" method="post">
-                    <label for="title">Tên phim:</label>
+                <form action="${pageContext.request.contextPath}/UpdateFilm" method="post">
+                    <label for="title">Tên phim: </label>
                     <input type="text" id="title" name="title" >
 
                     <label for="poster">URL Poster:</label>
@@ -79,6 +78,7 @@
                     <label for="releaseDate">Ngày ngưng chiếu:</label>
                     <input type="date" id="endDate" name="endDate" >
 
+                    <input type="hidden" id="idmovie" name="mId" value="${movie_id}" >
                     <button type="submit">Lưu thay đổi</button>
                 </form>
             </div>
