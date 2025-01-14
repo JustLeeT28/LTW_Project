@@ -19,4 +19,8 @@ public class AddMovieService {
     public void addActor_movie(String actors, int movieNewid) {
         addMovieDao.addActor_movie(actors,movieNewid);
     }
+
+    public void delMovie(String delMovie) {
+        addMovieDao.deleteMovie(delMovie);
+    }
 }

@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Quản lý Phim</title>
     <link rel="stylesheet" href="film_management.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/film_management.css">
+
 </head>
 <body>
 <div class="container">
@@ -15,7 +17,7 @@
         <nav>
             <ul>
                 <li><a href="dashboard.jsp" data-section="dashboard">Dashboard</a></li>
-                <li><a href="film_management.jsp" data-section="movies">Quản lý Phim</a></li>
+                <li><a href="${pageContext.request.contextPath}film_management" data-section="movies">Quản lý Phim</a></li>
                 <li><a href="schedule_mng.jsp" data-section="schedules">Quản lý Lịch Chiếu</a></li>
                 <li><a href="room_mng.jsp" data-section="rooms">Quản lý Phòng Chiếu</a></li>
                 <li><a href="tikket_mng.jsp" data-section="tickets">Quản lý Vé</a></li>
@@ -32,6 +34,9 @@
             <!-- Thêm phim -->
             <div class="add-movie">
                 <h2>Thêm phim mới</h2>
+                <c:if test="${not empty Message}">
+                    <p>${Message}</p>
+                </c:if>
                 <form action="${pageContext.request.contextPath}/film_management" method="post">
                     <label for="title">Tên phim:</label>
                     <input type="text" id="title" name="title" required>
@@ -86,22 +91,25 @@
                     <thead>
                     <tr>
                         <th>Tên phim</th>
-                        <th>Thể loại</th>
                         <th>Thời lượng</th>
-                        <th>Ngày phát hành</th>
+                        <th>Ngày bắt đầu chiếu</th>
+                        <th>Ngày ngưng chiếu</th>
                         <th>Hành động</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="movie" items="${movieList}">
+                    <c:forEach var="movie" items="${movies}">
                         <tr>
                             <td>${movie.title}</td>
-                            <td>${movie.genre}</td>
-                            <td>${movie.duration} phút</td>
-                            <td>${movie.releaseDate}</td>
+                            <td>${movie.duration}</td>
+                            <td>${movie.releaseDate} phút</td>
+                            <td>${movie.endDate}</td>
                             <td>
                                 <a href="movies?action=edit&id=${movie.id}">Chỉnh sửa</a> |
-                                <a href="movies?action=delete&id=${movie.id}" onclick="return confirm('Bạn có chắc chắn muốn xóa phim này?');">Xóa</a>
+                                <form action="${pageContext.request.contextPath}/film_management" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa phim này?');">
+                                    <input type="hidden" name="del_movie_id" value="${movie.id}" />
+                                    <button type="submit">Xóa</button>
+                                </form>
                             </td>
                         </tr>
                     </c:forEach>

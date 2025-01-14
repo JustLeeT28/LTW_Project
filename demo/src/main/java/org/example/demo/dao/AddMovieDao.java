@@ -251,7 +251,7 @@ public class AddMovieDao {
     }
 
 
-    public static void deleteMovie(int movieId) {
+    public static void deleteMovie(String Id) {
         // Câu truy vấn SQL để xóa các bản ghi liên quan trong các bảng liên kết trước
         String deleteMovieGenreQuery = "DELETE FROM movie_genres WHERE movieId = ?";
         String deleteMovieDirQuery = "DELETE FROM movie_directors WHERE movieId = ?";
@@ -262,6 +262,7 @@ public class AddMovieDao {
         PreparedStatement deleteMovieDirPs = null;
         PreparedStatement deleteMovieActorPs = null;
         PreparedStatement deleteMoviePs = null;
+        int movieId = Integer.parseInt(Id);  // Chuyển 'movieId' từ String sang int
         try {
             deleteMovieGenrePs = DbConnect.get(deleteMovieGenreQuery);
             deleteMovieDirPs = DbConnect.get(deleteMovieDirQuery);
@@ -295,7 +296,7 @@ public class AddMovieDao {
 
 
     public static void main(String[] args) {
-        deleteMovie(21);
+//        deleteMovie(21);
     }
 }
 

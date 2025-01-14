@@ -5,10 +5,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.example.demo.dao.model.Movie;
 import org.example.demo.service.AddMovieService;
+import org.example.demo.service.MovieService;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @WebServlet(name = "film_Controller", urlPatterns = "/film_management")
@@ -31,23 +35,55 @@ public class AddMovieController extends HttpServlet {
         String releaseDate = request.getParameter("releaseDate");
         String endDate = request.getParameter("endDate");
 
+        String delMovie = request.getParameter("del_movie_id");
+
         AddMovieService addMovieService = new AddMovieService();
-        // tao dữ liệu trong bảng movies
-        int movie_newid = addMovieService.addMovie(title,posterUrl,bannerUrl,description,country,language,subtitle,ageRating,releaseDate,endDate,duration);
-        if (movie_newid == -1) {
-            request.setAttribute("errorMessage", "Thêm phim không thành công!");
-            request.getRequestDispatcher("/Admin/film_management.jsp").forward(request, response);
+        if (title != null && !title.isEmpty() &&
+                posterUrl != null && !posterUrl.isEmpty() &&
+                bannerUrl != null && !bannerUrl.isEmpty() &&
+                description != null && !description.isEmpty() &&
+                country != null && !country.isEmpty() &&
+                language != null && !language.isEmpty() &&
+                subtitle != null && !subtitle.isEmpty() &&
+                duration != null && !duration.isEmpty() &&
+                genres != null && !genres.isEmpty() &&
+                directors != null && !directors.isEmpty() &&
+                actors != null && !actors.isEmpty() &&
+                ageRating != null && !ageRating.isEmpty() &&
+                releaseDate != null && !releaseDate.isEmpty() &&
+                endDate != null && !endDate.isEmpty()) {
+            // tao dữ liệu trong bảng movies
+            int movie_newid = addMovieService.addMovie(title, posterUrl, bannerUrl, description, country, language, subtitle, ageRating, releaseDate, endDate, duration);
+            if (movie_newid == -1) {
+                request.setAttribute("Message", "Thêm phim không thành công!");
+                doGet(request, response);
+            }
+            // tạo dữ liệu trong bảng genre_movie
+            addMovieService.addGenre_movie(genres, movie_newid);
+
+            addMovieService.addDirector_movie(directors, movie_newid);
+
+            addMovieService.addActor_movie(actors, movie_newid);
+
+            request.setAttribute("Message", "Thêm phim thành công!");
+            doGet(request, response);
         }
-        // tạo dữ liệu trong bảng genre_movie
-        addMovieService.addGenre_movie(genres,movie_newid);
 
-        addMovieService.addDirector_movie(directors,movie_newid);
+        if(delMovie != null && !delMovie.isEmpty()) {
+            addMovieService.delMovie(delMovie);
+            request.setAttribute("Message", "Xóa phim thành công!");
+            doGet(request, response);
+        }
 
-        addMovieService.addActor_movie(actors,movie_newid);
-
-        request.setAttribute("errorMessage", "Thêm thành công!");
-        request.getRequestDispatcher("/Admin/film_management.jsp").forward(request, response);
-
-        // Đăng ký
+        doGet(request, response);
     }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Movie> movies = new ArrayList<>(); // Sử dụng ArrayList để có thể gán sau này
+        MovieService movieService = new MovieService();
+        movies = movieService.getMovies(); // Lấy danh sách phim từ service
+        request.setAttribute("movies", movies); // Lưu vào request để hiển thị lên JSP
+        request.getRequestDispatcher("/Admin/film_management.jsp").forward(request, response); // Chuyển tới trang film_management.jsp
+    }
+
 }
