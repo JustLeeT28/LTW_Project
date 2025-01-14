@@ -38,6 +38,10 @@ public class LoginController extends HttpServlet {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("user", u);
                 session.setAttribute("isLogin", "true" );
+                if(u.getRole() == 1){ // nếu tài khoản là admin
+                    response.sendRedirect("/demo_war_exploded/film_management");
+                    return;
+                }
                 response.sendRedirect("/demo_war_exploded");
                 return;
             }

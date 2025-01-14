@@ -81,7 +81,7 @@ public class AddMovieController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Movie> movies = new ArrayList<>(); // Sử dụng ArrayList để có thể gán sau này
         MovieService movieService = new MovieService();
-        movies = movieService.getMovies(); // Lấy danh sách phim từ service
+        movies = movieService.getMoviesA_Z() ; // Lấy danh sách phim từ service
         request.setAttribute("movies", movies); // Lưu vào request để hiển thị lên JSP
         request.getRequestDispatcher("/Admin/film_management.jsp").forward(request, response); // Chuyển tới trang film_management.jsp
     }

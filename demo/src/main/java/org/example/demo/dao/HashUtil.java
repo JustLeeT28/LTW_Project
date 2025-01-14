@@ -32,18 +32,18 @@ public class HashUtil {
 
     public static void main(String[] args) {
         // Kiểm tra hàm mã hóa MD5
-        String password = "Dung12345";
+        String password = "admin12345";
         String p = hashWithMD5(password);
         System.out.println("Mật khẩu mã hóa MD5 là: " + p);
 
-        // Kiểm tra đăng nhập
-        String userEmail = "phamthidung@gmail.com";
-        LoginSignupService loginSignupService = new LoginSignupService();
-        User u =  loginSignupService.getUser(userEmail, p);
-        if(u != null) {
-            System.out.println(u);
-        }
-        System.out.println("không có người dùng này");
+//        // Kiểm tra đăng nhập
+//        String userEmail = "phamthidung@gmail.com";
+//        LoginSignupService loginSignupService = new LoginSignupService();
+//        User u =  loginSignupService.getUser(userEmail, p);
+//        if(u != null) {
+//            System.out.println(u);
+//        }
+//        System.out.println("không có người dùng này");
 
     }
 }
