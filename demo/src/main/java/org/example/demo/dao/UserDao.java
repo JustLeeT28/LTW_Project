@@ -348,6 +348,18 @@ public class UserDao {
         return list;
     }
 
+    public void blockCustomer(int idStatusBlock) {
+        PreparedStatement ps = null;
+        try {
+            String query = "UPDATE USERS SET status = ? WHERE id = ?";
+            ps = DbConnect.get(query);
+            ps.setString(1, "inactive");
+            ps.setInt(2, idStatusBlock);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 //    public static void main(String[] args) {
 //        UserDao dao = new UserDao();
 //        String p = "Dung12345";

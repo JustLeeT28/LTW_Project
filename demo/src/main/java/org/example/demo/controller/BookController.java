@@ -50,8 +50,8 @@ public class BookController extends HttpServlet {
         String minute = request.getParameter("minute");
 
         if (hour != null && !hour.isEmpty() && minute != null && !minute.isEmpty() && day != null && !day.isEmpty() && month != null && !month.isEmpty()) {
-            List<Showtime> showtimesByTimeAndId = showtimeService.getShowTimeByTimeAndId(movie.getId(), hour, minute);
-            request.setAttribute("showtimesByTimeAndId", showtimesByTimeAndId);
+//            List<Showtime> showtimesByTimeAndId = showtimeService.getShowTimeByTimeAndId(movie.getId(), hour, minute);
+//            request.setAttribute("showtimesByTimeAndId", showtimesByTimeAndId);
 
         }
         request.setAttribute("date", day);

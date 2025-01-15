@@ -11,4 +11,8 @@ public class Customer_mng_Service {
     public List<User> getAllUser() {
         return userDao.getAllUser();
     }
+
+    public void blockCustomer(int idStatusBlock) {
+        userDao.blockCustomer(idStatusBlock);
+    }
 }
