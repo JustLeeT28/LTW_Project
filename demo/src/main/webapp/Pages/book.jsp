@@ -9,10 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css'>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/book.css">
-    <script src="../Script/booked-chair.js"></script>
+    <script src="${pageContext.request.contextPath}/Script/chooseDate.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/nav_menu.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/footer.css">
-    <script src="../Script/search.js"></script>
 </head>
 <body>
 <jsp:include page="Includes/menu.jsp"/>
@@ -41,9 +40,9 @@
             <div class="time">
                 <h6>
                     <i class="bi bi-clock"></i>
-                    165 phút
+                    ${movie.duration} phút
                 </h6>
-                <button>PG-13</button>
+                <button>${movie.ageRating}</button>
             </div>
         </div>
         <div class="film_sumary">
@@ -56,89 +55,56 @@
                     Thứ sáu, ngày 13, tháng 7
                 </h6>
                 <div class="card_month">
-                    <li>
-                        <h6>Thứ hai</h6>
-                        <h6>1</h6>
-                    </li>
-                    <li>
-                        <h6>Thứ ba</h6>
-                        <h6>1</h6>
-                    </li>
-                    <li>
-                        <h6>Thứ tư</h6>
-                        <h6>1</h6>
-                    </li>
-                    <li>
-                        <h6>Thứ năm</h6>
-                        <h6>1</h6>
-                    </li>
-                    <li>
-                        <h6>Thứ sáu</h6>
-                        <h6>1</h6>
-                    </li>
-                    <li>
-                        <h6>Thứ bảy</h6>
-                        <h6>1</h6>
-                    </li>
-                    <li>
-                        <h6>Chủ nhật</h6>
-                        <h6>1</h6>
-                    </li>
+                    <%--<ul style="list-style: none; display: flex; padding: 0; margin: 0;">--%>
+                        <ul style="display: flex; list-style: none; padding: 0;">
+                            <c:forEach var="showtimeSame" items="${showtimesSameDate}">
+                                <form id="bookingForm" method="GET" action="${pageContext.request.contextPath}/book">
+                                <li style="margin-right: 20px; text-align: center;">
+                                    <h6>
+                                            ${showtimeSame.getDayOfWeek()}
+                                    </h6>
+                                    <h6
+                                            class="clickable"
+                                            data-day="${showtimeSame.getDay()}"
+                                            data-month="${showtimeSame.getMonth()}">
+                                            ${showtimeSame.getDay()}/${showtimeSame.getMonth()}
+                                    </h6>
+                                </li>
+                                    <input type="hidden" name="day" id="selectedDay"/>
+                                    <input type="hidden" name="month" id="selectedMonth"/>
+                                    <input type="hidden" name="mId" value="${param.mId}"/>
+                                </form>
+                            </c:forEach>
+                        </ul>
+
+                        <!-- Các input ẩn sẽ chứa dữ liệu -->
+
+                    <%--</ul>--%>
+
                 </div>
             </div>
             <div class="right_card">
-                <h6 class="tittle">
-                    Thời gian
-                </h6>
+                <h6 class="tittle">Thời gian</h6>
                 <div class="card_month">
-                    <li>
-                        <h6>2D</h6>
-                        <h6>12:00</h6>
-                    </li>
-                    <li>
-                        <h6>2D</h6>
-                        <h6>13:00</h6>
-                    </li>
-                    <li>
-                        <h6>2D</h6>
-                        <h6>12:00</h6>
-                    </li>
-                    <li>
-                        <h6>2D</h6>
-                        <h6>13:00</h6>
-                    </li>
-                    <li>
-                        <h6>2D</h6>
-                        <h6>12:00</h6>
-                    </li>
-                    <li>
-                        <h6>2D</h6>
-                        <h6>09:00</h6>
-                    </li>
-                    <li>
-                        <h6>2D</h6>
-                        <h6>11:00</h6>
-                    </li>
-                    <li>
-                        <h6>2D</h6>
-                        <h6>13:00</h6>
-                    </li>
-                    <li>
-                        <h6>2D</h6>
-                        <h6>15:00</h6>
-                    </li>
-                    <li>
-                        <h6>2D</h6>
-                        <h6>17:00</h6>
-                    </li>
-                    <li>
-                        <h6>2D</h6>
-                        <h6>19:00</h6>
-                    </li>
-                    <li>
-                        <h6>2D</h6>
-                        <h6>21:00</h6>
-                    </li>
+                        <ul style="display: flex; list-style: none; padding: 0;">
+                            <c:forEach var="showtimeAll" items="${showtimesByDateAndId}">
+                                <form id="bookingFormTime" method="GET" action="${pageContext.request.contextPath}/book">
+                                <li style="margin-right: 20px; text-align: center;">
+                                    <h6>2D</h6>
+                                    <h6
+                                            class="clickableTime"
+                                            data-hour="${showtimeAll.getHour()}"
+                                            data-minute="${showtimeAll.getMinute()}">
+                                            ${showtimeAll.getHour()}:${showtimeAll.getMinute()}</h6>
+                                </li>
+                                <input type="hidden" name="hour" id="selectedHour"/>
+                                <input type="hidden" name="minute" id="selectedMinute"/>
+                                <input type="hidden" name="mId" value="${param.mId}"/>
+                                <input type="hidden" name="day" value="${param.day}"/>
+                                <input type="hidden" name="month" value="${param.month}"/>
+                                </form>
+                            </c:forEach>
+                        </ul>
                 </div>
             </div>
         </div>
