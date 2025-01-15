@@ -34,7 +34,7 @@
                 <h1>Quản lý Khách hàng</h1>
                 <!-- Công cụ tìm kiếm -->
                 <div class="search-customer" style="margin-bottom: 15px">
-                    <form action="${pageContext.request.contextPath}/customer_mng" method="get">
+                    <form action="${pageContext.request.contextPath}/customer_mng" method="GET">
                         <input type="text" id="query_customers" name="query_customers" placeholder="Nhập tên hoặc email">
                         <button type="submit">Tìm kiếm</button>
                     </form>
@@ -82,7 +82,7 @@
 
                                         <!-- Button xóa -->
                                         <form class="form-delete" action="${pageContext.request.contextPath}/customer_mng" method="GET" onsubmit="return confirm('Bạn có chắc chắn muốn xóa người này?');">
-                                            <input type="hidden" name="user_del" value="${user.id}" />
+                                            <input type="hidden" name="userId_del" value="${user.id}" />
                                             <button type="submit" style="width: 100%; margin-top: 5px">
                                                 Xóa</button>
                                         </form>

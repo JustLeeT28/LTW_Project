@@ -15,4 +15,27 @@ public class Customer_mng_Service {
     public void blockCustomer(int idStatusBlock) {
         userDao.blockCustomer(idStatusBlock);
     }
+
+    public void unBlockCustomer(int idStatusUnblock) {
+        userDao.unBlockCustomer(idStatusUnblock);
+    }
+
+    public void delCustomer(int idUserdel) {
+        userDao.delCustomer(idUserdel);
+    }
+
+    public List<User> getCustomer(String queryCus) {
+        if(isEmail(queryCus)) {
+            return  userDao.getCustomerByEmail(queryCus);
+        }
+        return  userDao.getCustomerByName(queryCus);
+
+    }
+    public static boolean isEmail(String queryCus) {
+        String emailRegex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+        // So sánh với regex.
+        return queryCus.matches(emailRegex);
+    }
+
+
 }

@@ -360,6 +360,91 @@ public class UserDao {
             throw new RuntimeException(e);
         }
     }
+
+    public void unBlockCustomer(int idStatusUnblock) {
+        PreparedStatement ps = null;
+        try {
+            String query = "UPDATE USERS SET status = ? WHERE id = ?";
+            ps = DbConnect.get(query);
+            ps.setString(1, "active");
+            ps.setInt(2, idStatusUnblock);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void delCustomer(int idUserdel) {
+        PreparedStatement ps = null;
+        try {
+            String query = "DELETE FROM USERS WHERE id = ?";
+            ps = DbConnect.get(query);
+            ps.setInt(1, idUserdel);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<User> getCustomerByEmail(String queryCus) {
+        List<User> list = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        try {
+            String query = "SELECT * FROM USERS WHERE email LIKE ?" ;
+            ps = DbConnect.get(query);
+            ps.setString(1, "%"+queryCus+"%");
+            resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                User user = new User(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("email"),
+                        resultSet.getString("dob"),
+                        resultSet.getString("phone"),
+                        resultSet.getInt("role"),
+                        resultSet.getString("password"),
+                        resultSet.getString("status")
+                );
+                list.add(user);
+            }
+            return list ;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public List<User> getCustomerByName(String queryCus) {
+        List<User> list = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        try {
+            String query = "SELECT * FROM USERS WHERE name LIKE  ?" ;
+            ps = DbConnect.get(query);
+            ps.setString(1, "%"+queryCus+"%");
+            resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                User user = new User(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("email"),
+                        resultSet.getString("dob"),
+                        resultSet.getString("phone"),
+                        resultSet.getInt("role"),
+                        resultSet.getString("password"),
+                        resultSet.getString("status")
+                );
+                list.add(user);
+            }
+            return list ;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
 //    public static void main(String[] args) {
 //        UserDao dao = new UserDao();
 //        String p = "Dung12345";

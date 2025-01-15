@@ -20,14 +20,28 @@ import java.util.List;
 public class CustomerController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String query_cus = request.getParameter("query_customer");
-        String idStatusBlock  = request.getParameter("userId_status_block");
+        String query_cus = request.getParameter("query_customers");
+        String idStatusBlock = request.getParameter("userId_status_block");
+        String idStatusUnblock = request.getParameter("userId_status_unblock");
+        String idUserdel = request.getParameter("userId_del");
         Customer_mng_Service service = new Customer_mng_Service();
-        if(idStatusBlock != null && !idStatusBlock.isEmpty()) {
+        // vô hiệu hóa tài khoản
+        if (idStatusBlock != null && !idStatusBlock.isEmpty()) {
             service.blockCustomer(Integer.parseInt(idStatusBlock));
         }
+        // gỡ vô hiệu hóa tài khoản
+        if (idStatusUnblock != null && !idStatusUnblock.isEmpty()) {
+            service.unBlockCustomer(Integer.parseInt(idStatusUnblock));
+        }
+        if (idUserdel != null && !idUserdel.isEmpty()) {
+            service.delCustomer(Integer.parseInt(idUserdel));
+        }
         List<User> listUser = new ArrayList<User>();
-        listUser = service.getAllUser();
+        if (query_cus != null && !query_cus.isEmpty()) {
+            listUser = service.getCustomer(query_cus);
+        } else{
+            listUser = service.getAllUser();
+        }
 
 
 //        request.setAttribute("date", date);
