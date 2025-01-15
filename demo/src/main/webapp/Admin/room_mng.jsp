@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Quản lý Phòng Chiếu</title>
     <link rel="stylesheet" href="room_mng.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/room_mng.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/schedule_mng.css">
+
 </head>
 <body>
     <div class="container">
@@ -72,7 +76,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Dữ liệu phòng chiếu sẽ được hiển thị ở đây -->
+                        <c:forEach var="room" items="${listRoom}">
+                            <tr>
+                                <td>${room.id}</td>
+                                <td>${room.name}</td>
+                                <td>${room.occupancy}</td>
+                                <td>${room.style}</td>
+                                <td>
+                                    <c:if test="${room.status == 'active'}">
+                                    <form class="form-delete" action="${pageContext.request.contextPath}/room_mng" method="POST" onsubmit="return confirm('Bạn muốn ngưng hoạt động phòng này?');">
+                                        <input type="hidden" name="roomId_block" value="${room.id}" />
+                                        <button type="submit" style="width: 100%">
+                                            Tạm ngừng</button>
+                                    </form>
+                                    </c:if>
+                                    <c:if test="${room.status == 'inactive'}">
+                                        <form class="form-delete" action="${pageContext.request.contextPath}/room_mng" method="POST" onsubmit="return confirm('Bạn muốn hoạt động lại phòng này?');">
+                                            <input type="hidden" name="roomId_unBlock" value="${room.id}" />
+                                            <button type="submit" style="width: 100%">
+                                                Hoạt động</button>
+                                        </form>
+                                    </c:if>
+                                </td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>

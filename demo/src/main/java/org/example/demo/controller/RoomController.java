@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.example.demo.dao.model.MovieTicket;
+import org.example.demo.dao.model.Room;
 import org.example.demo.service.RoomService;
 import org.example.demo.service.TicketMovieService;
 
@@ -18,20 +19,11 @@ import java.util.List;
 
 public class RoomController extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String query_tikket = request.getParameter("query_tikkets");
-//
-//        TicketMovieService ticketMovieService = new TicketMovieService();
-//
-//        List<MovieTicket> listMovieTicket = new ArrayList<>();
-//        if (query_tikket != null && !query_tikket.isEmpty()) {
-//            listMovieTicket = ticketMovieService.getTicketByQuery(query_tikket);
-//        } else{
-//            listMovieTicket = ticketMovieService.getTicketAll();
-//        }
-//
-//
-//        request.setAttribute("listMovieTicket", listMovieTicket);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {//
+        RoomService roomService = new RoomService();
+        List<Room> listRoom = new ArrayList<>();
+        listRoom = roomService.getAllRoom();
+        request.setAttribute("listRoom", listRoom);
         request.getRequestDispatcher("/Admin/room_mng.jsp").forward(request, response);
     }
 
@@ -41,18 +33,20 @@ public class RoomController extends HttpServlet {
         String roomId = request.getParameter("roomId");
         String styleRoom = request.getParameter("style_room");
         String occupancy = request.getParameter("occupancy");
+        String room_blockId = request.getParameter("roomId_block");
+        String room_unBlock_id = request.getParameter("roomId_unBlock");
 
         RoomService roomService = new RoomService();
-        if(roomId != null && styleRoom != null && !roomId.isEmpty() && styleRoom.isEmpty() ) {
+        if(roomId != null && styleRoom != null && !roomId.isEmpty() && !styleRoom.isEmpty() ) {
             roomService.updateRoomStyle(Integer.parseInt(roomId),styleRoom);
         }
-        if(roomId != null && occupancy != null && !roomId.isEmpty() && occupancy.isEmpty() ) {
+        if(roomId != null && occupancy != null && !roomId.isEmpty() && !occupancy.isEmpty() ) {
             roomService.updateRoomOccupancy(Integer.parseInt(roomId),Integer.parseInt(occupancy));
         }
-
-
-
-//        doGet(request, response);
+        if(room_blockId != null && !room_blockId.isEmpty()) {
+            roomService.blockRoom(Integer.parseInt(room_blockId));
+        }
+        doGet(request, response);
 
     }
 }
