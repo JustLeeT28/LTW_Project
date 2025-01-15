@@ -56,9 +56,9 @@
                 </h6>
                 <div class="card_month">
                     <%--<ul style="list-style: none; display: flex; padding: 0; margin: 0;">--%>
-                        <ul style="display: flex; list-style: none; padding: 0;">
-                            <c:forEach var="showtimeSame" items="${showtimesSameDate}">
-                                <form id="bookingForm" method="GET" action="${pageContext.request.contextPath}/book">
+                    <ul style="display: flex; list-style: none; padding: 0;">
+                        <c:forEach var="showtimeSame" items="${showtimesSameDate}">
+                            <form id="bookingForm" method="GET" action="${pageContext.request.contextPath}/book">
                                 <li style="margin-right: 20px; text-align: center;">
                                     <h6>
                                             ${showtimeSame.getDayOfWeek()}
@@ -70,14 +70,14 @@
                                             ${showtimeSame.getDay()}/${showtimeSame.getMonth()}
                                     </h6>
                                 </li>
-                                    <input type="hidden" name="day" id="selectedDay"/>
-                                    <input type="hidden" name="month" id="selectedMonth"/>
-                                    <input type="hidden" name="mId" value="${param.mId}"/>
-                                </form>
-                            </c:forEach>
-                        </ul>
+                                <input type="hidden" name="day" id="selectedDay"/>
+                                <input type="hidden" name="month" id="selectedMonth"/>
+                                <input type="hidden" name="mId" value="${param.mId}"/>
+                            </form>
+                        </c:forEach>
+                    </ul>
 
-                        <!-- Các input ẩn sẽ chứa dữ liệu -->
+                    <!-- Các input ẩn sẽ chứa dữ liệu -->
 
                     <%--</ul>--%>
 
@@ -86,25 +86,38 @@
             <div class="right_card">
                 <h6 class="tittle">Thời gian</h6>
                 <div class="card_month">
-                        <ul style="display: flex; list-style: none; padding: 0;">
-                            <c:forEach var="showtimeAll" items="${showtimesByDateAndId}">
-                                <form id="bookingFormTime" method="GET" action="${pageContext.request.contextPath}/book">
-                                <li style="margin-right: 20px; text-align: center;">
+                    <ul style="display: flex; list-style: none; padding: 0;">
+                        <c:forEach var="showtimeAll" items="${showtimesByDateAndId}">
+                            <li style="margin-right: 20px; text-align: center;">
+                                <form method="GET" action="${pageContext.request.contextPath}/book">
                                     <h6>2D</h6>
                                     <h6
                                             class="clickableTime"
                                             data-hour="${showtimeAll.getHour()}"
-                                            data-minute="${showtimeAll.getMinute()}">
-                                            ${showtimeAll.getHour()}:${showtimeAll.getMinute()}</h6>
-                                </li>
-                                <input type="hidden" name="hour" id="selectedHour"/>
-                                <input type="hidden" name="minute" id="selectedMinute"/>
-                                <input type="hidden" name="mId" value="${param.mId}"/>
-                                <input type="hidden" name="day" value="${param.day}"/>
-                                <input type="hidden" name="month" value="${param.month}"/>
+                                            data-minute="${showtimeAll.getMinute()}"
+                                            onclick="submitFormWithTime(this, '${showtimeAll.getRoomId()}', ${showtimeAll.getId()})">
+                                            ${showtimeAll.getHour()}:${showtimeAll.getMinute()}
+                                    </h6>
+                                    <input type="hidden" name="hour" id="selectedHour" value="${showtimeAll.getHour()}"/>
+                                    <input type="hidden" name="minute" id="selectedMinute" value="${showtimeAll.getMinute()}"/>
+                                    <input type="hidden" name="showtimeId" value="${showtimeAll.getId()}">
+                                    <input type="hidden" name="roomId" value="${showtimeAll.getRoomId()}"/>
+                                    <input type="hidden" name="mId" value="${param.mId}"/>
+                                    <input type="hidden" name="day" value="${param.day}"/>
+                                    <input type="hidden" name="month" value="${param.month}"/>
                                 </form>
-                            </c:forEach>
-                        </ul>
+                            </li>
+                        </c:forEach>
+                    </ul>
+
+                    <script>
+                        function submitFormWithTime(element, roomId, showtimeId) {
+                            const form = element.closest('form'); // Lấy form gần nhất
+                            form.querySelector('input[name="roomId"]').value = roomId; // Gán giá trị roomId nếu cần
+                            form.querySelector('input[name="showtimeId"]').value = showtimeId; // Gán giá trị roomId nếu cần
+                            form.submit(); // Gửi form
+                        }
+                    </script>
                 </div>
             </div>
         </div>
@@ -112,25 +125,10 @@
             Screen
         </div>
         <!--chairs-->
-        <jsp:include page="Rooms/room1.jsp"/>
-        <div class="details" id="det">
-            <div class="details_chair">
-                <li>Available</li>
-                <li>Booked</li>
-                <li>Selected</li>
-            </div>
-        </div>
-        <div class="book_movie">
-            <div class="lef_book">
-                <p class="text_total_pay">Các ghế đã chọn: </p>
-                <div id="seats-select"></div>
-            </div>
-            <div class="lef_book">
-                <p class="text_total_pay">Tổng thanh toán: </p>
-                <div id="total_need_pay">0 VNĐ</div>
-            </div>
-            <div class="btn-book">Đặt vé</div>
-        </div>
+        <c:if test="${not empty roomId}">
+            <jsp:include page="Rooms/room${roomId}.jsp"/>
+        </c:if>
+
     </div>
 </div>
 <jsp:include page="Includes/footer.jsp"/>
