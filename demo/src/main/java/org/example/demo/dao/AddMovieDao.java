@@ -224,8 +224,6 @@ public class AddMovieDao {
 
 
     }
-
-
     public void addActor_movie(String actors, int movieNewid) {
         PreparedStatement ps = null;
         List<String> actorList = getStringofList(actors);
