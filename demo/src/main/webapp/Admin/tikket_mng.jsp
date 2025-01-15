@@ -16,13 +16,13 @@
         <h2>Admin Panel</h2>
         <nav>
             <ul>
-                <li><a href="dashboard.jsp" data-section="dashboard">Dashboard</a></li>
-                <li><a href="film_management.jsp" data-section="movies">Quản lý Phim</a></li>
-                <li><a href="schedule_mng.jsp" data-section="schedules">Quản lý Lịch Chiếu</a></li>
-                <li><a href="room_mng.jsp" data-section="rooms">Quản lý Phòng Chiếu</a></li>
-                <li><a href="tikket_mng.jsp" data-section="tickets">Quản lý Vé</a></li>
-                <li><a href="customer_mng.jsp" data-section="customers">Quản lý Khách hàng</a></li>
-                <li><a href="reports_mng.jsp" data-section="reports">Báo cáo và Thống kê</a></li>
+                <li><a href="${pageContext.request.contextPath}/dashboard" data-section="dashboard">Dashboard</a></li>
+                <li><a href="${pageContext.request.contextPath}/film_management" data-section="movies">Quản lý Phim</a></li>
+                <li><a href="${pageContext.request.contextPath}/schedule_mng" data-section="schedules">Quản lý Lịch Chiếu</a></li>
+                <li><a href="${pageContext.request.contextPath}/room_mng" data-section="rooms">Quản lý Phòng Chiếu</a></li>
+                <li><a href="${pageContext.request.contextPath}/tikket_mng" data-section="tickets">Quản lý Vé</a></li>
+                <li><a href="${pageContext.request.contextPath}/customer_mng" data-section="customers">Quản lý Khách hàng</a></li>
+                <%--                <li><a href="reports_mng.jsp" data-section="settings">Báo cáo và Thống kê</a></li>--%>
             </ul>
         </nav>
     </aside>
