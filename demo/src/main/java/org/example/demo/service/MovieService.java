@@ -59,4 +59,8 @@ public class MovieService {
     public List<Movie> getMoviesA_Z() {
         return movieDao.getMoviesA_Z();
     }
+
+    public List<Movie> getMovieNow() {
+        return movieDao.getMovieNow();
+    }
 }

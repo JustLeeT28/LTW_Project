@@ -21,6 +21,7 @@ public class BookController extends HttpServlet {
         String movieId = request.getParameter("mId");
         String roomId = request.getParameter("roomId");
         String showtimeId = request.getParameter("showtimeId");
+
         Set<String> rowsInRoom = new HashSet<>();
         List<ShowSeat> statusSeatByShowtimeId = new ArrayList<>();
         List<Seat> seatsInRoom =  new ArrayList<>();
@@ -56,7 +57,7 @@ public class BookController extends HttpServlet {
         String minute = request.getParameter("minute");
         // cái này điều kiện lớn nhất cho lên đầu
         if (hour != null && !hour.isEmpty() && minute != null && !minute.isEmpty() && day != null && !day.isEmpty() && month != null && !month.isEmpty()) {
-            List<Showtime> showtimesByTimeAndId = showtimeService.getShowTimeByTimeAndId(movie.getId(), hour, minute, day, month);
+//            List<Showtime> showtimesByTimeAndId = showtimeService.getShowTimeByTimeAndId(movie.getId(), hour, minute, day, month);
 
         }
 

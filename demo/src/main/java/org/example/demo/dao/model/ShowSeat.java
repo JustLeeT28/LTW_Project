@@ -14,6 +14,12 @@ public class ShowSeat {
         this.status = status;
         this.roomId = roomId;
     }
+    public ShowSeat(int id, int showId, int seatId, String status) {
+        this.id = id;
+        this.showId = showId;
+        this.seatId = seatId;
+        this.status = status;
+    }
 
     public int getId() {
         return id;
