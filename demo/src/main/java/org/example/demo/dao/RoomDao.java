@@ -1,10 +1,13 @@
 package org.example.demo.dao;
 
 import org.example.demo.dao.db.DbConnect;
+import org.example.demo.dao.model.Room;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RoomDao {
     public void updateRoomStyle(int i, String styleRoom) {
@@ -30,6 +33,30 @@ public class RoomDao {
             ps.setInt(1,o);
             ps.setInt(2,i);
             ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Room> getAllRoom() {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Room> rooms = new ArrayList<Room>();
+        try {
+            String sql = "select * from rooms";
+            ps = DbConnect.get(sql);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                Room r = new Room(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("style"),
+                        rs.getInt("occupancy"),
+                        rs.getString("status")
+                        );
+                rooms.add(r);
+            }
+            return rooms;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
