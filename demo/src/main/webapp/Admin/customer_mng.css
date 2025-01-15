@@ -5,6 +5,7 @@
     box-sizing: border-box;
 }
 
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
@@ -193,4 +194,9 @@ body {
 
 .manage-discounts ul li button:hover {
     background-color: #c0392b;
+}
+form {
+    display: inline-block; /* Hiển thị inline để các form không bị xuống dòng */
+    width: 100%; /* Chiều dài bằng 100% */
+    margin-bottom: 10px; /* Khoảng cách giữa các form */
 }

@@ -6,27 +6,31 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.example.demo.dao.model.User;
+import org.example.demo.service.Customer_mng_Service;
 import org.example.demo.service.DashboardService;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "dashboardController", value = "/custome_mng")
+@WebServlet(name = "customersController", value = "/custome_mng")
 
 public class CustomerController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String query_cus = request.getParameter("query_customer");
 
-        DashboardService service = new DashboardService();
+        Customer_mng_Service service = new Customer_mng_Service();
+        List<User> listUser = new ArrayList<User>();
 
-        double total_revenue = service.getTotalR7();
+        listUser = service.getAllUser();
 
 
 //        request.setAttribute("date", date);
-        request.setAttribute("total_revenue", total_revenue);
-        request.getRequestDispatcher("Admin/dashboard.jsp").forward(request, response);
+        request.setAttribute("listUser", listUser);
+        request.getRequestDispatcher("Admin/customer_mng.jsp").forward(request, response);
     }
 
     @Override

@@ -310,6 +310,44 @@ public class UserDao {
         }
     }
 
+    public List<User> getAllUser() {
+        List<User> list = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        try {
+            String query = "SELECT * FROM USERS";
+            ps = DbConnect.get(query);
+            resultSet = ps.executeQuery();
+            while (resultSet.next()) { // Lặp qua tất cả các kết quả trong ResultSet
+                User user = new User(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("email"),
+                        resultSet.getString("dob"),
+                        resultSet.getString("phone"),
+                        resultSet.getInt("role"),
+                        resultSet.getString("password"),
+                        resultSet.getString("status")
+                );
+                list.add(user);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+
 //    public static void main(String[] args) {
 //        UserDao dao = new UserDao();
 //        String p = "Dung12345";

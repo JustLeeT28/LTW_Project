@@ -108,12 +108,6 @@
                                 <button id="change-button" onclick="window.location.href='${pageContext.request.contextPath}/UpdateFilm?mId=${movie.id}'">
                                     Chỉnh sửa
                                 </button>
-
-                            <%-- <a class="change-button" href="${pageContext.request.contextPath}/UpdateFilm?mId=${movie.id}">Chỉnh sửa</a>--%>
-<%--                                <form action="${pageContext.request.contextPath}/film_management" method="GET" onsubmit="return confirm('Bạn muốn chỉnh sửa phim này?');">--%>
-<%--                                    <input type="hidden" name="update_movie_id" value="${movie.id}" />--%>
-<%--                                    <button type="submit">Chỉnh sửa</button>--%>
-<%--                                </form>--%>
                                 <form action="${pageContext.request.contextPath}/film_management" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa phim này?');">
                                     <input type="hidden" name="del_movie_id" value="${movie.id}" />
                                     <button type="submit">Xóa</button>
