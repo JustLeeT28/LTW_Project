@@ -50,6 +50,23 @@ public class ShowtimeDao {
         }
     }
 
+    public List<Showtime> getShowTimeSameDate(int movieId) {
+        List<Showtime> showtimes = getShowTime(movieId);
+        Map<LocalDate, Showtime> showtimesByDate = new HashMap<>();
+        List<Showtime> result = new ArrayList<>();
+
+        for (Showtime showtime : showtimes) {
+            LocalDate showDate = showtime.getShowDate();  // Lấy ngày của showtime
+
+            // Kiểm tra xem ngày đó đã có trong Map chưa, nếu chưa thì thêm showtime
+            if (!showtimesByDate.containsKey(showDate)) {
+                showtimesByDate.put(showDate, showtime);  // Lưu trữ showtime cho ngày đó
+                result.add(showtime);  // Thêm showtime vào danh sách kết quả
+            }
+        }
+
+        return result;
+    }
     public static void main(String[] args) {
 
     }
