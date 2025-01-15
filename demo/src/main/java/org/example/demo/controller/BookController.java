@@ -3,15 +3,14 @@ package org.example.demo.controller;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import org.example.demo.dao.model.Actor;
-import org.example.demo.dao.model.Director;
-import org.example.demo.dao.model.Movie;
-import org.example.demo.dao.model.Showtime;
+import org.example.demo.dao.SeatDao;
+import org.example.demo.dao.model.*;
 import org.example.demo.service.MovieService;
+import org.example.demo.service.SeatService;
 import org.example.demo.service.ShowtimeService;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.*;
 
 @WebServlet(name = "BookController", urlPatterns = "/book")
 public class BookController extends HttpServlet {
@@ -20,8 +19,15 @@ public class BookController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Lấy 'id' từ query parameter trong URL
         String movieId = request.getParameter("mId");
+        String roomId = request.getParameter("roomId");
+        String showtimeId = request.getParameter("showtimeId");
+        Set<String> rowsInRoom = new HashSet<>();
+        List<ShowSeat> statusSeatByShowtimeId = new ArrayList<>();
+        List<Seat> seatsInRoom =  new ArrayList<>();
+
         MovieService movieService = new MovieService();
         ShowtimeService showtimeService = new ShowtimeService();
+
 
         // Lấy thông tin phim
         Movie movie = movieService.getMovieById(Integer.parseInt(movieId));
@@ -48,12 +54,12 @@ public class BookController extends HttpServlet {
 
         String hour = request.getParameter("hour");
         String minute = request.getParameter("minute");
-
+        // cái này điều kiện lớn nhất cho lên đầu
         if (hour != null && !hour.isEmpty() && minute != null && !minute.isEmpty() && day != null && !day.isEmpty() && month != null && !month.isEmpty()) {
-//            List<Showtime> showtimesByTimeAndId = showtimeService.getShowTimeByTimeAndId(movie.getId(), hour, minute);
-//            request.setAttribute("showtimesByTimeAndId", showtimesByTimeAndId);
+            List<Showtime> showtimesByTimeAndId = showtimeService.getShowTimeByTimeAndId(movie.getId(), hour, minute, day, month);
 
         }
+
         request.setAttribute("date", day);
         request.setAttribute("month", month);
         request.setAttribute("movie", movie);
@@ -63,6 +69,17 @@ public class BookController extends HttpServlet {
         request.setAttribute("showtimesSameDate", showtimesSameDate);
         request.setAttribute("hour", hour);
         request.setAttribute("minute", minute);
+        request.setAttribute("roomId", roomId);
+        request.setAttribute("showtimeId", showtimeId);
+        if (roomId != null && showtimeId != null) {
+            statusSeatByShowtimeId = new SeatService().getStatusSeatByShowtimeId(Integer.parseInt(roomId), Integer.parseInt(showtimeId));
+            seatsInRoom = new SeatService().getSeatsInRooms(Integer.parseInt(roomId));
+            rowsInRoom = new SeatService().getRowsInRoom(Integer.parseInt(roomId));
+
+        }
+        request.setAttribute("statusSeats", statusSeatByShowtimeId);
+        request.setAttribute("seatsInRoom", seatsInRoom);
+        request.setAttribute("rowsInRoom", rowsInRoom);
         // Chuyển hướng tới trang book.jsp
         request.getRequestDispatcher("Pages/book.jsp").forward(request, response);
     }
