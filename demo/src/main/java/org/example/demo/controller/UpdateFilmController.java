@@ -35,7 +35,6 @@ public class UpdateFilmController extends HttpServlet {
 
         int movieId = Integer.parseInt(request.getParameter("mId"));
 
-
         int count = 0;
         UpdateMovieService updateMovieService = new UpdateMovieService();
         if (title != null && !title.isEmpty()) {

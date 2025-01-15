@@ -16,8 +16,8 @@
         <h2>Admin Panel</h2>
         <nav>
             <ul>
-                <li><a href="dashboard.jsp" data-section="dashboard">Dashboard</a></li>
-                <li><a href="${pageContext.request.contextPath}film_management" data-section="movies">Quản lý Phim</a></li>
+                <li><a href="${pageContext.request.contextPath}/dashboard" data-section="dashboard">Dashboard</a></li>
+                <li><a href="${pageContext.request.contextPath}/film_management" data-section="movies">Quản lý Phim</a></li>
                 <li><a href="schedule_mng.jsp" data-section="schedules">Quản lý Lịch Chiếu</a></li>
                 <li><a href="room_mng.jsp" data-section="rooms">Quản lý Phòng Chiếu</a></li>
                 <li><a href="tikket_mng.jsp" data-section="tickets">Quản lý Vé</a></li>
@@ -105,7 +105,15 @@
                             <td>${movie.releaseDate}</td>
                             <td>${movie.endDate}</td>
                             <td>
-                                <a href="${pageContext.request.contextPath}/UpdateFilm?mId=${movie.id}">Chỉnh sửa</a>
+                                <button id="change-button" onclick="window.location.href='${pageContext.request.contextPath}/UpdateFilm?mId=${movie.id}'">
+                                    Chỉnh sửa
+                                </button>
+
+                            <%-- <a class="change-button" href="${pageContext.request.contextPath}/UpdateFilm?mId=${movie.id}">Chỉnh sửa</a>--%>
+<%--                                <form action="${pageContext.request.contextPath}/film_management" method="GET" onsubmit="return confirm('Bạn muốn chỉnh sửa phim này?');">--%>
+<%--                                    <input type="hidden" name="update_movie_id" value="${movie.id}" />--%>
+<%--                                    <button type="submit">Chỉnh sửa</button>--%>
+<%--                                </form>--%>
                                 <form action="${pageContext.request.contextPath}/film_management" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa phim này?');">
                                     <input type="hidden" name="del_movie_id" value="${movie.id}" />
                                     <button type="submit">Xóa</button>

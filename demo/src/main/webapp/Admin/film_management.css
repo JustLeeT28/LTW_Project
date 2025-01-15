@@ -159,6 +159,7 @@ form button:hover {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    width: 100%;
 }
 
 .movie-list table button:hover {
@@ -177,4 +178,18 @@ form button:hover {
     background-color: #f9f9f9;
     border-radius: 5px;
     margin-top: 10px;
+}
+.movie-list #change-button {
+    background-color: #4CAF50; /* Màu nền xanh */
+    color: white; /* Màu chữ */
+    padding: 10px 20px; /* Khoảng cách bên trong nút */
+    border: none; /* Bỏ viền */
+    border-radius: 5px; /* Bo góc nút */
+    cursor: pointer; /* Hiển thị con trỏ khi di chuột vào */
+    font-size: 0.95em;
+    width: 100%;
+}
+
+.movie-list #change-button:hover {
+    background-color: #45a049; /* Đổi màu nền khi hover */
 }

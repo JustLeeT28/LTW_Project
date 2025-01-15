@@ -79,6 +79,11 @@ public class AddMovieController extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String updateMovieId = request.getParameter("update_movie_id");
+        if(updateMovieId != null && !updateMovieId.isEmpty()) {
+            request.setAttribute("mId", updateMovieId);
+            request.getRequestDispatcher("/Admin/update_film_management.jsp").forward(request, response);
+        }
         List<Movie> movies = new ArrayList<>(); // Sử dụng ArrayList để có thể gán sau này
         MovieService movieService = new MovieService();
         movies = movieService.getMoviesA_Z() ; // Lấy danh sách phim từ service

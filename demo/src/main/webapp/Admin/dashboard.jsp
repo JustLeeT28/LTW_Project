@@ -30,7 +30,7 @@
         <main class="main-content">
             <div id="dashboard" class="section active">
                 <h1>Dashboard</h1>
-                <div class="statistics" style="margin-bottom: 15px;display: flex; justify-content: space-between; gap: 15px;">
+                <div class="statistics" style="margin-bottom: 15px;display: flex; gap: 15px;">
                     <p>Thống kê theo: </p>
                 <form id="statisticsForm" method="get" action="${pageContext.request.contextPath}/dashboard">
                     <select class="combobox" name="date" id="date" onchange="document.getElementById('statisticsForm').submit();">
@@ -46,17 +46,17 @@
                         <p id="ticketsSold">350 vé</p>
                     </div>
                     <div class="card">
-                        <h3>Doanh thu</h3>
-                        <p id="revenue">200,000,000 VND</p>
+                        <h3>Tổng doanh thu</h3>
+                        <p id="revenue">${total_revenue} VNĐ</p>
                     </div>
-                    <div class="card">
-                        <h3>Số lượng người xem</h3>
-                        <p id="viewers">500 người</p>
-                    </div>
-                    <div class="card">
-                        <h3>Tình trạng chỗ ngồi</h3>
-                        <p id="seatStatus">75% đã được đặt</p>
-                    </div>
+<%--                    <div class="card">--%>
+<%--                        <h3>Số lượng người xem</h3>--%>
+<%--                        <p id="viewers">500 người</p>--%>
+<%--                    </div>--%>
+<%--                    <div class="card">--%>
+<%--                        <h3>Tình trạng chỗ ngồi</h3>--%>
+<%--                        <p id="seatStatus">75% đã được đặt</p>--%>
+<%--                    </div>--%>
                 </div>
 
                 <!-- Biểu đồ doanh thu -->
@@ -78,6 +78,6 @@
         </main>
     </div>
 
-    <script src="dashboard.js"></script>
+    <script src="${pageContext.request.contextPath}/Admin/dashboard.js"></script>
 </body>
 </html>
