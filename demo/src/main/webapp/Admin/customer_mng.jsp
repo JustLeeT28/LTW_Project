@@ -34,7 +34,7 @@
                 <h1>Quản lý Khách hàng</h1>
                 <!-- Công cụ tìm kiếm -->
                 <div class="search-customer" style="margin-bottom: 15px">
-                    <form action="/customer_mng" method="get">
+                    <form action="${pageContext.request.contextPath}/customer_mng" method="get">
                         <input type="text" id="query_customers" name="query_customers" placeholder="Nhập tên hoặc email">
                         <button type="submit">Tìm kiếm</button>
                     </form>
@@ -65,23 +65,23 @@
                                     <td>
                                         <!-- Button chỉnh sửa -->
                                         <c:if test="${user.status == 'active'}">
-                                            <form id="block" class="form-block" action="${pageContext.request.contextPath}/UpdateCustomer" method="POST">
-                                                <input type="hidden" name="user_status_block" value="${user.id}" />
+                                            <form id="block" class="form-block" action="${pageContext.request.contextPath}/customer_mng" method="GET">
+                                                <input type="hidden" name="userId_status_block" value="${user.id}" />
                                                 <button type="submit" style="width: 100%;background-color: green;color: white;border: none;border-radius: 5px;cursor: pointer;transition: all 0.3s ease-in-out;" onmouseover="this.style.backgroundColor='#228b22'; this.style.color='#f0f0f0';"onmouseout="this.style.backgroundColor='green'; this.style.color='white';">
                                                     Vô hiệu</button>
                                             </form>
                                         </c:if>
 
                                         <c:if test="${user.status == 'inactive'}">
-                                            <form id="unblock" class="form-unblock" action="${pageContext.request.contextPath}/UpdateCustomer" method="POST">
-                                                <input type="hidden" name="user_status_unblock" value="${user.id}" />
+                                            <form id="unblock" class="form-unblock" action="${pageContext.request.contextPath}/customer_mng" method="GET">
+                                                <input type="hidden" name="userId_status_unblock" value="${user.id}" />
                                                 <button type="submit" style="width: 100%;background-color: green;color: white;border: none;border-radius: 5px;cursor: pointer;transition: all 0.3s ease-in-out;" onmouseover="this.style.backgroundColor='#228b22'; this.style.color='#f0f0f0';"onmouseout="this.style.backgroundColor='green'; this.style.color='white';">
                                                     Bỏ chặn</button>
                                             </form>
                                         </c:if>
 
                                         <!-- Button xóa -->
-                                        <form class="form-delete" action="${pageContext.request.contextPath}/UpdateCustomer" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa người này?');">
+                                        <form class="form-delete" action="${pageContext.request.contextPath}/customer_mng" method="GET" onsubmit="return confirm('Bạn có chắc chắn muốn xóa người này?');">
                                             <input type="hidden" name="user_del" value="${user.id}" />
                                             <button type="submit" style="width: 100%; margin-top: 5px">
                                                 Xóa</button>

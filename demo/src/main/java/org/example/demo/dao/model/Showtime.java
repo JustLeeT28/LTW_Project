@@ -16,7 +16,7 @@ public class Showtime {
 
 
     // Constructor đầy đủ
-    public Showtime(int id, int movieId, int roomId,  showDate, LocalTime showTime, String status) {
+    public Showtime(int id, int movieId, int roomId, LocalDate showDate, LocalTime showTime, String status) {
         this.id = id;
         this.movieId = movieId;
         this.roomId = roomId;
