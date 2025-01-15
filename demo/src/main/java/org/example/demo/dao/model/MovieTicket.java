@@ -8,6 +8,10 @@ public class MovieTicket {
     private double price;
     private String createdAt;
     private String nameUser;
+    private String dayshow;
+    private String timeshow;
+    private int roomId;
+
 
     public MovieTicket(int id, int orderId, int showTimeId, int seatId, double price, String createdAt) {
         this.id = id;
@@ -18,17 +22,7 @@ public class MovieTicket {
         this.createdAt = createdAt;
     }
 
-//    public MovieTicket(int id, int orderId, int showTimeId, int seatId, double price, String createdAt, String name) {
-//        this.id = id;
-//        this.orderId = orderId;
-//        this.seatId = seatId;
-//        this.price = price;
-//        this.createdAt = createdAt;
-//        this.nameUser = name;
-//
-//    }
-
-    public MovieTicket(int id, int orderId, int showTimeId, int seatId, double price, String createdAt, String nameUser) {
+    public MovieTicket(int id, int orderId, int showTimeId, int seatId, double price, String createdAt, String nameUser, String dayshow, String timeshow, int roomId) {
         this.id = id;
         this.orderId = orderId;
         this.showTimeId = showTimeId;
@@ -36,6 +30,9 @@ public class MovieTicket {
         this.price = price;
         this.createdAt = createdAt;
         this.nameUser = nameUser;
+        this.dayshow = dayshow;
+        this.timeshow = timeshow;
+        this.roomId = roomId;
     }
 
     public int getId() {
@@ -88,5 +85,14 @@ public class MovieTicket {
 
     public String getNameUser() {return nameUser;}
     public void setNameUser(String nameUser) {this.nameUser = nameUser;}
+
+    public String getDayshow() {return dayshow;}
+    public void setDayshow(String dayshow) {this.dayshow = dayshow;}
+
+    public String getTimeshow() {return timeshow;}
+    public void setTimeshow(String timeshow) {this.timeshow = timeshow;}
+
+    public int getRoomId() {return roomId;}
+    public void setRoomId(int roomId) {this.roomId = roomId;}
 
 }
