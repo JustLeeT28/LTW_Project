@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Trang Chủ</title>
     <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/dashboard.css">
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Thêm Chart.js -->
 </head>
 <body>
@@ -28,7 +30,16 @@
         <main class="main-content">
             <div id="dashboard" class="section active">
                 <h1>Dashboard</h1>
-                
+                <div class="statistics" style="margin-bottom: 15px;display: flex; justify-content: space-between; gap: 15px;">
+                    <p>Thống kê theo: </p>
+                <form id="statisticsForm" method="get" action="${pageContext.request.contextPath}/dashboard">
+                    <select class="combobox" name="date" id="date" onchange="document.getElementById('statisticsForm').submit();">
+                        <option value="week" ${'week' == date ? 'selected' : ''}>1 tuần</option>
+                        <option value="moth" ${'moth' == date ? 'selected' : ''}>1 tháng</option>
+                        <option value="year" ${'year' == date ? 'selected' : ''}>1 năm</option>
+                    </select>
+                </form>
+                </div>
                 <div class="overview">
                     <div class="card">
                         <h3>Số lượng vé đã bán</h3>
