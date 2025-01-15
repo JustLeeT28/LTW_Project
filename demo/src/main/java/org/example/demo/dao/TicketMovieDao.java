@@ -113,4 +113,74 @@ public class TicketMovieDao {
             throw new RuntimeException(e);
         }
     }
+
+    public void update2D(int p) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            String query = "UPDATE seats s " +
+                    "JOIN rooms r ON s.roomId = r.id " +
+                    "SET s.price = ? " +
+                    "WHERE r.style = ?";
+            ps = DbConnect.get(query);
+            ps.setInt(1,p);
+            ps.setString(2,"2D");
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void update3D(int p) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            String query = "UPDATE seats s " +
+                    "JOIN rooms r ON s.roomId = r.id " +
+                    "SET s.price = ? " +
+                    "WHERE r.style = ?";
+            ps = DbConnect.get(query);
+            ps.setInt(1,p);
+            ps.setString(2,"3D");
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void update4D(int p) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            String query = "UPDATE seats s " +
+                    "JOIN rooms r ON s.roomId = r.id " +
+                    "SET s.price = ? " +
+                    "WHERE r.style = ?";
+            ps = DbConnect.get(query);
+            ps.setInt(1,p);
+            ps.setString(2,"4Dx");
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateImax(int p) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            String query = "UPDATE seats s " +
+                    "JOIN rooms r ON s.roomId = r.id " +
+                    "SET s.price = ? " +
+                    "WHERE r.style = ?";
+            ps = DbConnect.get(query);
+            ps.setInt(1,p);
+            ps.setString(2,"Imax");
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }

@@ -1,9 +1,7 @@
 package org.example.demo.service;
 
 import org.example.demo.dao.TicketMovieDao;
-import org.example.demo.dao.UserDao;
 import org.example.demo.dao.model.MovieTicket;
-import org.example.demo.dao.model.User;
 
 import java.util.List;
 
@@ -23,5 +21,19 @@ public class TicketMovieService {
     public static boolean isNumber(String queryCus) {
         String phoneRegex = "^[0-9]{1,15}$";
         return queryCus.matches(phoneRegex);
+    }
+
+    public void update2D(int i) {
+        ticketMovieDao.update2D(i);
+    }
+
+    public void update3D(int i) {
+        ticketMovieDao.update3D(i);
+    }
+    public void update4D(int i) {
+        ticketMovieDao.update4D(i);
+    }
+    public void updateImax(int i) {
+        ticketMovieDao.updateImax(i);
     }
 }
