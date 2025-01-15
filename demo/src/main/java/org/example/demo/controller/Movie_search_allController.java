@@ -9,7 +9,7 @@ import org.example.demo.service.MovieService;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "Movie_search_allController", urlPatterns = "/search")
+@WebServlet(name = "Movie_search_allController", value = "/search")
 
 public class Movie_search_allController extends HttpServlet {
     private static final int RECORDS_PER_PAGE = 8; // Số sản phẩm mỗi trang
@@ -18,18 +18,24 @@ public class Movie_search_allController extends HttpServlet {
         String pageParam = request.getParameter("page");
         String genre = request.getParameter("genre");
         String condition = request.getParameter("condition");
-//        String sort = request.getParameter("sort");
+        String nameMovie = request.getParameter("movie-name");
 
 
         int currentPage = (pageParam == null || pageParam.isEmpty()) ? 1 : Integer.parseInt(pageParam);
         MovieService movieService = new MovieService();
         List<Movie> movies = List.of();
-        if(genre != null && !genre.isEmpty() && condition != null && !condition.isEmpty()) { //cả 2 đều đc trọn
+        if (nameMovie != null && !nameMovie.isEmpty()) {
+            if(genre != null && !genre.isEmpty() && condition != null && !condition.isEmpty()) {
+                movies = movieService.getMoviesByNGC(nameMovie,genre,condition);//cả 2 đều đc trọn
+            } else {
+                movies = movieService.geMoviesByname(nameMovie);
+            }
+        } else if(genre != null && !genre.isEmpty() && condition != null && !condition.isEmpty()) { //cả 2 đều đc trọn
             movies = movieService.getGenAndConMovie(condition, genre);
         } else if(condition != null && !condition.isEmpty()) {
-            movies = movieService.getConditionMovies(genre);
+            movies = movieService.getConditionMovies(condition);
         } else if(genre != null && !genre.isEmpty()) {
-             movies = movieService.getGenreMovies(genre);
+            movies = movieService.getGenreMovies(genre);
         } else {
              movies = movieService.getMovies();
         }
@@ -50,6 +56,7 @@ public class Movie_search_allController extends HttpServlet {
         request.setAttribute("movies_all", moviesOnPage);
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("currentPage", currentPage);
+        request.setAttribute("nameMovie", nameMovie);
         request.getRequestDispatcher("Pages/Search.jsp").forward(request, response);
     }
 

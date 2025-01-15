@@ -24,9 +24,7 @@ public class ShowtimeAdminDAO {
                 Showtime showtime = new Showtime(
                         rs.getInt("id"),
                         rs.getInt("movieId"),
-                        rs.getString("movieTitle"),
                         rs.getInt("roomId"),
-                        rs.getString("roomName"),
                         rs.getString("showDate"),
                         rs.getString("showTime"),
                         rs.getString("status")

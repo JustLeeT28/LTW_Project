@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,15 +9,15 @@
     <link rel="stylesheet" href="../Styles/history.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/nav_menu.css">
     <link rel="stylesheet" href="../Styles/left-menu.css">
-    <script src="../Script/search.js"></script>
+<%--    <script src="../Script/search.js"></script>--%>
 </head>
 <body>
 <jsp:include page="Includes/menu.jsp"/>
 <div class="leftmenu" style="height: 1200px; padding-top: 4%">
     <a href="user-infor.jsp" class="op-infor">Thông tin</a>
-    <a href="user-updateInfor.jsp" class="op-update">Chỉnh sửa</a>
+    <a href="user-updateinfor.jsp" class="op-update">Chỉnh sửa</a>
     <a href="history.html" class="op-history open">Lịch sử</a>
-    <a href="" id="out">Đăng xuất</a>
+    <a href="${pageContext.request.contextPath}/LogoutController" id="out">Đăng xuất</a>
 
 </div>
 <div class="history">

@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const movieId = button.closest('.movie').querySelector('a').getAttribute('href').split('id=')[1];
 
             // Chuyển hướng đến trang book.jsp với id
-            window.location.href = basePath + "book";
+            window.location.href = basePath + "/book";
         });
     });
 

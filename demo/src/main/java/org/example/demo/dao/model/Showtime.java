@@ -7,7 +7,6 @@ import java.time.LocalTime;
 public class Showtime {
     private int id;
     private int movieId;
-    private String movieTitle;
     private int roomId;
     private String roomName;
     private LocalDate showDate;
@@ -15,23 +14,20 @@ public class Showtime {
     private String status;
 
 
-    public Showtime(int id, int movieId, int roomId, LocalDate showDate, LocalTime showTime, String status) {
+
+    // Constructor đầy đủ
+    public Showtime(int id, int movieId, int roomId,  showDate, LocalTime showTime, String status) {
         this.id = id;
         this.movieId = movieId;
-        this.movieTitle = movieTitle;
         this.roomId = roomId;
-        this.roomName = roomName;
         this.showDate = showDate;
         this.showTime = showTime;
         this.status = status;
     }
 
-    // Constructor không ID (khi thêm mới)
-    public Showtime(int movieId, String movieTitle, int roomId, String roomName, LocalDate showDate, LocalTime showTime, String status) {
+    public Showtime(int movieId, int roomId,LocalDate showDate, LocalTime showTime, String status) {
         this.movieId = movieId;
-        this.movieTitle = movieTitle;
         this.roomId = roomId;
-        this.roomName = roomName;
         this.showDate = showDate;
         this.showTime = showTime;
         this.status = status;
@@ -52,14 +48,6 @@ public class Showtime {
 
     public void setMovieId(int movieId) {
         this.movieId = movieId;
-    }
-
-    public String getMovieTitle() {
-        return movieTitle;
-    }
-
-    public void setMovieTitle(String movieTitle) {
-        this.movieTitle = movieTitle;
     }
 
     public int getRoomId() {
@@ -107,9 +95,7 @@ public class Showtime {
         return "Showtime{" +
                 "id=" + id +
                 ", movieId=" + movieId +
-                ", movieTitle='" + movieTitle + '\'' +
                 ", roomId=" + roomId +
-                ", roomName='" + roomName + '\'' +
                 ", showDate=" + showDate +
                 ", showTime=" + showTime +
                 ", status='" + status + '\'' +

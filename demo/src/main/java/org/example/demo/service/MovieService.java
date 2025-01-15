@@ -48,4 +48,15 @@ public class MovieService {
     public List<Movie> getGenAndConMovie(String condition, String genre) {
         return movieDao.getGenAndConMovie(condition, genre);
     }
+    public List<Movie> geMoviesByname(String nameMovie) {
+        return movieDao.getMoviesByName(nameMovie);
+    }
+
+    public List<Movie> getMoviesByNGC(String nameMovie, String genre, String condition) {
+        return movieDao.getMoviesByNGC(nameMovie,genre,condition);
+    }
+
+    public List<Movie> getMoviesA_Z() {
+        return movieDao.getMoviesA_Z();
+    }
 }

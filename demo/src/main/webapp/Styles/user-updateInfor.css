@@ -8,13 +8,13 @@ body {
     background: #1f2025;
     font-family: 'Montserrat', sans-serif;
 }
-.infor-content{
+.infor-content {
     display: flex;
     flex-direction: column;
     gap: 3rem;
     margin-left: 20%;
     color: white;
-    font-size: 23px;
+    font-size: 31px;
 }
 .highlight {
     color: plum;
@@ -52,4 +52,7 @@ body {
 }
 .btn:hover {
     background-color: #e05a1a;
+}
+.row-input{
+    margin-bottom: 20px;
 }

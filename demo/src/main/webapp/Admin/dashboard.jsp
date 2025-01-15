@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Trang Chủ</title>
     <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/dashboard.css">
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Thêm Chart.js -->
 </head>
 <body>
@@ -14,7 +16,7 @@
             <h2>Admin Panel</h2>
             <nav>
                 <ul>
-                    <li><a href="dashboard.html" data-section="dashboard">Dashboard</a></li>
+                    <li><a href="dashboard.jsp" data-section="dashboard">Dashboard</a></li>
                     <li><a href="film_management.jsp" data-section="movies">Quản lý Phim</a></li>
                     <li><a href="schedule_mng.jsp" data-section="schedules">Quản lý Lịch Chiếu</a></li>
                     <li><a href="room_mng.jsp" data-section="rooms">Quản lý Phòng Chiếu</a></li>
@@ -28,24 +30,33 @@
         <main class="main-content">
             <div id="dashboard" class="section active">
                 <h1>Dashboard</h1>
-                
+                <div class="statistics" style="margin-bottom: 15px;display: flex; gap: 15px;">
+                    <p>Thống kê theo: </p>
+                <form id="statisticsForm" method="get" action="${pageContext.request.contextPath}/dashboard">
+                    <select class="combobox" name="date" id="date" onchange="document.getElementById('statisticsForm').submit();">
+                        <option value="week" ${'week' == date ? 'selected' : ''}>1 tuần</option>
+                        <option value="moth" ${'moth' == date ? 'selected' : ''}>1 tháng</option>
+                        <option value="year" ${'year' == date ? 'selected' : ''}>1 năm</option>
+                    </select>
+                </form>
+                </div>
                 <div class="overview">
                     <div class="card">
                         <h3>Số lượng vé đã bán</h3>
                         <p id="ticketsSold">350 vé</p>
                     </div>
                     <div class="card">
-                        <h3>Doanh thu</h3>
-                        <p id="revenue">200,000,000 VND</p>
+                        <h3>Tổng doanh thu</h3>
+                        <p id="revenue">${total_revenue} VNĐ</p>
                     </div>
-                    <div class="card">
-                        <h3>Số lượng người xem</h3>
-                        <p id="viewers">500 người</p>
-                    </div>
-                    <div class="card">
-                        <h3>Tình trạng chỗ ngồi</h3>
-                        <p id="seatStatus">75% đã được đặt</p>
-                    </div>
+<%--                    <div class="card">--%>
+<%--                        <h3>Số lượng người xem</h3>--%>
+<%--                        <p id="viewers">500 người</p>--%>
+<%--                    </div>--%>
+<%--                    <div class="card">--%>
+<%--                        <h3>Tình trạng chỗ ngồi</h3>--%>
+<%--                        <p id="seatStatus">75% đã được đặt</p>--%>
+<%--                    </div>--%>
                 </div>
 
                 <!-- Biểu đồ doanh thu -->
@@ -67,6 +78,6 @@
         </main>
     </div>
 
-    <script src="dashboard.js"></script>
+    <script src="${pageContext.request.contextPath}/Admin/dashboard.js"></script>
 </body>
 </html>
