@@ -67,6 +67,16 @@ public class ShowtimeDao {
 
         return result;
     }
+    public List<Showtime> getShowTimeByDateAndId(int id, String date, String month) {
+        List<Showtime> showtimes = getShowTime(id);
+        List<Showtime> showtimesByDate = new ArrayList<>();
+        for (Showtime showtime : showtimes) {
+            if (showtime.getDay() == Integer.parseInt(date) && showtime.getMonth() == Integer.parseInt(month)) {
+                showtimesByDate.add(showtime);
+            }
+        }
+        return showtimesByDate;
+    }
     public static void main(String[] args) {
 
     }
