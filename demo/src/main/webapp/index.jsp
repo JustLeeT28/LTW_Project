@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="Styles/nav_menu.css">
     <link rel="stylesheet" href="Styles/footer.css">
     <script src="Script/index.js"></script>
-    <script src="Script/click_book_button.js"></script>
+<%--    <script src="Script/click_book_button.js"></script>--%>
     <script src="Script/search.js"></script>
     <script> const basePath = "<%=request.getContextPath()%>";</script>
 </head>
@@ -60,7 +60,8 @@
                 </div>
                 <div class="book_link">
                     <a href="book?mId=${movie.id}">${movie.title}</a>
-                    <button class="book-button" data-id="${movie.id}"><a href="book?mId=${movie.id}"
+                    <button class="book-button" data-id="${movie.id}">
+                        <a href="book?mId=${movie.id}"
                                                                          style="color: black">Đặt vé</a></button>
                 </div>
             </div>

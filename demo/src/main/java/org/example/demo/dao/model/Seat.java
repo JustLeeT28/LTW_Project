@@ -6,15 +6,15 @@ public class Seat {
     private String row;
     private String seatNumber;
     private double price;
-    private String status;
+    private String isActive;
 
-    public Seat(int id, int roomId, String row, String seatNumber, double price, String status) {
+    public Seat(int id, int roomId, String row, String seatNumber, double price, String isActive) {
         this.id = id;
         this.roomId = roomId;
         this.row = row;
         this.seatNumber = seatNumber;
         this.price = price;
-        this.status = status;
+        this.isActive = isActive;
     }
 
     public int getId() {
@@ -57,11 +57,11 @@ public class Seat {
         this.price = price;
     }
 
-    public String getStatus() {
-        return status;
+    public String getIsActive() {
+        return isActive;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setIsActive(String isActive) {
+        this.isActive = isActive;
     }
 }

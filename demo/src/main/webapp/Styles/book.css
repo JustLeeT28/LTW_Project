@@ -245,7 +245,7 @@ body {
 
 .book .right .card_month li h6:nth-child(2) {
     background: transparent;
-    border-radius: 50%;
+    border-radius: 30%;
     width: 20px;
     height: 20px;
     transition: .3s linear;
@@ -254,9 +254,12 @@ body {
     align-items: center;
     justify-content: center;
     margin-top: 5px;
+    padding: 2px 15px;
 }
-
 .book .right .card_month li h6:nth-child(2):hover {
+    background: #fd6565;
+}
+#active {
     background: #fd6565;
 }
 
@@ -498,4 +501,8 @@ body {
 }
 .book_movie{
     ;
+}
+.selectedDate {
+    background: #fd6565;
+    color: white;
 }
