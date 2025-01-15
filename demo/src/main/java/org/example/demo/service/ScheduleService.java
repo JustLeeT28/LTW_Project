@@ -33,4 +33,8 @@ public class ScheduleService {
     public void addSh_S(int id, int id1, String isActive) {
         scheduleDao.addShow_seats(id,id1,isActive);
     }
+
+    public List<Showtime> getAllShowtime() {
+        return scheduleDao.getAllShowtime();
+    }
 }

@@ -66,16 +66,33 @@
                     <table id="scheduleTable">
                         <thead>
                             <tr>
-                                <th>Phim</th>
-                                <th>Phòng</th>
+                                <th>ID</th>
+                                <th>Mã phim</th>
+                                <th>Mã phòng</th>
                                 <th>Ngày</th>
                                 <th>Giờ</th>
-                                <th>Số lượng chỗ ngồi</th>
-                                <th>Hành động</th>
+<%--                                <th>Hành động</th>--%>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Dữ liệu lịch chiếu sẽ được hiển thị ở đây -->
+                        <c:forEach var="showtime" items="${showtimes}">
+                            <tr>
+                                <td>${showtime.id}</td>
+                                <td>${showtime.movieId}</td>
+                                <td>${showtime.roomId}</td>
+                                <td>${showtime.showDate}</td>
+                                <td>${showtime.showTime}</td>
+<%--                                <td>--%>
+<%--                                    <button id="change-button" onclick="window.location.href='${pageContext.request.contextPath}/UpdateFilm?mId=${movie.id}'">--%>
+<%--                                        Chỉnh sửa--%>
+<%--                                    </button>--%>
+<%--                                    <form action="${pageContext.request.contextPath}/film_management" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa phim này?');">--%>
+<%--                                        <input type="hidden" name="del_movie_id" value="${movie.id}" />--%>
+<%--                                        <button type="submit">Xóa</button>--%>
+<%--                                    </form>--%>
+<%--                                </td>--%>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>

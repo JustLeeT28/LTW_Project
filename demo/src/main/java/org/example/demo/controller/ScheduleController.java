@@ -24,8 +24,11 @@ import java.util.List;
 public class ScheduleController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Showtime> showtimes = new ArrayList<>();
+        ScheduleService service = new ScheduleService();
+        showtimes =  service.getAllShowtime();
 
-
+        request.setAttribute("showtimes", showtimes);
         request.getRequestDispatcher("/Admin/schedule_mng.jsp").forward(request, response);
     }
 
@@ -39,8 +42,9 @@ public class ScheduleController extends HttpServlet {
         if(roomId != null && !roomId.isEmpty() && showDate != null && !showDate.isEmpty() && showTime != null && !showTime.isEmpty() && movieId != null && !movieId.isEmpty()) {
             if (service.isConflict(movieId,roomId,showDate,showTime)){
                 request.setAttribute("message", "Phim bị trùng lịch chiếu!"); // Lưu vào request để hiển thị lên JSP
-                request.getRequestDispatcher("/Admin/schedule_mng.jsp").forward(request, response);
-                return;
+//                request.getRequestDispatcher("/Admin/schedule_mng.jsp").forward(request, response);
+                doGet(request, response);
+
             }
             int movieIdInt = Integer.parseInt(movieId);
             int roomIdInt = Integer.parseInt(roomId);
@@ -61,11 +65,13 @@ public class ScheduleController extends HttpServlet {
 //            service.addShowAndSeat(s.getId(),movieId);
 
             request.setAttribute("message", "Thêm lịch chiếu thành công!"); // Lưu vào request để hiển thị lên JSP
-            request.getRequestDispatcher("/Admin/schedule_mng.jsp").forward(request, response);
-            return;
+//            request.getRequestDispatcher("/Admin/schedule_mng.jsp").forward(request, response);
+            doGet(request, response);
+
         }
         request.setAttribute("message", "Lỗi trong quá trình thực hiện vui lòng nhập lại!"); // Lưu vào request để hiển thị lên JSP
         request.getRequestDispatcher("/Admin/schedule_mng.jsp").forward(request, response);
+//        doGet(request, response);
 
     }
 }

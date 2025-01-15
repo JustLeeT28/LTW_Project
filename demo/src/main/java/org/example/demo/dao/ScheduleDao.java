@@ -249,6 +249,33 @@ public class ScheduleDao {
         }
     }
 
+    public List<Showtime> getAllShowtime() {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Showtime> listShowtimes = new ArrayList<>();
+        try{
+            String query = "SELECT * FROM showtimes " +
+                    "ORDER BY id DESC";
+            ps = DbConnect.get(query);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                Showtime s = new Showtime(
+                        rs.getInt("id"),
+                        rs.getInt("movieId"),
+                        rs.getInt("roomId"),
+                        rs.getDate("showDate").toLocalDate(),
+                        rs.getTime("showTime").toLocalTime(),
+                        rs.getString("status")
+                );
+                listShowtimes.add(s);
+            }
+            return listShowtimes;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
 //    public static void main(String[] args) {
 //        ScheduleDao scheduleDao = new ScheduleDao();
 //        Showtime showtime = scheduleDao.GetShowTime(1,5,2025-01-01,12:30:00);
