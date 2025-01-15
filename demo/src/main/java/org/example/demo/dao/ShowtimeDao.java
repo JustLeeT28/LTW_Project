@@ -17,7 +17,7 @@ public class ShowtimeDao {
             PreparedStatement ps = null;
             ResultSet resultSet = null;
             try {
-                String query = "SELECT * FROM showtimes WHERE movieId = ?";
+                String query = "SELECT * FROM showtimes WHERE movieId = ? AND showDate > CURRENT_DATE";
 
                 ps = DbConnect.get(query); // Lấy PreparedStatement từ DbConnect
                 ps.setInt(1, movieId); // Set tham số cho PreparedStatement
@@ -67,17 +67,33 @@ public class ShowtimeDao {
 
         return result;
     }
-    public List<Showtime> getShowTimeByDateAndId(int id, String date, String month) {
+    public List<Showtime> getShowTimeByDateAndId(int id, String day, String month) {
         List<Showtime> showtimes = getShowTime(id);
         List<Showtime> showtimesByDate = new ArrayList<>();
         for (Showtime showtime : showtimes) {
-            if (showtime.getDay() == Integer.parseInt(date) && showtime.getMonth() == Integer.parseInt(month)) {
+            if (showtime.getDay() == Integer.parseInt(day) && showtime.getMonth() == Integer.parseInt(month)) {
                 showtimesByDate.add(showtime);
             }
         }
         return showtimesByDate;
     }
-    public static void main(String[] args) {
 
+        public List<Showtime> getShowTimeByTimeAndId(int id, String hour, String minute, String day, String month) {
+        List<Showtime> showtimes = getShowTimeByDateAndId(id, day, month);
+        List<Showtime> showtimesByTime = new ArrayList<>();
+        for (Showtime showtime : showtimes) {
+            if (showtime.getHour() == Integer.parseInt(hour) && showtime.getMinute() == Integer.parseInt(minute)) {
+                showtimesByTime.add(showtime);
+            }
+        }
+        return showtimesByTime;
     }
+    public static void main(String[] args) {
+        List<Showtime> showtimes = new ShowtimeDao().getShowTime(1);
+        List<Showtime> showtimesa = new ShowtimeDao().getShowTimeByDateAndId(1, "21", "1");
+        for (Showtime showtime : showtimesa) {
+            System.out.println(showtime.getRoomId());
+        }
+    }
+
 }
