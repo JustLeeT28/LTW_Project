@@ -35,7 +35,7 @@
                 <!-- Công cụ tìm kiếm -->
                 <div class="search-customer" style="margin-bottom: 15px">
                     <form action="${pageContext.request.contextPath}/customer_mng" method="GET">
-                        <input type="text" id="query_customers" name="query_customers" placeholder="Nhập tên hoặc email">
+                        <input type="text" id="query_customers" name="query_customers" placeholder="Nhập tên ,email hoặc SĐT">
                         <button type="submit">Tìm kiếm</button>
                     </form>
                 </div>

@@ -395,7 +395,7 @@ public class UserDao {
             ps = DbConnect.get(query);
             ps.setString(1, "%"+queryCus+"%");
             resultSet = ps.executeQuery();
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 User user = new User(
                         resultSet.getInt("id"),
                         resultSet.getString("name"),
@@ -424,7 +424,7 @@ public class UserDao {
             ps = DbConnect.get(query);
             ps.setString(1, "%"+queryCus+"%");
             resultSet = ps.executeQuery();
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 User user = new User(
                         resultSet.getInt("id"),
                         resultSet.getString("name"),
@@ -442,6 +442,34 @@ public class UserDao {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public List<User> getCustomerByPhone(String queryCus) {
+        List<User> list = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        try {
+            String query = "SELECT * FROM USERS WHERE phone LIKE  ?" ;
+            ps = DbConnect.get(query);
+            ps.setString(1, "%"+queryCus+"%");
+            resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                User user = new User(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("email"),
+                        resultSet.getString("dob"),
+                        resultSet.getString("phone"),
+                        resultSet.getInt("role"),
+                        resultSet.getString("password"),
+                        resultSet.getString("status")
+                );
+                list.add(user);
+            }
+            return list ;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

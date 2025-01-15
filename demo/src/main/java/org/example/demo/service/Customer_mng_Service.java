@@ -28,6 +28,9 @@ public class Customer_mng_Service {
         if(isEmail(queryCus)) {
             return  userDao.getCustomerByEmail(queryCus);
         }
+        if(isPhoneNumber(queryCus)) {
+            return  userDao.getCustomerByPhone(queryCus);
+        }
         return  userDao.getCustomerByName(queryCus);
 
     }
@@ -36,6 +39,11 @@ public class Customer_mng_Service {
         // So sánh với regex.
         return queryCus.matches(emailRegex);
     }
+    public static boolean isPhoneNumber(String queryCus) {
+        String phoneRegex = "^[0-9]{2,15}$";
+        return queryCus.matches(phoneRegex);
+    }
+
 
 
 }
