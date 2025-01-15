@@ -31,18 +31,30 @@
         <main class="main-content">
             <div id="rooms" class="section active">
                 <h1>Quản lý Phòng Chiếu</h1>
-
-                <!-- Thêm phòng chiếu -->
                 <div class="add-room">
-                    <h2>Thêm Phòng Chiếu</h2>
-                    <form id="roomForm">
-                        <label for="roomName">Tên phòng:</label>
-                        <input type="text" id="roomName" required>
+                    <h2>Thay đổi phòng chiếu</h2>
+                    <form id="MovieForm" action="${pageContext.request.contextPath}/room_mng" method="POST">
+                        <label for="roomSelect">Chọn phòng chiếu:</label>
+                        <select id="roomSelect" name="roomId">
+                            <option value="1">Room 1</option>
+                            <option value="2">Room 2</option>
+                            <option value="3">Room 3</option>
+                            <option value="4">Room 4</option>
+                            <option value="5">Room 5</option>
+                        </select>
 
-                        <label for="seatCount">Số ghế:</label>
-                        <input type="number" id="seatCount" min="1" required>
+                        <label for="Styleroom">Chọn dạng phòng:</label>
+                        <select id="Styleroom" name="style_room">
+                            <option value="2D">2D</option>
+                            <option value="3D">3D</option>
+                            <option value="4Dx">4D</option>
+                            <option value="Imax">Imax</option>
+                        </select>
 
-                        <button type="button" onclick="addRoom()">Thêm phòng</button>
+                        <label for="occupancy">Số lượng ghế:</label>
+                        <input type="number" id="occupancy" name="occupancy" min="0">
+
+                        <button type="submit">Cập nhập phòng</button>
                     </form>
                 </div>
 
@@ -52,9 +64,10 @@
                     <table id="roomTable">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Tên phòng</th>
                                 <th>Số ghế</th>
-                                <th>Tình trạng</th>
+                                <th>Loại phòng</th>
                                 <th>Hành động</th>
                             </tr>
                         </thead>
@@ -64,17 +77,17 @@
                     </table>
                 </div>
 
-                <!-- Sơ đồ chỗ ngồi -->
-                <div class="seat-map">
-                    <h2>Sơ đồ Chỗ Ngồi</h2>
-                    <div id="seatMap">
-                        <!-- Sơ đồ chỗ ngồi sẽ được cập nhật động -->
-                    </div>
-                </div>
+<%--                <!-- Sơ đồ chỗ ngồi -->--%>
+<%--                <div class="seat-map">--%>
+<%--                    <h2>Sơ đồ Chỗ Ngồi</h2>--%>
+<%--                    <div id="seatMap">--%>
+<%--                        <!-- Sơ đồ chỗ ngồi sẽ được cập nhật động -->--%>
+<%--                    </div>--%>
+<%--                </div>--%>
             </div>
         </main>
     </div>
 
-    <script src="room_mng.js"></script>
+<%--    <script src="room_mng.js"></script>--%>
 </body>
 </html>
