@@ -28,7 +28,13 @@
         <main class="main-content">
             <div id="customers" class="section active">
                 <h1>Quản lý Khách hàng</h1>
-
+                <!-- Công cụ tìm kiếm -->
+                <div class="search-customer">
+                    <form action="/customer_mng" method="get">
+                        <input type="text" id="query_customers" name="query_customers" placeholder="Nhập tên hoặc email">
+                        <button type="submit">Tìm kiếm</button>
+                    </form>
+                </div>
                 <!-- Danh sách khách hàng -->
                 <div class="customer-list">
                     <h2>Danh sách Khách hàng</h2>
@@ -47,13 +53,6 @@
                             <!-- Dữ liệu khách hàng sẽ được hiển thị ở đây -->
                         </tbody>
                     </table>
-                </div>
-
-                <!-- Công cụ tìm kiếm -->
-                <div class="search-customer">
-                    <h2>Tìm kiếm Khách hàng</h2>
-                    <input type="text" id="searchCustomerInput" placeholder="Nhập tên, email hoặc số điện thoại">
-                    <button onclick="searchCustomer()">Tìm kiếm</button>
                 </div>
 
                 <!-- Chính sách ưu đãi -->
