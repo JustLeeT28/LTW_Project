@@ -7,20 +7,32 @@ public class MovieTicket {
     private int seatId;
     private double price;
     private String createdAt;
-    private String customerName;
-    private String seat;
-    private String showtime;
+    private String nameUser;
+    private String dayshow;
+    private String timeshow;
+    private int roomId;
 
-    public MovieTicket(int id, int orderId, int showTimeId, int seatId, double price, String createdAt, String customerName, String seat, String showtime) {
+
+    public MovieTicket(int id, int orderId, int showTimeId, int seatId, double price, String createdAt) {
         this.id = id;
         this.orderId = orderId;
         this.showTimeId = showTimeId;
         this.seatId = seatId;
         this.price = price;
         this.createdAt = createdAt;
-        this.customerName = customerName;
-        this.seat = seat;
-        this.showtime = showtime;
+    }
+
+    public MovieTicket(int id, int orderId, int showTimeId, int seatId, double price, String createdAt, String nameUser, String dayshow, String timeshow, int roomId) {
+        this.id = id;
+        this.orderId = orderId;
+        this.showTimeId = showTimeId;
+        this.seatId = seatId;
+        this.price = price;
+        this.createdAt = createdAt;
+        this.nameUser = nameUser;
+        this.dayshow = dayshow;
+        this.timeshow = timeshow;
+        this.roomId = roomId;
     }
 
     public int getId() {
@@ -71,27 +83,16 @@ public class MovieTicket {
         this.createdAt = createdAt;
     }
 
-    public String getCustomerName() {
-        return customerName;
-    }
+    public String getNameUser() {return nameUser;}
+    public void setNameUser(String nameUser) {this.nameUser = nameUser;}
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
+    public String getDayshow() {return dayshow;}
+    public void setDayshow(String dayshow) {this.dayshow = dayshow;}
 
-    public String getSeat() {
-        return seat;
-    }
+    public String getTimeshow() {return timeshow;}
+    public void setTimeshow(String timeshow) {this.timeshow = timeshow;}
 
-    public void setSeat(String seat) {
-        this.seat = seat;
-    }
+    public int getRoomId() {return roomId;}
+    public void setRoomId(int roomId) {this.roomId = roomId;}
 
-    public String getShowtime() {
-        return showtime;
-    }
-
-    public void setShowtime(String showtime) {
-        this.showtime = showtime;
-    }
 }

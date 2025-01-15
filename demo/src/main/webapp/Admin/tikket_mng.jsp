@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Quản lý Vé và Đặt Vé</title>
     <link rel="stylesheet" href="tikket_mng.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/tikket_mng.css">
 </head>
 <body>
 <div class="container">
@@ -31,32 +32,43 @@
         <div id="tickets" class="section active">
             <h1>Quản lý Vé và Đặt Vé</h1>
 
+            <!-- Công cụ tìm kiếm vé -->
+            <div class="search-ticket" style="margin-bottom: 15px">
+                <form action="${pageContext.request.contextPath}/tikket_mng" method="GET">
+                    <input type="text" id="query_tikkets" name="query_tikkets" placeholder="Nhập tên khác hàng hoặc mã vé ">
+                    <button type="submit">Tìm kiếm</button>
+                </form>
+            </div>
             <!-- Danh sách vé đã đặt -->
             <div class="ticket-list">
                 <h2>Danh sách Vé Đã Đặt</h2>
                 <table id="ticketTable">
                     <thead>
                     <tr>
-                        <th>Mã vé</th>
+                        <th>ID vé</th>
                         <th>Tên khách hàng</th>
-                        <th>Suất chiếu</th>
-                        <th>Số ghế</th>
+                        <th>Giờ chiếu</th>
+                        <th>ID phòng</th>
+                        <th>ID ghế</th>
                         <th>Giá</th>
-                        <th>Ngày đặt</th>
                         <th>Hành động</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="ticket" items="${tickets}">
+                    <c:forEach var="ticket" items="${listMovieTicket}">
                         <tr>
                             <td>${ticket.id}</td>
-                            <td>${ticket.customerName}</td>
-                            <td>${ticket.showtime}</td>
-                            <td>${ticket.seat}</td>
+                            <td>${ticket.name}</td>
+                            <td>${ticket.showDate} : ${ticket.showTime}</td>
+                            <td>${ticket.roomId}</td>
+                            <td>${ticket.seatId}</td>
                             <td>${ticket.price}</td>
-                            <td>${ticket.createdAt}</td>
                             <td>
-                                <button onclick="deleteTicket(${ticket.id})">Xóa</button>
+                                <form class="form-delete" action="${pageContext.request.contextPath}/tikket_mng" method="GET" onsubmit="return confirm('Bạn có chắc chắn muốn xóa người này?');">
+                                    <input type="hidden" name="ticketId_del" value="${ticket.id}" />
+                                    <button type="submit" style="width: 100%">
+                                        Hủy</button>
+                                </form>
                             </td>
                         </tr>
                     </c:forEach>
@@ -64,14 +76,7 @@
                 </table>
             </div>
 
-            <!-- Công cụ tìm kiếm vé -->
-            <div class="search-ticket">
-                <h2>Tìm kiếm Vé</h2>
-                <form action="tikket_mng.jsp" method="get">
-                    <input type="text" name="keyword" placeholder="Nhập tên khách hàng, mã vé hoặc suất chiếu">
-                    <button type="submit" name="action" value="search">Tìm kiếm</button>
-                </form>
-            </div>
+
 
             <!-- Quản lý giá vé -->
             <div class="manage-price">
