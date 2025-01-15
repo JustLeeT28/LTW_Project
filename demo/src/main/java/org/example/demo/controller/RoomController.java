@@ -46,6 +46,9 @@ public class RoomController extends HttpServlet {
         if(room_blockId != null && !room_blockId.isEmpty()) {
             roomService.blockRoom(Integer.parseInt(room_blockId));
         }
+        if(room_unBlock_id != null && !room_unBlock_id.isEmpty()) {
+            roomService.unblockRoom(Integer.parseInt(room_unBlock_id));
+        }
         doGet(request, response);
 
     }

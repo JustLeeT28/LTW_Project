@@ -61,4 +61,30 @@ public class RoomDao {
             throw new RuntimeException(e);
         }
     }
+
+    public void blockRoom(int roomId) {
+        PreparedStatement ps = null;
+        try {
+            String sql = "update rooms set status = ? where id = ?";
+            ps = DbConnect.get(sql);
+            ps.setString(1,"inactive");
+            ps.setInt(2,roomId);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void unblockRoom(int roomId) {
+        PreparedStatement ps = null;
+        try {
+            String sql = "update rooms set status = ? where id = ?";
+            ps = DbConnect.get(sql);
+            ps.setString(1,"active");
+            ps.setInt(2,roomId);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

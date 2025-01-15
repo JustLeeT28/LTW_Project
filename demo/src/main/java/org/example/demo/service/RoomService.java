@@ -19,7 +19,10 @@ public class RoomService {
         return roomDao.getAllRoom();
     }
 
-    public void blockRoom(int i) {
-        return;
+    public void blockRoom(int roomId) {
+        roomDao.blockRoom(roomId);
+    }
+    public void unblockRoom(int roomId) {
+        roomDao.unblockRoom(roomId);
     }
 }
