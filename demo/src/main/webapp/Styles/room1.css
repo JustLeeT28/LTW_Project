@@ -65,3 +65,45 @@
     background: greenyellow !important;
     color: black !important;
 }
+.book .right .details .details_chair li:nth-child(2)::after {
+    background: #fd6565;
+}
+
+.book .right .details .details_chair li:nth-child(2)::before {
+    background: #fd6565;
+}
+
+.book .right .details .details_chair li:nth-child(3)::after {
+    background: greenyellow;
+}
+
+.book .right .details .details_chair li:nth-child(3)::before {
+    background: greenyellow;
+}
+.btn-book {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border: solid 2px yellowgreen;
+    width: fit-content;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 10px 20px;
+    border-radius: 10px;
+
+}
+.btn-book:hover {
+    cursor: pointer;
+}
+.book_movie {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-weight: bold;
+
+
+}
