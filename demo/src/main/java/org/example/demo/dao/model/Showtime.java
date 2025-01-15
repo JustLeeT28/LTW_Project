@@ -8,7 +8,6 @@ public class Showtime {
     private int id;
     private int movieId;
     private int roomId;
-    private String roomName;
     private LocalDate showDate;
     private LocalTime showTime;
     private String status;
@@ -56,14 +55,6 @@ public class Showtime {
 
     public void setRoomId(int roomId) {
         this.roomId = roomId;
-    }
-
-    public String getRoomName() {
-        return roomName;
-    }
-
-    public void setRoomName(String roomName) {
-        this.roomName = roomName;
     }
 
     public LocalDate getShowDate() {
