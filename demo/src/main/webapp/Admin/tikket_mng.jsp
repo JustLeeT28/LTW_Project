@@ -81,17 +81,20 @@
             <!-- Quản lý giá vé -->
             <div class="manage-price">
                 <h2>Quản lý Giá Vé</h2>
-                <form id="priceForm">
-                    <label for="regularPrice">Giá vé thường:</label>
-                    <input type="number" id="regularPrice" value="50000" min="0" required>
+                <form id="priceForm" action="${pageContext.request.contextPath}/tikket_mng" method="POST">
+                    <label for="2Dtik">Giá vé phim 2D:</label>
+                    <input type="number" id="2Dtik" name="2Dtik" min="0" >
 
-                    <label for="vipPrice">Giá vé VIP:</label>
-                    <input type="number" id="vipPrice" value="100000" min="0" required>
+                    <label for="3Dtik">Giá vé phim 3D:</label>
+                    <input type="number" id="3Dtik" name="3Dtik" min="0" >
 
-                    <label for="specialPrice">Giá vé đặc biệt:</label>
-                    <input type="number" id="specialPrice" value="150000" min="0" required>
+                    <label for="4Dtik">Giá vé Phim 4D:</label>
+                    <input type="number" id="4Dtik" name="4Dtik" min="0" >
 
-                    <button type="button" onclick="updatePrices()">Cập nhật giá</button>
+                    <label for="Imax">Giá vé Phim Imax:</label>
+                    <input type="number" id="Imax" name="Imax" min="0" >
+
+                    <button type="submit">Cập nhật giá</button>
                 </form>
             </div>
         </div>

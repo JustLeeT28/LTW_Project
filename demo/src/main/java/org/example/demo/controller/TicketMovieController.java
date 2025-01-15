@@ -22,21 +22,8 @@ public class TicketMovieController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String query_tikket = request.getParameter("query_tikkets");
 
-//        String idStatusBlock = request.getParameter("userId_status_block");
-//        String idStatusUnblock = request.getParameter("userId_status_unblock");
-//        String idUserdel = request.getParameter("userId_del");
-          TicketMovieService ticketMovieService = new TicketMovieService();
-//        // vô hiệu hóa tài khoản
-//        if (idStatusBlock != null && !idStatusBlock.isEmpty()) {
-//            service.blockCustomer(Integer.parseInt(idStatusBlock));
-//        }
-//        // gỡ vô hiệu hóa tài khoản
-//        if (idStatusUnblock != null && !idStatusUnblock.isEmpty()) {
-//            service.unBlockCustomer(Integer.parseInt(idStatusUnblock));
-//        }
-//        if (idUserdel != null && !idUserdel.isEmpty()) {
-//            service.delCustomer(Integer.parseInt(idUserdel));
-//        }
+        TicketMovieService ticketMovieService = new TicketMovieService();
+
         List<MovieTicket> listMovieTicket = new ArrayList<>();
         if (query_tikket != null && !query_tikket.isEmpty()) {
             listMovieTicket = ticketMovieService.getTicketByQuery(query_tikket);
@@ -45,13 +32,33 @@ public class TicketMovieController extends HttpServlet {
         }
 
 
-//        request.setAttribute("date", date);
         request.setAttribute("listMovieTicket", listMovieTicket);
         request.getRequestDispatcher("/Admin/tikket_mng.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // update giá vé
+        String tik2D = request.getParameter("2Dtik");
+        String tik3D = request.getParameter("3Dtik");
+        String tik4D = request.getParameter("4Dtik");
+        String tikImax = request.getParameter("Imax");
+
+        TicketMovieService ticketMovieService = new TicketMovieService();
+
+        if (tik2D !=null && !tik2D.isEmpty() ) {
+            ticketMovieService.update2D(Integer.parseInt(tik2D));
+        }
+        if (tik3D !=null && !tik3D.isEmpty() ) {
+            ticketMovieService.update3D(Integer.parseInt(tik3D));
+        }
+        if (tik4D !=null && !tik4D.isEmpty() ) {
+            ticketMovieService.update4D(Integer.parseInt(tik4D));
+        }
+        if (tikImax !=null && !tikImax.isEmpty() ) {
+            ticketMovieService.updateImax(Integer.parseInt(tikImax));
+        }
+        doGet(request, response);
 
     }
 }
