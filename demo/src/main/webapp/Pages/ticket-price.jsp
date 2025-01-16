@@ -4,32 +4,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../Styles/ticket-price.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/nav_menu.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/footer.css">
-    <script src="../Script/search.js"></script>
+    <style>
+        .bang-gia-ve-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-top: 120px;
+            color: white;
+            margin-bottom: 50px;
+
+        }
+
+        .bang-gia-ve-table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            font-size: 1.2em;
+            margin-bottom: 200px;
+        }
+
+        .bang-gia-ve-table th, .bang-gia-ve-table td {
+            border: 1px solid #202020;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .bang-gia-ve-table th {
+            background-color: #85e3b3;
+            font-weight: bold;
+        }
+
+        .bang-gia-ve-table tr:nth-child(even), .bang-gia-ve-table tr:nth-child(odd) {
+            background-color: #fff;
+        }
+
+        .bang-gia-ve-table tr:hover {
+            background-color: #ddd;
+        }
+
+
+    </style>
 </head>
 <body>
 <jsp:include page="Includes/menu.jsp"/>
-<div class="container">
-    <div class="header">
-        <h1>GIÁ VÉ</h1>
-    </div>
-    <div class="imgticket-content">
-        <div class="left-img">
-            <img src="../img/img/ticket_price2.jpg"/>
-        </div>
-        <div class="right-content">
-            <div class="sub">Đồng giá 55k/vé!</div>
-            <div class="text-content"><p class="">Đồng giá 55k cho mọi lứa tuổi </p></div>
-            <div class="text-content"><p>Trương trình diễn ra từ 25/11/2024 đến hết ngày 5/5/2025</p></div>
-            <div class="text-content"><p>Hãy nhanh chân đến cinema KATA để có được những phút giây thư giãn bên gia đình
-                và bạn bè</p></div>
-        </div>
-    </div>
-</div>
+    <h1 class="bang-gia-ve-title"><strong>Bảng Giá Vé</strong></h1>
+    <table class="bang-gia-ve-table">
+        <thead>
+        <tr>
+            <th>Loại Phòng</th>
+            <th>Giá Vé (VNĐ)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>2D</td>
+            <td>45,000 VNĐ</td>
+        </tr>
+        <tr>
+            <td>3D</td>
+            <td>55,000 VNĐ</td>
+        </tr>
+        <tr>
+            <td>4D</td>
+            <td>80,000 VNĐ</td>
+        </tr>
+        <tr>
+            <td>Imax</td>
+            <td>140,000 VNĐ</td>
+        </tr>
+        </tbody>
+    </table>
+    </body>
+    </html>
 </div>
 <jsp:include page="Includes/footer.jsp"/>
 </body>
