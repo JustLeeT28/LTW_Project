@@ -94,6 +94,7 @@ public class AddMovieController extends HttpServlet {
         MovieService movieService = new MovieService();
         movies = movieService.getMoviesA_Z() ; // Lấy danh sách phim từ service
         request.setAttribute("movies", movies); // Lưu vào request để hiển thị lên JSP
+
         request.getRequestDispatcher("/Admin/film_management.jsp").forward(request, response); // Chuyển tới trang film_management.jsp
     }
     private boolean isAdminLoggedIn(HttpServletRequest request) {

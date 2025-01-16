@@ -16,9 +16,10 @@ public class MovieDao {
         PreparedStatement ps = null;
         ResultSet resultSet = null;
         try {
-            String query = "SELECT * FROM movies";
+            String query = "SELECT * FROM movies " +
+                    "WHERE status = ?";
             ps = DbConnect.get(query);  // Lấy PreparedStatement từ DbConnect
-
+            ps.setString(1, "active");
             resultSet = ps.executeQuery();  // Thực thi truy vấn
 
             List<Movie> movies = new ArrayList<>();

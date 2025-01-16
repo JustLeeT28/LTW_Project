@@ -472,6 +472,19 @@ public class UserDao {
         }
     }
 
+    public void changePass2(int id, String hashNewPass) {
+        PreparedStatement ps = null;
+        try {
+            String query = "UPDATE USERS SET password = ? WHERE id = ?";
+            ps = DbConnect.get(query);
+            ps.setString(1,hashNewPass);
+            ps.setInt(2,id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 //    public static void main(String[] args) {
 //        UserDao dao = new UserDao();

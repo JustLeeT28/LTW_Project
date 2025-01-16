@@ -114,8 +114,8 @@ public class AddMovieDao {
             PreparedStatement psCheck = DbConnect.get(checkQuery);
             for (String g : genreList){
                 ps.setInt(1,movie_newid);
-                int genreId = idGenre(g);
-                if (genreId == -1) continue;
+                int genreId = idGenre(g); // lấy id thể loại
+                if (genreId == -1) continue; // k có thể loại đó thi bo qua
                 // Kiểm tra nếu đã tồn tại
                 psCheck.setInt(1, movie_newid);
                 psCheck.setInt(2, genreId);
@@ -176,8 +176,8 @@ public class AddMovieDao {
             for (String g : dirList){
                 ps.setInt(1,movieNewid);
                 int dirId = idDirector(g);
-                if(dirId == -1){
-                    addDirector(g);
+                if(dirId == -1){ // chưa tồn tại đạo diễn này trong dữ liệu
+                    addDirector(g);  // tạo ra đạo diễn mới
                     dirId = idDirector(g); // lấy id sau khi tạo
                 }
                 if(dirId == -1){ // nếu vẫn k tạo đc

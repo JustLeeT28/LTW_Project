@@ -23,11 +23,12 @@
                     <li><a href="#">Quản lý Nhân viên</a></li>
                     <li><a href="#" class="active">Báo cáo và Thống kê</a></li> -->
                     <li><a href="${pageContext.request.contextPath}/dashboard" data-section="dashboard">Dashboard</a></li>
-                    <li><a href="${pageContext.request.contextPath}/film_management" data-section="movies">Quản lý Phim</a></li>
-                    <li><a href="${pageContext.request.contextPath}/schedule_mng" data-section="schedules">Quản lý Lịch Chiếu</a></li>
-                    <li><a href="${pageContext.request.contextPath}/room_mng" data-section="rooms">Quản lý Phòng Chiếu</a></li>
-                    <li><a href="${pageContext.request.contextPath}/tikket_mng" data-section="tickets">Quản lý Vé</a></li>
-                    <li><a href="${pageContext.request.contextPath}/customer_mng" data-section="customers">Quản lý Khách hàng</a></li>
+                    <li><a href="${pageContext.request.contextPath}/film_management" data-section="movies">Quản lý phim</a></li>
+                    <li><a href="${pageContext.request.contextPath}/schedule_mng" data-section="schedules">Quản lý lịch chiếu</a></li>
+                    <li><a href="${pageContext.request.contextPath}/room_mng" data-section="rooms">Quản lý phòng chiếu</a></li>
+                    <li><a href="${pageContext.request.contextPath}/tikket_mng" data-section="tickets">Quản lý vé</a></li>
+                    <li><a href="${pageContext.request.contextPath}/customer_mng" data-section="customers">Quản lý khách hàng</a></li>
+                    <li><a href="${pageContext.request.contextPath}">Trang chủ</a></li>
                     <%--                <li><a href="reports_mng.jsp" data-section="settings">Báo cáo và Thống kê</a></li>--%>
                 </ul>
             </nav>

@@ -17,11 +17,12 @@
             <nav>
                 <ul>
                     <li><a href="${pageContext.request.contextPath}/dashboard" data-section="dashboard">Dashboard</a></li>
-                    <li><a href="${pageContext.request.contextPath}/film_management" data-section="movies">Quản lý Phim</a></li>
-                    <li><a href="${pageContext.request.contextPath}/schedule_mng" data-section="schedules">Quản lý Lịch Chiếu</a></li>
-                    <li><a href="${pageContext.request.contextPath}/room_mng" data-section="rooms">Quản lý Phòng Chiếu</a></li>
-                    <li><a href="${pageContext.request.contextPath}/tikket_mng" data-section="tickets">Quản lý Vé</a></li>
-                    <li><a href="${pageContext.request.contextPath}/customer_mng" data-section="customers">Quản lý Khách hàng</a></li>
+                    <li><a href="${pageContext.request.contextPath}/film_management" data-section="movies">Quản lý phim</a></li>
+                    <li><a href="${pageContext.request.contextPath}/schedule_mng" data-section="schedules">Quản lý lịch chiếu</a></li>
+                    <li><a href="${pageContext.request.contextPath}/room_mng" data-section="rooms">Quản lý phòng chiếu</a></li>
+                    <li><a href="${pageContext.request.contextPath}/tikket_mng" data-section="tickets">Quản lý vé</a></li>
+                    <li><a href="${pageContext.request.contextPath}/customer_mng" data-section="customers">Quản lý khách hàng</a></li>
+                    <li><a href="${pageContext.request.contextPath}">Trang chủ</a></li>
                     <%--                <li><a href="reports_mng.jsp" data-section="settings">Báo cáo và Thống kê</a></li>--%>
                 </ul>
             </nav>
@@ -49,31 +50,31 @@
                         <h3>Tổng doanh thu</h3>
                         <p id="revenue">${total_revenue} VNĐ</p>
                     </div>
-<%--                    <div class="card">--%>
-<%--                        <h3>Số lượng người xem</h3>--%>
-<%--                        <p id="viewers">500 người</p>--%>
-<%--                    </div>--%>
-<%--                    <div class="card">--%>
-<%--                        <h3>Tình trạng chỗ ngồi</h3>--%>
-<%--                        <p id="seatStatus">75% đã được đặt</p>--%>
-<%--                    </div>--%>
+                    <div class="card">
+                        <h3>Doanh thu bán vé</h3>
+                        <p id="movie-tick">.........</p>
+                    </div>
+                    <div class="card">
+                        <h3>Doanh bán đồ ăn</h3>
+                        <p id="seatStatus">.........</p>
+                    </div>
                 </div>
 
-                <!-- Biểu đồ doanh thu -->
-                <div class="chart-container">
-                    <h2>Thống kê Doanh thu</h2>
-                    <canvas id="revenueChart"></canvas>
-                </div>
+<%--                <!-- Biểu đồ doanh thu -->--%>
+<%--                <div class="chart-container">--%>
+<%--                    <h2>Thống kê Doanh thu</h2>--%>
+<%--                    <canvas id="revenueChart"></canvas>--%>
+<%--                </div>--%>
 
                 <!-- Thông báo -->
-                <div class="notifications">
-                    <h2>Thông báo</h2>
-                    <ul id="notificationList">
-                        <li>Số lượng vé còn ít cho suất chiếu 19:00 hôm nay</li>
-                        <li>Cập nhật: Phim mới được thêm vào lịch chiếu</li>
-                        <li>Cảnh báo: Lỗi kết nối hệ thống lúc 10:30 sáng</li>
-                    </ul>
-                </div>
+<%--                <div class="notifications">--%>
+<%--                    <h2>Thông báo</h2>--%>
+<%--                    <ul id="notificationList">--%>
+<%--                        <li>Số lượng vé còn ít cho suất chiếu 19:00 hôm nay</li>--%>
+<%--                        <li>Cập nhật: Phim mới được thêm vào lịch chiếu</li>--%>
+<%--                        <li>Cảnh báo: Lỗi kết nối hệ thống lúc 10:30 sáng</li>--%>
+<%--                    </ul>--%>
+<%--                </div>--%>
             </div>
         </main>
     </div>
