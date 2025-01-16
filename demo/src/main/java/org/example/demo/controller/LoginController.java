@@ -38,6 +38,11 @@ public class LoginController extends HttpServlet {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("user", u);
                 session.setAttribute("isLogin", "true" );
+                if(u.getStatus().equals("inactive")){
+                    request.setAttribute("errorMessage", "Tài khoản này đã bị vô hiệu hóa!");
+                    request.getRequestDispatcher("/Pages/login.jsp").forward(request, response);
+                    return;
+                }
                 if(u.getRole() == 1){ // nếu tài khoản là admin
                     response.sendRedirect("/demo_war_exploded/dashboard");
                     return;

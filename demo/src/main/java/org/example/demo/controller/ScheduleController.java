@@ -44,7 +44,20 @@ public class ScheduleController extends HttpServlet {
         String roomId = request.getParameter("roomId");
         String showDate = request.getParameter("showDate");
         String showTime = request.getParameter("showTime")+":00";
+        String showtimeID_del = request.getParameter("del_showtime_id") ;
         ScheduleService service = new ScheduleService();
+        if(showtimeID_del != null && !showtimeID_del.isEmpty() ) {
+            // lấy showtime để lấy roomid
+            Showtime showtime = service.getShowtimeByID(Integer.parseInt(showtimeID_del));
+            List<Seat> listSeat = service.getListSeatsByRoomid(String.valueOf(showtime.getRoomId()));
+            for (Seat seat : listSeat) {
+                service.del_show_seat(Integer.parseInt(showtimeID_del),seat.getId());
+            }
+            service.dellshowtimeID(Integer.parseInt(showtimeID_del));
+            request.setAttribute("message", "Hủy lịch chiếu thành công!"); // Lưu vào request để hiển thị lên JSP
+            doGet(request, response);
+
+        }
         if(roomId != null && !roomId.isEmpty() && showDate != null && !showDate.isEmpty() && showTime != null && !showTime.isEmpty() && movieId != null && !movieId.isEmpty()) {
             if (service.isConflict(movieId,roomId,showDate,showTime)){
                 request.setAttribute("message", "Phim bị trùng lịch chiếu!"); // Lưu vào request để hiển thị lên JSP
