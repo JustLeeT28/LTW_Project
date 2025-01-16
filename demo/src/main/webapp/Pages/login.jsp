@@ -13,7 +13,7 @@
 <div class="container-login">
   <c:if test="${not empty errorMessage}">
     <div class="error-message" style="color: white;font-size: 20px">
-      <strong>${errorMessage}</strong> sdfshudhfushfusdfsdfijasid fjisdf
+      <strong>${errorMessage}</strong> 
     </div>
   </c:if>
   <div class="form-wrap">

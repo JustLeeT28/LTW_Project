@@ -90,6 +90,7 @@
                 <table>
                     <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Tên phim</th>
                         <th>Thời lượng</th>
                         <th>Ngày bắt đầu chiếu</th>
@@ -100,6 +101,7 @@
                     <tbody>
                     <c:forEach var="movie" items="${movies}">
                         <tr>
+                            <td>${movie.id}</td>
                             <td>${movie.title}</td>
                             <td>${movie.duration}</td>
                             <td>${movie.releaseDate}</td>
