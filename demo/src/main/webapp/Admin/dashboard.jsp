@@ -9,6 +9,31 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/dashboard.css">
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Thêm Chart.js -->
+    <style>
+        .overview {
+            display: flex;
+            flex-direction: column; /* Chuyển các phần tử con xếp theo cột */
+            gap: 20px; /* Khoảng cách giữa các thẻ con */
+            width: 90%; /* Chiều rộng bao quanh */
+            max-width: 600px; /* Giới hạn chiều rộng tối đa */
+        }
+
+        .overview .card {
+            padding: 15px;
+            width: 900px;
+        }
+
+<%--        .overview .card h3 {--%>
+<%--            margin-bottom: 10px;--%>
+<%--            color: #333;--%>
+<%--        }--%>
+
+<%--        .overview .card p {--%>
+<%--            font-size: 18px;--%>
+<%--            color: #555;--%>
+<%--        }--%>
+    </style>
+
 </head>
 <body>
     <div class="container">
