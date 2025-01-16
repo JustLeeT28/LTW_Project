@@ -18,5 +18,8 @@ public class SeatService {
     public Set<String> getRowsInRoom(int roomId) {
         return seatDao.getRowInRoom(roomId);
     }
+    public Seat  getSeatById(int seatId) {
+        return seatDao.getSeatById(seatId);
+    }
 
 }
