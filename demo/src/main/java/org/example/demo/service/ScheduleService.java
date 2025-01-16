@@ -37,4 +37,16 @@ public class ScheduleService {
     public List<Showtime> getAllShowtime() {
         return scheduleDao.getAllShowtime();
     }
+
+    public void dellshowtimeID(int i) {
+        scheduleDao.dellShowtimeID(i);
+    }
+
+    public Showtime getShowtimeByID(int i) {
+        return scheduleDao.GetShowTimeByID(i);
+    }
+
+    public void del_show_seat(int i, int id) {
+        scheduleDao.del_show_seat(i,id);
+    }
 }

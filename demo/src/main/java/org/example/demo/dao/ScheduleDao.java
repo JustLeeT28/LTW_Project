@@ -160,13 +160,6 @@ public class ScheduleDao {
         }
     }
 
-//    public void addShowAndSeats(int showid, String roomId) {
-//        List<Seat> listSeats = GetSeatByRoom(roomId);
-//        for (Seat s : listSeats) {
-//            addShow_seats(showid,s.getId(),s.getIsActive());
-//        }
-//    }
-
     public void addShowTime(String movieId, String roomId, String showDate, String showTime) {
         PreparedStatement ps = null;
         try {
@@ -206,6 +199,31 @@ public class ScheduleDao {
             ps.setInt(2,roomId);
             ps.setDate(3,Date.valueOf(showDate));
             ps.setTime(4,Time.valueOf(showTime));
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                Showtime s = new Showtime(
+                        rs.getInt("id"),
+                        rs.getInt("movieId"),
+                        rs.getInt("roomId"),
+                        rs.getDate("showDate").toLocalDate(),
+                        rs.getTime("showTime").toLocalTime(),
+                        rs.getString("status")
+                );
+                return s;
+            }
+            return null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Showtime GetShowTimeByID(int showTimeID) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            String query = "SELECT * FROM showtimes WHERE id = ? ";
+            ps = DbConnect.get(query);
+            ps.setInt(1, showTimeID);
             rs = ps.executeQuery();
             if (rs.next()) {
                 Showtime s = new Showtime(
@@ -270,6 +288,32 @@ public class ScheduleDao {
                 listShowtimes.add(s);
             }
             return listShowtimes;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void dellShowtimeID(int showtimeID) {
+        PreparedStatement ps = null;
+        try {
+            String sql = "DELETE FROM showtimes WHERE id = ?";
+            ps = DbConnect.get(sql);
+            ps.setInt(1,showtimeID);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void del_show_seat(int showid, int seatid) {
+        PreparedStatement ps = null;
+        try {
+            String sql = "DELETE FROM showtime_seats WHERE showTimeId = ? AND seatId = ?";
+            ps = DbConnect.get(sql);
+            ps.setInt(1,showid);
+            ps.setInt(2,seatid);
+            ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
