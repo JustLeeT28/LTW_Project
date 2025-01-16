@@ -58,19 +58,19 @@
         <tbody>
         <tr>
             <td>2D</td>
-            <td>45,000 VNĐ</td>
+            <td>${price2D} VNĐ</td>
         </tr>
         <tr>
             <td>3D</td>
-            <td>55,000 VNĐ</td>
-        </tr>
-        <tr>
-            <td>4D</td>
-            <td>80,000 VNĐ</td>
+            <td>${price3D} VNĐ</td>
         </tr>
         <tr>
             <td>Imax</td>
-            <td>140,000 VNĐ</td>
+            <td>${priceImax} VNĐ</td>
+        </tr>
+        <tr>
+            <td>4Dx</td>
+            <td>${price4D} VNĐ</td>
         </tr>
         </tbody>
     </table>

@@ -18,7 +18,7 @@
             <input type="text" id="movie-name" name="movie-name" placeholder="Nhập tên phim">
         </form>
         <a href="${pageContext.request.contextPath}/search" class="menu">Phim</a>
-        <a href="/demo_war_exploded/Pages/ticket-price.jsp" class="menu">Giá vé</a>
+        <a href="${pageContext.request.contextPath}/tickketPrice" class="menu">Giá vé</a>
         <% if (session.getAttribute("user") != null) { %>
         <a href="${pageContext.request.contextPath}/Pages/user-infor.jsp">
             <img src="${pageContext.request.contextPath}/img/img/user.jpg" height="30" width="30"/>

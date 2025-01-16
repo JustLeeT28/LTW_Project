@@ -87,4 +87,26 @@ public class RoomDao {
             throw new RuntimeException(e);
         }
     }
+
+    public int getPrice(String styleRoom) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int price = 0;
+        try {
+            String sql = "select s.price from seats s " +
+                    "JOIN rooms r ON r.id = s.roomId " +
+                    "where r.style = ?";
+            ps = DbConnect.get(sql);
+            ps.setString(1,styleRoom);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                price = rs.getInt("price");
+            }
+            return price;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }

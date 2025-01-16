@@ -32,7 +32,7 @@ public class HashUtil {
 
     public static void main(String[] args) {
         // Kiểm tra hàm mã hóa MD5
-        String password = "admin12345";
+        String password = "userB123";
         String p = hashWithMD5(password);
         System.out.println("Mật khẩu mã hóa MD5 là: " + p);
 
