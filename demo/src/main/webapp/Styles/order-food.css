@@ -30,8 +30,9 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
-
+    overflow-y: auto; /* Thêm dòng này để kích hoạt cuộn dọc */
 }
+
 
 .food-item {
     background-color: #2a2b30;

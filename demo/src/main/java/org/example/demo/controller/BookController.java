@@ -80,6 +80,11 @@ public class BookController extends HttpServlet {
         }
         request.setAttribute("statusSeats", statusSeatByShowtimeId);
         request.setAttribute("seatsInRoom", seatsInRoom);
+
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            User user = (User) session.getAttribute("user");
+        }
         request.setAttribute("rowsInRoom", rowsInRoom);
         // Chuyển hướng tới trang book.jsp
         request.getRequestDispatcher("Pages/book.jsp").forward(request, response);

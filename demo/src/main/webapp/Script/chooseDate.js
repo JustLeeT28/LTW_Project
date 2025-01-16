@@ -42,12 +42,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
     const clickableTimes = document.querySelectorAll('.clickableTime');
+
     const Timeform = document.getElementById('bookingFormTime');
     const hiddenHour = document.getElementById('selectedHour');
     const hiddenMinute = document.getElementById('selectedMinute');
+    // const hiddenRoomId = document.getElementById('selectedRoomId');
+
     const selectedHour = urlParams.get('hour');
     const selectedMinute = urlParams.get('minute');
-
     // Đặt trạng thái ban đầu dựa trên URL
     clickableTimes.forEach(item => {
         const itemHour = item.dataset.hour;
@@ -75,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Cập nhật input ẩn
             hiddenHour.value = this.dataset.hour;
             hiddenMinute.value = this.dataset.minute;
+            // hiddenRoomId.value = this.dataset.roomId;
 
             // Gửi form
             Timeform.submit();

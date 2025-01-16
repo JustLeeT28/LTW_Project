@@ -99,6 +99,45 @@ public class SeatDao {
         return rows;
     }
 
+
+    public Seat getSeatById(int seatId) {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        try {
+            String query = "SELECT * FROM seats WHERE id = ?";
+
+            ps = DbConnect.get(query); // Lấy PreparedStatement từ DbConnect
+            ps.setInt(1, seatId); // Set tham số cho PreparedStatement
+            resultSet = ps.executeQuery(); // Thực thi truy vấn
+
+            if (resultSet.next()) {
+                Seat seat = new Seat(
+                        resultSet.getInt("id"),
+                        resultSet.getInt("roomId"),
+                        resultSet.getString("row"),
+                        resultSet.getString("seat_number"),
+                        resultSet.getDouble("price"),
+                        resultSet.getString("isActive")
+                );
+                return seat;
+            }
+
+            return null;
+
+        } catch (SQLException e) {
+            e.printStackTrace(); // Log lỗi
+            return null; // Trả về danh sách rỗng khi gặp lỗi
+        } finally {
+            // Đảm bảo đóng tài nguyên sau khi sử dụng
+            try {
+                if (resultSet != null) resultSet.close();
+                if (ps != null) ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace(); // Log lỗi khi đóng tài nguyên
+            }
+        }
+    }
+
     public static void main(String[] args) {
         SeatDao seatDao = new SeatDao();
         List<Seat> seats = seatDao.getSeatsInRoom(1);
