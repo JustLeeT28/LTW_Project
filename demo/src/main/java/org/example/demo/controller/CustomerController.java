@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.example.demo.dao.model.User;
 import org.example.demo.service.Customer_mng_Service;
 import org.example.demo.service.DashboardService;
@@ -20,6 +21,10 @@ import java.util.List;
 public class CustomerController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (!isAdminLoggedIn(request)) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND); // Trả về lỗi 404
+            return;
+        }
         String query_cus = request.getParameter("query_customers");
         String idStatusBlock = request.getParameter("userId_status_block");
         String idStatusUnblock = request.getParameter("userId_status_unblock");
@@ -52,5 +57,13 @@ public class CustomerController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    }
+    private boolean isAdminLoggedIn(HttpServletRequest request) {
+        HttpSession session = request.getSession(false); // Lấy session (không tạo mới)
+        if (session == null) return false;
+
+        // Lấy thông tin role từ session
+        User u = (User) session.getAttribute("user");
+        return u != null && u.getRole() == 1; // Kiểm tra quyền là admin (1)
     }
 }

@@ -6,8 +6,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.example.demo.dao.model.MovieTicket;
 import org.example.demo.dao.model.Room;
+import org.example.demo.dao.model.User;
 import org.example.demo.service.RoomService;
 import org.example.demo.service.TicketMovieService;
 
@@ -20,6 +22,10 @@ import java.util.List;
 public class RoomController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {//
+        if (!isAdminLoggedIn(request)) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND); // Trả về lỗi 404
+            return;
+        }
         RoomService roomService = new RoomService();
         List<Room> listRoom = new ArrayList<>();
         listRoom = roomService.getAllRoom();
@@ -51,5 +57,13 @@ public class RoomController extends HttpServlet {
         }
         doGet(request, response);
 
+    }
+    private boolean isAdminLoggedIn(HttpServletRequest request) {
+        HttpSession session = request.getSession(false); // Lấy session (không tạo mới)
+        if (session == null) return false;
+
+        // Lấy thông tin role từ session
+        User u = (User) session.getAttribute("user");
+        return u != null && u.getRole() == 1; // Kiểm tra quyền là admin (1)
     }
 }

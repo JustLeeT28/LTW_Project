@@ -119,6 +119,10 @@ public class UpdateFilmController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (!isAdminLoggedIn(request)) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND); // Trả về lỗi 404
+            return;
+        }
         int movieId = Integer.parseInt(request.getParameter("mId"));
         MovieDao movieDao = new MovieDao();
         Movie m =  movieDao.getMovieById(movieId);
@@ -127,5 +131,13 @@ public class UpdateFilmController extends HttpServlet {
         request.setAttribute("movie_title", movieTitle);
         request.getRequestDispatcher("/Admin/update_film_management.jsp").forward(request, response);
 
+    }
+    private boolean isAdminLoggedIn(HttpServletRequest request) {
+        HttpSession session = request.getSession(false); // Lấy session (không tạo mới)
+        if (session == null) return false;
+
+        // Lấy thông tin role từ session
+        User u = (User) session.getAttribute("user");
+        return u != null && u.getRole() == 1; // Kiểm tra quyền là admin (1)
     }
 }

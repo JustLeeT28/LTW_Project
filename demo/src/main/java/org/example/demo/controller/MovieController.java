@@ -14,6 +14,7 @@ public class MovieController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         MovieService movieService = new MovieService();
         List<Movie> movies = movieService.getMovies();
         request.setAttribute("movies", movies);

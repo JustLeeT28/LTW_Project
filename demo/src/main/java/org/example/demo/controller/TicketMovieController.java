@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.example.demo.dao.model.MovieTicket;
 import org.example.demo.dao.model.User;
 import org.example.demo.service.Customer_mng_Service;
@@ -20,6 +21,10 @@ import java.util.List;
 public class TicketMovieController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (!isAdminLoggedIn(request)) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND); // Trả về lỗi 404
+            return;
+        }
         String query_tikket = request.getParameter("query_tikkets");
 
         TicketMovieService ticketMovieService = new TicketMovieService();
@@ -60,5 +65,13 @@ public class TicketMovieController extends HttpServlet {
         }
         doGet(request, response);
 
+    }
+    private boolean isAdminLoggedIn(HttpServletRequest request) {
+        HttpSession session = request.getSession(false); // Lấy session (không tạo mới)
+        if (session == null) return false;
+
+        // Lấy thông tin role từ session
+        User u = (User) session.getAttribute("user");
+        return u != null && u.getRole() == 1; // Kiểm tra quyền là admin (1)
     }
 }

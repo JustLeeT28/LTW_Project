@@ -5,7 +5,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.example.demo.dao.model.Movie;
+import org.example.demo.dao.model.User;
 import org.example.demo.service.AddMovieService;
 import org.example.demo.service.MovieService;
 
@@ -79,6 +81,10 @@ public class AddMovieController extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (!isAdminLoggedIn(request)) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND); // Trả về lỗi 404
+            return;
+        }
         String updateMovieId = request.getParameter("update_movie_id");
         if(updateMovieId != null && !updateMovieId.isEmpty()) {
             request.setAttribute("mId", updateMovieId);
@@ -89,6 +95,14 @@ public class AddMovieController extends HttpServlet {
         movies = movieService.getMoviesA_Z() ; // Lấy danh sách phim từ service
         request.setAttribute("movies", movies); // Lưu vào request để hiển thị lên JSP
         request.getRequestDispatcher("/Admin/film_management.jsp").forward(request, response); // Chuyển tới trang film_management.jsp
+    }
+    private boolean isAdminLoggedIn(HttpServletRequest request) {
+        HttpSession session = request.getSession(false); // Lấy session (không tạo mới)
+        if (session == null) return false;
+
+        // Lấy thông tin role từ session
+        User u = (User) session.getAttribute("user");
+        return u != null && u.getRole() == 1; // Kiểm tra quyền là admin (1)
     }
 
 }
