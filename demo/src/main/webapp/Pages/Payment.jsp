@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <title>Thanh toán</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/nav_menu.css">
-    <link rel="stylesheet" href="../Styles/pay_page.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/pay_page.css">
     <script src="../Script/Payment.js"></script>
     <script src="../Script/confirm-payment.js"></script>
     <script src="../Script/search.js"></script>
@@ -16,12 +16,19 @@
 <jsp:include page="Includes/menu.jsp"/>
 <div class="container-payment">
     <div class="pay">
-        <p>TRANG THANH TOÁN</p>
+        <p>TRANG THANH TOÁN
+            ${user.id}
+        </p>
+        <p>
+            <c:forEach var="food" items="${foodTicketItems}">
+                ${food.comboId} ${food.quantity}
+            </c:forEach>
+        </p>
     </div>
     <div class="payment">
         <div class="QR-lefl">
             <h3>Thanh toán bằng QR</h3>
-            <img src="../img/img/QR_thanhtoan.jpg"/>
+            <img src="${pageContext.request.contextPath}/img/img/QR_thanhtoan.jpg"/>
             <h2 class="cost">0 VNĐ</h2>
         </div>
         <div class="infor-movie-right">
@@ -55,7 +62,9 @@
         <a href="order-food.jsp">
             <button class="btn-back">Quay lại</button>
         </a>
-        <button class="btn-pay">Thanh toán</button>
+        <form action="${pageContext.request.contextPath}/payment" method="get">
+            <button type="submit" class="btn-pay">Thanh toán</button>
+        </form>
     </div>
 
 </div>
