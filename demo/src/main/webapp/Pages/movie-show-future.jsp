@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Phim sắp chiếu</title>
-    <link rel="stylesheet" href="../Styles/Search.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/Search.css">
     <script src="../Script/click_book_button.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/nav_menu.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/footer.css">
@@ -16,133 +16,38 @@
     <h1>PHIM SẮP CHIẾU</h1>
 </div>
 <div class="container-movie">
-    <div class="movie">
-        <div class="movie-infor">
-            <img src="../img/img/jawan.jpg" height="1530" width="1148"/>
-            <div class="infor-text">
-                <h3><span class="highlight">Quốc gia:</span>Mỹ</h3>
-                <h3><span class="highlight">Thời lượng:</span>165p</h3>
-                <h3><span class="highlight">Ngôn ngữ:</span>Tiếng Anh</h3>
-                <h3><span class="highlight">Phụ đề:</span>Tiếng Việt</h3>
+    <c:forEach var="movie" items="${movies_future}" varStatus="status">
+        <div class="movie">
+            <div class="movie-infor">
+                <div class="movie_img">
+                    <img src="${movie.posterUrl}" height="1100" width="1148"/>
+                </div>
+                <div class="infor-text">
+                    <h3><span class="highlight">Quốc gia:</span>${movie.country}</h3>
+                    <h3><span class="highlight">Thời lượng:</span>${movie.duration}</h3>
+                    <h3><span class="highlight">Ngôn ngữ:</span>${movie.language}</h3>
+                    <h3><span class="highlight">Phụ đề:</span>${movie.subtitle}</h3>
+                </div>
             </div>
+            <div class="book_link">
+                <a href="book?mId=${movie.id}">${movie.title}</a>
+                <button class="book-button" data-id="${movie.id}"><a href="book?mId=${movie.id}"
+                                                                     style="color: black">Đặt vé</a></button>                </div>
         </div>
-        <a href="detail.jsp">Jawan</a>
-        <button class="book-button future">Chi tiết</button>
-    </div>
-    <div class="movie">
-        <div class="movie-infor">
-            <img src="../img/img/jawan.jpg" height="1530" width="1148"/>
-            <div class="infor-text">
-                <h3><span class="highlight">Quốc gia:</span>Mỹ</h3>
-                <h3><span class="highlight">Thời lượng:</span>165p</h3>
-                <h3><span class="highlight">Ngôn ngữ:</span>Tiếng Anh</h3>
-                <h3><span class="highlight">Phụ đề:</span>Tiếng Việt</h3>
-            </div>
-        </div>
-        <a href="detail.jsp">Jawan</a>
-        <button class="book-button future">Chi tiết</button>
-    </div>
-    <div class="movie">
-        <div class="movie-infor">
-            <img src="../img/img/jawan.jpg" height="1530" width="1148"/>
-            <div class="infor-text">
-                <h3><span class="highlight">Quốc gia:</span>Mỹ</h3>
-                <h3><span class="highlight">Thời lượng:</span>165p</h3>
-                <h3><span class="highlight">Ngôn ngữ:</span>Tiếng Anh</h3>
-                <h3><span class="highlight">Phụ đề:</span>Tiếng Việt</h3>
-            </div>
-        </div>
-        <a href="detail.jsp">Jawan</a>
-        <button class="book-button future">Chi tiết</button>
-    </div>
-    <div class="movie">
-        <div class="movie-infor">
-            <img src="../img/img/jawan.jpg" height="1530" width="1148"/>
-            <div class="infor-text">
-                <h3><span class="highlight">Quốc gia:</span>Mỹ</h3>
-                <h3><span class="highlight">Thời lượng:</span>165p</h3>
-                <h3><span class="highlight">Ngôn ngữ:</span>Tiếng Anh</h3>
-                <h3><span class="highlight">Phụ đề:</span>Tiếng Việt</h3>
-            </div>
-        </div>
-        <a href="detail.jsp">Jawan</a>
-        <button class="book-button future">Chi tiết</button>
-    </div>
-    <div class="movie">
-        <div class="movie-infor">
-            <img src="../img/img/jawan.jpg" height="1530" width="1148"/>
-            <div class="infor-text">
-                <h3><span class="highlight">Quốc gia:</span>Mỹ</h3>
-                <h3><span class="highlight">Thời lượng:</span>165p</h3>
-                <h3><span class="highlight">Ngôn ngữ:</span>Tiếng Anh</h3>
-                <h3><span class="highlight">Phụ đề:</span>Tiếng Việt</h3>
-            </div>
-        </div>
-        <a href="detail.jsp">Jawan</a>
-        <button class="book-button future">Chi tiết</button>
-    </div>
-    <div class="movie">
-        <div class="movie-infor">
-            <img src="../img/img/jawan.jpg" height="1530" width="1148"/>
-            <div class="infor-text">
-                <h3><span class="highlight">Quốc gia:</span>Mỹ</h3>
-                <h3><span class="highlight">Thời lượng:</span>165p</h3>
-                <h3><span class="highlight">Ngôn ngữ:</span>Tiếng Anh</h3>
-                <h3><span class="highlight">Phụ đề:</span>Tiếng Việt</h3>
-            </div>
-        </div>
-        <a href="detail.jsp">Jawan</a>
-        <button class="book-button future">Chi tiết</button>
-    </div>
-    <div class="movie">
-        <div class="movie-infor">
-            <img src="../img/img/jawan.jpg" height="1530" width="1148"/>
-            <div class="infor-text">
-                <h3><span class="highlight">Quốc gia:</span>Mỹ</h3>
-                <h3><span class="highlight">Thời lượng:</span>165p</h3>
-                <h3><span class="highlight">Ngôn ngữ:</span>Tiếng Anh</h3>
-                <h3><span class="highlight">Phụ đề:</span>Tiếng Việt</h3>
-            </div>
-        </div>
-        <a href="detail.jsp">Jawan</a>
-        <button class="book-button future">Chi tiết</button>
-    </div>
-    <div class="movie">
-        <div class="movie-infor">
-            <img src="../img/img/jawan.jpg" height="1530" width="1148"/>
-            <div class="infor-text">
-                <h3><span class="highlight">Quốc gia:</span>Mỹ</h3>
-                <h3><span class="highlight">Thời lượng:</span>165p</h3>
-                <h3><span class="highlight">Ngôn ngữ:</span>Tiếng Anh</h3>
-                <h3><span class="highlight">Phụ đề:</span>Tiếng Việt</h3>
-            </div>
-        </div>
-        <a href="detail.jsp">Jawan</a>
-        <button class="book-button future">Chi tiết</button>
-    </div>
+    </c:forEach>
 </div>
 <div class="pagination">
     <ul class="page">
         <li class="num-page">
-            <a href="" class="number-icon"><<</a>
+            <a href="movieNow?page=${currentPage - 1}" class="number-icon" ${currentPage == 1 ? 'style="pointer-events:none;opacity:0.5;"' : ''}>&lt;&lt;</a>
         </li>
+        <c:forEach var="page" begin="1" end="${totalPages}">
+            <li class="num-page">
+                <a href="movieNow?page=${page}" class="number ${page == currentPage ? 'active' : ''}">${page}</a>
+            </li>
+        </c:forEach>
         <li class="num-page">
-            <a href="" class="number">1</a>
-        </li>
-        <li class="num-page">
-            <a href="" class="number">2</a>
-        </li>
-        <li class="num-page">
-            <a href="" class="number">3</a>
-        </li>
-        <li class="num-page">
-            <a href="" class="number disable">...</a>
-        </li>
-        <li class="num-page">
-            <a href="" class="number">7</a>
-        </li>
-        <li class="num-page">
-            <a href="" class="number-icon">>></a>
+            <a href="movieNow?page=${currentPage + 1}" class="number-icon" ${currentPage == totalPages ? 'style="pointer-events:none;opacity:0.5;"' : ''}>&gt;&gt;</a>
         </li>
     </ul>
 </div>

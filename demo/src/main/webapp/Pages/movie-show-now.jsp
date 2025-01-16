@@ -15,10 +15,8 @@
 <div class="header">
     <h1>PHIM ĐANG CHIÉU</h1>
 </div>
-<div class="Se-movie ">
-
-
-</div>
+<%--<div class="Se-movie ">--%>
+<%--</div>--%>
 <div class="container-movie">
     <c:forEach var="movie" items="${movies_now}" varStatus="status">
         <div class="movie">

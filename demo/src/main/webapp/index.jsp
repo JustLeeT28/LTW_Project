@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="Styles/footer.css">
     <script src="Script/index.js"></script>
 <%--    <script src="Script/click_book_button.js"></script>--%>
-    <script src="Script/search.js"></script>
+<%--    <script src="${pageContext.request.contextPath}/Script/search.js"></script>--%>
     <script> const basePath = "<%=request.getContextPath()%>";</script>
 </head>
 <body>
@@ -98,6 +98,7 @@
     </c:forEach>
 </div>
 <div class="more-bttn">
+<%--    <a href="${pageContext.request.contextPath}/movieFuture" >Xem thêm</a>--%>
     Xem thêm
 </div>
 <jsp:include page="Pages/Includes/footer.jsp"/>
