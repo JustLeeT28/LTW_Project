@@ -6,63 +6,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Đồ ăn</title>
-    <link rel="stylesheet" href="../Styles/order-food.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/order-food.css">
     <script src="../Script/order-food.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/nav_menu.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/footer.css">
+    <script src="${pageContext.request.contextPath}/Script/food.js"></script>
     <script src="../Script/search.js"></script>
 </head>
 <body>
 <jsp:include page="Includes/menu.jsp"/>
 <div class="left">
-    <div class="food-item">
-        <img src="../img/img/combo/1.jpg" alt=""/>
-        <div class="col-2">
-            <h3>Combo 1</h3>
-            <p>1 bắp, 1 nước, 1 snack</p>
-            <div class="price">100,000</div>
-        </div>
-        <div class="quantity" data-id="1">
-            <a href="#" class="icon-minum">-</a>
-            <span class="number">0</span>
-            <a href="#" class="icon-plus">+</a>
-        </div>
+    <c:forEach var="ticket" items="${tickets}">
+        ${ticket.getSeatId()}
+    </c:forEach>
+    <c:forEach var="foodCombo" items="${foodCombos}">
+        <div class="food-item">
+            <div class="col-2">
+                <h3>${foodCombo.getName()}</h3>
+                <p>${foodCombo.getDescription()}</p>
+                <div class="price">${foodCombo.getPrice()}</div>
+            </div>
+            <div class="quantity" data-id="${foodCombo.getId()}" data-name="${foodCombo.getName()}">
+                <a href="#" class="icon-minus">-</a>
+                <span class="number">0</span>
+                <a href="#" class="icon-plus">+</a>
+                <input type="hidden" name="foodCombo_${foodCombo.getId()}" value="0">
+                <input type="hidden" name="movieId" id="movieId" value="${param.mId}">
+                <input type="hidden" name="roomId" id="roomId" value="${param.roomId}">
 
-    </div>
-    <div class="food-item">
-        <img src="../img/img/combo/2.jpg" alt=""/>
-        <div class="col-2">
-            <h3>Combo 2</h3>
-            <p>1 bắp 2 nước 1 snake</p>
-            <div class="price">150,000</div>
+            </div>
         </div>
-        <div class="quantity" data-id="1">
-            <a href="#" class="icon-minum">-</a>
-            <span class="number">0</span>
-            <a href="#" class="icon-plus">+</a>
-        </div>
-
-    </div>
-    <div class="food-item">
-        <img src="../img/img/combo/3.jpg" alt=""/>
-        <div class="col-2">
-            <h3>Combo 3</h3>
-            <p>1 bắp 1 nước</p>
-            <div class="price">80,000</div>
-        </div>
-        <div class="quantity" data-id="1">
-            <a href="#" class="icon-minum">-</a>
-            <span class="number">0</span>
-            <a href="#" class="icon-plus">+</a>
-        </div>
-
-    </div>
+    </c:forEach>
 </div>
 <div class="right">
     <div class="ticket-info">
         <div class="details">
-            <h3>JAWAN</h3>
-            <p>2D Phụ Đề - <span class="age-rating"> PG13</span></p>
+            <h3>${movie.title}</h3>
+            <p>2D - <span class="age-rating"> ${movie.ageRating}</span></p>
         </div>
     </div>
     <div class="cinema-info">
