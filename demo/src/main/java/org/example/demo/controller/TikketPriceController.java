@@ -16,10 +16,10 @@ public class TikketPriceController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         TikketPriceService tikketPriceService = new TikketPriceService();
 
-        int price2D = tikketPriceService.getPrice("2D");
-        int price3D = tikketPriceService.getPrice("3D");
-        int price4D = tikketPriceService.getPrice("4Dx");
-        int priceImax = tikketPriceService.getPrice("Imax");
+        int price2D = tikketPriceService.getPrice("2D") == 0 ? 45000 : tikketPriceService.getPrice("2D") ;
+        int price3D = tikketPriceService.getPrice("3D") == 0 ? 65000 : tikketPriceService.getPrice("3D") ;
+        int price4D = tikketPriceService.getPrice("4Dx") == 0 ? 140000 : tikketPriceService.getPrice("4Dx") ;
+        int priceImax = tikketPriceService.getPrice("Imax") == 0 ? 85000 : tikketPriceService.getPrice("Imax") ;
 
         NumberFormat formatter = NumberFormat.getInstance(Locale.US);
         String formattprice2D = formatter.format(price2D);
