@@ -33,7 +33,9 @@
                     </c:forEach>
                     <li class="${statusClass}"
                         data-row="${seat.row}"
-                        data-seat="${seat.seatNumber}">
+                        data-seat="${seat.seatNumber}"
+                        data-seatId = "${seat.id}"
+                        id = "seatPrice" data-seatPrice = "${seat.price}">
                             ${seat.seatNumber}
                     </li>
                 </c:if>
@@ -58,7 +60,15 @@
         <p class="text_total_pay">Tổng thanh toán: </p>
         <div id="total_need_pay">0 VNĐ</div>
     </div>
-    <div class="btn-book">Đặt vé</div>
+    <form id="booking-form" method="post" action="${pageContext.request.contextPath}/orderFood">
+        <!-- Các trường ẩn -->
+        <input type="hidden" name="movieId" id="movieId" value="${param.mId}">
+        <input type="hidden" name="showtimeId" id="showtimeId" value="${param.showtimeId}">
+        <input type="hidden" name="roomID" id="roomId" value="${param.roomId}">
+        <input type="hidden" name="selectedSeats" id="selectedSeats">
+        <input type="hidden" name="seatsId" id="seatsId">
+        <div class="btn-book" type="submit">Đặt vé</div>
+    </form>
 </div>
 </body>
 </html>
