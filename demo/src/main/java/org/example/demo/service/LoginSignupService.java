@@ -16,4 +16,8 @@ public class LoginSignupService {
     public boolean changePass(String forgotpassUserEmail) {
         return userDao.changePass(forgotpassUserEmail);
     }
+
+    public void changePass2(int id, String hashNewPass) {
+        userDao.changePass2(id,hashNewPass);
+    }
 }

@@ -53,4 +53,8 @@ public class UpdateUserController extends HttpServlet {
 //        request.setAttribute("Message", "Cập nhật không thành công!");
         request.getRequestDispatcher("/Pages/user-updateinfor.jsp").forward(request, response);
     }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/Pages/user-updateinfor.jsp").forward(request, response);
+
+    }
 }

@@ -17,6 +17,7 @@
     <a href="user-infor.jsp" class="op-infor">Thông tin</a>
     <a href="user-updateinfor.jsp" class="op-update">Chỉnh sửa</a>
     <a href="history.html" class="op-history open">Lịch sử</a>
+    <a href="${pageContext.request.contextPath}/userChangePass">Đổi mật khẩu</a>
     <a href="${pageContext.request.contextPath}/LogoutController" id="out">Đăng xuất</a>
 
 </div>
