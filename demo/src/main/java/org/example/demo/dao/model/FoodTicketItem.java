@@ -2,17 +2,25 @@ package org.example.demo.dao.model;
 
 public class FoodTicketItem {
     private int id;
-    private int foodTicketId;
     private int comboId;
+    private int userId;
     private int quantity;
     private double totalPrice;
 
-    public FoodTicketItem(int id, int foodTicketId, int comboId, int quantity, double totalPrice) {
+    public FoodTicketItem(int id, int comboId, int quantity, double totalPrice, int userId) {
         this.id = id;
-        this.foodTicketId = foodTicketId;
         this.comboId = comboId;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
+        this.userId = userId;
+    }
+    public FoodTicketItem( int comboId, int quantity, double totalPrice, int userId) {
+        this.comboId = comboId;
+        this.quantity = quantity;
+        this.totalPrice = totalPrice;
+        this.userId = userId;
+    }
+    public FoodTicketItem() {
     }
 
     public int getId() {
@@ -23,13 +31,6 @@ public class FoodTicketItem {
         this.id = id;
     }
 
-    public int getFoodTicketId() {
-        return foodTicketId;
-    }
-
-    public void setFoodTicketId(int foodTicketId) {
-        this.foodTicketId = foodTicketId;
-    }
 
     public int getComboId() {
         return comboId;
@@ -53,5 +54,13 @@ public class FoodTicketItem {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }
