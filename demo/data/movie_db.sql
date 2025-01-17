@@ -61,14 +61,14 @@ DROP TABLE IF EXISTS `food_ticket_items`;
 CREATE TABLE `food_ticket_items`
 (
     `id`           int(11) NOT NULL AUTO_INCREMENT,
-    `foodTicketId` int(11) NOT NULL,
+    `userId` int(11) NOT NULL,
     `comboId`      int(11) NOT NULL,
-    `quantity`     int(11) NOT NULL,
-    `totalPrice`   decimal(10, 2) NOT NULL,
+    `price`   decimal(10, 2) NOT NULL,
+    'quantity' int(50)  NULL,
     PRIMARY KEY (`id`) USING BTREE,
-    INDEX          `foodTicketId`(`foodTicketId`) USING BTREE,
+    INDEX          `userId`(`userId`) USING BTREE,
     INDEX          `comboId`(`comboId`) USING BTREE,
-    CONSTRAINT `food_ticket_items_ibfk_1` FOREIGN KEY (`foodTicketId`) REFERENCES `food_tickets` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+    CONSTRAINT `food_ticket_items_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
     CONSTRAINT `food_ticket_items_ibfk_2` FOREIGN KEY (`comboId`) REFERENCES `food_combos` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
@@ -143,17 +143,17 @@ DROP TABLE IF EXISTS `movie_tickets`;
 CREATE TABLE `movie_tickets`
 (
     `id`         int(11) NOT NULL AUTO_INCREMENT,
-    `orderId`    int(11) NOT NULL,
-    `showTimeId` int(11) NOT NULL,
+    `showtimeId`    int(11) NOT NULL,
+    `userId` int(11) NOT NULL,
     `seatId`     int(11) NOT NULL,
     `price`      decimal(10, 2) NOT NULL,
     `created_at` timestamp      NOT NULL DEFAULT current_timestamp(),
     PRIMARY KEY (`id`) USING BTREE,
-    INDEX        `orderId`(`orderId`) USING BTREE,
-    INDEX        `showTimeId`(`showTimeId`) USING BTREE,
+    INDEX        `orderId`(`showtimeId`) USING BTREE,
+    INDEX        `userId`(`userId`) USING BTREE,
     INDEX        `seatId`(`seatId`) USING BTREE,
-    CONSTRAINT `movie_tickets_ibfk_1` FOREIGN KEY (`orderId`) REFERENCES `orders` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-    CONSTRAINT `movie_tickets_ibfk_2` FOREIGN KEY (`showTimeId`) REFERENCES `showtimes` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+    CONSTRAINT `movie_tickets_ibfk_1` FOREIGN KEY (`showtimeId`) REFERENCES `showtimes` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+    CONSTRAINT `movie_tickets_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
     CONSTRAINT `movie_tickets_ibfk_3` FOREIGN KEY (`seatId`) REFERENCES `seats` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 

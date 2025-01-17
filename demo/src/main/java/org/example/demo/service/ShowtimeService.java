@@ -19,6 +19,9 @@ public class ShowtimeService {
 
     public List<Showtime> getShowTimeByDateAndId(int id, String date, String month) {
         return showtimeDao.getShowTimeByDateAndId(id, date, month);  }
+    public Showtime getShowtimeById(int id) {
+        return showtimeDao.getShowtimeById(id);
+    }
 
 //    public List<Showtime> getShowTimeByTimeAndId(int id, String hour, String minute) {
 //    }

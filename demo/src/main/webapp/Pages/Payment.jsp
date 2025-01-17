@@ -19,42 +19,44 @@
         <p>TRANG THANH TOÁN
             ${user.id}
         </p>
-        <p>
-            <c:forEach var="food" items="${foodTicketItems}">
-                ${food.comboId} ${food.quantity}
-            </c:forEach>
-        </p>
     </div>
     <div class="payment">
         <div class="QR-lefl">
             <h3>Thanh toán bằng QR</h3>
             <img src="${pageContext.request.contextPath}/img/img/QR_thanhtoan.jpg"/>
-            <h2 class="cost">0 VNĐ</h2>
+            <h2 class="cost">${totalPrice} VNĐ</h2>
         </div>
         <div class="infor-movie-right">
             <div class="name-movie">
-                <p class="highlight">Jawan (T13)</p>
+                <p class="highlight">${movie}</p>
 
             </div>
             <p class="highlight">Kata cinema Bình Dương </p>
             <p> 138 Lý Thường Kiệt, Dĩ An,Bình Dương</p>
             <p class="highlight">Thời gian</p>
-            <p>16:30 Thứ Ba 08/072024</p>
+            <p> ${showtime.showDate} ${showtime.showTime}</p>
             <div class="seat">
                 <div>
-                    <span class="highlight">Phòng: </span> <span id="room">02</span>
+                    <span class="highlight">Phòng: </span> <span id="room">${roomId}</span>
                 </div>
                 <div>
-                    <span class="highlight">Ghế: </span> <span id="chairs">Null</span>
+                    <span class="highlight">Ghế: </span> <span id="chairs">
+                    <c:forEach var="seat" items="${seats}">
+                        ${seat.seatNumber}${seat.row}
+                    </c:forEach></span>
                 </div>
             </div>
             <div class="food">
                 <span class="highlight">Bắp nước: </span>
-                <span id="combo-food">Không</span>
+                <span id="combo-food">
+                    <c:forEach var="foodTicketItem" items="${foodTicketItems}">
+                        Combo ${foodTicketItem.comboId} - Số lượng: ${foodTicketItem.quantity}
+                    </c:forEach>
+                </span>
             </div>
             <div class="total-cost">
                 <span class="highlight payment-text">Số tiền thanh toán</span>
-                <span class="cost">0 VNĐ</span>
+                <span class="cost">${totalPrice} VNĐ</span>
             </div>
         </div>
     </div>

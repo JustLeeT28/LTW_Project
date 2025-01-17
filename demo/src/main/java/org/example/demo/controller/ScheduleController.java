@@ -79,7 +79,7 @@ public class ScheduleController extends HttpServlet {
             // them show_seatS
             List<Seat> listSeat = service.getListSeatsByRoomid(roomId);
             for (Seat seat : listSeat) {
-                service.addSh_S(s.getId(),seat.getId(),seat.getIsActive());
+                service.addSh_S(s.getId(),seat.getId(),seat.getIsActive(), roomIdInt);
             }
 //            service.addShowAndSeat(s.getId(),movieId);
 

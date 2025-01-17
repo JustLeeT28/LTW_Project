@@ -44,7 +44,10 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateOrderSummary() {
         const foodItems = document.querySelectorAll('.food-item');
         let summaryContent = '';
-        let totalPrice = 0;
+        const totalPriceElement = document.getElementById('totalSeatsPrice');
+        let totalPrice = totalPriceElement.getAttribute('data-totalPrice');
+        let totalPriceNumber = parseFloat(totalPrice); // Hoặc parseInt(totalPriceString) nếu giá trị là số nguyên
+
 
         foodItems.forEach(item => {
             const quantity = parseInt(item.querySelector('.number').textContent);
@@ -52,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const name = item.querySelector('h3').textContent;
                 const price = parseFloat(item.querySelector('.price').textContent.replace('đ', '').replace(',', ''));
                 const itemTotal = quantity * price;
-                totalPrice += itemTotal;
+                totalPriceNumber += itemTotal;
 
                 // Thêm vào summary
                 summaryContent += `<p>${name} x${quantity} - ${itemTotal.toLocaleString()} đ</p>`;
@@ -67,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Cập nhật tổng tiền
-        document.querySelector('.total .cost').textContent = totalPrice.toLocaleString() + ' đ';
+        document.querySelector('.total .cost').textContent = totalPriceNumber.toLocaleString() + ' đ';
     }
 });
 document.addEventListener('DOMContentLoaded', function () {

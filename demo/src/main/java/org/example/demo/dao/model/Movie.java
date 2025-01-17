@@ -31,6 +31,9 @@ public class Movie {
         this.status = status;
     }
 
+    public Movie() {
+    }
+
     public int getId() {
         return id;
     }

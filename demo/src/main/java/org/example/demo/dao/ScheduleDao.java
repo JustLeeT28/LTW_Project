@@ -108,7 +108,7 @@ public class ScheduleDao {
     }
 
 
-    public static List<Seat> GetSeatByRoom(String roomId) {
+    public List<Seat> GetSeatByRoom(String roomId) {
         PreparedStatement ps = null;
         ResultSet rs = null;
         int roomid = Integer.parseInt(roomId);
@@ -126,7 +126,7 @@ public class ScheduleDao {
                         rs.getString("row"),       // Hàng ghế
                         rs.getString("seat_number"),// Số ghế
                         rs.getDouble("price"),     // Giá của ghế
-                        rs.getString("status")   // Trạng thái ghế (active/inactive)
+                        rs.getString("isActive")   // Trạng thái ghế (active/inactive)
                 );
                 // Thêm ghế vào danh sách
                 listSeats.add(seat);
@@ -138,25 +138,26 @@ public class ScheduleDao {
 
     }
 
-    public void addShow_seats(int showid, int seatId,String seatStatus) {
+    public void addShow_seats(int showid, int seatId,String seatStatus, int roomId) {
         PreparedStatement ps = null;
         String st_sStatus ;
         if (seatStatus.equals("active")) {
-            st_sStatus = "available";  // Ghế active sẽ là available
+            st_sStatus = "seat";  // Ghế active sẽ là available
         } else if (seatStatus.equals("inactive")) {
             st_sStatus = "booked";  // Ghế inactive sẽ là booked
         } else {
-            st_sStatus = "available";  // Ghế active sẽ là available
+            st_sStatus = "seat";  // Ghế active sẽ là available
         }
         try {
-            String query = "INSERT INTO showtime_seats(showTimeId,seatId,status) VALUES(?,?,?)";
+            String query = "INSERT INTO showtime_seats(showTimeId,seatId,status, roomId) VALUES(?,?,?, ?)";
             ps = DbConnect.get(query);
             ps.setInt(1,showid);
             ps.setInt(2,seatId);
-            ps.setString(3,st_sStatus);
+            ps.setString(3,"seat");
+            ps.setInt(4,roomId);
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 

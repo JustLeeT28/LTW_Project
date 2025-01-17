@@ -21,5 +21,8 @@ public class SeatService {
     public Seat  getSeatById(int seatId) {
         return seatDao.getSeatById(seatId);
     }
+    public void updateSeatStatus(int seatId, String status, int showtimeId) {
+        seatDao.setStatus(status ,seatId, showtimeId);
+    }
 
 }

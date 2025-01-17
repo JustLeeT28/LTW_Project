@@ -70,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const movieId = document.getElementById('movieId').value;
         const showtimeId = document.getElementById('showtimeId').value;
         const roomId = document.getElementById('roomId').value;
-
         const seatsIdJson = seatsId.join(",");
 
         const url = `orderFood?mId=${movieId}&showtimeId=${showtimeId}&roomId=${roomId}&seatsId=${seatsIdJson}`;

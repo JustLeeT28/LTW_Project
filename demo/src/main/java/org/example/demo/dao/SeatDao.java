@@ -137,12 +137,27 @@ public class SeatDao {
             }
         }
     }
-
-    public static void main(String[] args) {
-        SeatDao seatDao = new SeatDao();
-        List<Seat> seats = seatDao.getSeatsInRoom(1);
-        for (Seat seat : seats) {
-            System.out.println(seat);
+    public void setStatus(String status, int seatId,int showtimeId) {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        try {
+            String query = "UPDATE showtime_seats SET status = ? WHERE seatId = ? AND showtimeId = ?";
+            ps = DbConnect.get(query);  // Lấy PreparedStatement từ DbConnect
+            ps.setString(1, status);
+            ps.setInt(2, seatId);
+            ps.setInt(3, showtimeId);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
+    public static void main(String[] args) {
+        SeatDao seatDao = new SeatDao();
+            List<ShowSeat> statusSeatByShowtimeId = seatDao.getStatusSeatByShowtimeId(36, 2);
+            for (ShowSeat showSeat : statusSeatByShowtimeId) {
+                System.out.print(showSeat.getId());
+                System.out.print(showSeat.getStatus());
+        }
+    }
+
 }

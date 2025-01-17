@@ -46,19 +46,19 @@
         </div>
     </div>
     <div class="cinema-info">
-        <p><strong>LTW CINEMA</strong> - RAP 3</p>
-        <p>Suất: <span>19:05</span> - Thứ Tư, 20/11/2024</p>
+        <p><strong>LTW CINEMA</strong> - RAP ${roomId}</p>
+        <p>Suất: <span>${showtime.showTime}</span> - ${showtime.getDayOfWeek()}, ${showtime.showDate}</p>
     </div>
     <div class="seat-info">
-        <p><strong>1 VÉ <span>55.000 VNĐ</span></strong></p>
-        <p>Ghế: <span id="all-chairs-selected">NULL</span></p>
+        <p id="totalSeatsPrice" data-totalPrice = "${totalPrice}"><strong>${count} VÉ <span>${totalPrice}</span></strong></p>
+        <p>Ghế: <span id="all-chairs-selected"><c:forEach var="seat" items="${seats}"> ${seat.seatNumber}${seat.row} </c:forEach></span></p>
     </div>
     <div class="infor-comboFood">
         <h3>Đồ ăn thức uống</h3>
         <div class="order-summary"><p>Chưa có combo nào được chọn.</p></div>
     </div>
     <div class="total">
-        <p>Tổng cộng: <span class="total cost">55.000 đ</span></p>
+        <p>Tổng cộng: <span class="total cost">${totalPrice} đ</span></p>
     </div>
     <div class="actions">
         <a href="book.jsp">

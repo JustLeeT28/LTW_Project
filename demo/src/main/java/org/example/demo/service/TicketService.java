@@ -13,4 +13,10 @@ public class TicketService {
     public void addFoodTicketItem(FoodTicketItem foodTicketItem) {
         ticketDao.addFoodTicketItem(foodTicketItem);
     }
+    public MovieTickets getMovieTicketByUserId(int id) {
+        return ticketDao.getMovieTicketByUserId(id);
+    }
+    public FoodTicketItem getFoodTicketItemByUserId(int id) {
+        return ticketDao.getFoodTicketItemByUserId(id);
+    }
 }

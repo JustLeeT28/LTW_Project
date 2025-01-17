@@ -12,8 +12,6 @@ public class Showtime {
     private LocalTime showTime;
     private String status;
 
-
-
     // Constructor đầy đủ
     public Showtime(int id, int movieId, int roomId, LocalDate showDate, LocalTime showTime, String status) {
         this.id = id;
@@ -31,7 +29,8 @@ public class Showtime {
         this.showTime = showTime;
         this.status = status;
     }
-
+    public Showtime() {
+    }
     // Getters và Setters
     public int getId() {
         return id;

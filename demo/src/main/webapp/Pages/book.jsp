@@ -52,7 +52,6 @@
         <div class="date_type">
             <div class="left_card">
                 <h6 class="tittle">
-                    Thứ sáu, ngày 13, tháng 7
                 </h6>
                 <div class="card_month">
                     <%--<ul style="list-style: none; display: flex; padding: 0; margin: 0;">--%>

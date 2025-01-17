@@ -96,4 +96,35 @@ public class ShowtimeDao {
         }
     }
 
+    public Showtime getShowtimeById(int id) {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        try {
+            String query = "SELECT * FROM showtimes WHERE id = ?";
+            ps = DbConnect.get(query);  // Lấy PreparedStatement từ DbConnect
+            ps.setInt(1, id);  // Set tham số cho PreparedStatement
+            resultSet = ps.executeQuery();  // Thực thi truy vấn
+            if (resultSet.next()) {
+                return new Showtime(
+                        resultSet.getInt("id"),
+                        resultSet.getInt("movieId"),
+                        resultSet.getInt("roomId"),
+                        resultSet.getDate("showDate").toLocalDate(),
+                        resultSet.getTime("showTime").toLocalTime(),
+                        resultSet.getString("status")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();  // Log lỗi
+        } finally {
+            // Đảm bảo đóng tài nguyên sau khi sử dụng
+            try {
+                if (resultSet != null) resultSet.close();
+                if (ps != null) ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();  // Log lỗi khi đóng tài nguyên
+            }
+        }
+        return null;
+    }
 }

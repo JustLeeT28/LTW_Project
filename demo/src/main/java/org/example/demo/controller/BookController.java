@@ -39,9 +39,6 @@ public class BookController extends HttpServlet {
         List<Showtime> showtimes = showtimeService.getShowTime(movie.getId());
         List<Showtime> showtimesSameDate = showtimeService.getShowTimeSameDate(movie.getId());
 
-        // Gửi thông tin phim, diễn viên, đạo diễn và showtime cho JSP
-
-
 
         // Kiểm tra nếu có tham số ngày và tháng trong URL
         String day = request.getParameter("day"); // Tham số 'day' trong URL
@@ -55,9 +52,11 @@ public class BookController extends HttpServlet {
 
         String hour = request.getParameter("hour");
         String minute = request.getParameter("minute");
-        // cái này điều kiện lớn nhất cho lên đầu
-        if (hour != null && !hour.isEmpty() && minute != null && !minute.isEmpty() && day != null && !day.isEmpty() && month != null && !month.isEmpty()) {
-//            List<Showtime> showtimesByTimeAndId = showtimeService.getShowTimeByTimeAndId(movie.getId(), hour, minute, day, month);
+
+        if (roomId != null && showtimeId != null) {
+            statusSeatByShowtimeId = new SeatService().getStatusSeatByShowtimeId(Integer.parseInt(roomId), Integer.parseInt(showtimeId));
+            seatsInRoom = new SeatService().getSeatsInRooms(Integer.parseInt(roomId));
+            rowsInRoom = new SeatService().getRowsInRoom(Integer.parseInt(roomId));
 
         }
 
@@ -72,12 +71,6 @@ public class BookController extends HttpServlet {
         request.setAttribute("minute", minute);
         request.setAttribute("roomId", roomId);
         request.setAttribute("showtimeId", showtimeId);
-        if (roomId != null && showtimeId != null) {
-            statusSeatByShowtimeId = new SeatService().getStatusSeatByShowtimeId(Integer.parseInt(roomId), Integer.parseInt(showtimeId));
-            seatsInRoom = new SeatService().getSeatsInRooms(Integer.parseInt(roomId));
-            rowsInRoom = new SeatService().getRowsInRoom(Integer.parseInt(roomId));
-
-        }
         request.setAttribute("statusSeats", statusSeatByShowtimeId);
         request.setAttribute("seatsInRoom", seatsInRoom);
 

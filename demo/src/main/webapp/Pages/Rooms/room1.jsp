@@ -18,26 +18,16 @@
                     <c:set var="statusClass" value=""/>
                     <c:forEach var="statusSeat" items="${statusSeats}">
                         <c:if test="${statusSeat.seatId == seat.id}">
-                            <c:choose>
-                                <c:when test="${statusSeat.status == 'seat'}">
-                                    <c:set var="statusClass" value="seat"/>
-                                </c:when>
-                                <c:when test="${statusSeat.status == 'reserved'}">
-                                    <c:set var="statusClass" value="reserved"/>
-                                </c:when>
-                                <c:when test="${statusSeat.status == 'booked'}">
-                                    <c:set var="statusClass" value="booked"/>
-                                </c:when>
-                            </c:choose>
+                            <li class="${statusSeat.status}"
+                                data-status="seat"
+                                data-row="${seat.row}"
+                                data-seat="${seat.seatNumber}"
+                                data-seatId="${seat.id}"
+                                id="seatPrice" data-seatPrice="${seat.price}">
+                                    ${seat.seatNumber}
+                            </li>
                         </c:if>
                     </c:forEach>
-                    <li class="${statusClass}"
-                        data-row="${seat.row}"
-                        data-seat="${seat.seatNumber}"
-                        data-seatId = "${seat.id}"
-                        id = "seatPrice" data-seatPrice = "${seat.price}">
-                            ${seat.seatNumber}
-                    </li>
                 </c:if>
             </c:forEach>
             <span>${row}</span>
@@ -65,6 +55,7 @@
         <input type="hidden" name="movieId" id="movieId" value="${param.mId}">
         <input type="hidden" name="showtimeId" id="showtimeId" value="${param.showtimeId}">
         <input type="hidden" name="roomID" id="roomId" value="${param.roomId}">
+        <input type="hidden" name="day" id="day" value="${param.day}">
         <input type="hidden" name="selectedSeats" id="selectedSeats">
         <input type="hidden" name="seatsId" id="seatsId">
         <div class="btn-book" type="submit">Đặt vé</div>

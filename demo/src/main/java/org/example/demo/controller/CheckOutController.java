@@ -3,11 +3,13 @@ package org.example.demo.controller;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import org.example.demo.dao.model.FoodCombo;
-import org.example.demo.dao.model.FoodTicketItem;
-import org.example.demo.dao.model.User;
+import org.example.demo.dao.model.*;
 import org.example.demo.service.FoodService;
+import org.example.demo.service.MovieService;
+import org.example.demo.service.SeatService;
+import org.example.demo.service.ShowtimeService;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,9 +26,12 @@ public class CheckOutController extends HttpServlet {
             return;
         }
         FoodService foodService = new FoodService();
+        ShowtimeService showtimeService = new ShowtimeService();
         String movieId = request.getParameter("mId"); // ID phim
         // Tạo một Map để lưu trữ comboId và quantity
         Map<String, Integer> comboMap = new HashMap<>();
+        String showtimeId = (String) session.getAttribute("showtime");
+
 
         // Lấy danh sách comboId và quantity từ query string
         String[] comboIdArray = request.getParameterValues("comboId");
@@ -39,7 +44,7 @@ public class CheckOutController extends HttpServlet {
                 comboMap.put(comboIdArray[i], Integer.parseInt(quantityArray[i]));
             }
         }
-            List<FoodTicketItem> foodTicketItems = new ArrayList<>();
+        List<FoodTicketItem> foodTicketItems = new ArrayList<>();
 
         for (Map.Entry<String, Integer> entry : comboMap.entrySet()) {
             FoodTicketItem foodTicketItem = new FoodTicketItem();
@@ -62,15 +67,37 @@ public class CheckOutController extends HttpServlet {
             }
         }
 
-
+        double totalTicketsPrice = session.getAttribute("totalPrice") != null ? (double) session.getAttribute("totalPrice") : 0;
+        double totalPrice = totalTicketsPrice + foodTicketItems.stream().mapToDouble(FoodTicketItem::getTotalPrice).sum();
         session.setAttribute("foodTicketItems", foodTicketItems);
+        MovieService movieService = new MovieService();
+        SeatService seatService = new SeatService();
+        Movie movie = new Movie();
+        if (movieId != null) {
+            movie = movieService.getMovieById(Integer.parseInt(movieId));
+        }
+        List<MovieTickets> tickets = (List<MovieTickets>) session.getAttribute("tickets");
+        int roomId = showtimeService.getShowtimeById(tickets.get(1).getShowTimeId()).getRoomId();
+        List<Seat> seats = new ArrayList<>();
+        for (MovieTickets ticket : tickets) {
+            seats.add(seatService.getSeatById(ticket.getSeatId()));
+        }
+        Showtime showtime = new Showtime();
+        if (showtimeId != null) {
+            showtime = showtimeService.getShowtimeById(Integer.parseInt(showtimeId));
 
-
+        }
         // Tiếp tục xử lý dữ liệu (ví dụ: tính tổng tiền, hiển thị thông tin,...)
+        request.setAttribute("tickets", tickets);
         request.setAttribute("movieId", movieId);
-        request.setAttribute("comboMap", comboMap);
         request.setAttribute("foodTicketItems", foodTicketItems);
         request.setAttribute("user", user);
+        request.setAttribute("showtime", showtime);
+        request.setAttribute("totalPrice", totalPrice);
+        request.setAttribute("movie", movie);
+        request.setAttribute("roomId", roomId);
+        request.setAttribute("seats", seats);
+        request.setAttribute("showtimeId", showtimeId);
 
         // Forward tới trang checkout.jsp (hoặc nơi bạn muốn hiển thị thông tin)
         request.getRequestDispatcher("Pages/Payment.jsp").forward(request, response);
