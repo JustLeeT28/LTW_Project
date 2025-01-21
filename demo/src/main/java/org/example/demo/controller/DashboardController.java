@@ -25,14 +25,22 @@ public class DashboardController extends HttpServlet {
             return;
         }
         String date = request.getParameter("date");
-
+        double total_Food = 0.0;
+        double total_Movie = 0.0;
+        double total_revenue = 0.0;
         DashboardService service = new DashboardService();
 
-        double total_revenue = service.getTotalR7();
+
+        total_Food = service.getTotalFood7();
+        total_Movie = service.getTotalMovie7();
 
 
+        total_revenue = total_Food + total_Movie;
         request.setAttribute("date", date);
+        request.setAttribute("totalFood", total_Food);
+        request.setAttribute("totalMovie", total_Movie);
         request.setAttribute("total_revenue", total_revenue);
+
         request.getRequestDispatcher("Admin/dashboard.jsp").forward(request, response);
     }
 

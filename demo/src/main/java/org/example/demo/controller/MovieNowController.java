@@ -36,7 +36,7 @@ public class MovieNowController extends HttpServlet {
         request.setAttribute("movies_now", moviesOnPage);
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("currentPage", currentPage);
-        request.getRequestDispatcher("Pages/movie-show-now.jsp").forward(request, response);
+        request.getRequestDispatcher("/Pages/movie-show-now.jsp").forward(request, response);
 
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

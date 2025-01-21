@@ -22,16 +22,6 @@
             padding: 15px;
             width: 900px;
         }
-
-<%--        .overview .card h3 {--%>
-<%--            margin-bottom: 10px;--%>
-<%--            color: #333;--%>
-<%--        }--%>
-
-<%--        .overview .card p {--%>
-<%--            font-size: 18px;--%>
-<%--            color: #555;--%>
-<%--        }--%>
     </style>
 
 </head>
@@ -77,11 +67,11 @@
                     </div>
                     <div class="card">
                         <h3>Doanh thu bán vé</h3>
-                        <p id="movie-tick">.........</p>
+                        <p id="movie-tick">${totalMovie}</p>
                     </div>
                     <div class="card">
-                        <h3>Doanh bán đồ ăn</h3>
-                        <p id="seatStatus">.........</p>
+                        <h3>Doanh thu bán đồ ăn</h3>
+                        <p id="seatStatus">${totalFood}</p>
                     </div>
                 </div>
 

@@ -555,16 +555,6 @@ public class MovieDao {
         }
     }
 
-    public static void main(String[] args) {
-        List<Movie> movies ;
-        MovieDao movieDao = new MovieDao();
-//        movies = movieDao.getMoviesByNGC("j","1","hot") ;
-        movies = movieDao.getConditionMovie("hot");
-        for (Movie movie : movies) {
-            System.out.println(movie.getTitle());
-        }
-    }
-
     public List<Movie> getMovieNow() {
         PreparedStatement ps = null;
         ResultSet resultSet = null;
@@ -652,4 +642,14 @@ public class MovieDao {
             }
         }
     }
+    public static void main(String[] args) {
+        List<Movie> movies = new ArrayList<>();
+        MovieDao movieDao = new MovieDao();
+//        movies = movieDao.getMovieNow();
+//        movies = movieDao.getMovieFuture();
+        for (Movie movie : movies) {
+            System.out.println(movie.getTitle());
+        }
+    }
 }
+

@@ -23,6 +23,9 @@
 </div>
 <div class="right_infor">
     <h1><strong> ĐỔI MẬT KHẨU </strong></h1>
+    <c:if test="${not empty message}">
+        <p>message</p>
+    </c:if>
     <div class="infor-content">
     <form action="${pageContext.request.contextPath}/userChangePass" method="POST">
         <div class="row-input">

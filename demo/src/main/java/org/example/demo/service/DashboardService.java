@@ -4,7 +4,11 @@ import org.example.demo.dao.OrderDao;
 
 public class DashboardService {
     OrderDao orderDao = new OrderDao();
-    public double getTotalR7() {
-        return orderDao.getTotalR7();
+    public double getTotalFood7() {
+        return orderDao.getTotalFood7();
+    }
+
+    public double getTotalMovie7() {
+        return orderDao.getTotalMovie7();
     }
 }

@@ -138,17 +138,51 @@ public class ScheduleDao {
 
     }
 
+<<<<<<< Updated upstream
     public void addShow_seats(int showid, int seatId,String seatStatus, int roomId) {
+=======
+//    public void addShow_seats(int showid, int seatId,String seatStatus) {
+//        PreparedStatement ps = null;
+//        String st_sStatus ;
+//        if (seatStatus.equals("active")) {
+//            st_sStatus = "seat";  // Ghế active sẽ là available
+//        } else if (seatStatus.equals("inactive")) {
+//            st_sStatus = "booked";  // Ghế inactive sẽ là booked
+//        } else {
+//            st_sStatus = "seat";
+//        }
+//        try {
+//            String query = "INSERT INTO showtime_seats (showTimeId, seatId, status) VALUES(?,?,?)";
+//            ps = DbConnect.get(query);
+//            ps.setInt(1,showid);
+//            ps.setInt(2,seatId);
+//            ps.setString(3,st_sStatus);
+//            ps.executeUpdate();
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+
+    public void addShow_seats(int showid, int seatId, String seatStatus) {
+>>>>>>> Stashed changes
         PreparedStatement ps = null;
-        String st_sStatus ;
+        ResultSet rs = null;
+        String st_sStatus;
+
         if (seatStatus.equals("active")) {
             st_sStatus = "seat";  // Ghế active sẽ là available
         } else if (seatStatus.equals("inactive")) {
             st_sStatus = "booked";  // Ghế inactive sẽ là booked
         } else {
+<<<<<<< Updated upstream
             st_sStatus = "seat";  // Ghế active sẽ là available
+=======
+            st_sStatus = "seat";
+>>>>>>> Stashed changes
         }
+
         try {
+<<<<<<< Updated upstream
             String query = "INSERT INTO showtime_seats(showTimeId,seatId,status, roomId) VALUES(?,?,?, ?)";
             ps = DbConnect.get(query);
             ps.setInt(1,showid);
@@ -158,6 +192,34 @@ public class ScheduleDao {
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+=======
+            // Kiểm tra xem cặp showTimeId và seatId đã tồn tại trong bảng showtime_seats chưa
+            String checkQuery = "SELECT * FROM showtime_seats WHERE showTimeId = ? AND seatId = ?";
+            ps = DbConnect.get(checkQuery);
+            ps.setInt(1, showid);
+            ps.setInt(2, seatId);
+            rs = ps.executeQuery();
+            if (!rs.next()) {  // Nếu không có bản ghi trùng lặp
+                // Chèn dữ liệu mới
+                String query = "INSERT INTO showtime_seats (showTimeId, seatId, status) VALUES(?,?,?)";
+                ps = DbConnect.get(query);
+                ps.setInt(1, showid);
+                ps.setInt(2, seatId);
+                ps.setString(3, st_sStatus);
+                ps.executeUpdate();
+            } else {
+                System.out.println("Ghế đã được chèn vào bảng showtime_seats rồi.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+>>>>>>> Stashed changes
         }
     }
 
@@ -321,13 +383,22 @@ public class ScheduleDao {
 
     }
 
-//    public static void main(String[] args) {
-//        ScheduleDao scheduleDao = new ScheduleDao();
-//        Showtime showtime = scheduleDao.GetShowTime(1,5,2025-01-01,12:30:00);
-//        scheduleDao.addShowAndSeats(1,"5");
-//        List<ShowSeat> showSeats = scheduleDao.GetShowSeatByshowID(1);
-//        for (ShowSeat s : showSeats) {
-//            System.out.println(s);
+    public static void main(String[] args) {
+        ScheduleDao scheduleDao = new ScheduleDao();
+//        ShowSeat sh = (ShowSeat) scheduleDao.GetShowSeatByshowID(2800);
+        List<ShowSeat> showSeats = scheduleDao.GetShowSeatByshowID(23);
+        for (ShowSeat showSeat : showSeats) {
+            System.out.println(showSeat.getSeatId()+"--"+showSeat.getShowId()+"--"+showSeat.getRoomId());
+        }
+
+
+//        List<Seat> listseat = scheduleDao.GetSeatByRoom("1");
+//        int cout = 0;
+//        for (Seat seat : listseat) {
+//            scheduleDao.addShow_seats(19,seat.getId(),seat.getIsActive());
+//            scheduleDao.del_show_seat(22,seat.getId());
+//            System.out.println(++cout + seat.getIsActive()+"--"+seat.getRoomId());
 //        }
-//    }
+
+    }
 }
