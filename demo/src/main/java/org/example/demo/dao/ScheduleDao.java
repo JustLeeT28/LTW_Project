@@ -138,9 +138,9 @@ public class ScheduleDao {
 
     }
 
-<<<<<<< Updated upstream
-    public void addShow_seats(int showid, int seatId,String seatStatus, int roomId) {
-=======
+
+//    public void addShow_seats(int showid, int seatId,String seatStatus, int roomId) {
+
 //    public void addShow_seats(int showid, int seatId,String seatStatus) {
 //        PreparedStatement ps = null;
 //        String st_sStatus ;
@@ -164,35 +164,17 @@ public class ScheduleDao {
 //    }
 
     public void addShow_seats(int showid, int seatId, String seatStatus) {
->>>>>>> Stashed changes
         PreparedStatement ps = null;
         ResultSet rs = null;
         String st_sStatus;
-
         if (seatStatus.equals("active")) {
             st_sStatus = "seat";  // Ghế active sẽ là available
         } else if (seatStatus.equals("inactive")) {
             st_sStatus = "booked";  // Ghế inactive sẽ là booked
         } else {
-<<<<<<< Updated upstream
             st_sStatus = "seat";  // Ghế active sẽ là available
-=======
-            st_sStatus = "seat";
->>>>>>> Stashed changes
         }
-
         try {
-<<<<<<< Updated upstream
-            String query = "INSERT INTO showtime_seats(showTimeId,seatId,status, roomId) VALUES(?,?,?, ?)";
-            ps = DbConnect.get(query);
-            ps.setInt(1,showid);
-            ps.setInt(2,seatId);
-            ps.setString(3,"seat");
-            ps.setInt(4,roomId);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-=======
             // Kiểm tra xem cặp showTimeId và seatId đã tồn tại trong bảng showtime_seats chưa
             String checkQuery = "SELECT * FROM showtime_seats WHERE showTimeId = ? AND seatId = ?";
             ps = DbConnect.get(checkQuery);
@@ -219,7 +201,6 @@ public class ScheduleDao {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
->>>>>>> Stashed changes
         }
     }
 
