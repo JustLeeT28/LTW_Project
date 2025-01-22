@@ -145,12 +145,6 @@ public class UserDao {
         ResultSet resultSet = null;
 
         try {
-//            String checkEmailQuery = "SELECT * FROM USERS WHERE id = ?"; // cái tên để quên từ trên kia thôi >> lấy id user
-//            ps = DbConnect.get(checkEmailQuery);
-//            ps.setString(1, userId);
-//            resultSet = ps.executeQuery();
-
-//            if (resultSet.next()) {
                 String updatePasswordQuery = "UPDATE USERS SET name = ? WHERE id = ?";
                 ps = DbConnect.get(updatePasswordQuery);
                 ps.setString(1, name);
@@ -177,12 +171,6 @@ public class UserDao {
         ResultSet resultSet = null;
 
         try {
-//            String checkEmailQuery = "SELECT * FROM USERS WHERE id = ?";
-//            ps = DbConnect.get(checkEmailQuery);
-//            ps.setString(1, userId);
-//            resultSet = ps.executeQuery();
-//
-//            if (resultSet.next()) {
                 String updatePasswordQuery = "UPDATE USERS SET email = ? WHERE id = ?";
                 ps = DbConnect.get(updatePasswordQuery);
                 ps.setString(1, email);
@@ -211,12 +199,6 @@ public class UserDao {
         ResultSet resultSet = null;
 
         try {
-//            String checkEmailQuery = "SELECT * FROM USERS WHERE id = ?";
-//            ps = DbConnect.get(checkEmailQuery);
-//            ps.setString(1, userId);
-//            resultSet = ps.executeQuery();
-
-//            if (resultSet.next()) {
                 String updatePasswordQuery = "UPDATE USERS SET phone = ? WHERE id = ?";
                 ps = DbConnect.get(updatePasswordQuery);
                 ps.setString(1, phone);
@@ -479,6 +461,19 @@ public class UserDao {
             ps = DbConnect.get(query);
             ps.setString(1,hashNewPass);
             ps.setInt(2,id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void setName(String id, String username) {
+        PreparedStatement ps = null;
+        try {
+            String query = "UPDATE USERS SET name = ? WHERE id = ?";
+            ps = DbConnect.get(query);
+            ps.setString(1,username);
+            ps.setString(2,id);
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

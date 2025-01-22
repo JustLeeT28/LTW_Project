@@ -30,56 +30,41 @@
 
     <main class="main-content">
         <div id="movies" class="section active">
-            <h1>Chỉnh sửa phim</h1>
+            <h1>Chỉnh sửa thông tin người dùng</h1>
             <div class="add-movie">
-                <h2>Tên phim: ${movie_title}</h2>
+                <h2>Tên người dùng: ${user.name}</h2>
                 <c:if test="${not empty Message}">
                     <p style="color: #0f0c29" >${Message}</p>
                 </c:if>
-                <form action="${pageContext.request.contextPath}/UpdateFilm" method="post">
-                    <label for="title">Tên phim: </label>
-                    <input type="text" id="title" name="title" >
+                <form action="${pageContext.request.contextPath}/AdManageUser" method="post">
+                    <label for="title">Tên người dùng: </label>
+                    <input type="text" id="title" name="nameUser" placeholder="Tên: ${user.name}">
 
-                    <label for="poster">URL Poster:</label>
-                    <input type="text" id="poster" name="posterUrl" >
+                    <label for="poster">Email người dùng: </label>
+                    <input type="email" id="poster" name="emailUser" placeholder="Email: ${user.email}" >
 
-                    <label for="trailer">URL Banner:</label>
-                    <input type="text" id="trailer" name="bannerUrl" >
+                    <label for="poster">Số điện thoại: </label>
+                    <input type="number" id="email" name="phoneUser" placeholder="SĐT: ${user.phone}">
 
-                    <label for="description">Mô tả:</label>
-                    <textarea id="description" name="description" rows="3" ></textarea>
+                    <label for="releaseDate">Sinh nhật: </label>
+                    <input type="date" id="releaseDate" name="dobUser" placeholder="Sinh nhật: ${user.dob}">
 
-                    <label for="duration">Thời lượng (phút):</label>
-                    <input type="number" id="duration" name="duration" >
+                    <label for="title">Mật khẩu: </label>
+                    <input type="password" id="pass" name="passUser" placeholder="Nhập pass muốn thay đổi">
 
-                    <label for="duration">Quốc gia: </label>
-                    <input type="text" id="country" name="country" >
+                    <label for="roleSelect">Cấp độ người dùng:</label>
+                    <select id="roleSelect" name="roleUser">
+                        <option value="0" ${user.role == 0 ? 'selected' : ''}>Khách hàng</option>
+                        <option value="1" ${user.role == 1 ? 'selected' : ''}>Admin</option>
+                    </select>
 
-                    <label for="duration">Ngôn ngữ: </label>
-                    <input type="text" id="language" name="language" >
+                    <label for="statusSelect">Trạng thái người dùng:</label>
+                    <select id="statusSelect" name="statusUser">
+                        <option value="active" ${user.status == "active" ? 'selected' : ''}>active</option>
+                        <option value="inactive" ${user.status == "inactive" ? 'selected' : ''}>inactive</option>
+                    </select>
 
-                    <label for="duration">Phụ đề: </label>
-                    <input type="text" id="subtitle" name="subtitle" >
-
-                    <label for="genre">Thể loại:</label>
-                    <input type="text" id="genre" name="genre" >
-
-                    <label for="director">Đạo diễn:</label>
-                    <input type="text" id="director" name="director" >
-
-                    <label for="actors">Diễn viên:</label>
-                    <input type="text" id="actors" name="actors">
-
-                    <label for="ageLimit">Độ tuổi giới hạn:</label>
-                    <input type="text" id="ageLimit" name="ageRating" >
-
-                    <label for="releaseDate">Ngày bắt đầu chiếu:</label>
-                    <input type="date" id="releaseDate" name="releaseDate" >
-
-                    <label for="releaseDate">Ngày ngưng chiếu:</label>
-                    <input type="date" id="endDate" name="endDate" >
-
-                    <input type="hidden" id="idmovie" name="mId" value="${movie_id}" >
+                    <input type="hidden" id="idmovie" name="idUser" value="${user.id}" >
                     <button type="submit">Lưu thay đổi</button>
                 </form>
             </div>

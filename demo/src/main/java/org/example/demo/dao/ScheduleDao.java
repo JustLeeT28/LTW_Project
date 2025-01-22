@@ -163,7 +163,7 @@ public class ScheduleDao {
 //        }
 //    }
 
-    public void addShow_seats(int showid, int seatId, String seatStatus) {
+    public void addShow_seats(int showid, int seatId, String seatStatus,int roomid) {
         PreparedStatement ps = null;
         ResultSet rs = null;
         String st_sStatus;
@@ -183,11 +183,13 @@ public class ScheduleDao {
             rs = ps.executeQuery();
             if (!rs.next()) {  // Nếu không có bản ghi trùng lặp
                 // Chèn dữ liệu mới
-                String query = "INSERT INTO showtime_seats (showTimeId, seatId, status) VALUES(?,?,?)";
+                String query = "INSERT INTO showtime_seats (showTimeId, seatId, status,roomId) VALUES(?,?,?,?)";
                 ps = DbConnect.get(query);
                 ps.setInt(1, showid);
                 ps.setInt(2, seatId);
                 ps.setString(3, st_sStatus);
+                ps.setInt(3, roomid);
+
                 ps.executeUpdate();
             } else {
                 System.out.println("Ghế đã được chèn vào bảng showtime_seats rồi.");

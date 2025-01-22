@@ -200,3 +200,17 @@ form {
     width: 100%; /* Chiều dài bằng 100% */
     margin-bottom: 10px; /* Khoảng cách giữa các form */
 }
+.main-content #change-button {
+    background-color: #4CAF50; /* Màu nền xanh */
+    color: white; /* Màu chữ */
+    padding: 10px 20px; /* Khoảng cách bên trong nút */
+    border: none; /* Bỏ viền */
+    border-radius: 5px; /* Bo góc nút */
+    cursor: pointer; /* Hiển thị con trỏ khi di chuột vào */
+    font-size: 0.95em;
+    width: 100%;
+}
+
+.main-content #change-button:hover {
+    background-color: #45a049; /* Đổi màu nền khi hover */
+}
