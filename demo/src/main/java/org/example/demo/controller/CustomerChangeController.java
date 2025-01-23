@@ -19,6 +19,7 @@ public class CustomerChangeController extends HttpServlet {
         String phone = request.getParameter("phoneUser");
         String role = request.getParameter("roleUser");
         String status = request.getParameter("statusUser");
+        String dob = request.getParameter("dobUser");
         String id = request.getParameter("idUser");
 
         AdminManageUserService adminManageUserService = new AdminManageUserService();
@@ -30,22 +31,29 @@ public class CustomerChangeController extends HttpServlet {
         }
         if(email != null && !email.isEmpty()){
             if (adminManageUserService.checkEmail(email)){
+                request.setAttribute("uId", id);
                 request.setAttribute("message", "Email đã tồn tại! vui lòng nhập email khác!");
                 request.getRequestDispatcher("/Admin/customerChange_mng.jsp").forward(request, response);
+                doGet(request, response);
                 return;
             }else {
-                
+                adminManageUserService.setEmail(id,email);
             }
         }
         if(phone != null && !phone.isEmpty()){
-
+                adminManageUserService.setPhone(id,phone);
         }
         if(role != null && !role.isEmpty()){
-
+                adminManageUserService.setRole(id,role);
         }
         if(status != null && !status.isEmpty()){
-
+                adminManageUserService.setStatus(id,status);
         }
+        if(dob != null && !dob.isEmpty()){
+            adminManageUserService.setDob(id,dob);
+        }
+        // Cập nhật thành công
+        response.sendRedirect("customer_mng");  // quay lại tragn quan ly khach hang
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String uId = request.getParameter("uId");

@@ -98,24 +98,24 @@
                     </table>
                 </div>
 
-                <!-- Chính sách ưu đãi -->
-                <div class="manage-discounts">
-                    <h2>Chính sách Ưu đãi</h2>
-                    <form id="discountForm">
-                        <label for="discountName">Tên ưu đãi:</label>
-                        <input type="text" id="discountName" required>
+<%--                <!-- Chính sách ưu đãi -->--%>
+<%--                <div class="manage-discounts">--%>
+<%--                    <h2>Chính sách Ưu đãi</h2>--%>
+<%--                    <form id="discountForm">--%>
+<%--                        <label for="discountName">Tên ưu đãi:</label>--%>
+<%--                        <input type="text" id="discountName" required>--%>
 
-                        <label for="discountPercent">Phần trăm giảm giá:</label>
-                        <input type="number" id="discountPercent" min="0" max="100" required>
+<%--                        <label for="discountPercent">Phần trăm giảm giá:</label>--%>
+<%--                        <input type="number" id="discountPercent" min="0" max="100" required>--%>
 
-                        <button type="button" onclick="addDiscount()">Thêm ưu đãi</button>
-                    </form>
+<%--                        <button type="button" onclick="addDiscount()">Thêm ưu đãi</button>--%>
+<%--                    </form>--%>
 
-                    <h3>Danh sách Ưu đãi</h3>
-                    <ul id="discountList">
-                        <!-- Danh sách ưu đãi sẽ được hiển thị ở đây -->
-                    </ul>
-                </div>
+<%--                    <h3>Danh sách Ưu đãi</h3>--%>
+<%--                    <ul id="discountList">--%>
+<%--                        <!-- Danh sách ưu đãi sẽ được hiển thị ở đây -->--%>
+<%--                    </ul>--%>
+<%--                </div>--%>
             </div>
         </main>
     </div>

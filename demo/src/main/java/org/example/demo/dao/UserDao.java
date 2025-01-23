@@ -264,6 +264,60 @@ public class UserDao {
         }
 
     }
+    public void updateRole(String userId, String role) {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+
+        try {
+            String updatePasswordQuery = "UPDATE USERS SET role = ? WHERE id = ?";
+            ps = DbConnect.get(updatePasswordQuery);
+            ps.setString(1, role);
+            ps.setString(2, userId);
+            ps.executeUpdate();
+
+//            }
+
+        } catch (SQLException e) {
+            // Xử lý lỗi nếu có
+            e.printStackTrace();
+        } finally {
+            // Đảm bảo đóng các tài nguyên
+            try {
+                if (resultSet != null) resultSet.close();
+                if (ps != null) ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+    public void updateStatus(String userId, String status) {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+
+        try {
+            String updatePasswordQuery = "UPDATE USERS SET status = ? WHERE id = ?";
+            ps = DbConnect.get(updatePasswordQuery);
+            ps.setString(1, status);
+            ps.setString(2, userId);
+            ps.executeUpdate();
+
+//            }
+
+        } catch (SQLException e) {
+            // Xử lý lỗi nếu có
+            e.printStackTrace();
+        } finally {
+            // Đảm bảo đóng các tài nguyên
+            try {
+                if (resultSet != null) resultSet.close();
+                if (ps != null) ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
 
     public User getUserById(String userId) {
         PreparedStatement ps = null;

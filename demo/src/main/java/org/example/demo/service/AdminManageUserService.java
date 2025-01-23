@@ -23,4 +23,24 @@ public class AdminManageUserService {
     public boolean checkEmail(String email) {
         return userDao.checkEmail(email);
     }
+
+    public void setEmail(String id, String email) {
+        userDao.updateEmail(id, email);
+    }
+
+    public void setPhone(String id, String phone) {
+        userDao.updatePhone(id, phone);
+    }
+
+    public void setRole(String id, String role) {
+        userDao.updateRole(id,role);
+    }
+
+    public void setStatus(String id, String status) {
+        userDao.updateStatus(id,status);
+    }
+
+    public void setDob(String id, String dob) {
+        userDao.updateDob(id,dob);
+    }
 }
