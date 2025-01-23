@@ -31,30 +31,11 @@
     <!-- Main content -->
     <main class="main-content">
         <div id="tickets" class="section active">
-            <h1>Quản lý Vé và Đặt Vé</h1>
-            <!-- Quản lý giá vé -->
-            <div class="manage-price">
-                <h2>Quản lý Giá Vé</h2>
-                <form id="priceForm" action="${pageContext.request.contextPath}/tikket_mng" method="POST">
-                    <label for="2Dtik">Giá vé phim 2D:</label>
-                    <input type="number" id="2Dtik" name="2Dtik" min="0" >
-
-                    <label for="3Dtik">Giá vé phim 3D:</label>
-                    <input type="number" id="3Dtik" name="3Dtik" min="0" >
-
-                    <label for="4Dtik">Giá vé Phim 4D:</label>
-                    <input type="number" id="4Dtik" name="4Dtik" min="0" >
-
-                    <label for="Imax">Giá vé Phim Imax:</label>
-                    <input type="number" id="Imax" name="Imax" min="0" >
-
-                    <button type="submit">Cập nhật giá</button>
-                </form>
-            </div>
-            <!-- Công cụ tìm kiếm vé -->
+            <h1>Quản lý ghế</h1>
+                        <!-- Công cụ tìm kiếm vé -->
             <div class="search-ticket" style="margin-bottom: 15px">
                 <form action="${pageContext.request.contextPath}/tikket_mng" method="GET">
-                    <input type="text" id="query_tikkets" name="query_tikkets" placeholder="Nhập tên khác hàng hoặc mã vé ">
+                    <input type="text" id="query_tikkets" name="query_tikkets" placeholder="Nhập tên phòng hoặc mã ghế ">
                     <button type="submit">Tìm kiếm</button>
                 </form>
             </div>
@@ -64,27 +45,38 @@
                 <table id="ticketTable">
                     <thead>
                     <tr>
-                        <th>ID vé</th>
-                        <th>Tên khách hàng</th>
-                        <th>Giờ chiếu</th>
-                        <th>ID phòng</th>
                         <th>ID ghế</th>
-                        <th>Giá</th>
+                        <th>Mã phòng</th>
+                        <th>Tên Hàng</th>
+                        <th>Số ghế</th>
                         <th>Hành động</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="ticket" items="${listMovieTicket}">
+                    <c:forEach var="seat" items="${listSeats}">
                         <tr>
-                            <td>${ticket.id}</td>
-                            <td>${ticket.name}</td>
-                            <td>${ticket.showDate} : ${ticket.showTime}</td>
-                            <td>${ticket.roomId}</td>
-                            <td>${ticket.seatId}</td>
-                            <td>${ticket.price}</td>
+                            <td>${seat.id}</td>
+                            <td>${seat.roomId}</td>
+                            <td>${seat.row}</td>
+                            <td>${seat.seat_number}</td>
                             <td>
+                                <c:if test="${seat.status == 'active'}">
+                                    <form id="block" class="form-block" action="${pageContext.request.contextPath}/customer_mng" method="GET">
+                                        <input type="hidden" name="userId_status_block" value="${seat.id}" />
+                                        <button type="submit" style="width: 100%;background-color: green;color: white;border: none;border-radius: 5px;cursor: pointer;transition: all 0.3s ease-in-out;" onmouseover="this.style.backgroundColor='#228b22'; this.style.color='#f0f0f0';"onmouseout="this.style.backgroundColor='green'; this.style.color='white';">
+                                            Vô hiệu</button>
+                                    </form>
+                                </c:if>
+
+                                <c:if test="${seat.status == 'inactive'}">
+                                    <form id="unblock" class="form-unblock" action="${pageContext.request.contextPath}/customer_mng" method="GET">
+                                        <input type="hidden" name="userId_status_unblock" value="${seat.id}" />
+                                        <button type="submit" style="width: 100%;background-color: green;color: white;border: none;border-radius: 5px;cursor: pointer;transition: all 0.3s ease-in-out;" onmouseover="this.style.backgroundColor='#228b22'; this.style.color='#f0f0f0';"onmouseout="this.style.backgroundColor='green'; this.style.color='white';">
+                                            Bỏ chặn</button>
+                                    </form>
+                                </c:if>
                                 <form class="form-delete" action="${pageContext.request.contextPath}/tikket_mng" method="GET" onsubmit="return confirm('Bạn có chắc chắn muốn xóa người này?');">
-                                    <input type="hidden" name="ticketId_del" value="${ticket.id}" />
+                                    <input type="hidden" name="seatId_status" value="${seat.id}" />
                                     <button type="submit" style="width: 100%">
                                         Hủy</button>
                                 </form>
@@ -99,6 +91,6 @@
     </main>
 </div>
 
-<script src="tikket_mng.js"></script>
+<%--<script src="tikket_mng.js"></script>--%>
 </body>
 </html>

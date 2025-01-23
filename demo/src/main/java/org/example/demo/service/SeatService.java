@@ -25,4 +25,9 @@ public class SeatService {
         seatDao.setStatus(status ,seatId, showtimeId);
     }
 
+    public List<Seat> getAllSeat(){
+//        return seatDao.getAllSeat();
+        return null; // khoi tao trc
+    }
+
 }
