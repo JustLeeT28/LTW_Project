@@ -8,7 +8,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.example.demo.dao.model.MovieTicket;
+import org.example.demo.dao.model.Seat;
 import org.example.demo.dao.model.User;
+import org.example.demo.service.SeatService;
 import org.example.demo.service.TicketMovieService;
 
 import java.io.IOException;
@@ -24,19 +26,18 @@ public class SeatsController extends HttpServlet {
             response.sendError(HttpServletResponse.SC_NOT_FOUND); // Trả về lỗi 404
             return;
         }
-        String query_tikket = request.getParameter("query_tikkets");
+        String query_seats = request.getParameter("query_seats_room");
 
-        TicketMovieService ticketMovieService = new TicketMovieService();
-
-        List<MovieTicket> listMovieTicket = new ArrayList<>();
-        if (query_tikket != null && !query_tikket.isEmpty()) {
-            listMovieTicket = ticketMovieService.getTicketByQuery(query_tikket);
+        SeatService service = new SeatService();
+        List<Seat> listSeat = new ArrayList<>();
+        if (query_seats != null && !query_seats.isEmpty()) {
+//            listSeat = service.getTicketByQuery(query_seats);
         } else{
-            listMovieTicket = ticketMovieService.getTicketAll();
+            listSeat = service.getAllSeat();
         }
 
 
-        request.setAttribute("listMovieTicket", listMovieTicket);
+        request.setAttribute("listSeats", listSeat);
         request.getRequestDispatcher("/Admin/tikket_mng.jsp").forward(request, response);
     }
 

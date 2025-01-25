@@ -26,8 +26,8 @@ public class SeatService {
     }
 
     public List<Seat> getAllSeat(){
-//        return seatDao.getAllSeat();
-        return null; // khoi tao trc
+        return seatDao.getAllSeat();
+//        return null; // khoi tao trc
     }
 
 }

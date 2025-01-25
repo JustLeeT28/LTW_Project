@@ -160,4 +160,27 @@ public class SeatDao {
         }
     }
 
+    public List<Seat> getAllSeat() {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        List<Seat> seats = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM seats";
+            ps = DbConnect.get(query);
+            resultSet = ps.executeQuery();
+            while (resultSet.next()){
+                Seat movie = new Seat(
+                        resultSet.getInt("id"),
+                        resultSet.getInt("roomId"),
+                        resultSet.getString("row"),
+                        resultSet.getString("seat_number"),
+                        resultSet.getDouble("price"),
+                        resultSet.getString("status")
+                );
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return seats;
+    }
 }

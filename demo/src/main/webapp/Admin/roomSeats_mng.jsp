@@ -34,8 +34,8 @@
             <h1>Quản lý ghế</h1>
                         <!-- Công cụ tìm kiếm vé -->
             <div class="search-ticket" style="margin-bottom: 15px">
-                <form action="${pageContext.request.contextPath}/tikket_mng" method="GET">
-                    <input type="text" id="query_tikkets" name="query_tikkets" placeholder="Nhập tên phòng hoặc mã ghế ">
+                <form action="${pageContext.request.contextPath}/seats_mng" method="GET">
+                    <input type="text" id="query_tikkets" name="query_seats_room" placeholder="Nhập tên phòng hoặc mã ghế ">
                     <button type="submit">Tìm kiếm</button>
                 </form>
             </div>
