@@ -38,7 +38,7 @@ public class SeatsController extends HttpServlet {
 
 
         request.setAttribute("listSeats", listSeat);
-        request.getRequestDispatcher("/Admin/tikket_mng.jsp").forward(request, response);
+        request.getRequestDispatcher("/Admin/roomSeats_mng.jsp").forward(request, response);
     }
 
     @Override

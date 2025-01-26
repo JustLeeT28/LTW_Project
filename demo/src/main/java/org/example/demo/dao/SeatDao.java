@@ -151,14 +151,14 @@ public class SeatDao {
             e.printStackTrace();
         }
     }
-    public static void main(String[] args) {
-        SeatDao seatDao = new SeatDao();
-            List<ShowSeat> statusSeatByShowtimeId = seatDao.getStatusSeatByShowtimeId(36, 2);
-            for (ShowSeat showSeat : statusSeatByShowtimeId) {
-                System.out.print(showSeat.getId());
-                System.out.print(showSeat.getStatus());
-        }
-    }
+//    public static void main(String[] args) {
+//        SeatDao seatDao = new SeatDao();
+//            List<ShowSeat> statusSeatByShowtimeId = seatDao.getStatusSeatByShowtimeId(36, 2);
+//            for (ShowSeat showSeat : statusSeatByShowtimeId) {
+//                System.out.print(showSeat.getId());
+//                System.out.print(showSeat.getStatus());
+//        }
+//    }
 
     public List<Seat> getAllSeat() {
         PreparedStatement ps = null;
@@ -169,7 +169,7 @@ public class SeatDao {
             ps = DbConnect.get(query);
             resultSet = ps.executeQuery();
             while (resultSet.next()){
-                Seat movie = new Seat(
+                Seat s = new Seat(
                         resultSet.getInt("id"),
                         resultSet.getInt("roomId"),
                         resultSet.getString("row"),
@@ -177,10 +177,19 @@ public class SeatDao {
                         resultSet.getDouble("price"),
                         resultSet.getString("status")
                 );
+                seats.add(s);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return seats;
+    }
+
+    public static void main(String[] args) {
+        SeatDao seatDao = new SeatDao();
+        List<Seat> seats = seatDao.getAllSeat();
+        for (Seat seat : seats) {
+            System.out.print(seat.getId());
+        }
     }
 }
