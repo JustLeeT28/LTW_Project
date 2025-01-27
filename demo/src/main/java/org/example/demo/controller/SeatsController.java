@@ -31,10 +31,13 @@ public class SeatsController extends HttpServlet {
         SeatService service = new SeatService();
         List<Seat> listSeat = new ArrayList<>();
         if (query_seats != null && !query_seats.isEmpty()) {
-//            listSeat = service.getTicketByQuery(query_seats);
-        } else{
-            listSeat = service.getAllSeat();
+            listSeat = service.getSeatByQuery(query_seats);
+            request.setAttribute("listSeats", listSeat);
+            request.getRequestDispatcher("/Admin/roomSeats_mng.jsp").forward(request, response);
+            return;
         }
+        listSeat = service.getAllSeat();
+
 
 
         request.setAttribute("listSeats", listSeat);

@@ -35,7 +35,7 @@
                         <!-- Công cụ tìm kiếm vé -->
             <div class="search-ticket" style="margin-bottom: 15px">
                 <form action="${pageContext.request.contextPath}/seats_mng" method="GET">
-                    <input type="text" id="query_tikkets" name="query_seats_room" placeholder="Nhập tên phòng hoặc mã ghế ">
+                    <input type="text" id="query_tikkets" name="query_seats_room" placeholder="Tìm ghế theo định dạng <mã phòng>-<hàng>-<số ghế>">
                     <button type="submit">Tìm kiếm</button>
                 </form>
             </div>

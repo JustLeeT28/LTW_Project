@@ -31,7 +31,7 @@ public class SeatDao {
                         resultSet.getString("row"),
                         resultSet.getString("seat_number"),
                         resultSet.getDouble("price"),
-                        resultSet.getString("isActive")
+                        resultSet.getString("status")
                 );
                 seats.add(movie);
             }
@@ -117,7 +117,7 @@ public class SeatDao {
                         resultSet.getString("row"),
                         resultSet.getString("seat_number"),
                         resultSet.getDouble("price"),
-                        resultSet.getString("isActive")
+                        resultSet.getString("status")
                 );
                 return seat;
             }
@@ -190,6 +190,87 @@ public class SeatDao {
         List<Seat> seats = seatDao.getAllSeat();
         for (Seat seat : seats) {
             System.out.print(seat.getId());
+        }
+    }
+
+    public List<Seat> getSeatsByRoomAndRow(int i, String s) {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        try {
+            String query = "SELECT * FROM seats WHERE roomId = ? AND row = ?";
+
+            ps = DbConnect.get(query); // Lấy PreparedStatement từ DbConnect
+            ps.setInt(1, i); // Set tham số cho PreparedStatement
+            ps.setString(2, s);
+            resultSet = ps.executeQuery(); // Thực thi truy vấn
+
+            List<Seat> seats = new ArrayList<>();
+            while (resultSet.next()) {
+                Seat movie = new Seat(
+                        resultSet.getInt("id"),
+                        resultSet.getInt("roomId"),
+                        resultSet.getString("row"),
+                        resultSet.getString("seat_number"),
+                        resultSet.getDouble("price"),
+                        resultSet.getString("status")
+                );
+                seats.add(movie);
+            }
+
+            return seats;
+
+        } catch (SQLException e) {
+            e.printStackTrace(); // Log lỗi
+            return new ArrayList<>(); // Trả về danh sách rỗng khi gặp lỗi
+        } finally {
+            // Đảm bảo đóng tài nguyên sau khi sử dụng
+            try {
+                if (resultSet != null) resultSet.close();
+                if (ps != null) ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace(); // Log lỗi khi đóng tài nguyên
+            }
+        }
+    }
+
+    public List<Seat> getSeatByRoom_Row_Number(int i, String s, String s1) {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        try {
+            String query = "SELECT * FROM seats WHERE roomId = ? AND row LIKE ? AND seat_Number LIKE ? ";
+
+            ps = DbConnect.get(query); // Lấy PreparedStatement từ DbConnect
+            ps.setInt(1, i); // Set tham số cho PreparedStatement
+            ps.setString(2, s);
+            ps.setString(3, s1);
+            resultSet = ps.executeQuery(); // Thực thi truy vấn
+
+            List<Seat> seats = new ArrayList<>();
+            while (resultSet.next()) {
+                Seat movie = new Seat(
+                        resultSet.getInt("id"),
+                        resultSet.getInt("roomId"),
+                        resultSet.getString("row"),
+                        resultSet.getString("seat_number"),
+                        resultSet.getDouble("price"),
+                        resultSet.getString("status")
+                );
+                seats.add(movie);
+            }
+
+            return seats;
+
+        } catch (SQLException e) {
+            e.printStackTrace(); // Log lỗi
+            return new ArrayList<>(); // Trả về danh sách rỗng khi gặp lỗi
+        } finally {
+            // Đảm bảo đóng tài nguyên sau khi sử dụng
+            try {
+                if (resultSet != null) resultSet.close();
+                if (ps != null) ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace(); // Log lỗi khi đóng tài nguyên
+            }
         }
     }
 }

@@ -126,7 +126,7 @@ public class ScheduleDao {
                         rs.getString("row"),       // Hàng ghế
                         rs.getString("seat_number"),// Số ghế
                         rs.getDouble("price"),     // Giá của ghế
-                        rs.getString("isActive")   // Trạng thái ghế (active/inactive)
+                        rs.getString("status")   // Trạng thái ghế (active/inactive)
                 );
                 // Thêm ghế vào danh sách
                 listSeats.add(seat);
@@ -188,7 +188,7 @@ public class ScheduleDao {
                 ps.setInt(1, showid);
                 ps.setInt(2, seatId);
                 ps.setString(3, st_sStatus);
-                ps.setInt(3, roomid);
+                ps.setInt(4, roomid);
 
                 ps.executeUpdate();
             } else {
