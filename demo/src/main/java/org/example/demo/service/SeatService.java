@@ -52,4 +52,12 @@ public class SeatService {
             System.out.println(seat.getId());
         }
     }
+
+    public void blockSeat(String block) {
+        seatDao.blockSeat(block);
+    }
+
+    public void unBlockSeat(String block) {
+        seatDao.unBlockSeat(block);
+    }
 }

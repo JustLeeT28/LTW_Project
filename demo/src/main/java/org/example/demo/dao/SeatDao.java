@@ -273,4 +273,29 @@ public class SeatDao {
             }
         }
     }
+
+    public void blockSeat(String block) {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        try {
+            String query = "UPDATE seats SET status = ? WHERE id = ?";
+            ps = DbConnect.get(query);
+            ps.setString(1, "inactive");
+            ps.setString(2,block);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void unBlockSeat(String block) {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        try {
+            String query = "UPDATE seats SET status = ? WHERE id = ?";
+            ps = DbConnect.get(query);
+            ps.setString(1, "active");
+            ps.setString(2,block);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

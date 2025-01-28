@@ -61,25 +61,25 @@
                             <td>${seat.seatNumber}</td>
                             <td>
                                 <c:if test="${seat.isActive == 'active'}">
-                                    <form id="block" class="form-block" action="${pageContext.request.contextPath}/customer_mng" method="GET">
-                                        <input type="hidden" name="userId_status_block" value="${seat.id}" />
+                                    <form id="block" class="form-block" action="${pageContext.request.contextPath}/seats_mng" method="POST">
+                                        <input type="hidden" name="SeatId_status_block" value="${seat.id}" />
                                         <button type="submit" style="width: 100%;background-color: green;color: white;border: none;border-radius: 5px;cursor: pointer;transition: all 0.3s ease-in-out;" onmouseover="this.style.backgroundColor='#228b22'; this.style.color='#f0f0f0';"onmouseout="this.style.backgroundColor='green'; this.style.color='white';">
                                             Vô hiệu</button>
                                     </form>
                                 </c:if>
 
                                 <c:if test="${seat.isActive == 'inactive'}">
-                                    <form id="unblock" class="form-unblock" action="${pageContext.request.contextPath}/customer_mng" method="GET">
-                                        <input type="hidden" name="userId_status_unblock" value="${seat.id}" />
+                                    <form id="unblock" class="form-unblock" action="${pageContext.request.contextPath}/seats_mng" method="POST">
+                                        <input type="hidden" name="seatId_status_unblock" value="${seat.id}" />
                                         <button type="submit" style="width: 100%;background-color: green;color: white;border: none;border-radius: 5px;cursor: pointer;transition: all 0.3s ease-in-out;" onmouseover="this.style.backgroundColor='#228b22'; this.style.color='#f0f0f0';"onmouseout="this.style.backgroundColor='green'; this.style.color='white';">
                                             Bỏ chặn</button>
                                     </form>
                                 </c:if>
-                                <form class="form-delete" action="${pageContext.request.contextPath}/tikket_mng" method="GET" onsubmit="return confirm('Bạn có chắc chắn muốn xóa người này?');">
-                                    <input type="hidden" name="seatId_status" value="${seat.id}" />
-                                    <button type="submit" style="width: 100%">
-                                        Hủy</button>
-                                </form>
+<%--                                <form class="form-delete" action="${pageContext.request.contextPath}/tikket_mng" method="GET" onsubmit="return confirm('Bạn có chắc chắn muốn xóa người này?');">--%>
+<%--                                    <input type="hidden" name="seatId_status" value="${seat.id}" />--%>
+<%--                                    <button type="submit" style="width: 100%">--%>
+<%--                                        Hủy</button>--%>
+<%--                                </form>--%>
                             </td>
                         </tr>
                     </c:forEach>

@@ -47,8 +47,15 @@ public class SeatsController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // update giá vé
-        String tik2D = request.getParameter("2Dtik");
-
+        String block = request.getParameter("SeatId_status_block");
+        String unblock = request.getParameter("SeatId_status_unblock");
+        SeatService service = new SeatService();
+        if (block != null && !block.isEmpty()) {
+            service.blockSeat(block);
+        }
+        if (unblock != null && !unblock.isEmpty()) {
+            service.unBlockSeat(block);
+        }
         doGet(request, response);
 
     }
