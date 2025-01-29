@@ -38,7 +38,7 @@
                 <div class="add-schedule">
                     <h2>Lên lịch chiếu</h2>
                     <form id="scheduleForm" action="${pageContext.request.contextPath}/schedule_mng" method="POST">
-                        <label for="movieSelect">Nhập mã phim:</label>
+                        <label for="movieSelect">Nhập mã phim hoặc tên phim:</label>
                         <input type="number" id="movieSelect" name="movieId" required>
 
                         <label for="roomSelect">Phòng chiếu:</label>

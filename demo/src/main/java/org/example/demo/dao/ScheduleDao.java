@@ -235,6 +235,82 @@ public class ScheduleDao {
         }
     }
 
+    public int getMovieId(String MovieName) {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        int movieId = -1;
+        try {
+            String query = "SELECT * FROM movies WHERE name = ?";
+            ps = DbConnect.get(query);  // Lấy PreparedStatement từ DbConnect
+
+            ps.setString(1, MovieName);  // Set tham số cho PreparedStatement
+
+            resultSet = ps.executeQuery();  // Thực thi truy vấn
+
+            if (resultSet.next()) {
+                 Movie m = new Movie(
+                        resultSet.getInt("id"),
+                        resultSet.getString("title"),
+                        resultSet.getInt("duration"),
+                        resultSet.getString("description"),
+                        resultSet.getString("country"),
+                        resultSet.getString("language"),
+                        resultSet.getString("subtitle"),
+                        resultSet.getString("ageRating"),
+                        resultSet.getString("releaseDate"),
+                        resultSet.getString("endDate"),
+                        resultSet.getString("bannerUrl"),
+                        resultSet.getString("posterUrl"),
+                        resultSet.getString("status")
+                );
+                movieId = m.getId();
+            }
+
+            return movieId;  // Trả về null nếu không tìm thấy phim
+
+        } catch (SQLException e) {
+            e.printStackTrace();  // Log lỗi
+            return movieId;  // Trả về null khi gặp lỗi
+        } finally {
+            // Đảm bảo đóng tài nguyên sau khi sử dụng
+            try {
+                if (resultSet != null) resultSet.close();
+                if (ps != null) ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();  // Log lỗi khi đóng tài nguyên
+            }
+        }
+    }
+
+    public void addShowTimeByName(String movieId, String roomId, String showDate, String showTime) {
+        PreparedStatement ps = null;
+        try {
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+            // Chuyển đổi chuỗi sang LocalDate và LocalTime
+            LocalDate localShowDate = LocalDate.parse(showDate, dateFormatter);
+            LocalTime localShowTime = LocalTime.parse(showTime, timeFormatter);
+
+            // Câu truy vấn SQL để thêm mới thời gian chiếu
+            String query = "INSERT INTO showtimes (movieId, roomId, showDate, showTime) VALUES (?, ?, ?, ?)";
+
+            // Kết nối đến cơ sở dữ liệu và thiết lập PreparedStatement
+            ps = DbConnect.get(query); // Giả sử DbConnect.get(query) sẽ trả về PreparedStatement
+
+            // Gán giá trị cho các tham số của PreparedStatement
+            ps.setInt(1, Integer.parseInt(movieId)); // set movieId
+            ps.setInt(2, Integer.parseInt(roomId)); // set roomId
+            ps.setDate(3, Date.valueOf(localShowDate)); // set showDate (LocalDate) -> Date
+            ps.setTime(4, Time.valueOf(localShowTime)); // set showTime (LocalTime) -> Time
+
+            // Thực hiện câu truy vấn
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public Showtime GetShowTime(int movieId, int roomId, LocalDate showDate, LocalTime showTime) {
         PreparedStatement ps = null;
         ResultSet rs = null;

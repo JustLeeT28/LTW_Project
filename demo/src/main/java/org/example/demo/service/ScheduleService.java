@@ -16,8 +16,14 @@ public class ScheduleService {
     }
 
     public void addShowTime(String movieId, String roomId, String showDate, String showTime) {
-        scheduleDao.addShowTime(movieId, roomId, showDate, showTime);
+        if(isNumber(roomId)) {
+            scheduleDao.addShowTime(movieId, roomId, showDate, showTime);
+        }
+        else {
+            scheduleDao.addShowTimeByName(movieId, roomId, showDate, showTime);
+        }
     }
+
 
     public Showtime GetShowtime(int movieIdInt, int roomIdInt, LocalDate localShowDate, LocalTime localShowTime) {
         return scheduleDao.GetShowTime(movieIdInt, roomIdInt, localShowDate, localShowTime);
@@ -49,6 +55,11 @@ public class ScheduleService {
 
     public void del_show_seat(int i, int id) {
         scheduleDao.del_show_seat(i, id);
+    }
+
+    public static boolean isNumber(String queryCus) {
+        String phoneRegex = "^[0-9]{2,15}$";
+        return queryCus.matches(phoneRegex);
     }
 
     public static void main(String[] args) {
