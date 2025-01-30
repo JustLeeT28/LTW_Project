@@ -16,7 +16,7 @@ public class ScheduleService {
     }
 
     public void addShowTime(String movieId, String roomId, String showDate, String showTime) {
-        if(isNumber(roomId)) {
+        if(isNumber(movieId)) {
             scheduleDao.addShowTime(movieId, roomId, showDate, showTime);
         }
         else {
@@ -58,15 +58,24 @@ public class ScheduleService {
     }
 
     public static boolean isNumber(String queryCus) {
-        String phoneRegex = "^[0-9]{2,15}$";
+        String phoneRegex = "^[0-9]{1,15}$";
         return queryCus.matches(phoneRegex);
+    }
+    public int getIdMovieByname(String movieName) {
+        return scheduleDao.getMovieId(movieName);
     }
 
     public static void main(String[] args) {
-        ScheduleService scheduleService = new ScheduleService();
-        List<Seat> seats = scheduleService.getListSeatsByRoomid("1");
-        for (Seat seat : seats) {
-            System.out.println(seat.getRoomId());
+//        ScheduleService scheduleService = new ScheduleService();
+//        List<Seat> seats = scheduleService.getListSeatsByRoomid("1");
+//        for (Seat seat : seats) {
+//            System.out.println(seat.getRoomId());
+//        }
+        if (isNumber("asdg")){
+            System.out.println("la so");
+        }
+        else {
+            System.out.println("khong phai so");
         }
     }
 }

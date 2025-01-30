@@ -68,7 +68,7 @@ public class ScheduleController extends HttpServlet {
                 doGet(request, response);
 
             }
-            int movieIdInt = Integer.parseInt(movieId);
+            int movieIdInt = service.isNumber(movieId)?Integer.parseInt(movieId):service.getIdMovieByname(movieId);
             int roomIdInt = Integer.parseInt(roomId);
 
             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

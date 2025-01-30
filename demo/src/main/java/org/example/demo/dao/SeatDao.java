@@ -282,6 +282,7 @@ public class SeatDao {
             ps = DbConnect.get(query);
             ps.setString(1, "inactive");
             ps.setString(2,block);
+            ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -294,6 +295,7 @@ public class SeatDao {
             ps = DbConnect.get(query);
             ps.setString(1, "active");
             ps.setString(2,block);
+            ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

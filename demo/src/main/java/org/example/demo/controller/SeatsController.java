@@ -48,13 +48,13 @@ public class SeatsController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // update giá vé
         String block = request.getParameter("SeatId_status_block");
-        String unblock = request.getParameter("SeatId_status_unblock");
+        String unblock = request.getParameter("seatId_status_unblock");
         SeatService service = new SeatService();
         if (block != null && !block.isEmpty()) {
             service.blockSeat(block);
         }
         if (unblock != null && !unblock.isEmpty()) {
-            service.unBlockSeat(block);
+            service.unBlockSeat(unblock);
         }
         doGet(request, response);
 

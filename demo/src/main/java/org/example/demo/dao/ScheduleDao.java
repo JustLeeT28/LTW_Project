@@ -79,11 +79,15 @@ public class ScheduleDao {
         return one.isBefore(timeTwo);
     }
 
+    public static boolean isNumber(String queryCus) {
+        String phoneRegex = "^[0-9]{1,15}$";
+        return queryCus.matches(phoneRegex);
+    }
 
     public boolean isConflict(String movieId,String roomId, String showDate, String showTime) {
         PreparedStatement ps = null;
         ResultSet rs = null;
-        int mid = Integer.parseInt(movieId);
+        int mid = isNumber(movieId) ? Integer.parseInt(movieId) : getMovieId(movieId);
         MovieDao movieDao = new MovieDao();
         Movie currentMovie = movieDao.getMovieById(mid); // để lấy thời gian phim hiện tại
         // lay danh sach phim của phòng trong ngày
@@ -240,7 +244,7 @@ public class ScheduleDao {
         ResultSet resultSet = null;
         int movieId = -1;
         try {
-            String query = "SELECT * FROM movies WHERE name = ?";
+            String query = "SELECT * FROM movies WHERE title LIKE ?";
             ps = DbConnect.get(query);  // Lấy PreparedStatement từ DbConnect
 
             ps.setString(1, MovieName);  // Set tham số cho PreparedStatement
@@ -284,6 +288,7 @@ public class ScheduleDao {
 
     public void addShowTimeByName(String movieId, String roomId, String showDate, String showTime) {
         PreparedStatement ps = null;
+        int movieid = getMovieId(movieId);
         try {
             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -299,7 +304,7 @@ public class ScheduleDao {
             ps = DbConnect.get(query); // Giả sử DbConnect.get(query) sẽ trả về PreparedStatement
 
             // Gán giá trị cho các tham số của PreparedStatement
-            ps.setInt(1, Integer.parseInt(movieId)); // set movieId
+            ps.setInt(1, movieid); // set movieId
             ps.setInt(2, Integer.parseInt(roomId)); // set roomId
             ps.setDate(3, Date.valueOf(localShowDate)); // set showDate (LocalDate) -> Date
             ps.setTime(4, Time.valueOf(localShowTime)); // set showTime (LocalTime) -> Time
