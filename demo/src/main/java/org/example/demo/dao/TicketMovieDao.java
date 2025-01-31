@@ -20,7 +20,7 @@ public class TicketMovieDao {
                     "FROM movie_tickets mt " +
                     "JOIN orders o ON mt.orderId = o.id " +
                     "JOIN users u ON o.userId = u.id " +
-                    "JOIN showtimes sh On mt.showTimeId = sh.id " +
+                    "JOIN showtimes sh ON mt.showTimeId = sh.id " +
                     "ORDER BY mt.created_at DESC";
             ps = DbConnect.get(query);
             rs = ps.executeQuery();
@@ -37,6 +37,7 @@ public class TicketMovieDao {
                         rs.getString("showTime"),      // timeshow
                         rs.getInt("roomId")            // roomId
                 );
+                list.add(ticket);
             }
             return list;
         } catch (SQLException e) {
@@ -72,6 +73,7 @@ public class TicketMovieDao {
                         rs.getString("showTime"),      // timeshow
                         rs.getInt("roomId")            // roomId
                 );
+                list.add(ticket);
             }
             return list;
         } catch (SQLException e) {
@@ -88,8 +90,8 @@ public class TicketMovieDao {
                     "FROM movie_tickets mt " +
                     "JOIN orders o ON mt.orderId = o.id " +
                     "JOIN users u ON o.userId = u.id " +
-                    "JOIN showtimes sh On mt.showTimeId = sh.id " +
-                    "Where mt.id LIKE ? " +
+                    "JOIN showtimes sh ON mt.showTimeId = sh.id " +
+                    "Where mt.id = ? " +
                     "ORDER BY mt.created_at DESC";
             ps = DbConnect.get(query);
             ps.setString(1,  queryTikket + "%");
@@ -107,6 +109,7 @@ public class TicketMovieDao {
                         rs.getString("showTime"),      // timeshow
                         rs.getInt("roomId")            // roomId
                 );
+                list.add(ticket);
             }
             return list;
         } catch (SQLException e) {
@@ -182,5 +185,12 @@ public class TicketMovieDao {
         }
     }
 
+    public static void main(String[] args) {
+        TicketMovieDao dao = new TicketMovieDao();
+        List<MovieTicket> list = dao.getTicketAll();
+        for (MovieTicket ticket : list) {
+            System.out.println(ticket.getId());
+        }
 
+    }
 }

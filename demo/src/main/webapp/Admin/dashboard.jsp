@@ -67,11 +67,11 @@
                     </div>
                     <div class="card">
                         <h3>Doanh thu bán vé</h3>
-                        <p id="movie-tick">${totalMovie}</p>
+                        <p id="movie-tick">${totalMovie} VNĐ</p>
                     </div>
                     <div class="card">
                         <h3>Doanh thu bán đồ ăn</h3>
-                        <p id="seatStatus">${totalFood}</p>
+                        <p id="seatStatus">${totalFood} VNĐ</p>
                     </div>
                 </div>
 

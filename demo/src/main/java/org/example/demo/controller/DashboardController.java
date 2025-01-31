@@ -13,7 +13,9 @@ import org.example.demo.service.DashboardService;
 import org.example.demo.service.MovieService;
 
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 @WebServlet(name = "dashboardController", value = "/dashboard")
 
@@ -36,10 +38,17 @@ public class DashboardController extends HttpServlet {
 
 
         total_revenue = total_Food + total_Movie;
+
+        NumberFormat formatter = NumberFormat.getInstance(Locale.US);
+        String formattpriceFood = formatter.format(total_Food);
+        String formattpriceTicket = formatter.format(total_Movie);
+        String formattpriceRevenue = formatter.format(total_revenue);
+
+
         request.setAttribute("date", date);
-        request.setAttribute("totalFood", total_Food);
-        request.setAttribute("totalMovie", total_Movie);
-        request.setAttribute("total_revenue", total_revenue);
+        request.setAttribute("totalFood", formattpriceFood);
+        request.setAttribute("totalMovie", formattpriceTicket);
+        request.setAttribute("total_revenue", formattpriceRevenue);
 
         request.getRequestDispatcher("Admin/dashboard.jsp").forward(request, response);
     }
