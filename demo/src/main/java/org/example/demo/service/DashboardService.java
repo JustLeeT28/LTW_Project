@@ -11,4 +11,24 @@ public class DashboardService {
     public double getTotalMovie7() {
         return orderDao.getTotalMovie7();
     }
+
+    public double getTotalFood30() {
+        return orderDao.getTotalFood30();
+    }
+
+    public double getTotalMovie30() {
+        return orderDao.getTotalMovie30();
+    }
+
+    public double getTotalFood365() {
+        return orderDao.getTotalFood365();
+    }
+
+    public double getTotalMovie365() {
+        return orderDao.getTotalMovie365();
+    }
+
+    public int getTotalMovieTicket(int i) {
+        return orderDao.getTotalTicketMovie(i);
+    }
 }

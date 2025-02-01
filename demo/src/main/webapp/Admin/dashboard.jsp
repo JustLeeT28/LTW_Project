@@ -51,15 +51,15 @@
                 <form id="statisticsForm" method="get" action="${pageContext.request.contextPath}/dashboard">
                     <select class="combobox" name="date" id="date" onchange="document.getElementById('statisticsForm').submit();">
                         <option value="week" ${'week' == date ? 'selected' : ''}>1 tuần</option>
-                        <option value="moth" ${'moth' == date ? 'selected' : ''}>1 tháng</option>
+                        <option value="moth" ${'month' == date ? 'selected' : ''}>1 tháng</option>
                         <option value="year" ${'year' == date ? 'selected' : ''}>1 năm</option>
                     </select>
                 </form>
                 </div>
                 <div class="overview">
                     <div class="card">
-                        <h3>Số lượng vé đã bán</h3>
-                        <p id="ticketsSold">350 vé</p>
+                        <h3>Số lượng vé phim đã bán</h3>
+                        <p id="ticketsSold">${ticket_movies} vé</p>
                     </div>
                     <div class="card">
                         <h3>Tổng doanh thu</h3>

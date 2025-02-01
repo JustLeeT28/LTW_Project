@@ -30,11 +30,22 @@ public class DashboardController extends HttpServlet {
         double total_Food = 0.0;
         double total_Movie = 0.0;
         double total_revenue = 0.0;
+        int ticket_movies = 0;
         DashboardService service = new DashboardService();
 
-
-        total_Food = service.getTotalFood7();
-        total_Movie = service.getTotalMovie7();
+        if (date.equals("month")) {
+            total_Food = service.getTotalFood30();
+            total_Movie = service.getTotalMovie30();
+            ticket_movies = service.getTotalMovieTicket(30);
+        } else if (date.equals("year")) {
+            total_Food = service.getTotalFood365();
+            total_Movie = service.getTotalMovie365();
+            ticket_movies = service.getTotalMovieTicket(365);
+        }else {
+            total_Food = service.getTotalFood7();
+            total_Movie = service.getTotalMovie7();
+            ticket_movies = service.getTotalMovieTicket(7);
+        }
 
 
         total_revenue = total_Food + total_Movie;
@@ -49,6 +60,7 @@ public class DashboardController extends HttpServlet {
         request.setAttribute("totalFood", formattpriceFood);
         request.setAttribute("totalMovie", formattpriceTicket);
         request.setAttribute("total_revenue", formattpriceRevenue);
+        request.setAttribute("ticket_movies", ticket_movies);
 
         request.getRequestDispatcher("Admin/dashboard.jsp").forward(request, response);
     }
