@@ -33,14 +33,20 @@ public class DashboardController extends HttpServlet {
         int ticket_movies = 0;
         DashboardService service = new DashboardService();
 
-        if (date.equals("month")) {
-            total_Food = service.getTotalFood30();
-            total_Movie = service.getTotalMovie30();
-            ticket_movies = service.getTotalMovieTicket(30);
-        } else if (date.equals("year")) {
-            total_Food = service.getTotalFood365();
-            total_Movie = service.getTotalMovie365();
-            ticket_movies = service.getTotalMovieTicket(365);
+        if(date != null && !date.isEmpty()) {
+            if (date.equals("month")) {
+                total_Food = service.getTotalFood30();
+                total_Movie = service.getTotalMovie30();
+                ticket_movies = service.getTotalMovieTicket(30);
+            } else if (date.equals("year")) {
+                total_Food = service.getTotalFood365();
+                total_Movie = service.getTotalMovie365();
+                ticket_movies = service.getTotalMovieTicket(365);
+            } else {
+                total_Food = service.getTotalFood7();
+                total_Movie = service.getTotalMovie7();
+                ticket_movies = service.getTotalMovieTicket(7);
+            }
         }else {
             total_Food = service.getTotalFood7();
             total_Movie = service.getTotalMovie7();

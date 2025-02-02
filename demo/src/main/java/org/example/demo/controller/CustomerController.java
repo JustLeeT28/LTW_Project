@@ -21,10 +21,10 @@ import java.util.List;
 public class CustomerController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (!isAdminLoggedIn(request)) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND); // Trả về lỗi 404
-            return;
-        }
+//        if (!isAdminLoggedIn(request)) { // bỏ vì cần dùng để tạo tài khoản admin
+//            response.sendError(HttpServletResponse.SC_NOT_FOUND); // Trả về lỗi 404
+//            return;
+//        }
         String query_cus = request.getParameter("query_customers");
         String idStatusBlock = request.getParameter("userId_status_block");
         String idStatusUnblock = request.getParameter("userId_status_unblock");
@@ -58,12 +58,12 @@ public class CustomerController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
-    private boolean isAdminLoggedIn(HttpServletRequest request) {
-        HttpSession session = request.getSession(false); // Lấy session (không tạo mới)
-        if (session == null) return false;
-
-        // Lấy thông tin role từ session
-        User u = (User) session.getAttribute("user");
-        return u != null && u.getRole() == 1; // Kiểm tra quyền là admin (1)
-    }
+//    private boolean isAdminLoggedIn(HttpServletRequest request) {
+//        HttpSession session = request.getSession(false); // Lấy session (không tạo mới)
+//        if (session == null) return false;
+//
+//        // Lấy thông tin role từ session
+//        User u = (User) session.getAttribute("user");
+//        return u != null && u.getRole() == 1; // Kiểm tra quyền là admin (1)
+//    }
 }

@@ -37,6 +37,7 @@
                     <li><a href="${pageContext.request.contextPath}/room_mng" data-section="rooms">Quản lý phòng chiếu</a></li>
                     <li><a href="${pageContext.request.contextPath}/tikket_mng" data-section="tickets">Quản lý vé</a></li>
                     <li><a href="${pageContext.request.contextPath}/customer_mng" data-section="customers">Quản lý khách hàng</a></li>
+                    <li><a href="${pageContext.request.contextPath}/seats_mng" data-section="seats">Quản lý ghế</a></li>
                     <li><a href="${pageContext.request.contextPath}">Trang chủ</a></li>
                     <%--                <li><a href="reports_mng.jsp" data-section="settings">Báo cáo và Thống kê</a></li>--%>
                 </ul>
