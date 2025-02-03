@@ -85,9 +85,22 @@
                     <button type="submit">Thêm phim</button>
                 </form>
             </div>
-
+<%--            <!-- Công cụ tìm kiếm -->--%>
+<%--            <div class="search-customer" style="margin-bottom: 15px">--%>
+<%--                <form action="${pageContext.request.contextPath}/customer_mng" method="GET">--%>
+<%--                    <input type="text" id="query_customers" name="query_customers" placeholder="Nhập tên ,email hoặc SĐT">--%>
+<%--                    <button type="submit">Tìm kiếm</button>--%>
+<%--                </form>--%>
+<%--            </div>--%>
             <!-- Danh sách phim -->
             <div class="movie-list">
+                <!-- Công cụ tìm kiếm -->
+                <div class="search-customer" style="margin-bottom: 15px">
+                    <form action="${pageContext.request.contextPath}/film_management" method="GET">
+                        <input type="text" id="query_movie" name="query_movie" placeholder="Nhập tên phim, DIR:<đạo diễn>, AC:<diễn viên>">
+                        <button type="submit">Tìm kiếm</button>
+                    </form>
+                </div>
                 <h2>Danh sách phim</h2>
                 <table>
                     <thead>

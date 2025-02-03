@@ -9,6 +9,7 @@ import org.example.demo.dao.model.Director;
 import org.example.demo.dao.model.Genre;
 import org.example.demo.dao.model.Movie;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MovieService {
@@ -65,4 +66,26 @@ public class MovieService {
     }
 
     public List<Movie> getMovieFuture() {return movieDao.getMovieFuture();}
+
+    public List<Movie> getMoviesByQuery(String queryMovie) {
+        List<Movie> list = new ArrayList<>();
+        if(isActor(queryMovie)){
+            String actor = queryMovie.replaceFirst("^AC:","");
+            return movieDao.getMovieByActor(actor);
+        } else if (isDIR(queryMovie)) {
+            String actor = queryMovie.replaceFirst("^DIR:","");
+            return movieDao.getMovieByDIR(actor);
+        }else{
+            return movieDao.getMoviesByName(queryMovie);
+        }
+    }
+    public static boolean isActor(String queryCus) {
+        String actorRegex = "^AC:[\\w\\s]+$";  // ^AC: theo sau tên tác giả có thể chứa chữ cái và khoảng trắng
+        return queryCus.matches(actorRegex);
+    }
+    public static boolean isDIR(String queryCus) {
+        String actorRegex = "^DIR:[\\w\\s]+$";  // ^AC: theo sau tên tác giả có thể chứa chữ cái và khoảng trắng
+        return queryCus.matches(actorRegex);
+    }
+
 }

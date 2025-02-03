@@ -1,9 +1,7 @@
 package org.example.demo.dao;
-import org.eclipse.tags.shaded.org.apache.xpath.operations.Mod;
 import org.example.demo.dao.db.DbConnect;
 import org.example.demo.dao.model.Genre;
 import org.example.demo.dao.model.Movie;
-import org.example.demo.service.MovieService;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -642,13 +640,115 @@ public class MovieDao {
             }
         }
     }
+//    public static void main(String[] args) {
+//        List<Movie> movies = new ArrayList<>();
+//        MovieDao movieDao = new MovieDao();
+////        movies = movieDao.getMovieNow();
+////        movies = movieDao.getMovieFuture();
+//        for (Movie movie : movies) {
+//            System.out.println(movie.getTitle());
+//        }
+//    }
+
+    public List<Movie> getMovieByActor(String actor) {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        try {
+            String query = "SELECT * FROM movies m " +
+                    "JOIN movie_actors m_a ON m_a.movieId = m.id " +
+                    "JOIN actors a ON a.id = m_a.actorId " +
+                    "WHERE a.name LIKE ? ";
+            ps = DbConnect.get(query);  // Lấy PreparedStatement từ DbConnect
+            ps.setString(1, "%" + actor + "%");
+            resultSet = ps.executeQuery();  // Thực thi truy vấn
+
+            List<Movie> movies = new ArrayList<>();
+            while (resultSet.next()) {
+                Movie movie = new Movie(
+                        resultSet.getInt("id"),
+                        resultSet.getString("title"),
+                        resultSet.getInt("duration"),
+                        resultSet.getString("description"),
+                        resultSet.getString("country"),
+                        resultSet.getString("language"),
+                        resultSet.getString("subtitle"),
+                        resultSet.getString("ageRating"),
+                        resultSet.getString("releaseDate"),
+                        resultSet.getString("endDate"),
+                        resultSet.getString("bannerUrl"),
+                        resultSet.getString("posterUrl"),
+                        resultSet.getString("status")
+                );
+                movies.add(movie);
+            }
+            return movies;
+        } catch (SQLException e) {
+            e.printStackTrace();  // Log lỗi (có thể thay thế bằng việc báo cáo lỗi rõ ràng hơn)
+            return new ArrayList<>();  // Trả về danh sách rỗng khi gặp lỗi
+        } finally {
+            // Đảm bảo đóng tài nguyên sau khi sử dụng
+            try {
+                if (resultSet != null) resultSet.close();
+                if (ps != null) ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();  // Log lỗi khi đóng tài nguyên
+            }
+        }
+    }
+
+
     public static void main(String[] args) {
         List<Movie> movies = new ArrayList<>();
         MovieDao movieDao = new MovieDao();
-//        movies = movieDao.getMovieNow();
-//        movies = movieDao.getMovieFuture();
+        movies = movieDao.getMovieByDIR("Anil Sharma");
         for (Movie movie : movies) {
             System.out.println(movie.getTitle());
+        }
+    }
+
+    public List<Movie> getMovieByDIR(String director) {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        try {
+            String query = "SELECT * FROM movies m " +
+                    "JOIN movie_directors m_d ON m_d.movieId = m.id " +
+                    "JOIN directors d ON d.id = m_d.directorId " +
+                    "WHERE d.name LIKE ? ";
+            ps = DbConnect.get(query);  // Lấy PreparedStatement từ DbConnect
+            ps.setString(1, "%" + director + "%");
+            resultSet = ps.executeQuery();  // Thực thi truy vấn
+
+            List<Movie> movies = new ArrayList<>();
+            while (resultSet.next()) {
+                Movie movie = new Movie(
+                        resultSet.getInt("id"),
+                        resultSet.getString("title"),
+                        resultSet.getInt("duration"),
+                        resultSet.getString("description"),
+                        resultSet.getString("country"),
+                        resultSet.getString("language"),
+                        resultSet.getString("subtitle"),
+                        resultSet.getString("ageRating"),
+                        resultSet.getString("releaseDate"),
+                        resultSet.getString("endDate"),
+                        resultSet.getString("bannerUrl"),
+                        resultSet.getString("posterUrl"),
+                        resultSet.getString("status")
+                );
+                movies.add(movie);
+            }
+            return movies;
+        } catch (SQLException e) {
+            e.printStackTrace();  // Log lỗi (có thể thay thế bằng việc báo cáo lỗi rõ ràng hơn)
+            return new ArrayList<>();  // Trả về danh sách rỗng khi gặp lỗi
+        } finally {
+            // Đảm bảo đóng tài nguyên sau khi sử dụng
+            try {
+                if (resultSet != null) resultSet.close();
+                if (ps != null) ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();  // Log lỗi khi đóng tài nguyên
+            }
         }
     }
 }

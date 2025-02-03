@@ -85,6 +85,7 @@ public class AddMovieController extends HttpServlet {
             response.sendError(HttpServletResponse.SC_NOT_FOUND); // Trả về lỗi 404
             return;
         }
+        String query_movie = request.getParameter("query_movie");
         String updateMovieId = request.getParameter("update_movie_id");
         if(updateMovieId != null && !updateMovieId.isEmpty()) {
             request.setAttribute("mId", updateMovieId);
@@ -92,7 +93,11 @@ public class AddMovieController extends HttpServlet {
         }
         List<Movie> movies = new ArrayList<>(); // Sử dụng ArrayList để có thể gán sau này
         MovieService movieService = new MovieService();
-        movies = movieService.getMoviesA_Z() ; // Lấy danh sách phim từ service
+        if(query_movie != null && !query_movie.isEmpty()) {
+            movies = movieService.getMoviesByQuery(query_movie);
+        }else {
+            movies = movieService.getMoviesA_Z(); // Lấy danh sách phim từ service
+        }
         request.setAttribute("movies", movies); // Lưu vào request để hiển thị lên JSP
 
         request.getRequestDispatcher("/Admin/film_management.jsp").forward(request, response); // Chuyển tới trang film_management.jsp
