@@ -36,4 +36,8 @@ public class TicketMovieService {
     public void updateImax(int i) {
         ticketMovieDao.updateImax(i);
     }
+
+    public void delTicketById(String ticketIdDel) {
+        ticketMovieDao.delTicketById(ticketIdDel);
+    }
 }

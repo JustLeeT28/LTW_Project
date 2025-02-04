@@ -18,8 +18,8 @@ public class TicketMovieDao {
         try {
             String query = "SELECT mt.id, mt.orderId, mt.showTimeId, mt.seatId, mt.price, mt.created_at, u.name ,sh.showDate,sh.showTime,sh.roomId " +
                     "FROM movie_tickets mt " +
-                    "JOIN orders o ON mt.orderId = o.id " +
-                    "JOIN users u ON o.userId = u.id " +
+//                    "JOIN orders o ON mt.orderId = o.id " +
+                    "LEFT JOIN users u ON mt.userId = u.id " +  // Sử dụng LEFT JOIN để lấy cả vé không có userId
                     "JOIN showtimes sh ON mt.showTimeId = sh.id " +
                     "ORDER BY mt.created_at DESC";
             ps = DbConnect.get(query);
@@ -52,8 +52,8 @@ public class TicketMovieDao {
         try {
             String query = "SELECT mt.id, mt.orderId, mt.showTimeId, mt.seatId, mt.price, mt.created_at, u.name ,sh.showDate,sh.showTime,sh.roomId " +
                     "FROM movie_tickets mt " +
-                    "JOIN orders o ON mt.orderId = o.id " +
-                    "JOIN users u ON o.userId = u.id " +
+//                    "JOIN orders o ON mt.orderId = o.id " +
+                    "LEFT JOIN users u ON mt.userId = u.id " +  // Sử dụng LEFT JOIN để lấy cả vé không có userId
                     "JOIN showtimes sh On mt.showTimeId = sh.id " +
                     "Where u.name LIKE ? " +
                     "ORDER BY mt.created_at DESC";
@@ -88,8 +88,8 @@ public class TicketMovieDao {
         try {
             String query = "SELECT mt.id, mt.orderId, mt.showTimeId, mt.seatId, mt.price, mt.created_at, u.name ,sh.showDate,sh.showTime,sh.roomId " +
                     "FROM movie_tickets mt " +
-                    "JOIN orders o ON mt.orderId = o.id " +
-                    "JOIN users u ON o.userId = u.id " +
+//                    "JOIN orders o ON mt.orderId = o.id " +
+                    "LEFT JOIN users u ON mt.userId = u.id " +  // Sử dụng LEFT JOIN để lấy cả vé không có userId
                     "JOIN showtimes sh ON mt.showTimeId = sh.id " +
                     "Where mt.id = ? " +
                     "ORDER BY mt.created_at DESC";
@@ -193,4 +193,22 @@ public class TicketMovieDao {
         }
 
     }
+
+    public void delTicketById(String ticketIdDel) {
+        PreparedStatement ps = null;
+        int id = Integer.parseInt(ticketIdDel);
+        try {
+            String query = "DELETE FROM movie_tickets WHERE id = ?";
+            ps = DbConnect.get(query);
+            ps.setInt(1,id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (ps != null) {
+                try { ps.close(); } catch (SQLException e) { e.printStackTrace(); }
+            }
+        }
+    }
+
 }

@@ -48,8 +48,13 @@ public class TicketMovieController extends HttpServlet {
         String tik3D = request.getParameter("3Dtik");
         String tik4D = request.getParameter("4Dtik");
         String tikImax = request.getParameter("Imax");
+        String ticketId_del = request.getParameter("ticketId_del");
+
 
         TicketMovieService ticketMovieService = new TicketMovieService();
+        if (ticketId_del != null && !ticketId_del.isEmpty()) {
+            ticketMovieService.delTicketById(ticketId_del);
+        }
 
         if (tik2D !=null && !tik2D.isEmpty() ) {
             ticketMovieService.update2D(Integer.parseInt(tik2D));

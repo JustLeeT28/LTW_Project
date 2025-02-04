@@ -78,13 +78,22 @@
                     <c:forEach var="ticket" items="${listMovieTicket}">
                         <tr>
                             <td>${ticket.id}</td>
-                            <td>${ticket.name}</td>
-                            <td>${ticket.showDate} : ${ticket.showTime}</td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${not empty ticket.nameUser}">
+                                        ${ticket.nameUser}
+                                    </c:when>
+                                    <c:otherwise>
+                                        Khách lẻ
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+                            <td>${ticket.dayshow} : ${ticket.timeshow}</td>
                             <td>${ticket.roomId}</td>
                             <td>${ticket.seatId}</td>
                             <td>${ticket.price}</td>
                             <td>
-                                <form class="form-delete" action="${pageContext.request.contextPath}/tikket_mng" method="GET" onsubmit="return confirm('Bạn có chắc chắn muốn xóa người này?');">
+                                <form class="form-delete" action="${pageContext.request.contextPath}/tikket_mng" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa vé này?');">
                                     <input type="hidden" name="ticketId_del" value="${ticket.id}" />
                                     <button type="submit" style="width: 100%">
                                         Hủy</button>

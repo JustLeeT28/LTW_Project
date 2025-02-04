@@ -1,5 +1,8 @@
 package org.example.demo.dao.model;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class MovieTicket {
     private int id;
     private int orderId;
@@ -67,8 +70,10 @@ public class MovieTicket {
         this.seatId = seatId;
     }
 
-    public double getPrice() {
-        return price;
+    public String getPrice() {
+        NumberFormat formatter = NumberFormat.getInstance(Locale.US);
+        String formattprice = formatter.format(price);
+        return formattprice;
     }
 
     public void setPrice(double price) {
