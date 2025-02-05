@@ -13,6 +13,7 @@ public class Movie {
     private String endDate;
     private String bannerUrl;
     private String posterUrl;
+    private String trailerUrl;
     private String status;
 
     public Movie(int id, String title, int duration, String description, String country, String language, String subtitle, String ageRating, String releaseDate, String endDate, String bannerUrl, String posterUrl, String status) {
@@ -31,7 +32,21 @@ public class Movie {
         this.status = status;
     }
 
-    public Movie() {
+    public Movie(int id, String title, int duration, String description, String country, String language, String subtitle, String ageRating, String releaseDate, String endDate, String bannerUrl, String posterUrl, String status, String trailerUrl) {
+        this.id = id;
+        this.title = title;
+        this.duration = duration;
+        this.description = description;
+        this.country = country;
+        this.language = language;
+        this.subtitle = subtitle;
+        this.ageRating = ageRating;
+        this.releaseDate = releaseDate;
+        this.endDate = endDate;
+        this.bannerUrl = bannerUrl;
+        this.posterUrl = posterUrl;
+        this.status = status;
+        this.trailerUrl = trailerUrl;
     }
 
     public int getId() {
@@ -137,4 +152,7 @@ public class Movie {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getTrailerUrl() {return trailerUrl;}
+    public void setTrailerUrl(String trailerUrl) {this.trailerUrl = trailerUrl;}
 }

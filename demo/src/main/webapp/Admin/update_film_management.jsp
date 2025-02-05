@@ -45,7 +45,10 @@
                     <input type="text" id="poster" name="posterUrl" >
 
                     <label for="trailer">URL Banner:</label>
-                    <input type="text" id="trailer" name="bannerUrl" >
+                    <input type="text" id="baner" name="bannerUrl" >
+
+                    <label for="trailer">URL Trailer:</label>
+                    <input type="text" id="trailer" name="trailerUrl" >
 
                     <label for="description">Mô tả:</label>
                     <textarea id="description" name="description" rows="3" ></textarea>

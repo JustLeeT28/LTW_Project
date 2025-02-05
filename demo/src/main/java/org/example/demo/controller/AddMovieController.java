@@ -36,6 +36,7 @@ public class AddMovieController extends HttpServlet {
         String ageRating = request.getParameter("ageRating");
         String releaseDate = request.getParameter("releaseDate");
         String endDate = request.getParameter("endDate");
+        String trailer = request.getParameter("trailerUrl");
 
         String delMovie = request.getParameter("del_movie_id");
 
@@ -53,9 +54,10 @@ public class AddMovieController extends HttpServlet {
                 actors != null && !actors.isEmpty() &&
                 ageRating != null && !ageRating.isEmpty() &&
                 releaseDate != null && !releaseDate.isEmpty() &&
-                endDate != null && !endDate.isEmpty()) {
+                endDate != null && !endDate.isEmpty() &&
+                trailer != null && !trailer.isEmpty()){
             // tao dữ liệu trong bảng movies
-            int movie_newid = addMovieService.addMovie(title, posterUrl, bannerUrl, description, country, language, subtitle, ageRating, releaseDate, endDate, duration);
+            int movie_newid = addMovieService.addMovie(title, posterUrl, bannerUrl, description, country, language, subtitle, ageRating, releaseDate, endDate, duration, trailer);
             if (movie_newid == -1) {
                 request.setAttribute("Message", "Thêm phim không thành công!");
                 doGet(request, response);

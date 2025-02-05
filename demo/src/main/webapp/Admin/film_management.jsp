@@ -47,7 +47,10 @@
                     <input type="text" id="poster" name="posterUrl" required>
 
                     <label for="trailer">URL Banner:</label>
-                    <input type="text" id="trailer" name="bannerUrl" required>
+                    <input type="text" id="baneer" name="bannerUrl" required>
+
+                    <label for="trailer">URL Trailer:</label>
+                    <input type="text" id="trailer" name="trailerUrl" required>
 
                     <label for="description">Mô tả:</label>
                     <textarea id="description" name="description" rows="3" required></textarea>

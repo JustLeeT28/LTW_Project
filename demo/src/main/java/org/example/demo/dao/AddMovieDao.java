@@ -30,7 +30,7 @@ public class AddMovieDao {
             throw new RuntimeException(e);
         }
     }
-    public int addMovie(String title, String posterUrl, String bannerUrl, String description, String country, String language, String subtitle, String ageRating, String releaseDate, String endDate, String duration) {
+    public int addMovie(String title, String posterUrl, String bannerUrl, String description, String country, String language, String subtitle, String ageRating, String releaseDate, String endDate, String duration, String  trailerUrl ) {
         PreparedStatement ps = null;
         ResultSet resultSet = null;
         int movieId = -1;
@@ -43,7 +43,7 @@ public class AddMovieDao {
             // Chuyển đổi java.util.Date thành java.sql.Date
             java.sql.Date sqlreleaseDate = new java.sql.Date(utilReleaseDate.getTime());
             java.sql.Date sqlendDate = new java.sql.Date(utilendDate.getTime());
-            String query = "INSERT INTO movies (title, duration, description, country, language, subtitle, ageRating, releaseDate, endDate, bannerUrl, posterUrl) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO movies (title, duration, description, country, language, subtitle, ageRating, releaseDate, endDate, bannerUrl, posterUrl,trailerUrl) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             ps = DbConnect.get(query);
             ps.setString(1, title);
             ps.setString(2, duration);
@@ -56,6 +56,7 @@ public class AddMovieDao {
             ps.setDate(9, sqlendDate);
             ps.setString(10, bannerUrl);
             ps.setString(11, posterUrl);
+            ps.setString(12, trailerUrl);
 
             // Thực thi lệnh SQL và lấy ID tự động sinh
             ps.executeUpdate();
