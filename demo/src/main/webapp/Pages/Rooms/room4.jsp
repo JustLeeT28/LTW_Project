@@ -16,7 +16,7 @@
       <c:forEach var="seat" items="${seatsInRoom}">
         <c:if test="${seat.row == row}">
           <c:set var="statusClass" value=""/>
-          <c:forEach var="statusSeat" items="${statusSeats}">
+          <c:forEach var="statusSeat" items="${showSeats}">
             <c:if test="${statusSeat.seatId == seat.id}">
               <c:choose>
                 <c:when test="${statusSeat.status == 'seat'}">

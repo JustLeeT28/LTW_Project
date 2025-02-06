@@ -3,6 +3,7 @@ package org.example.demo.service;
 import org.example.demo.dao.SeatDao;
 import org.example.demo.dao.model.Seat;
 import org.example.demo.dao.model.ShowSeat;
+import org.example.demo.dao.model.Showtime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,13 @@ public class SeatService {
     SeatDao seatDao = new SeatDao();
     public List<ShowSeat> getStatusSeatByShowtimeId(int showtimeId, int roomId) {
         return seatDao.getStatusSeatByShowtimeId(showtimeId, roomId);
+    }
+    public static void main(String[] args) {
+        SeatService seatService = new SeatService();
+        List<ShowSeat> lisst = seatService.getStatusSeatByShowtimeId(2,1);
+        for (ShowSeat showSeat : lisst) {
+            System.out.println(showSeat.getId());
+        }
     }
     public List<Seat> getSeatsInRooms(int roomId) {
         return seatDao.getSeatsInRoom(roomId);
@@ -45,13 +53,7 @@ public class SeatService {
         return listSeat;
     }
 
-    public static void main(String[] args) {
-        SeatService seatService = new SeatService();
-        List<Seat> seats = seatService.getSeatByQuery("1");
-        for(Seat seat : seats) {
-            System.out.println(seat.getId());
-        }
-    }
+
 
     public void blockSeat(String block) {
         seatDao.blockSeat(block);
@@ -59,5 +61,9 @@ public class SeatService {
 
     public void unBlockSeat(String block) {
         seatDao.unBlockSeat(block);
+    }
+
+    public List<ShowSeat> getShow_Seat(String roomId, String showtimeId) {
+        return seatDao.getShow_Seat(roomId,showtimeId);
     }
 }

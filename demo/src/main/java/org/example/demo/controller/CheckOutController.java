@@ -77,7 +77,7 @@ public class CheckOutController extends HttpServlet {
             movie = movieService.getMovieById(Integer.parseInt(movieId));
         }
         List<MovieTickets> tickets = (List<MovieTickets>) session.getAttribute("tickets");
-        int roomId = showtimeService.getShowtimeById(tickets.get(1).getShowTimeId()).getRoomId();
+        int roomId = showtimeService.getShowtimeById(tickets.get(0).getShowTimeId()).getRoomId();
         List<Seat> seats = new ArrayList<>();
         for (MovieTickets ticket : tickets) {
             seats.add(seatService.getSeatById(ticket.getSeatId()));

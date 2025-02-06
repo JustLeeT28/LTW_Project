@@ -90,6 +90,15 @@ public class SeatDao {
         }
     }
 
+    public static void main(String[] args) {
+        SeatDao seatDao = new SeatDao();
+        List<ShowSeat> list = new ArrayList<>();
+        list = seatDao.getStatusSeatByShowtimeId(2,1);
+        for (ShowSeat showSeat : list) {
+            System.out.println(showSeat.getId());
+        }
+    }
+
     public Set<String> getRowInRoom(int roomId) {
         List<Seat> seats = getSeatsInRoom(roomId);
         Set<String> rows = new HashSet<>();
@@ -185,13 +194,13 @@ public class SeatDao {
         return seats;
     }
 
-    public static void main(String[] args) {
-        SeatDao seatDao = new SeatDao();
-        List<Seat> seats = seatDao.getAllSeat();
-        for (Seat seat : seats) {
-            System.out.print(seat.getId());
-        }
-    }
+//    public static void main(String[] args) {
+//        SeatDao seatDao = new SeatDao();
+//        List<Seat> seats = seatDao.getAllSeat();
+//        for (Seat seat : seats) {
+//            System.out.print(seat.getId());
+//        }
+//    }
 
     public List<Seat> getSeatsByRoomAndRow(int i, String s) {
         PreparedStatement ps = null;
@@ -296,6 +305,33 @@ public class SeatDao {
             ps.setString(1, "active");
             ps.setString(2,block);
             ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<ShowSeat> getShow_Seat(String roomId, String showtimeId) {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        List<ShowSeat> showSeats = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM showtime_seats WHERE showtimeId = ? AND roomId = ?";
+            ps = DbConnect.get(query);
+            ps.setString(1,showtimeId);
+            ps.setString(2,roomId);
+            resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                ShowSeat s = new ShowSeat(
+                        resultSet.getInt("id"),
+                        resultSet.getInt("showTimeId"),
+                        resultSet.getInt("seatId"),
+                        resultSet.getString("status"),
+                        resultSet.getInt("roomId")
+                );
+                showSeats.add(s);
+            }
+            return showSeats;
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

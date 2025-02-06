@@ -49,6 +49,10 @@ public class Movie {
         this.trailerUrl = trailerUrl;
     }
 
+    public Movie() {
+
+    }
+
     public int getId() {
         return id;
     }

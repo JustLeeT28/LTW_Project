@@ -9,6 +9,7 @@ import org.example.demo.service.MovieService;
 import org.example.demo.service.SeatService;
 import org.example.demo.service.ShowtimeService;
 
+import javax.imageio.stream.ImageInputStream;
 import java.io.IOException;
 import java.util.*;
 
@@ -24,6 +25,7 @@ public class BookController extends HttpServlet {
 
         Set<String> rowsInRoom = new HashSet<>();
         List<ShowSeat> statusSeatByShowtimeId = new ArrayList<>();
+        List<ShowSeat> showSeats_status = new ArrayList<>();
         List<Seat> seatsInRoom =  new ArrayList<>();
 
         MovieService movieService = new MovieService();
@@ -52,11 +54,14 @@ public class BookController extends HttpServlet {
 
         String hour = request.getParameter("hour");
         String minute = request.getParameter("minute");
+        SeatService seatService = new SeatService();
 
-        if (roomId != null && showtimeId != null) {
+
+        if (roomId != null && !roomId.isEmpty()  && showtimeId != null && !showtimeId.isEmpty() ) {
             statusSeatByShowtimeId = new SeatService().getStatusSeatByShowtimeId(Integer.parseInt(roomId), Integer.parseInt(showtimeId));
             seatsInRoom = new SeatService().getSeatsInRooms(Integer.parseInt(roomId));
             rowsInRoom = new SeatService().getRowsInRoom(Integer.parseInt(roomId));
+            showSeats_status = seatService.getShow_Seat(roomId,showtimeId);
 
         }
 
@@ -71,8 +76,11 @@ public class BookController extends HttpServlet {
         request.setAttribute("minute", minute);
         request.setAttribute("roomId", roomId);
         request.setAttribute("showtimeId", showtimeId);
-        request.setAttribute("statusSeats", statusSeatByShowtimeId);
+        request.setAttribute("statusSeats", statusSeatByShowtimeId );
         request.setAttribute("seatsInRoom", seatsInRoom);
+        request.setAttribute("showSeats", showSeats_status);
+
+
 
         HttpSession session = request.getSession(false);
         if (session != null) {
@@ -82,6 +90,8 @@ public class BookController extends HttpServlet {
         // Chuyển hướng tới trang book.jsp
         request.getRequestDispatcher("Pages/book.jsp").forward(request, response);
     }
+
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
