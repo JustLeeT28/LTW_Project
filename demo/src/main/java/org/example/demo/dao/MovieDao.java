@@ -220,7 +220,8 @@ public class MovieDao {
                         resultSet.getString("endDate"),
                         resultSet.getString("bannerUrl"),
                         resultSet.getString("posterUrl"),
-                        resultSet.getString("status")
+                        resultSet.getString("status"),
+                        resultSet.getString("trailerUrl")
                 );
             }
 

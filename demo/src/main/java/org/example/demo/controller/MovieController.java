@@ -16,8 +16,10 @@ public class MovieController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         MovieService movieService = new MovieService();
-        List<Movie> movies = movieService.getMovies();
+        List<Movie> movies = movieService.getMovieNow();
+        List<Movie> movies2 = movieService.getMovieFuture();
         request.setAttribute("movies", movies);
+        request.setAttribute("movies2", movies2);
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 

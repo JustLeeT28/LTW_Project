@@ -12,13 +12,22 @@
     <script src="${pageContext.request.contextPath}/Script/chooseDate.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/nav_menu.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/footer.css">
+    <style>
+        .book {
+            margin-top: 655px;
+            margin-bottom: 390px;
+        }
+        .date_type{
+            margin-top: 15px;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="Includes/menu.jsp"/>
 <div class="book">
     <div class="left">
         <img src="${movie.posterUrl}"/>
-        <div class="play_bttn">
+        <div class="play_bttn" onclick=" toggleTrailer()">
             <i class="bi bi-play-fill" id="play_bttn"></i>
         </div>
         <div class="infor">
@@ -49,10 +58,28 @@
             <h1>Nội dung phim</h1>
             <p>${movie.description}</p>
         </div>
+        <div class="trailer" id="trailerContainer" style="display: none;">
+            <video width="950" height="500" controls>
+            <source src="${movie.trailerUrl}" type="video/mp4">
+<%--            Your browser does not support the video tag.--%>
+            </video>
+            <c:if test="${empty movie.trailerUrl}">
+                <p style="color:white;">Thông tin trailer chưa được cập nhập!</p>
+            </c:if>
+        </div>
+        <script>
+            function toggleTrailer() {
+                var trailerContainer = document.getElementById('trailerContainer');
+                if (trailerContainer.style.display === 'none') {
+                    trailerContainer.style.display = 'block';
+                } else {
+                    trailerContainer.style.display = 'none';
+                }
+            }
+        </script>
         <div class="date_type">
             <div class="left_card">
-                <h6 class="tittle">
-                </h6>
+                <h6 class="tittle" style="margin-top: 15px" >Ngày chiếu</h6>
                 <div class="card_month">
                     <%--<ul style="list-style: none; display: flex; padding: 0; margin: 0;">--%>
                     <ul style="display: flex; list-style: none; padding: 0;">
@@ -132,4 +159,5 @@
 </div>
 <jsp:include page="Includes/footer.jsp"/>
 </body>
+
 </html>

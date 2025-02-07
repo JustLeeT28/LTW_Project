@@ -45,7 +45,7 @@
 </div>
 <div class="movie-showing">
     <c:forEach var="movie" items="${movies}" varStatus="status">
-        <c:if test="${status.index < 8}">
+        <c:if test="${status.index < 4}">
             <div class="movie">
                 <div class="movie-infor">
                     <div class="movie_img">
@@ -75,8 +75,8 @@
     <h1>Phim sắp chiếu</h1>
 </div>
 <div class="movie-incoming">
-    <c:forEach var="movie" items="${movies}" varStatus="status">
-        <c:if test="${status.index < 8}">
+    <c:forEach var="movie" items="${movies2}" varStatus="status">
+        <c:if test="${status.index < 4}">
             <div class="movie">
                 <div class="movie-infor">
                     <div class="movie_img">
