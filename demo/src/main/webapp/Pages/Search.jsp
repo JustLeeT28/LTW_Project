@@ -35,8 +35,9 @@
         <!-- Combobox Trạng thái -->
         <select class="combobox" name="condition" id="condition" onchange="document.getElementById('filterForm').submit();">
             <option value="" >Sắp xếp</option>
-            <option value="new" ${'new' == condition ? 'selected' : ''}>Phim mới chiếu</option>
+            <option value="new" ${'new' == condition ? 'selected' : ''}>Phim đang chiếu</option>
             <option value="hot" ${'hot' == condition ? 'selected' : ''}>Phim xem nhiều</option>
+            <option value="soon" ${'soon' == condition ? 'selected' : ''}>Phim sắp chếu</option>
         </select>
     </form>
 

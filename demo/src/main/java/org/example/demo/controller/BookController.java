@@ -22,6 +22,10 @@ public class BookController extends HttpServlet {
         String movieId = request.getParameter("mId");
         String roomId = request.getParameter("roomId");
         String showtimeId = request.getParameter("showtimeId");
+//        HttpSession session = request.getSession(false); // Lấy session hiện tại, nếu có
+
+
+
 
         Set<String> rowsInRoom = new HashSet<>();
         List<ShowSeat> statusSeatByShowtimeId = new ArrayList<>();
@@ -83,9 +87,21 @@ public class BookController extends HttpServlet {
 
 
         HttpSession session = request.getSession(false);
+        List<Integer> selectedSeats = new ArrayList<>();
+
         if (session != null) {
             User user = (User) session.getAttribute("user");
+
+            // Kiểm tra nếu session có "selectedSeats"
+            List<String> seatStrings = (List<String>) session.getAttribute("selectedSeats");
+            if (seatStrings != null) {
+                // Chuyển đổi List<String> thành List<Integer>
+                for (String seat : seatStrings) {
+                    selectedSeats.add(Integer.parseInt(seat));
+                }
+            }
         }
+        request.setAttribute("selectedSeats", selectedSeats);
         request.setAttribute("rowsInRoom", rowsInRoom);
         // Chuyển hướng tới trang book.jsp
         request.getRequestDispatcher("Pages/book.jsp").forward(request, response);

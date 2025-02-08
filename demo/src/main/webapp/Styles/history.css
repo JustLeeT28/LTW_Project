@@ -213,9 +213,78 @@ sub {
 
 }
 .history {
+    display: flex;
+    flex-direction: column;
     width: 60%;
     padding: 0;
     margin-left: 30%;
     padding-top: 2%;
 }
+
+
+.table {
+    width: 80%;
+    margin: 20px auto;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1.2em;
+    /*background: #fff;*/
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Header */
+/*thead {*/
+/*    background-color: #85e3b3;*/
+/*}*/
+
+th {
+    padding: 12px;
+    font-weight: bold;
+    border: 1px solid #202020;
+    text-align: center;
+    background-color: #85e3b3;
+}
+
+/* Body */
+td {
+    padding: 12px;
+    border: 1px solid #202020;
+    text-align: center;
+}
+
+/* Dòng chẵn/lẻ */
+tr:nth-child(even) {
+    background-color: #fff;
+}
+
+tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+/* Hiệu ứng hover */
+tr:hover {
+    background-color: #ddd;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .table {
+        width: 100%;
+    }
+
+    table {
+        font-size: 1em;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+}
+
 

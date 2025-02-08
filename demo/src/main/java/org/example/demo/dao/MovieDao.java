@@ -338,6 +338,13 @@ public class MovieDao {
                         "WHERE releaseDate <= CURRENT_DATE AND endDate >= CURRENT_DATE "+
                         "ORDER BY releaseDate DESC" ;
             }
+            if(condition.equalsIgnoreCase("soon")){
+//                String query = " SELECT * FROM movies WHERE releaseDate > CURRENT_DATE ";
+                query = "SELECT * " +
+                        "FROM movies " +
+                        "WHERE releaseDate > CURRENT_DATE "+
+                        "ORDER BY releaseDate ASC" ;
+            }
             ps = DbConnect.get(query);  // Lấy PreparedStatement từ DbConnect
             resultSet = ps.executeQuery();  // Thực thi truy vấn
 
@@ -395,11 +402,11 @@ public class MovieDao {
             }
             if(condition.equalsIgnoreCase("new")){
                 query = "SELECT * " +
-                        "FROM movies " +
-                        "WHERE releaseDate <= CURRENT_DATE AND endDate >= CURRENT_DATE "+
+                        "FROM movies m " +
                         "JOIN movie_genres mg ON mg.movieId = m.id  " +
                         "JOIN genres g ON mg.genreId = g.id " +
-                        "WHERE g.id = ? " +
+                        "WHERE m.releaseDate <= CURRENT_DATE AND m.endDate >= CURRENT_DATE "+
+                        "AND g.id = ? " +
                         "ORDER BY releaseDate DESC" ;
             }
             ps = DbConnect.get(query);  // Lấy PreparedStatement từ DbConnect

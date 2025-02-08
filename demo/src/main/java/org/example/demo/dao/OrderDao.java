@@ -15,10 +15,13 @@ public class OrderDao {
         try{
             String sql = "SELECT SUM(price * quantity) AS total_revenue " +
                     "FROM food_ticket_items " +
-                    "WHERE created_at >= CURDATE() - INTERVAL 7 DAY;";
+//                    "WHERE created_at >= CURDATE() - INTERVAL 7 DAY;";
+                    "WHERE created_at >= CURDATE() - INTERVAL ? DAY";
+
 
             // Tạo đối tượng PreparedStatement từ kết nối
             ps = DbConnect.get(sql);
+            ps.setInt(1, 7);
             // Thực thi truy vấn và nhận kết quả
             resultSet = ps.executeQuery();
 
@@ -47,10 +50,13 @@ public class OrderDao {
         try{
             String sql = "SELECT SUM(price * quantity) AS total_revenue " +
                     "FROM food_ticket_items " +
-                    "WHERE created_at >= CURDATE() - INTERVAL 30 DAY;";
+//                    "WHERE created_at >= CURDATE() - INTERVAL 30 DAY;";
+                    "WHERE created_at >= CURDATE() - INTERVAL ? DAY";
+
 
             // Tạo đối tượng PreparedStatement từ kết nối
             ps = DbConnect.get(sql);
+            ps.setInt(1, 30);
             // Thực thi truy vấn và nhận kết quả
             resultSet = ps.executeQuery();
 
@@ -79,10 +85,13 @@ public class OrderDao {
         try{
             String sql = "SELECT SUM(price * quantity) AS total_revenue " +
                     "FROM food_ticket_items " +
-                    "WHERE created_at >= CURDATE() - INTERVAL 365 DAY;";
+//                    "WHERE created_at >= CURDATE() - INTERVAL 365 DAY;";
+                    "WHERE created_at >= CURDATE() - INTERVAL ? DAY";
+
 
             // Tạo đối tượng PreparedStatement từ kết nối
             ps = DbConnect.get(sql);
+            ps.setInt(1, 365);
             // Thực thi truy vấn và nhận kết quả
             resultSet = ps.executeQuery();
 
@@ -112,16 +121,18 @@ public class OrderDao {
         try {
             String sql = "SELECT SUM(price) AS total_revenue " +
                     "FROM movie_tickets " +
-                    "WHERE created_at >= CURDATE() - INTERVAL 7 DAY";
+//                    "WHERE created_at >= CURDATE() - INTERVAL 7 DAY";
+                    "WHERE created_at >= CURDATE() - INTERVAL ? DAY";
             // Tạo đối tượng PreparedStatement từ kết nối
             ps = DbConnect.get(sql);
+            ps.setInt(1, 7);
             // Thực thi truy vấn và nhận kết quả
             resultSet = ps.executeQuery();
 
             // Kiểm tra nếu có kết quả trả về
             if (resultSet.next()) {
                 // Lấy tổng doanh thu từ kết quả
-                total = resultSet.getDouble(1);
+                total = resultSet.getDouble("total_revenue");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -143,9 +154,12 @@ public class OrderDao {
         try {
             String sql = "SELECT SUM(price) AS total_revenue " +
                     "FROM movie_tickets " +
-                    "WHERE created_at >= CURDATE() - INTERVAL 30 DAY";
+//                    "WHERE created_at >= CURDATE() - INTERVAL 30 DAY";
+                    "WHERE created_at >= CURDATE() - INTERVAL ? DAY";
+
             // Tạo đối tượng PreparedStatement từ kết nối
             ps = DbConnect.get(sql);
+            ps.setInt(1, 30);
             // Thực thi truy vấn và nhận kết quả
             resultSet = ps.executeQuery();
 
@@ -174,9 +188,12 @@ public class OrderDao {
         try {
             String sql = "SELECT SUM(price) AS total_revenue " +
                     "FROM movie_tickets " +
-                    "WHERE created_at >= CURDATE() - INTERVAL 365 DAY";
+//                    "WHERE created_at >= CURDATE() - INTERVAL 365 DAY";
+                    "WHERE created_at >= CURDATE() - INTERVAL ? DAY";
+
             // Tạo đối tượng PreparedStatement từ kết nối
             ps = DbConnect.get(sql);
+            ps.setInt(1, 365);
             // Thực thi truy vấn và nhận kết quả
             resultSet = ps.executeQuery();
 
@@ -199,12 +216,12 @@ public class OrderDao {
         return total;
     }
 
-//    public static void main(String[] args) {
-//        double food = 0.0;
-//        OrderDao orderDao = new OrderDao();
-//        food = orderDao.getTotalMovie30();
-//        System.out.println(food);
-//    }
+    public static void main(String[] args) {
+        double food = 0.0;
+        OrderDao orderDao = new OrderDao();
+        food = orderDao.getTotalFood7();
+        System.out.println(food);
+    }
 
     public int getTotalTicketMovie(int i) {
         PreparedStatement ps = null;

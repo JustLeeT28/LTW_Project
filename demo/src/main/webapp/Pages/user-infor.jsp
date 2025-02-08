@@ -25,7 +25,7 @@
     <h1><strong>THÔNG TIN CÁ NHÂN</strong></h1>
     <div class="infor-content">
         <div class="row-infor">
-            <span class="highlight">Họ tên: </span> <span class="in4" id="name">${sessionScope.user.name}</span>
+            <span class="highlight">Họ tên: </span> <span class="in4" id="name">${sessionScope.user.name} - ${sessionScope.user.id}</span>
         </div>
         <div class="row-infor">
             <span class="highlight">Sinh nhật: </span> <span class="in4" id="birthday">

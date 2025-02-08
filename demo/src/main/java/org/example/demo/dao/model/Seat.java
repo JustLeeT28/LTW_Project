@@ -1,5 +1,7 @@
 package org.example.demo.dao.model;
 
+import java.util.List;
+
 public class Seat {
     private int id;
     private int roomId;
@@ -7,6 +9,7 @@ public class Seat {
     private String seatNumber;
     private double price;
     private String isActive;
+    private boolean isSelected;
 
     public Seat(int id, int roomId, String row, String seatNumber, double price, String isActive) {
         this.id = id;
@@ -59,6 +62,27 @@ public class Seat {
 
     public String getIsActive() {
         return isActive;
+    }
+
+    public String getStringid(){
+        String id = String.valueOf(this.id);
+        return id;
+    }
+    public boolean contain(List<String> seatStrings){
+        String currentId = String.valueOf(this.id);
+        for(String seatString : seatStrings){
+            if(currentId.equals(seatString)){
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.isSelected = selected;
     }
 
     public void setIsActive(String isActive) {

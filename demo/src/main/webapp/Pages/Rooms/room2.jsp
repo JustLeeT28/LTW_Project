@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -10,6 +11,11 @@
 </head>
 <body>
 <div class="chair">
+    <c:if test="${empty selectedSeats}">
+            <script>
+                console.log("Danh sách ghế đã chọn: ${selectedSeats}");
+            </script>
+    </c:if>
     <c:forEach var="row" items="${rowsInRoom}">
         <div class="row">
             <span>${row}</span>
@@ -28,6 +34,14 @@
                                 <c:when test="${statusSeat.status == 'booked'}">
                                     <c:set var="statusClass" value="booked"/>
                                 </c:when>
+<%--                                <jsp:useBean id="selectedSeats" scope="request" type=""/>--%>
+<%--                                <c:when test="${seat.contain(selectedSeats)}">--%>
+                                <c:when test="${not empty selectedSeats and fn:contains(selectedSeats, seat.id.toString())}">
+                                <c:set var="statusClass" value="selected"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:set var="statusClass" value="seat"/>
+                                </c:otherwise>
                             </c:choose>
                         </c:if>
                     </c:forEach>

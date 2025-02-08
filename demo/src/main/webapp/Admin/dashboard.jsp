@@ -52,7 +52,7 @@
                 <form id="statisticsForm" method="get" action="${pageContext.request.contextPath}/dashboard">
                     <select class="combobox" name="date" id="date" onchange="document.getElementById('statisticsForm').submit();">
                         <option value="week" ${'week' == date ? 'selected' : ''}>1 tuần</option>
-                        <option value="moth" ${'month' == date ? 'selected' : ''}>1 tháng</option>
+                        <option value="month" ${'month' == date ? 'selected' : ''}>1 tháng</option>
                         <option value="year" ${'year' == date ? 'selected' : ''}>1 năm</option>
                     </select>
                 </form>

@@ -10,6 +10,8 @@ import org.example.demo.service.ShowtimeService;
 import org.example.demo.service.TicketService;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "HistoryController", urlPatterns = "/history")
 
@@ -23,21 +25,37 @@ public class HistoryController extends HttpServlet {
         SeatService seatService = new SeatService();
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
+        int userId = user.getId();
+//        (userId == null) ? 21 : userId;
         if (session == null || user == null) {
             response.sendRedirect("Pages/login.jsp");
             return;
         }
-        Movie movie = movieService.getMovieById(ticketService.getMovieTicketByUserId(user.getId()).getShowTimeId());
-        Showtime showtime = showtimeService.getShowtimeById(ticketService.getMovieTicketByUserId(user.getId()).getShowTimeId());
-        FoodTicketItem foodTicketItem = ticketService.getFoodTicketItemByUserId(user.getId());
-        MovieTickets movieTickets = ticketService.getMovieTicketByUserId(user.getId());
-        Seat seat = seatService.getSeatById(movieTickets.getSeatId());
+//        Movie movie = movieService.getMovieById(ticketService.getMovieTicketByUserId(user.getId()).getShowTimeId());
+//        Showtime showtime = showtimeService.getShowtimeById(ticketService.getMovieTicketByUserId(user.getId()).getShowTimeId());
+//        FoodTicketItem foodTicketItem = ticketService.getFoodTicketItemByUserId(user.getId());
+//        MovieTickets movieTickets = ticketService.getMovieTicketByUserId(user.getId());
+//        Seat seat = seatService.getSeatById(movieTickets.getSeatId());
+//
+//        request.setAttribute("movie", movie);
+//        request.setAttribute("showtime", showtime);
+//        request.setAttribute("foodTicketItem", foodTicketItem);
+//        request.setAttribute("movieTickets", movieTickets);
+//        request.setAttribute("seat", seat);
+        String query = request.getParameter("query");
+        List<MovieTickets> list = new ArrayList<MovieTickets>();
+        if (query != null && !query.isEmpty()) {
+            if (query.equals("food")) {
+                // list = ticketService.gettiketFoodById(user.getId());
+            } else {
+                list = ticketService.getTikeckMovieByID(userId);
+            }
+        } else {
+            list = ticketService.getTikeckMovieByID(userId);
+        }
+//        list = ticketService.getTikeckMovieByID(userId);
 
-        request.setAttribute("movie", movie);
-        request.setAttribute("showtime", showtime);
-        request.setAttribute("foodTicketItem", foodTicketItem);
-        request.setAttribute("movieTickets", movieTickets);
-        request.setAttribute("seat", seat);
+        request.setAttribute("listTicket", list);
         request.getRequestDispatcher("Pages/history.jsp").forward(request, response);
     }
 

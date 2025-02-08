@@ -6,6 +6,9 @@ import org.example.demo.dao.model.MovieTickets;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TicketDao {
     public void addMovieTicket(MovieTickets movieTickets) {
@@ -86,5 +89,47 @@ public class TicketDao {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public List<MovieTickets> getTikeckMovieByID(String id) {
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        List<MovieTickets> movieTickets = new ArrayList<MovieTickets>();
+        try {
+            String query = "SELECT m.title, s.roomId, se.row, se.seat_number, s.showDate, s.showTime, m_t.price " +
+                    "FROM movie_tickets m_t " +
+                    "JOIN seats se ON se.id = m_t.seatId " +
+                    "JOIN showtimes s ON s.id = m_t.showTimeId " +
+                    "JOIN movies m ON m.id = s.movieId " +
+                    "WHERE m_t.userId = ? ";
+
+            ps = DbConnect.get(query);
+            ps.setString(1,id);
+            resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                MovieTickets movieTicket = new MovieTickets(
+                        resultSet.getDouble("price"),
+                        resultSet.getString("title"),
+                        resultSet.getString("roomId"),
+                        resultSet.getString("row"),
+                        resultSet.getString("seat_number"),
+                        resultSet.getDate("showDate").toLocalDate(),
+                        resultSet.getTime("showTime").toLocalTime()
+                );
+                movieTickets.add(movieTicket);
+            }
+            return movieTickets;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void main(String[] args) {
+        TicketDao ticketDao = new TicketDao();
+        List<MovieTickets> movieTickets = ticketDao.getTikeckMovieByID("22");
+        for (MovieTickets movieTicket : movieTickets) {
+            System.out.println(movieTicket.getPrice());
+        }
     }
 }
