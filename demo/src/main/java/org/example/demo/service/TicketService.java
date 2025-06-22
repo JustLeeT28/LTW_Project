@@ -40,4 +40,8 @@ public class TicketService {
             System.out.println(movieTickets.getPrice());
         }
     }
+
+//    public List<FoodTicketItem> gettiketFoodById(int id) {
+//        return ticketDao.getTicketFood(id);
+//    }
 }

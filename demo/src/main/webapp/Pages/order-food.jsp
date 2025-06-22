@@ -16,9 +16,9 @@
 <body>
 <jsp:include page="Includes/menu.jsp"/>
 <div class="left">
-    <c:forEach var="ticket" items="${tickets}">
-        ${ticket.getSeatId()}
-    </c:forEach>
+<%--    <c:forEach var="ticket" items="${tickets}">--%>
+<%--        ${ticket.getSeatId()}--%>
+<%--    </c:forEach>--%>
     <c:forEach var="foodCombo" items="${foodCombos}">
         <div class="food-item">
             <div class="col-2">

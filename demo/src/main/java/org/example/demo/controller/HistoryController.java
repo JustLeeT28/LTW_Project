@@ -43,18 +43,19 @@ public class HistoryController extends HttpServlet {
 //        request.setAttribute("movieTickets", movieTickets);
 //        request.setAttribute("seat", seat);
         String query = request.getParameter("query");
-        List<MovieTickets> list = new ArrayList<MovieTickets>();
+        List<MovieTickets> list = new ArrayList<>();
+
         if (query != null && !query.isEmpty()) {
             if (query.equals("food")) {
-                // list = ticketService.gettiketFoodById(user.getId());
+//                List<FoodTicketItem> list = new ArrayList<>();
+////                 list = ticketService.gettiketFoodById(user.getId());
             } else {
+
                 list = ticketService.getTikeckMovieByID(userId);
             }
         } else {
             list = ticketService.getTikeckMovieByID(userId);
         }
-//        list = ticketService.getTikeckMovieByID(userId);
-
         request.setAttribute("listTicket", list);
         request.getRequestDispatcher("Pages/history.jsp").forward(request, response);
     }

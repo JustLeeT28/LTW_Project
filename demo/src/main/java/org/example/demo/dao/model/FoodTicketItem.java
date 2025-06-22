@@ -6,6 +6,7 @@ public class FoodTicketItem {
     private int userId;
     private int quantity;
     private double totalPrice;
+    private String nameCombo;
 
     public FoodTicketItem(int id, int comboId, int quantity, double totalPrice, int userId) {
         this.id = id;
@@ -19,6 +20,12 @@ public class FoodTicketItem {
         this.quantity = quantity;
         this.totalPrice = totalPrice;
         this.userId = userId;
+    }
+    public FoodTicketItem( int comboId, int quantity, double totalPrice, int userId,String nameCombo) {
+        this.comboId = comboId;
+        this.quantity = quantity;
+        this.totalPrice = totalPrice;
+        this.nameCombo = nameCombo;
     }
     public FoodTicketItem() {
     }
@@ -62,5 +69,9 @@ public class FoodTicketItem {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getNameCombo() {
+        return nameCombo;
     }
 }

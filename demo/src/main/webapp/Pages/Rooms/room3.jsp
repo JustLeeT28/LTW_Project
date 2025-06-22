@@ -10,6 +10,11 @@
 </head>
 <body>
 <div class="chair">
+  <c:if test="${not empty selectedSeats}">
+    <script>
+      console.log("Danh sách ghế đã chọn: ${selectedSeats}");
+    </script>
+  </c:if>
   <c:forEach var="row" items="${rowsInRoom}">
     <div class="row">
       <span>${row}</span>

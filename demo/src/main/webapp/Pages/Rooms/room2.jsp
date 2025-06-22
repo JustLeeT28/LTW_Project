@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="chair">
-    <c:if test="${empty selectedSeats}">
+    <c:if test="${not empty selectedSeats}">
             <script>
                 console.log("Danh sách ghế đã chọn: ${selectedSeats}");
             </script>

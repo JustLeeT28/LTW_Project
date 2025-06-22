@@ -132,4 +132,29 @@ public class TicketDao {
             System.out.println(movieTicket.getPrice());
         }
     }
+
+//    public List<FoodTicketItem> getTicketFood(int id) {
+//        PreparedStatement ps = null;
+//        ResultSet resultSet = null;
+//        List<FoodTicketItem> list = new ArrayList<>();
+//        try {
+//            String query = "SELECT *, f_c.name FROM food_ticket_items fti " +
+//                    "JOIN food_combos f_c ON f_c.id = fti.comboId " +
+//                    "WHERE userId = ?";
+//            ps = DbConnect.get(query);
+//            ps.setInt(1,id);
+//            resultSet = ps.executeQuery();
+//            while (resultSet.next()) {
+//                FoodTicketItem foodTicketItem = new FoodTicketItem(
+////                        resultSet.getInt(
+////                                resultSet.getInt("comboId"),
+////                                resultSet.getInt("quantity"),
+////                                resultSet.getDouble("quantity"),
+////                                resultSet.getString("name")
+////                );
+//            }
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 }
